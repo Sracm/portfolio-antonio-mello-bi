@@ -506,11 +506,11 @@
                     min: 0,
                     max: 120,
                     splitNumber: 12,
-                    radius: '112%',
-                    center: ['50%', '74%'],
+                    radius: '100%',
+                    center: ['50%', '58%'],
                     axisLine: {
                         lineStyle: {
-                            width: 18,
+                            width: 16,
                             color: [
                                 [80 / 120, '#ff3b3b'],
                                 [100 / 120, '#ffc107'],
@@ -520,9 +520,9 @@
                     },
                     pointer: {
                         icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-                        length: '58%',
-                        width: 6,
-                        offsetCenter: [0, '-4%'],
+                        length: '56%',
+                        width: 5.5,
+                        offsetCenter: [0, '-5%'],
                         itemStyle: { 
                             color: '#f5c518',
                             shadowColor: 'rgba(0,0,0,0.6)',
@@ -536,16 +536,16 @@
                     },
                     title: {
                         show: true,
-                        offsetCenter: [0, '18%'],
-                        fontSize: 22,
+                        offsetCenter: [0, '14%'],
+                        fontSize: 20,
                         fontWeight: '800',
                         color: '#ffffff',
                         fontFamily: 'Montserrat'
                     },
                     detail: {
                         show: true,
-                        fontSize: 13,
-                        offsetCenter: [0, '48%'],
+                        fontSize: 12,
+                        offsetCenter: [0, '32%'],
                         valueAnimation: true,
                         formatter: function() { return diffText; },
                         color: diffColor,
@@ -554,7 +554,7 @@
                     },
                     data: [{
                         value: percent,
-                        name: percent.toFixed(1) + '%'
+                        name: percent.toFixed(2) + '%'
                     }]
                 }]
             };
