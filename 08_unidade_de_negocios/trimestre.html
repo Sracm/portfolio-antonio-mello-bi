@@ -128,40 +128,90 @@
             color: #fff;
             letter-spacing: 1px;
         }
-        /* Grid Trimestral Especial: Top 2, Bottom 3 (Idêntico à Imagem 2 do usuário) */
-        .trimestre-grid {
-            max-width: 1720px;
-            margin: 0 auto;
-            padding: 16px 20px 24px;
+        /* Layout Trimestral Responsivo TV */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        .dashboard-container {
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 14px;
         }
-        .row-top-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
+        @media (min-width: 960px) {
+            body {
+                overflow: hidden;
+            }
+            .dashboard-container {
+                height: 100vh;
+                overflow: hidden;
+            }
+            .trimestre-grid {
+                flex: 1;
+                min-height: 0;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 6px 16px 10px;
+                box-sizing: border-box;
+                overflow: hidden;
+                max-width: 1800px;
+                width: 100%;
+                margin: 0 auto;
+            }
+            .row-top-2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                flex: 1;
+                min-height: 0;
+                height: 50%;
+            }
+            .row-bottom-3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+                flex: 1;
+                min-height: 0;
+                height: 50%;
+            }
         }
-        .row-bottom-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-        }
-        @media (max-width: 1000px) {
-            .row-top-2 { grid-template-columns: 1fr; }
-            .row-bottom-3 { grid-template-columns: 1fr; }
+        @media (max-width: 959px) {
+            .trimestre-grid {
+                padding: 12px;
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .row-top-2, .row-bottom-3 {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .tri-card {
+                min-height: 220px;
+            }
         }
         .tri-card {
-            background: var(--card-dark);
+            background: linear-gradient(180deg, #131722 0%, #0d1017 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 14px 16px 10px;
+            border-radius: 8px;
+            padding: 8px 12px 6px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
             transition: all 0.2s;
-            position: relative;
+            height: 100%;
+            min-height: 0;
+            box-sizing: border-box;
+            overflow: hidden;
         }
         .tri-card:hover {
             transform: translateY(-2px);
@@ -169,15 +219,23 @@
         }
         .tri-card.meta-batida {
             border: 2px solid #00d26a;
-            box-shadow: 0 0 18px rgba(0, 210, 106, 0.35);
+            box-shadow: 0 0 16px rgba(0, 210, 106, 0.35);
+        }
+        .tri-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-bottom: 2px;
         }
         .tri-card-title {
-            text-align: center;
-            font-size: 0.95rem;
+            text-align: left;
+            font-size: 0.82rem;
             font-weight: 800;
             color: #f5d372;
-            letter-spacing: 0.8px;
-            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+            margin: 0;
             text-transform: uppercase;
         }
         .badge-meta {
@@ -185,34 +243,38 @@
             background: rgba(0, 210, 106, 0.15);
             border: 1px solid #00d26a;
             color: #00d26a;
-            font-size: 0.68rem;
-            font-weight: 900;
-            padding: 2px 10px;
-            border-radius: 14px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 10px;
             text-align: center;
-            margin: 0 auto 4px;
-            width: fit-content;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
             animation: pulse-green 2s infinite;
         }
         .tri-card.meta-batida .badge-meta {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
         .tri-chart {
+            flex: 1;
             width: 100%;
-            height: 190px;
+            height: 100%;
+            min-height: 110px;
         }
         .tri-quarter-badges {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 6px;
-            margin-top: 6px;
+            gap: 4px;
+            margin-top: 2px;
+            flex-shrink: 0;
         }
         .tri-pill {
             background: #182030;
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 4px;
-            padding: 4px 2px;
+            padding: 2px 2px;
             text-align: center;
             cursor: pointer;
             transition: all 0.15s;
@@ -222,14 +284,14 @@
             background: #222b40;
         }
         .tri-pill .label {
-            font-size: 0.65rem;
+            font-size: 0.60rem;
             color: #94a3b8;
             font-weight: 700;
             display: block;
         }
         .tri-pill .val {
             font-weight: 800;
-            font-size: 0.76rem;
+            font-size: 0.70rem;
             display: block;
         }
         .val-success { color: #00d26a; }
@@ -248,9 +310,9 @@
             background: #182030;
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: #94a3b8;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 4px;
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             font-weight: 700;
             cursor: pointer;
             transition: all 0.2s;
@@ -259,26 +321,6 @@
             background: #cb9727;
             color: #000;
             border-color: #cb9727;
-        }
-        .auto-tv-indicator {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            background: rgba(0, 210, 106, 0.15);
-            border: 1px solid #00d26a;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            color: #00d26a;
-            font-weight: 700;
-        }
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #00d26a;
-            box-shadow: 0 0 8px #00d26a;
-            animation: pulse-dot 1.5s infinite;
         }
     </style>
 </head>
@@ -334,14 +376,12 @@
             <!-- Linha Superior: 2 Cards (CONVENIO e GLOSA) -->
             <div class="row-top-2">
                 <div class="tri-card" id="card-tri-convenio">
-                    <div class="tri-card-title">CONVÊNIO</div>
-                    <div class="badge-meta"><i class="fa-solid fa-trophy"></i> OBJETIVO ALCANÇADO!!!</div>
+                    <div class="tri-card-header"><div class="tri-card-title">CONVÊNIO</div><div class="badge-meta"><i class="fa-solid fa-trophy"></i> ALCANÇADO</div></div>
                     <div class="tri-chart" id="chart-convenio"></div>
                     <div class="tri-quarter-badges" id="badges-convenio"></div>
                 </div>
                 <div class="tri-card" id="card-tri-glosa">
-                    <div class="tri-card-title">GLOSA</div>
-                    <div class="badge-meta"><i class="fa-solid fa-trophy"></i> OBJETIVO ALCANÇADO!!!</div>
+                    <div class="tri-card-header"><div class="tri-card-title">GLOSA</div><div class="badge-meta"><i class="fa-solid fa-trophy"></i> ALCANÇADO</div></div>
                     <div class="tri-chart" id="chart-glosa"></div>
                     <div class="tri-quarter-badges" id="badges-glosa"></div>
                 </div>
@@ -350,20 +390,17 @@
             <!-- Linha Inferior: 3 Cards (TOTAL, QTDE e RECUPERAÇÃO) -->
             <div class="row-bottom-3">
                 <div class="tri-card" id="card-tri-total">
-                    <div class="tri-card-title">TOTAL</div>
-                    <div class="badge-meta"><i class="fa-solid fa-trophy"></i> OBJETIVO ALCANÇADO!!!</div>
+                    <div class="tri-card-header"><div class="tri-card-title">TOTAL</div><div class="badge-meta"><i class="fa-solid fa-trophy"></i> ALCANÇADO</div></div>
                     <div class="tri-chart" id="chart-total"></div>
                     <div class="tri-quarter-badges" id="badges-total"></div>
                 </div>
                 <div class="tri-card meta-batida" id="card-tri-qtde">
-                    <div class="tri-card-title">QTDE</div>
-                    <div class="badge-meta"><i class="fa-solid fa-trophy"></i> OBJETIVO ALCANÇADO!!!</div>
+                    <div class="tri-card-header"><div class="tri-card-title">QTDE</div><div class="badge-meta"><i class="fa-solid fa-trophy"></i> ALCANÇADO</div></div>
                     <div class="tri-chart" id="chart-qtde"></div>
                     <div class="tri-quarter-badges" id="badges-qtde"></div>
                 </div>
                 <div class="tri-card meta-batida" id="card-tri-recuperacao">
-                    <div class="tri-card-title">RECUPERAÇÃO</div>
-                    <div class="badge-meta"><i class="fa-solid fa-trophy"></i> OBJETIVO ALCANÇADO!!!</div>
+                    <div class="tri-card-header"><div class="tri-card-title">RECUPERAÇÃO</div><div class="badge-meta"><i class="fa-solid fa-trophy"></i> ALCANÇADO</div></div>
                     <div class="tri-chart" id="chart-recuperacao"></div>
                     <div class="tri-quarter-badges" id="badges-recuperacao"></div>
                 </div>
@@ -405,7 +442,7 @@
             const diff = percent - 100;
             const sign = diff >= 0 ? '+' : '';
             const diffText = sign + diff.toFixed(1) + '%';
-            const diffColor = diff >= 0 ? '#00d26a' : '#ff2424';
+            const diffColor = diff >= 0 ? '#00d26a' : '#ff3b3b';
 
             return {
                 series: [{
@@ -415,50 +452,46 @@
                     min: 0,
                     max: 120,
                     splitNumber: 12,
-                    radius: '130%',
-                    center: ['50%', '68%'],
+                    radius: '112%',
+                    center: ['50%', '74%'],
                     axisLine: {
                         lineStyle: {
-                            width: 20,
+                            width: 18,
                             color: [
-                                [80 / 120, '#ff2424'],
-                                [100 / 120, '#ffd600'],
+                                [80 / 120, '#ff3b3b'],
+                                [100 / 120, '#ffc107'],
                                 [1, '#00d26a']
                             ]
                         }
                     },
                     pointer: {
                         icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-                        length: '62%',
-                        width: 7.5,
+                        length: '58%',
+                        width: 6,
                         offsetCenter: [0, '-4%'],
                         itemStyle: { 
                             color: '#f5c518',
                             shadowColor: 'rgba(0,0,0,0.6)',
-                            shadowBlur: 8
+                            shadowBlur: 4
                         }
                     },
-                    axisTick: { length: 8, lineStyle: { color: 'auto', width: 1.5 } },
-                    splitLine: { length: 15, lineStyle: { color: 'auto', width: 2.5 } },
+                    axisTick: { length: 5, lineStyle: { color: 'auto', width: 1.2 } },
+                    splitLine: { length: 10, lineStyle: { color: 'auto', width: 2 } },
                     axisLabel: {
-                        color: '#94a3b8',
-                        fontSize: 10,
-                        distance: -38,
-                        formatter: function(val) {
-                            if (val === 0 || val === 50 || val === 80 || val === 100 || val === 120) return val + '%';
-                            return '';
-                        }
+                        show: false
                     },
                     title: {
-                        offsetCenter: [0, '15%'],
-                        fontSize: 24,
+                        show: true,
+                        offsetCenter: [0, '18%'],
+                        fontSize: 22,
                         fontWeight: '800',
                         color: '#ffffff',
                         fontFamily: 'Montserrat'
                     },
                     detail: {
-                        fontSize: 15,
-                        offsetCenter: [0, '36%'],
+                        show: true,
+                        fontSize: 13,
+                        offsetCenter: [0, '48%'],
                         valueAnimation: true,
                         formatter: function() { return diffText; },
                         color: diffColor,
@@ -472,7 +505,6 @@
                 }]
             };
         }
-
         function renderAll() {
             Object.keys(METRICAS).forEach(key => {
                 const metric = METRICAS[key];
