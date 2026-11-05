@@ -928,6 +928,7 @@
     "is_static": false,
     "live_url": "07_transporte_infraestrutura/index.html",
     "secondary_url": "powerbi_transporte/",
+    "powerbi_cloud_url": "https://app.powerbi.com/view?r=eyJrIjoiMGM2MDVkMmEtNmExYi00NzQxLTk5YzEtNzJlNjQ5YmM3MTc5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
     "secondary_label": "<i class='fa-solid fa-chart-pie'></i> Power BI",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
   },
@@ -1145,6 +1146,11 @@
                 <a href="${targetDashUrl}" target="_blank" rel="noopener" class="btn-card btn-card-primary" style="flex: 1; text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
                   ${d.tech.includes('Power BI') ? '<i class="fa-solid fa-chart-pie"></i> Ver no Power BI' : '<i class="fa-solid fa-chart-line"></i> Abrir Dashboard'}
                 </a>
+                ${d.powerbi_cloud_url ? `
+                <a href="${d.powerbi_cloud_url}" target="_blank" rel="noopener" class="btn-card" style="background: rgba(242, 200, 17, 0.15); color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.5); text-decoration: none; border-radius: 6px; padding: 6px 10px; font-weight: 700; font-size: 0.72rem; display: inline-flex; align-items: center; justify-content: center; gap: 5px; margin-top: 6px; width: 100%; box-sizing: border-box;" title="Abrir Relatório Oficial Power BI na Nuvem Microsoft">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Power BI Cloud Oficial
+                </a>
+                ` : ''}
                 ${d.secondary_url ? `
                 <a href="${d.secondary_url}" target="_blank" rel="noopener" class="btn-card" style="flex: 1; background: #182030; color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.4); text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
                   ${d.secondary_label || 'Ver Alternativa'}

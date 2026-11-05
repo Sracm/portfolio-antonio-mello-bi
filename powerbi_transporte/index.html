@@ -428,6 +428,12 @@
         </div>
 
         <div class="topbar-right">
+            <a href="https://app.powerbi.com/view?r=eyJrIjoiMGM2MDVkMmEtNmExYi00NzQxLTk5YzEtNzJlNjQ5YmM3MTc5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="pbi-btn" style="background:#F2C811; color:#000; font-weight:700;" title="Abrir Relatório Oficial no Power BI Service Cloud da Microsoft">
+                <i class="fa-solid fa-arrow-up-right-from-square"></i> Power BI Cloud
+            </a>
+            <button class="pbi-btn" id="btn-toggle-embed" onclick="toggleEmbedMode()" style="background:#1e293b; color:#38bdf8; border-color:rgba(56,189,248,0.4);" title="Alternar entre Visualizador HD e Nuvem Power BI Online">
+                <i class="fa-solid fa-cloud"></i> <span id="lbl-toggle-embed">Ver Nuvem Online</span>
+            </button>
             <button class="pbi-btn" onclick="toggleDaxDrawer()" title="Ver Medidas DAX e Modelagem Star Schema">
                 <i class="fa-solid fa-code"></i> Modelagem DAX
             </button>
@@ -454,8 +460,11 @@
         <!-- Canvas Area -->
         <main class="canvas-workspace">
             <div class="report-viewport" id="viewport">
-                <div class="report-sheet-container" id="sheet-container">
+                <div class="report-sheet-container" id="sheet-container" style="display:flex;">
                     <img src="../static/portfolio_screenshots/pbi_07_captured.png" alt="Power BI - Gestão de Transporte Urbano & Frota" class="report-img" id="report-img">
+                </div>
+                <div id="cloud-iframe-container" style="display:none; width:100%; height:100%; position:absolute; top:0; left:0; background:#000;">
+                    <iframe id="cloud-iframe" title="Dashboard PORTIFOLIO07" src="https://app.powerbi.com/view?r=eyJrIjoiMGM2MDVkMmEtNmExYi00NzQxLTk5YzEtNzJlNjQ5YmM3MTc5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" style="width:100%; height:100%; border:none;" allowFullScreen="true"></iframe>
                 </div>
             </div>
 
@@ -509,6 +518,31 @@ DIVIDE(
     </aside>
 
     <script>
+        
+        let isCloudMode = false;
+        function toggleEmbedMode() {
+            isCloudMode = !isCloudMode;
+            const sheet = document.getElementById('sheet-container');
+            const iframeBox = document.getElementById('cloud-iframe-container');
+            const controls = document.querySelector('.canvas-floating-controls');
+            const lbl = document.getElementById('lbl-toggle-embed');
+            const btn = document.getElementById('btn-toggle-embed');
+            
+            if (isCloudMode) {
+                if (sheet) sheet.style.display = 'none';
+                if (iframeBox) iframeBox.style.display = 'block';
+                if (controls) controls.style.display = 'none';
+                if (lbl) lbl.innerText = 'Ver Versão HD Preservada';
+                if (btn) btn.style.background = '#059669';
+            } else {
+                if (sheet) sheet.style.display = 'flex';
+                if (iframeBox) iframeBox.style.display = 'none';
+                if (controls) controls.style.display = 'flex';
+                if (lbl) lbl.innerText = 'Ver Nuvem Online';
+                if (btn) btn.style.background = '#1e293b';
+            }
+        }
+    
         let currentZoom = 1.0;
 
         function updateZoom() {
