@@ -881,6 +881,8 @@
     "image": "static/portfolio_screenshots/dash_portfolio_05_atendimento.jpg",
     "is_static": false,
     "live_url": "05_atendimento_clinica/index.html",
+    "secondary_url": "pbi_05_atendimento_clinica/index.html",
+    "secondary_label": "<i class='fa-solid fa-chart-pie'></i> Power BI",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
   },
   {
@@ -902,6 +904,8 @@
     "image": "static/portfolio_screenshots/dash_portfolio_06_agendas.jpg",
     "is_static": false,
     "live_url": "06_gestao_agendas/index.html",
+    "secondary_url": "pbi_06_gestao_agendas/index.html",
+    "secondary_label": "<i class='fa-solid fa-chart-pie'></i> Power BI",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
   },
   {
@@ -923,6 +927,8 @@
     "image": "static/portfolio_screenshots/dash_portfolio_07_transporte.jpg",
     "is_static": false,
     "live_url": "07_transporte_infraestrutura/index.html",
+    "secondary_url": "pbi_07_transporte_infraestrutura/index.html",
+    "secondary_label": "<i class='fa-solid fa-chart-pie'></i> Power BI",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
   },
   {
@@ -944,7 +950,74 @@
     "is_static": false,
     "live_url": "08_unidade_de_negocios/index.html",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
+  },
+  {
+    "id": 9,
+    "title": "Power BI - Operações de Clínica Médica & Recepção",
+    "department": "Microsoft Power BI",
+    "description": "Relatório executivo oficial desenvolvido em Microsoft Power BI Pro: modelagem dimensional Star Schema, medidas em DAX avançado, tempos de triagem, fluxo de recepção e NPS do paciente.",
+    "url": "pbi_05_atendimento_clinica/index.html",
+    "tech": "Microsoft Power BI Pro",
+    "stack": [
+      "Power BI Pro",
+      "DAX Avançado",
+      "Modelagem Star Schema",
+      "Power Query ETL",
+      "Power BI Service"
+    ],
+    "impact": "Desenvolvido em Microsoft Power BI oficial com modelagem relacional, métricas DAX e layout executivo de alta densidade.",
+    "image": "static/portfolio_screenshots/pbi_05_captured.png",
+    "is_static": false,
+    "live_url": "pbi_05_atendimento_clinica/index.html",
+    "secondary_url": "05_atendimento_clinica/index.html",
+    "secondary_label": "<i class='fa-brands fa-python'></i> Versão Web",
+    "github_repo": "https://github.com/Sracm/portfolio-bi"
+  },
+  {
+    "id": 10,
+    "title": "Power BI - Gestão de Agendas & Ocupação Médica",
+    "department": "Microsoft Power BI",
+    "description": "Painel executivo em Microsoft Power BI Pro com projeção de capacidade por especialidade, taxa de ocupação de consultórios, horários livres e análise preditiva de agendas ambulatoriais.",
+    "url": "pbi_06_gestao_agendas/index.html",
+    "tech": "Microsoft Power BI Pro",
+    "stack": [
+      "Power BI Pro",
+      "DAX Avançado",
+      "Modelagem Star Schema",
+      "Planejamento de Capacidade",
+      "Power BI Service"
+    ],
+    "impact": "Inteligência analítica em Power BI com cálculos dinâmicos de ocupação médica e controle de horários ociosos por especialidade.",
+    "image": "static/portfolio_screenshots/pbi_06_captured.png",
+    "is_static": false,
+    "live_url": "pbi_06_gestao_agendas/index.html",
+    "secondary_url": "06_gestao_agendas/index.html",
+    "secondary_label": "<i class='fa-brands fa-python'></i> Versão Web",
+    "github_repo": "https://github.com/Sracm/portfolio-bi"
+  },
+  {
+    "id": 11,
+    "title": "Power BI - Gestão de Transporte Urbano & Frota",
+    "department": "Microsoft Power BI",
+    "description": "Dashboard em Microsoft Power BI Pro para gestão de frota de transporte coletivo (Via Metrópole): indicador de passageiros por km (IPK), consumo de diesel, frota ativa e infraestrutura.",
+    "url": "pbi_07_transporte_infraestrutura/index.html",
+    "tech": "Microsoft Power BI Pro",
+    "stack": [
+      "Power BI Pro",
+      "DAX Avançado",
+      "Modelagem Star Schema",
+      "Gestão de Frotas",
+      "Power BI Service"
+    ],
+    "impact": "Dashboard oficial Power BI para controle operacional de transporte coletivo, itinerários e eficiência energética.",
+    "image": "static/portfolio_screenshots/pbi_07_captured.png",
+    "is_static": false,
+    "live_url": "pbi_07_transporte_infraestrutura/index.html",
+    "secondary_url": "07_transporte_infraestrutura/index.html",
+    "secondary_label": "<i class='fa-brands fa-python'></i> Versão Web",
+    "github_repo": "https://github.com/Sracm/portfolio-bi"
   }
+
 ];
     let currentDept = 'ALL';
 
@@ -968,9 +1041,14 @@
         html += `<button class="filter-tab filter-tab-featured" onclick="setDepartmentFilter('${deptoPrincipal}')">⭐ ${deptoPrincipal} (${depts[deptoPrincipal]})</button>`;
       }
 
+      // Destaque para Microsoft Power BI
+      if (depts['Microsoft Power BI']) {
+        html += `<button class="filter-tab filter-tab-featured" style="border-color: rgba(242, 200, 17, 0.6); color: #F2C811;" onclick="setDepartmentFilter('Microsoft Power BI')"><i class="fa-solid fa-chart-pie"></i> Microsoft Power BI (${depts['Microsoft Power BI']})</button>`;
+      }
+
       // Demais departamentos em ordem alfabética
       Object.keys(depts).sort().forEach(dept => {
-        if (dept !== deptoPrincipal && dept !== 'TI & BI' && dept !== 'RH' && dept !== 'Brasil') {
+        if (dept !== deptoPrincipal && dept !== 'Microsoft Power BI' && dept !== 'TI & BI' && dept !== 'RH' && dept !== 'Brasil') {
           html += `<button class="filter-tab" onclick="setDepartmentFilter('${dept}')">${dept} (${depts[dept]})</button>`;
         }
       });
@@ -1024,9 +1102,9 @@
       }
 
       grid.innerHTML = filtered.map(d => {
-        const isFullstack = d.tech.includes('Fullstack');
-        const techBadgeClass = isFullstack ? 'tech-fullstack' : 'tech-powerbi';
-        const techLabel = isFullstack ? '<i class="fa-brands fa-python"></i> Web Python' : '<i class="fa-solid fa-chart-pie"></i> Power BI';
+        const isPowerBI = d.tech.includes('Power BI');
+        const techBadgeClass = isPowerBI ? 'tech-powerbi' : 'tech-fullstack';
+        const techLabel = isPowerBI ? '<i class="fa-solid fa-chart-pie"></i> Microsoft Power BI' : '<i class="fa-brands fa-python"></i> Web Python';
 
         const stackBadges = (d.stack || []).map(s => `<span class="stack-tag">${s}</span>`).join('');
         const imgUrl = d.image || 'static/portfolio_screenshots/pbi_sample.jpg';
@@ -1068,8 +1146,13 @@
               ${targetDashUrl ? `
               <div class="card-action" style="display: flex; gap: 8px; width: 100%;">
                 <a href="${targetDashUrl}" target="_blank" rel="noopener" class="btn-card btn-card-primary" style="flex: 1; text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                  <i class="fa-solid fa-chart-line"></i> Abrir Dashboard
+                  ${d.tech.includes('Power BI') ? '<i class="fa-solid fa-chart-pie"></i> Ver no Power BI' : '<i class="fa-solid fa-chart-line"></i> Abrir Dashboard'}
                 </a>
+                ${d.secondary_url ? `
+                <a href="${d.secondary_url}" target="_blank" rel="noopener" class="btn-card" style="flex: 1; background: #182030; color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.4); text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                  ${d.secondary_label || 'Ver Alternativa'}
+                </a>
+                ` : ''}
               </div>
               ` : ''}
             </div>
