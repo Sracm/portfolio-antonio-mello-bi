@@ -1044,5 +1044,16 @@
     "tech": "Microsoft Power BI Pro",
     "github_repo": "https://github.com/Sracm/portfolio-bi",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_operacional_metas/"
+  },
+  {
+    "id": 111,
+    "title": "Dashboard PORTIFOLIO11 - Acompanhamento Estratégico de OKRs Corporativos",
+    "department": "Microsoft Power BI",
+    "powerbi_url": "https://sracm.github.io/portfolio-bi/powerbi_okrs/",
+    "web_url": "https://sracm.github.io/portfolio-bi/powerbi_okrs/",
+    "description": "Cockpit em Microsoft Power BI Pro para acompanhamento de OKRs com 7 velocímetros executivos: Logística (114,6%), Fábrica 01 (83,6%), Têxtil (107,2%), Fábrica 02 (95%), Fábrica 03, Unidade de Negócios e Empresa Global (106,9%).",
+    "tech": "Microsoft Power BI Pro",
+    "github_repo": "https://github.com/Sracm/portfolio-bi",
+    "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_okrs/"
   }
 ]
