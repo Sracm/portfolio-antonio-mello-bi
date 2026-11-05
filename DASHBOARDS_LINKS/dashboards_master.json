@@ -992,24 +992,35 @@
   },
   {
     "id": 106,
-    "title": "Dashboard PORTIFOLIO06 - Gestão de Agendas, Ocupação & Capacidade Médica",
+    "title": "Dashboard PORTIFOLIO06 - Gestão de Agendas, Horas & Capacidade Ambulatorial",
     "department": "Gestão Hospitalar & Saúde",
     "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiYWY3MjhjYmQtNjY2Mi00YTJhLWFiZGUtZTY5YjFkNzgwODBlIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
     "web_url": "https://sracm.github.io/portfolio-bi/06_gestao_agendas/",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_agendas/",
-    "description": "Dashboard analítico oficial Microsoft Power BI (PORTIFOLIO06) com métricas de horários ociosos, agendas livres de médicos por especialidade, dias da semana e projeção de ocupação.",
+    "description": "Painel executivo em Microsoft Power BI Pro para monitoramento de 13.766h de consultórios, taxa de ocupação por especialidade, TME Profissional (26,4 min), TMA e aderência à capacidade instalada.",
     "tech": "Microsoft Power BI Pro",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
   },
   {
     "id": 105,
-    "title": "Dashboard PORTIFOLIO05 - Operações de Clínica Médica & Recepção",
+    "title": "Dashboard PORTIFOLIO05 - Medicina Diagnóstica, Exames & Demografia Clínica",
     "department": "Saúde & Atendimento Ambulatorial",
     "powerbi_url": "https://app.powerbi.com/view?r=eyJrIjoiMTQxNTQ4ODUtODFjZC00Nzg1LTg4NTktN2Y1MDdjYTIzYmMxIiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9",
     "web_url": "https://sracm.github.io/portfolio-bi/05_atendimento_clinica/",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_clinica/",
-    "description": "Relatório executivo oficial Microsoft Power BI (PORTIFOLIO05) com modelagem Star Schema, DAX avançado, acompanhamento de triagem, tempo de espera e satisfação do paciente.",
+    "description": "Painel oficial Power BI Pro com 3 visões interativas: Sumário Gerencial demográfico (gênero e faixa etária), Indicadores Analíticos temporais (hora, dia e mês) e Indicadores Extensivos de exames SADT e orçamentos.",
     "tech": "Microsoft Power BI Pro",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
+  },
+  {
+    "id": 108,
+    "title": "Dashboard PORTIFOLIO08 - Logística de Coletas Domiciliares & Móveis (Home Care B2B/B2C)",
+    "department": "Microsoft Power BI",
+    "powerbi_url": "https://sracm.github.io/portfolio-bi/powerbi_coletas/",
+    "web_url": "https://sracm.github.io/portfolio-bi/powerbi_coletas/",
+    "description": "Dashboard em Microsoft Power BI Pro para gestão logística de 13.892 coletas móveis: roteirização domiciliar B2C, coletas corporativas B2B (511 empresas), Prevent Senior, atendimento VIP e escala de 1.223 coletores.",
+    "tech": "Microsoft Power BI Pro",
+    "github_repo": "https://github.com/Sracm/portfolio-bi",
+    "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_coletas/"
   }
 ]

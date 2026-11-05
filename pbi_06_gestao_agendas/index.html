@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Power BI - Gestão de Agendas & Ocupação Médica | Microsoft Power BI Pro</title>
+    <title>Power BI - Gestão de Agendas, Horas & Capacidade Ambulatorial | Microsoft Power BI Pro</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,15 +147,6 @@
             box-shadow: 0 0 10px rgba(242, 200, 17, 0.5);
             color: #000;
         }
-        .pbi-btn-web {
-            background: #182333;
-            color: #00e5ff;
-            border-color: rgba(0, 229, 255, 0.35);
-        }
-        .pbi-btn-web:hover {
-            background: rgba(0, 229, 255, 0.15);
-            color: #00e5ff;
-        }
 
         /* ── Main App Layout ── */
         .app-body {
@@ -279,54 +270,6 @@
             text-align: center;
         }
 
-        /* ── Bottom Page Tabs Bar ── */
-        .pbi-bottom-bar {
-            height: 38px;
-            background: #181818;
-            border-top: 1px solid var(--pbi-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-            flex-shrink: 0;
-            z-index: 100;
-        }
-        .pbi-tabs-list {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            height: 100%;
-        }
-        .pbi-tab {
-            height: 100%;
-            padding: 0 14px;
-            display: flex;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #94a3b8;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.15s;
-        }
-        .pbi-tab:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.04);
-        }
-        .pbi-tab.active {
-            color: var(--pbi-yellow);
-            border-bottom-color: var(--pbi-yellow);
-            background: rgba(242, 200, 17, 0.06);
-            font-weight: 700;
-        }
-        .bottom-meta {
-            font-size: 0.72rem;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
         /* ── DAX & Modelagem Drawer ── */
         .dax-drawer {
             position: fixed;
@@ -421,7 +364,7 @@
             </div>
             <div class="pbi-divider"></div>
             <div class="report-title">
-                Power BI - Gestão de Agendas & Ocupação Médica
+                Power BI - Gestão de Agendas, Ocupação & Capacidade
                 <span class="badge-status">Relatório Pro</span>
                 <span class="badge-safe"><i class="fa-solid fa-shield-halved"></i> 100% Preservado</span>
             </div>
@@ -455,7 +398,7 @@
         <main class="canvas-workspace">
             <div class="report-viewport" id="viewport">
                 <div class="report-sheet-container" id="sheet-container">
-                    <img src="../static/portfolio_screenshots/pbi_06_captured.png" alt="Power BI - Gestão de Agendas & Ocupação Médica" class="report-img" id="report-img">
+                    <img src="../static/portfolio_screenshots/pbi_agendas_capacidade.jpg" alt="Power BI - Gestão de Agendas, Ocupação & Capacidade Médica" class="report-img" id="report-img">
                 </div>
             </div>
 
@@ -467,8 +410,6 @@
                 <div style="width:1px; height:14px; background:rgba(255,255,255,0.2);"></div>
                 <button class="control-btn" onclick="resetZoom()" title="Ajustar à Tela"><i class="fa-solid fa-compress"></i></button>
             </div>
-
-            
         </main>
     </div>
 
@@ -482,28 +423,53 @@
         </div>
 
         <div style="font-size:0.75rem; color:#94a3b8; margin-bottom:14px; line-height:1.4;">
-            Arquitetura em <b>Star Schema</b> com separação estrita entre tabelas Fato e Dimensão, relacionamentos 1:N unidirecionais e cálculo dinâmico via DAX:
+            Arquitetura em <b>Star Schema</b> para planejamento de capacidade, horários ociosos e produtividade médica ambulatorial:
         </div>
 
-        <div class="dax-item"><span class="dax-name">Taxa de Ocupação Médica =</span><pre class="dax-code">Taxa Ocupacao = 
+        <div class="dax-item">
+            <span class="dax-name">Taxa de Ocupação Geral =</span>
+            <pre class="dax-code">Taxa Ocupacao Geral = 
 DIVIDE(
     [Horas Agendadas],
     [Horas Disponiveis Grade],
     0
-)</pre><span class="dax-desc">Índice de aproveitamento da capacidade médica instalada por especialidade.</span></div><div class="dax-item"><span class="dax-name">Agendas Livres Disponíveis =</span><pre class="dax-code">Agendas Livres = 
-CALCULATE(
-    COUNTROWS('fAgendas'),
-    'fAgendas'[Status] = "Livre"
-)</pre><span class="dax-desc">Horários vagos disponíveis para encaixe imediato ou campanhas de agendamento.</span></div><div class="dax-item"><span class="dax-name">Taxa de No-Show =</span><pre class="dax-code">Taxa NoShow = 
-DIVIDE(
-    CALCULATE(COUNTROWS('fAgendas'), 'fAgendas'[Status] = "Falta"),
-    CALCULATE(COUNTROWS('fAgendas'), 'fAgendas'[Status] <> "Cancelada"),
-    0
-)</pre><span class="dax-desc">Percentual de pacientes que faltaram à consulta sem aviso prévio.</span></div><div class="dax-item"><span class="dax-name">Projeção Ocupação YTD =</span><pre class="dax-code">Projecao YTD = 
-CALCULATE(
-    [Taxa Ocupacao],
-    DATESYTD('dCalendario'[Data])
-)</pre><span class="dax-desc">Métrica acumulada ano contra meta estipulada de 85% de preenchimento.</span></div>
+)</pre>
+            <div class="dax-desc">Taxa de utilização da capacidade ambulatorial (33,98% de 13.766 horas disponíveis).</div>
+        </div>
+
+        <div class="dax-item">
+            <span class="dax-name">TME Profissional & TMA =</span>
+            <pre class="dax-code">TME Profissional = 
+AVERAGEX(
+    fAtendimentos,
+    DATEDIFF(fAtendimentos[DataChegada], fAtendimentos[DataInicioAtendimento], MINUTE)
+)
+
+TMA = 
+AVERAGEX(
+    fAtendimentos,
+    DATEDIFF(fAtendimentos[DataInicioAtendimento], fAtendimentos[DataFimAtendimento], MINUTE)
+)</pre>
+            <div class="dax-desc">Tempo médio de espera do médico (26,4 min) e tempo médio de consulta/atendimento por unidade.</div>
+        </div>
+
+        <div class="dax-item">
+            <span class="dax-name">Consultas Atendidas vs Potencial =</span>
+            <pre class="dax-code">Indice Atingimento Potencial = 
+DIVIDE([Consultas Atendidas], [Potencial Consultas], 0)</pre>
+            <div class="dax-desc">Compara consultas realizadas com o teto de capacidade instalada por consultório/médico.</div>
+        </div>
+
+        <div class="dax-item" style="border-left: 3px solid #00d26a;">
+            <span class="dax-name" style="color:#00d26a;"><i class="fa-solid fa-circle-nodes"></i> Modelagem Star Schema:</span>
+            <div class="dax-desc" style="color:#e2e8f0; font-size:0.74rem;">
+                <b>• fAgendas:</b> Id_Agenda, Id_Medico, Id_Unidade, Data, Horas_Disponiveis, Horas_Agendadas<br>
+                <b>• fAtendimentos:</b> Id_Atendimento, Id_Agenda, TME_Minutos, TMA_Minutos, Status<br>
+                <b>• dUnidades:</b> Id_Unidade, Nome (VNC, Osasco, Sto Amaro, Penha)<br>
+                <b>• dMedicos:</b> Id_Medico, Nome, Especialidade (Oftalmologia, Cardiologia, etc.)<br>
+                <b>• dCalendario:</b> Data, Mes, Ano, DiaSemana
+            </div>
+        </div>
     </aside>
 
     <script>
@@ -546,14 +512,6 @@ CALCULATE(
         function toggleDaxDrawer() {
             document.getElementById('dax-drawer').classList.toggle('open');
         }
-
-        // Tab selection
-        document.querySelectorAll('.pbi-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.pbi-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
-        });
     </script>
 </body>
 </html>

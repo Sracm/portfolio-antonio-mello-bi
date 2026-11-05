@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Power BI - Operações de Clínica Médica & Recepção | Microsoft Power BI Pro</title>
+    <title>Power BI - Medicina Diagnóstica, Exames & Demografia Clínica | Microsoft Power BI Pro</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,15 +39,17 @@
 
         /* ── Top Power BI Service Header ── */
         .pbi-topbar {
-            height: 48px;
+            min-height: 48px;
             background: var(--pbi-bar);
             border-bottom: 1px solid var(--pbi-border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 16px;
+            padding: 4px 16px;
             flex-shrink: 0;
             z-index: 100;
+            gap: 12px;
+            flex-wrap: wrap;
         }
         .topbar-left {
             display: flex;
@@ -111,6 +113,41 @@
             border-radius: 4px;
         }
 
+        /* View Switcher Pills */
+        .page-switcher {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #151821;
+            padding: 3px 6px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .page-tab-btn {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 0.73rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+        .page-tab-btn:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .page-tab-btn.active {
+            background: #cb9727;
+            color: #000000;
+            box-shadow: 0 0 10px rgba(203, 151, 39, 0.5);
+        }
+
         .topbar-right {
             display: flex;
             align-items: center;
@@ -146,15 +183,6 @@
         .pbi-btn-primary:hover {
             box-shadow: 0 0 10px rgba(242, 200, 17, 0.5);
             color: #000;
-        }
-        .pbi-btn-web {
-            background: #182333;
-            color: #00e5ff;
-            border-color: rgba(0, 229, 255, 0.35);
-        }
-        .pbi-btn-web:hover {
-            background: rgba(0, 229, 255, 0.15);
-            color: #00e5ff;
         }
 
         /* ── Main App Layout ── */
@@ -279,54 +307,6 @@
             text-align: center;
         }
 
-        /* ── Bottom Page Tabs Bar ── */
-        .pbi-bottom-bar {
-            height: 38px;
-            background: #181818;
-            border-top: 1px solid var(--pbi-border);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 16px;
-            flex-shrink: 0;
-            z-index: 100;
-        }
-        .pbi-tabs-list {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            height: 100%;
-        }
-        .pbi-tab {
-            height: 100%;
-            padding: 0 14px;
-            display: flex;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #94a3b8;
-            cursor: pointer;
-            border-bottom: 2px solid transparent;
-            transition: all 0.15s;
-        }
-        .pbi-tab:hover {
-            color: #ffffff;
-            background: rgba(255, 255, 255, 0.04);
-        }
-        .pbi-tab.active {
-            color: var(--pbi-yellow);
-            border-bottom-color: var(--pbi-yellow);
-            background: rgba(242, 200, 17, 0.06);
-            font-weight: 700;
-        }
-        .bottom-meta {
-            font-size: 0.72rem;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
         /* ── DAX & Modelagem Drawer ── */
         .dax-drawer {
             position: fixed;
@@ -404,6 +384,7 @@
 
         @media (max-width: 768px) {
             .pbi-rail { display: none; }
+            .page-switcher { order: 3; width: 100%; justify-content: center; margin-top: 6px; }
             .dax-drawer { width: 100vw; right: -100vw; }
         }
     </style>
@@ -421,10 +402,23 @@
             </div>
             <div class="pbi-divider"></div>
             <div class="report-title">
-                Power BI - Operações de Clínica Médica & Recepção
+                Medicina Diagnóstica, Exames & Demografia
                 <span class="badge-status">Relatório Pro</span>
                 <span class="badge-safe"><i class="fa-solid fa-shield-halved"></i> 100% Preservado</span>
             </div>
+        </div>
+
+        <!-- Interactive View Selector -->
+        <div class="page-switcher">
+            <button class="page-tab-btn active" id="btn-sumario" onclick="switchView('sumario', this)">
+                <i class="fa-solid fa-users"></i> Sumário Gerencial
+            </button>
+            <button class="page-tab-btn" id="btn-evolucao" onclick="switchView('evolucao', this)">
+                <i class="fa-solid fa-chart-line"></i> Evolução Temporal
+            </button>
+            <button class="page-tab-btn" id="btn-extensivos" onclick="switchView('extensivos', this)">
+                <i class="fa-solid fa-vial"></i> Indicadores Extensivos
+            </button>
         </div>
 
         <div class="topbar-right">
@@ -455,7 +449,7 @@
         <main class="canvas-workspace">
             <div class="report-viewport" id="viewport">
                 <div class="report-sheet-container" id="sheet-container">
-                    <img src="../static/portfolio_screenshots/pbi_05_captured.png" alt="Power BI - Operações de Clínica Médica & Recepção" class="report-img" id="report-img">
+                    <img src="../static/portfolio_screenshots/pbi_diagnostica_sumario.jpg" alt="Sumário Gerencial - Demografia Clínica" class="report-img" id="report-img">
                 </div>
             </div>
 
@@ -467,8 +461,6 @@
                 <div style="width:1px; height:14px; background:rgba(255,255,255,0.2);"></div>
                 <button class="control-btn" onclick="resetZoom()" title="Ajustar à Tela"><i class="fa-solid fa-compress"></i></button>
             </div>
-
-            
         </main>
     </div>
 
@@ -482,20 +474,94 @@
         </div>
 
         <div style="font-size:0.75rem; color:#94a3b8; margin-bottom:14px; line-height:1.4;">
-            Arquitetura em <b>Star Schema</b> com separação estrita entre tabelas Fato e Dimensão, relacionamentos 1:N unidirecionais e cálculo dinâmico via DAX:
+            Arquitetura dimensional <b>Star Schema</b> para medicina diagnóstica, SADT e análise demográfica de pacientes:
         </div>
 
-        <div class="dax-item"><span class="dax-name">Total Atendimentos =</span><pre class="dax-code">Total Atendimentos = COUNTROWS('fAtendimentos')</pre><span class="dax-desc">Contagem volumétrica total de fichas de atendimento abertas no período.</span></div><div class="dax-item"><span class="dax-name">TMA (Tempo Médio de Atendimento) =</span><pre class="dax-code">TMA Segundos = AVERAGE('fAtendimentos'[DuracaoSegundos])</pre><span class="dax-desc">Média de duração do atendimento na recepção e consultório para SLA.</span></div><div class="dax-item"><span class="dax-name">Taxa de Retenção de Chamadas =</span><pre class="dax-code">Taxa Retenção = 
+        <div class="dax-item">
+            <span class="dax-name">Total de Exames / Atendimentos =</span>
+            <pre class="dax-code">Total Atendimentos = 
+COUNTROWS(fProducaoExames)</pre>
+            <div class="dax-desc">Volume total consolidado (2.033.139 exames/consultas no período).</div>
+        </div>
+
+        <div class="dax-item">
+            <span class="dax-name">Valor Total Faturado =</span>
+            <pre class="dax-code">Valor Total = 
+SUM(fProducaoExames[ValorProcedimento])</pre>
+            <div class="dax-desc">Receita bruta clínica gerada (R$ 102.302.850,00).</div>
+        </div>
+
+        <div class="dax-item">
+            <span class="dax-name">Ticket Médio Clínico =</span>
+            <pre class="dax-code">Ticket Medio = 
+DIVIDE([Valor Total], [Total Atendimentos], 0)</pre>
+            <div class="dax-desc">Ticket médio calculado por linha de atendimento (R$ 50,32 geral e R$ 433,39 em SADT).</div>
+        </div>
+
+        <div class="dax-item">
+            <span class="dax-name">Distribuição por Gênero & Faixa Etária =</span>
+            <pre class="dax-code">% Atendimento Feminino = 
 DIVIDE(
-    CALCULATE(COUNTROWS('fAtendimentos'), 'fAtendimentos'[Status] = "Atendida"),
+    CALCULATE([Total Atendimentos], dPaciente[Genero] = "Feminino"),
     [Total Atendimentos],
     0
-)</pre><span class="dax-desc">Percentual de pacientes atendidos com sucesso sem abandono na fila.</span></div><div class="dax-item"><span class="dax-name">NPS Geral Ambulatório =</span><pre class="dax-code">NPS Score = 
-DIVIDE([Promotores] - [Detratores], [Total Respostas NPS], 0) * 100</pre><span class="dax-desc">Métrica de satisfação e recomendação líquida dos pacientes atendidos.</span></div>
+)</pre>
+            <div class="dax-desc">Proporção demográfica de pacientes (65,89% feminino vs 34,07% masculino).</div>
+        </div>
+
+        <div class="dax-item">
+            <span class="dax-name">Conversão de Orçamentos por Unidade =</span>
+            <pre class="dax-code">Taxa Conversao Orcamento = 
+DIVIDE(
+    [Orcamentos Convertidos em Exame],
+    [Total Orcamentos Gerados],
+    0
+)</pre>
+            <div class="dax-desc">Mede a taxa de fechamento de orçamentos por unidade (VNC 43,3%, Sto Amaro 42,6%, Penha 49,1%).</div>
+        </div>
+
+        <div class="dax-item" style="border-left: 3px solid #00d26a;">
+            <span class="dax-name" style="color:#00d26a;"><i class="fa-solid fa-circle-nodes"></i> Modelagem Star Schema:</span>
+            <div class="dax-desc" style="color:#e2e8f0; font-size:0.74rem;">
+                <b>• fProducaoExames:</b> Id_Atendimento, Id_Paciente, Id_Medico, Id_Unidade, Id_Item, Data, Valor<br>
+                <b>• dPaciente:</b> Id_Paciente, Genero, FaixaEtaria, Cidade<br>
+                <b>• dUnidade:</b> Id_Unidade, Nome (VNC, Osasco, Sto Amaro, Penha), Regiao<br>
+                <b>• dServicos:</b> Id_Item, Categoria (Análises Clínicas, Imagem, SADT), Exame<br>
+                <b>• dMedicos:</b> Id_Medico, Nome, Especialidade
+            </div>
+        </div>
     </aside>
 
     <script>
+        const views = {
+            'sumario': {
+                src: '../static/portfolio_screenshots/pbi_diagnostica_sumario.jpg',
+                alt: 'Sumário Gerencial - Demografia Clínica & Especialidades'
+            },
+            'evolucao': {
+                src: '../static/portfolio_screenshots/pbi_diagnostica_evolucao.jpg',
+                alt: 'Indicadores Analíticos - Evolução Temporal de Quantidades'
+            },
+            'extensivos': {
+                src: '../static/portfolio_screenshots/pbi_diagnostica_extensivos.jpg',
+                alt: 'Indicadores Extensivos - Serviços, SADT e Orçamentos'
+            }
+        };
+
         let currentZoom = 1.0;
+
+        function switchView(viewKey, btn) {
+            const data = views[viewKey];
+            if (!data) return;
+            const img = document.getElementById('report-img');
+            img.src = data.src;
+            img.alt = data.alt;
+            
+            document.querySelectorAll('.page-tab-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            
+            resetZoom();
+        }
 
         function updateZoom() {
             const img = document.getElementById('report-img');
@@ -534,14 +600,6 @@ DIVIDE([Promotores] - [Detratores], [Total Respostas NPS], 0) * 100</pre><span c
         function toggleDaxDrawer() {
             document.getElementById('dax-drawer').classList.toggle('open');
         }
-
-        // Tab selection
-        document.querySelectorAll('.pbi-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.pbi-tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-            });
-        });
     </script>
 </body>
 </html>
