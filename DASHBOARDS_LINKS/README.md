@@ -579,4 +579,3 @@ Este diretório contém o inventário consolidado de **todos os 90 dashboards** 
 - **Acessos:** [📈 Abrir no Power BI Cloud](https://app.powerbi.com/reportEmbed?reportId=66e08f51-ba77-4605-9c88-ba59db026c92&autoAuth=true&ctid=703fb3fc-27e0-412a-af01-fd5c3cd99e53)
 
 ---
-
