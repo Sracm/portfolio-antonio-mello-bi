@@ -152,30 +152,81 @@
             color: #000;
             border-color: #cb9727;
         }
-        .grid-canais-6 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            padding: 14px 20px 24px;
-            max-width: 1720px;
-            margin: 0 auto;
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
         }
-        @media (max-width: 1100px) {
-            .grid-canais-6 { grid-template-columns: repeat(2, 1fr); }
+        .dashboard-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        @media (max-width: 700px) {
-            .grid-canais-6 { grid-template-columns: 1fr; padding: 10px; }
+        @media (min-width: 960px) {
+            body {
+                overflow: hidden;
+            }
+            .dashboard-container {
+                height: 100vh;
+                overflow: hidden;
+            }
+            .canais-main-container {
+                flex: 1;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                padding: 6px 16px 10px;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
+            .grid-canais-6 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                gap: 12px;
+                flex: 1;
+                min-height: 0;
+                height: 100%;
+                max-width: 1800px;
+                width: 100%;
+                margin: 0 auto;
+                padding: 0;
+                box-sizing: border-box;
+            }
+        }
+        @media (max-width: 959px) {
+            .grid-canais-6 {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 12px;
+            }
+        }
+        @media (max-width: 600px) {
+            .grid-canais-6 {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 8px;
+            }
         }
         .canal-card {
-            background: var(--card-dark);
+            background: linear-gradient(180deg, #131722 0%, #0d1017 100%);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 12px 14px 8px;
+            border-radius: 8px;
+            padding: 8px 12px 6px;
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            height: 100%;
+            min-height: 0;
+            box-sizing: border-box;
+            overflow: hidden;
             transition: transform 0.2s, border-color 0.2s;
         }
         .canal-card:hover {
@@ -186,50 +237,65 @@
             border: 2px solid #00d26a;
             box-shadow: 0 0 16px rgba(0, 210, 106, 0.35);
         }
+        .canal-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            flex-shrink: 0;
+            margin-bottom: 2px;
+        }
         .canal-title {
-            text-align: center;
-            font-size: 0.85rem;
+            text-align: left;
+            font-size: 0.82rem;
             font-weight: 800;
             color: #f5d372;
             letter-spacing: 0.5px;
-            margin-bottom: 2px;
             text-transform: uppercase;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .badge-objetivo-alcancado {
             display: none;
             background: rgba(0, 210, 106, 0.15);
             border: 1px solid #00d26a;
             color: #00d26a;
-            font-size: 0.65rem;
-            font-weight: 900;
-            padding: 2px 8px;
-            border-radius: 12px;
+            font-size: 0.62rem;
+            font-weight: 800;
+            padding: 1px 6px;
+            border-radius: 10px;
             text-align: center;
-            margin: 0 auto 4px;
-            width: fit-content;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
             animation: pulse-green 2s infinite;
         }
         .canal-card.meta-batida .badge-objetivo-alcancado {
-            display: block;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
         @keyframes pulse-green {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.7; transform: scale(1.03); }
         }
         .canal-chart {
+            flex: 1;
             width: 100%;
-            height: 180px;
+            height: 100%;
+            min-height: 110px;
         }
         .canal-info-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.7rem;
-            padding: 4px 6px;
-            background: rgba(0, 0, 0, 0.3);
+            font-size: 0.68rem;
+            padding: 3px 6px;
+            background: rgba(0, 0, 0, 0.35);
             border-radius: 4px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
         }
         .canal-info-bottom span strong {
             color: #f5d372;
@@ -238,7 +304,8 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 4px;
-            margin-top: 4px;
+            margin-top: 2px;
+            flex-shrink: 0;
         }
         .quarter-pill {
             background: #182030;
@@ -429,7 +496,7 @@
             const diff = percent - 100;
             const sign = diff >= 0 ? '+' : '';
             const diffText = sign + diff.toFixed(1) + '%';
-            const diffColor = diff >= 0 ? '#00d26a' : '#ff2424';
+            const diffColor = diff >= 0 ? '#00d26a' : '#ff3b3b';
 
             return {
                 series: [{
@@ -439,50 +506,46 @@
                     min: 0,
                     max: 120,
                     splitNumber: 12,
-                    radius: '125%',
-                    center: ['50%', '65%'],
+                    radius: '112%',
+                    center: ['50%', '74%'],
                     axisLine: {
                         lineStyle: {
                             width: 18,
                             color: [
-                                [80 / 120, '#ff2424'],
-                                [100 / 120, '#ffd600'],
+                                [80 / 120, '#ff3b3b'],
+                                [100 / 120, '#ffc107'],
                                 [1, '#00d26a']
                             ]
                         }
                     },
                     pointer: {
                         icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-                        length: '62%',
-                        width: 7,
+                        length: '58%',
+                        width: 6,
                         offsetCenter: [0, '-4%'],
                         itemStyle: { 
                             color: '#f5c518',
                             shadowColor: 'rgba(0,0,0,0.6)',
-                            shadowBlur: 8
+                            shadowBlur: 4
                         }
                     },
-                    axisTick: { length: 8, lineStyle: { color: 'auto', width: 1.5 } },
-                    splitLine: { length: 14, lineStyle: { color: 'auto', width: 2.5 } },
+                    axisTick: { length: 5, lineStyle: { color: 'auto', width: 1.2 } },
+                    splitLine: { length: 10, lineStyle: { color: 'auto', width: 2 } },
                     axisLabel: {
-                        color: '#94a3b8',
-                        fontSize: 10,
-                        distance: -38,
-                        formatter: function(val) {
-                            if (val === 0 || val === 50 || val === 80 || val === 100 || val === 120) return val + '%';
-                            return '';
-                        }
+                        show: false
                     },
                     title: {
-                        offsetCenter: [0, '15%'],
+                        show: true,
+                        offsetCenter: [0, '18%'],
                         fontSize: 22,
                         fontWeight: '800',
                         color: '#ffffff',
                         fontFamily: 'Montserrat'
                     },
                     detail: {
-                        fontSize: 14,
-                        offsetCenter: [0, '35%'],
+                        show: true,
+                        fontSize: 13,
+                        offsetCenter: [0, '48%'],
                         valueAnimation: true,
                         formatter: function() { return diffText; },
                         color: diffColor,
@@ -525,8 +588,8 @@
                 }).join('');
 
                 card.innerHTML = `
-                    <div class="canal-title">${u.name}</div>
-                    <div class="badge-objetivo-alcancado"><i class="fa-solid fa-trophy"></i> OBJETIVO ALCANÇADO!!!</div>
+                    <div class="canal-card-header"><div class="canal-title">${u.name}</div><div class="badge-objetivo-alcancado"><i class="fa-solid fa-trophy"></i> ALCANÇADO</div></div>
+                    
                     <div class="canal-chart" id="chart-u-${u.id}"></div>
                     <div class="canal-info-bottom">
                         <span>Realizado: <strong>${formatMoney(u.realMes)}</strong></span>
