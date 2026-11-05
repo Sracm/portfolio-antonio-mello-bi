@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel TV - Mapa Brasil por Estado | Cockpit Unidade de Negócios</title>
+    <title>Painel TV - Distribuição Brasil por Estado (Material de Construção)</title>
     
     <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,19 +12,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/mapa_regionais.css">
+    <script src="js/echarts.min.js"></script>
+    <script src="js/brazil_geo.js"></script>
 
     <style>
-        /* Ajustes finos de responsividade e harmonia visual executiva */
+        :root {
+            --bg-dark: #0a0e17;
+            --card-dark: #121826;
+            --gold: #cb9727;
+            --gold-light: #f5d372;
+            --green-neon: #00d26a;
+            --red-neon: #ff2424;
+            --yellow-neon: #ffd600;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .header {
+            background: rgba(18, 24, 38, 0.95);
+            border-bottom: 2px solid rgba(203, 151, 39, 0.3);
+            padding: 8px 16px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
         .header-top {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
-            padding: 8px 16px;
-            background: #080c14;
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            gap: 8px;
+            margin-bottom: 6px;
         }
         .nav-tabs-container {
             display: flex;
@@ -33,10 +56,10 @@
             align-items: center;
         }
         .tab-btn {
-            background: #141b28;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: #182030;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             color: #94a3b8;
-            padding: 6px 14px;
+            padding: 5px 12px;
             border-radius: 4px;
             font-weight: 700;
             font-size: 0.72rem;
@@ -45,14 +68,13 @@
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
-            font-family: 'Montserrat', sans-serif;
+            gap: 5px;
         }
         .tab-btn:hover, .tab-btn.active {
-            background: linear-gradient(135deg, #ffd700 0%, #b45309 100%);
+            background: linear-gradient(135deg, #cb9727 0%, #a6781b 100%);
             color: #000;
-            border-color: #ffd700;
-            box-shadow: 0 0 12px rgba(255, 215, 0, 0.35);
+            border-color: #cb9727;
+            box-shadow: 0 0 10px rgba(203, 151, 39, 0.4);
         }
         .tab-btn.btn-voltar {
             background: #252830;
@@ -63,925 +85,391 @@
             background: #cb9727;
             color: #000;
         }
-        .header-bottom-bar {
+        .map-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 16px;
+            padding: 16px 20px 24px;
+            max-width: 1720px;
+            margin: 0 auto;
+            height: calc(100vh - 120px);
+            min-height: 650px;
+        }
+        @media (max-width: 1100px) {
+            .map-layout { grid-template-columns: 1fr; height: auto; }
+        }
+        .map-container-box {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 16px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        #brazil-map {
+            width: 100%;
+            height: 100%;
+            min-height: 520px;
+        }
+        .side-stats-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .stat-card {
+            background: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+        .stat-card-title {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #f5d372;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 6px 18px;
-            background: rgba(13, 18, 30, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.75rem;
         }
-        .filters-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .filters-row select {
-            background: #141b28;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #f8fafc;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-            outline: none;
-        }
-        .btn-refresh-bar {
-            background: linear-gradient(135deg, #ffd700 0%, #d4a700 100%);
-            color: #000;
-            border: none;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-weight: 800;
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
             font-size: 0.72rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-family: 'Montserrat', sans-serif;
         }
-        .header-meta-info {
-            display: flex;
-            align-items: center;
-            gap: 16px;
+        .ranking-table th {
+            text-align: left;
             color: #94a3b8;
-            font-size: 0.72rem;
-            font-weight: 600;
+            padding: 4px 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .clock {
-            color: #ffd700;
+        .ranking-table td {
+            padding: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .ranking-table tr:hover {
+            background: rgba(203, 151, 39, 0.1);
+        }
+        .badge-pct {
             font-weight: 800;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-        }
-
-        /* Hierarquia Tree styling */
-        .row-uf { cursor: pointer; transition: background 0.15s; }
-        .row-uf:hover { background: rgba(255, 215, 0, 0.1) !important; }
-        .row-uf.selected { background: rgba(255, 215, 0, 0.18) !important; border-left: 3px solid #ffd700; }
-        .row-cat { background: rgba(18, 26, 42, 0.7); cursor: pointer; transition: background 0.15s; }
-        .row-cat:hover { background: rgba(255, 215, 0, 0.08) !important; }
-        .row-prod { background: rgba(10, 15, 26, 0.9); font-size: 0.72rem; }
-        .row-prod:hover { background: rgba(255, 255, 255, 0.04); }
-        .cat-indent { padding-left: 28px !important; }
-        .prod-indent { padding-left: 48px !important; }
-        .toggle-icon {
-            display: inline-block;
-            width: 14px;
-            text-align: center;
-            font-size: 0.65rem;
-            color: #ffd700;
-            transition: transform 0.2s;
-            cursor: pointer;
-            margin-right: 6px;
-        }
-        .toggle-icon.expanded {
-            transform: rotate(90deg);
-        }
-        .uf-tag {
-            font-weight: 900;
-            color: #ffd700;
-            margin-right: 6px;
-        }
-        .uf-name-sub {
-            color: #cbd5e1;
-            font-size: 0.78rem;
-        }
-        .val-share {
-            font-weight: 800;
-        }
-        .val-share.gold {
-            color: #ffd700;
-        }
-        .val-diff {
-            font-weight: 800;
-            font-size: 0.75rem;
-        }
-        .val-diff.positive {
-            color: #00e676;
-        }
-        .val-diff.negative {
-            color: #ff5252;
-        }
-        .prod-rank-badge {
-            background: #252830;
-            color: #ffd700;
-            font-weight: 800;
-            padding: 1px 6px;
+            padding: 2px 6px;
             border-radius: 4px;
-            font-size: 0.65rem;
-            margin-right: 6px;
+            font-size: 0.68rem;
         }
-
-        /* Auto Scroll indicator */
-        .btn-toggle-auto {
-            background: #141b28;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            color: #ffd700;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 0.72rem;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
+        .badge-pct.pos { background: rgba(0, 210, 106, 0.15); color: #00d26a; }
+        .badge-pct.warn { background: rgba(255, 214, 0, 0.15); color: #ffd600; }
+        .badge-pct.neg { background: rgba(255, 36, 36, 0.15); color: #ff2424; }
+        .auto-tv-indicator {
             display: inline-flex;
             align-items: center;
             gap: 6px;
+            padding: 4px 10px;
+            background: rgba(0, 210, 106, 0.15);
+            border: 1px solid #00d26a;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #00d26a;
+            font-weight: 700;
         }
-        .btn-toggle-auto.paused {
-            border-color: rgba(255, 255, 255, 0.2);
-            color: #94a3b8;
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00d26a;
+            box-shadow: 0 0 8px #00d26a;
+            animation: pulse-dot 1.5s infinite;
         }
     </style>
 </head>
 <body>
-    <div class="mapa-tv-container">
-        <!-- Header Superior Integrado -->
+    <div class="dashboard-container">
+        <!-- Header -->
         <header class="header">
             <div class="header-top">
                 <div class="nav-tabs-container">
                     <a href="index.html" class="tab-btn"><i class="fa-solid fa-gauge-high"></i> Unidade de Negócios</a>
                     <a href="trimestre.html" class="tab-btn"><i class="fa-solid fa-chart-pie"></i> Trimestral (Glosas & RCM)</a>
-                    <a href="mapa_brasil.html" class="tab-btn active"><i class="fa-solid fa-map-location-dot"></i> Mapa Brasil</a>
+                    <a href="mapa_brasil.html" class="tab-btn active" style="color:#ffd700;"><i class="fa-solid fa-map-location-dot"></i> Mapa Brasil</a>
                     <a href="paises.html" class="tab-btn"><i class="fa-solid fa-earth-americas"></i> Países & Global</a>
                     <a href="../index.html" class="tab-btn btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
                 </div>
-
-                <div class="filters-row">
-                    <select id="filter-month" onchange="atualizarFiltros()">
-                        <option value="1">Janeiro</option>
-                        <option value="2">Fevereiro</option>
-                        <option value="3">Março</option>
-                        <option value="4">Abril</option>
-                        <option value="5">Maio</option>
-                        <option value="6">Junho</option>
-                        <option value="7">Julho</option>
-                        <option value="8">Agosto</option>
-                        <option value="9" selected>Setembro</option>
-                        <option value="10">Outubro</option>
-                        <option value="11">Novembro</option>
-                        <option value="12">Dezembro</option>
-                    </select>
-                    <select id="filter-year" onchange="atualizarFiltros()">
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026" selected>2026</option>
-                    </select>
-                    <button id="btn-refresh" onclick="atualizarFiltros(true)" class="btn-refresh-bar" title="Atualizar dados agora">
-                        <i class="fa-solid fa-rotate"></i> Atualizar
-                    </button>
-                </div>
-            </div>
-
-            <div class="header-bottom-bar">
-                <div style="display:flex; align-items:center; gap:8px;">
-                    <span style="color:#00e676; font-weight:800;"><i class="fa-solid fa-circle-dot"></i> AUTO-TV: ATIVA</span>
-                    <span style="color:rgba(255,255,255,0.2);">|</span>
-                    <span style="color:#94a3b8;">DADOS: CONSOLIDADOS YTD</span>
-                </div>
-                <div class="header-meta-info">
-                    <div class="clock" id="clock">00:00:00</div>
-                    <div class="date" id="date">01/01/2026</div>
-                    <div class="next-update" id="next-update">Atualização em: 10:00</div>
+                <div class="header-actions-right" style="display:flex; align-items:center; gap:8px;">
+                    <div class="auto-tv-indicator" id="auto-tv-badge" onclick="toggleAutoTV()" style="cursor:pointer;" title="Clique para pausar/retomar alternância automática">
+                        <div class="pulse-dot"></div>
+                        <span id="auto-tv-text">AUTO-TV: ATIVA (25s)</span>
+                    </div>
+                    <button class="btn-action" onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i> Tela Cheia</button>
                 </div>
             </div>
         </header>
 
-        <!-- Barra Cockpit de Topo: 100% Percentual YTD (Zero R$) -->
-        <div class="cockpit-top-bar">
-            <div class="cockpit-title-group">
-                <div class="brand-badge">UNIDADES DE <span>NEGÓCIOS</span></div>
-                <div class="title-separator">|</div>
-                <div class="screen-title">Mapa Brasil — Evolução e Share por Estado</div>
-                <div class="ytd-pill">📅 ACUMULADO ATÉ A DATA (YTD)</div>
+        <!-- Main Content -->
+        <main class="map-layout">
+            <div class="map-container-box">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <div>
+                        <h2 style="font-size:1.05rem; margin:0; color:#f5d372; text-transform:uppercase; font-weight:800;">
+                            Desempenho Geográfico Brasil &bull; Materiais de Construção
+                        </h2>
+                        <span style="font-size:0.75rem; color:#94a3b8;">Faturamento Real vs Meta Mensal por Estado Federativo (R$ Milhões)</span>
+                    </div>
+                    <div style="font-size:0.75rem; color:#f5d372; font-weight:700;">
+                        Total Brasil: <span style="color:#00d26a;">R$ 48.950.000</span> (102.4% da Meta)
+                    </div>
+                </div>
+                <div id="brazil-map"></div>
             </div>
 
-            <div class="cockpit-stats-group">
-                <div class="stat-pill highlight">
-                    <span class="label">Líder Nacional:</span>
-                    <span class="value" id="kpi-lider-uf">SP (34.7%)</span>
+            <!-- Coluna Lateral de Indicadores e Ranking -->
+            <div class="side-stats-box">
+                <div class="stat-card">
+                    <div class="stat-card-title">
+                        <span>Top 6 Estados em Vendas</span>
+                        <i class="fa-solid fa-ranking-star" style="color:#cb9727;"></i>
+                    </div>
+                    <table class="ranking-table" id="top-estados-table">
+                        <thead>
+                            <tr>
+                                <th>UF</th>
+                                <th>Faturado</th>
+                                <th>Meta</th>
+                                <th>Ating.</th>
+                            </tr>
+                        </thead>
+                        <tbody id="top-estados-body"></tbody>
+                    </table>
                 </div>
-                <div class="stat-pill">
-                    <span class="label">Estados Ativos:</span>
-                    <span class="value" id="kpi-total-ufs">27</span>
+
+                <div class="stat-card">
+                    <div class="stat-card-title">
+                        <span>Desempenho por Macro-Região</span>
+                        <i class="fa-solid fa-chart-bar" style="color:#cb9727;"></i>
+                    </div>
+                    <div id="regioes-bars" style="display:flex; flex-direction:column; gap:8px;"></div>
                 </div>
-                <div class="stat-pill">
-                    <span class="label">Categorias:</span>
-                    <span class="value" id="kpi-total-cats">6</span>
-                </div>
-                <div class="stat-pill">
-                    <span class="label">Comparativo:</span>
-                    <span class="value" id="kpi-comparativo-ano">2026 vs 2025</span>
+
+                <div class="stat-card" style="margin-top:auto;">
+                    <div class="stat-card-title">
+                        <span>Categorias em Destaque</span>
+                        <i class="fa-solid fa-cubes-stacked" style="color:#cb9727;"></i>
+                    </div>
+                    <div style="font-size:0.72rem; color:#cbd5e1; line-height:1.6;">
+                        &bull; <strong>Cimento & Argamassas:</strong> R$ 18.4M (104.2%)<br>
+                        &bull; <strong>Aço & Estruturas:</strong> R$ 14.2M (101.5%)<br>
+                        &bull; <strong>Cerâmicas & Revestimentos:</strong> R$ 9.8M (98.7%)<br>
+                        &bull; <strong>Tubos & Conexões PVC:</strong> R$ 6.5M (106.1%)
+                    </div>
                 </div>
             </div>
-
-            <div class="cockpit-actions">
-                <button class="btn-toggle-auto" id="btn-toggle-auto" onclick="toggleAutoRotacao()" title="Pausar/Retomar auto-seleção na TV">
-                    <i class="fa-solid fa-pause"></i> Rotação TV
-                </button>
-            </div>
-        </div>
-
-        <!-- Arena Principal: Split em Grid (Mapa Ampliado à Esquerda + Detalhamento à Direita) -->
-        <main class="mapa-main-arena-split">
-            <!-- ══ COLUNA ESQUERDA: MAPA DO BRASIL AMPLIADO E NITIDO ══ -->
-            <section class="arena-left-map">
-                <div class="map-toolbar">
-                    <div class="map-heading">
-                        <span class="map-icon"><i class="fa-solid fa-map-location-dot" style="color:#ffd700;"></i></span>
-                        <span class="map-title-text">Representatividade Geográfica por Estado (% Share)</span>
-                    </div>
-
-                    <div class="region-filter-chips">
-                        <button class="chip active" data-region="TODAS" onclick="filtrarRegiaoMapa('TODAS')">Todas</button>
-                        <button class="chip" data-region="Sudeste" onclick="filtrarRegiaoMapa('Sudeste')">Sudeste</button>
-                        <button class="chip" data-region="Sul" onclick="filtrarRegiaoMapa('Sul')">Sul</button>
-                        <button class="chip" data-region="Nordeste" onclick="filtrarRegiaoMapa('Nordeste')">Nordeste</button>
-                        <button class="chip" data-region="Centro-Oeste" onclick="filtrarRegiaoMapa('Centro-Oeste')">C-Oeste</button>
-                        <button class="chip" data-region="Norte" onclick="filtrarRegiaoMapa('Norte')">Norte</button>
-                    </div>
-                </div>
-
-                <!-- Canvas ECharts do Mapa do Brasil -->
-                <div class="map-canvas-wrapper">
-                    <div id="echarts-map-container" style="width:100%; height:100%;"></div>
-                </div>
-
-                <!-- Spotlight Card do Estado Focado (Rodapé do Mapa) -->
-                <div class="state-spotlight-card" id="state-spotlight">
-                    <div class="spotlight-header">
-                        <div class="spotlight-uf-badge" id="spot-uf">SP</div>
-                        <div class="spotlight-title-group">
-                            <div class="spot-name" id="spot-nome">São Paulo</div>
-                            <div class="spot-region" id="spot-regiao">Região Sudeste</div>
-                        </div>
-                        <div class="spotlight-status-badge maior" id="spot-status">
-                            <span id="spot-status-txt">▲</span>
-                            <small id="spot-diff-txt">+2.6 p.p.</small>
-                        </div>
-                    </div>
-
-                    <div class="spotlight-metrics-row">
-                        <div class="spot-metric">
-                            <span class="m-lbl">Share Atual (YTD)</span>
-                            <span class="m-val gold" id="spot-share-atual">34.7%</span>
-                        </div>
-                        <div class="spot-metric">
-                            <span class="m-lbl">Share Ano Anterior</span>
-                            <span class="m-val" id="spot-share-ant">32.1%</span>
-                        </div>
-                        <div class="spot-metric">
-                            <span class="m-lbl">Variação p.p.</span>
-                            <span class="m-val" id="spot-var-pp" style="color:var(--green);">+2.6 p.p.</span>
-                        </div>
-                        <div class="spot-metric">
-                            <span class="m-lbl">Posição Ranking</span>
-                            <span class="m-val highlight" id="spot-rank">1º Lugar</span>
-                        </div>
-                    </div>
-
-                    <!-- Mini Top Categorias da UF em Foco -->
-                    <div class="spotlight-top-cats" id="spot-top-cats">
-                        <!-- Gerado dinamicamente via JS -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- ══ COLUNA DIREITA: DETALHAMENTO HIERARQUICO & RANKINGS ══ -->
-            <section class="arena-right-details">
-                <!-- Seletor de Painel (Abas) -->
-                <div class="details-tab-nav">
-                    <button class="d-tab-btn active" id="tab-btn-hierarquia" onclick="trocarPainelDetalhe('hierarquia')">
-                        <span class="tab-ico"><i class="fa-solid fa-folder-tree"></i></span>
-                        <span>Hierarquia (Estado ➔ Categoria ➔ Produto)</span>
-                    </button>
-                    <button class="d-tab-btn" id="tab-btn-rankings" onclick="trocarPainelDetalhe('rankings')">
-                        <span class="tab-ico"><i class="fa-solid fa-trophy"></i></span>
-                        <span>Rankings Categorias & Produtos</span>
-                    </button>
-                </div>
-
-                <!-- ── PAINEL 1: HIERARQUIA ESTADO -> CATEGORIA -> PRODUTO ── -->
-                <div class="detail-panel-content active" id="panel-hierarquia">
-                    <div class="panel-actions-bar">
-                        <div class="search-input-wrapper">
-                            <span class="s-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-                            <input type="text" id="input-search-hierarquia" placeholder="Buscar Estado, Categoria ou Produto..." oninput="filtrarTabelaHierarquia()">
-                        </div>
-                        <div class="action-buttons-group">
-                            <button class="btn-micro" onclick="expandirTodosEstados(true)" title="Expandir todos os estados">Expandir Todos</button>
-                            <button class="btn-micro" onclick="expandirTodosEstados(false)" title="Recolher todos os estados">Recolher</button>
-                        </div>
-                    </div>
-
-                    <div class="hierarchy-table-container">
-                        <table class="hierarchy-table" id="table-hierarquia">
-                            <thead>
-                                <tr>
-                                    <th style="width: 44px; text-align:center;">#</th>
-                                    <th>Estado / Categoria / Produto</th>
-                                    <th style="text-align:right; width: 110px;">Share Atual</th>
-                                    <th style="text-align:right; width: 110px;">Ano Anterior</th>
-                                    <th style="text-align:right; width: 100px;">Dif. p.p.</th>
-                                </tr>
-                            </thead>
-                            <tbody id="hierarchy-table-body">
-                                <!-- Gerado via JS -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- ── PAINEL 2: RANKINGS DE CATEGORIAS E PRODUTOS MAIS VENDIDOS ── -->
-                <div class="detail-panel-content" id="panel-rankings" style="display:none;">
-                    <div class="rankings-split-grid">
-                        <!-- Ranking de Categorias Mais Vendidas -->
-                        <div class="rank-column">
-                            <div class="rank-col-header">
-                                <div class="col-title"><i class="fa-solid fa-boxes-stacked" style="color:#ffd700;"></i> Ranking de Categorias (% Share Brasil)</div>
-                                <span class="badge-tag">Acumulado YTD</span>
-                            </div>
-                            <div class="rank-list" id="rank-categorias-list">
-                                <!-- Gerado via JS -->
-                            </div>
-                        </div>
-
-                        <!-- Ranking dos Produtos Mais Vendidos -->
-                        <div class="rank-column">
-                            <div class="rank-col-header">
-                                <div class="col-title"><i class="fa-solid fa-star" style="color:#ffd700;"></i> Top Produtos Líderes (% Share Brasil)</div>
-                                <span class="badge-tag">Geral Brasil</span>
-                            </div>
-                            <div class="rank-list" id="rank-produtos-list">
-                                <!-- Gerado via JS -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
     </div>
 
-    <!-- Scripts: ECharts, GeoJSON e Base Fictícia de Dados -->
-    <script src="js/echarts.min.js"></script>
-    <script src="js/brazil_geo.js"></script>
-    <script src="js/mapa_dados_ficticios.js"></script>
-
     <script>
-        let myChart = null;
-        let currentData = window.MAPA_DATA_FICTICIA;
-        let activeRegionFilter = 'TODAS';
-        let selectedUf = 'SP';
-        let autoRotateTimer = null;
-        let isAutoRotateActive = true;
-        let nextRefreshSeconds = 600;
-        let expandedUfs = new Set(['SP']);
-        let expandedCats = new Set(['SP_Cimento & Argamassa']);
-        let isGeoJsonLoaded = false;
+        // DATASET FICTÍCIO SEGURO PARA OS 27 ESTADOS DO BRASIL
+        const ESTADOS_DATA = [
+            { name: 'São Paulo', code: 'SP', value: 16200000, meta: 15500000, pct: 104.5 },
+            { name: 'Minas Gerais', code: 'MG', value: 7450000, meta: 7200000, pct: 103.5 },
+            { name: 'Rio de Janeiro', code: 'RJ', value: 6100000, meta: 6300000, pct: 96.8 },
+            { name: 'Paraná', code: 'PR', value: 4350000, meta: 4100000, pct: 106.1 },
+            { name: 'Rio Grande do Sul', code: 'RS', value: 3850000, meta: 3900000, pct: 98.7 },
+            { name: 'Santa Catarina', code: 'SC', value: 3200000, meta: 3000000, pct: 106.7 },
+            { name: 'Bahia', code: 'BA', value: 2950000, meta: 3100000, pct: 95.2 },
+            { name: 'Goiás', code: 'GO', value: 2100000, meta: 2000000, pct: 105.0 },
+            { name: 'Pernambuco', code: 'PE', value: 1450000, meta: 1500000, pct: 96.7 },
+            { name: 'Ceará', code: 'CE', value: 1300000, meta: 1250000, pct: 104.0 },
+            { name: 'Espírito Santo', code: 'ES', value: 1100000, meta: 1050000, pct: 104.8 },
+            { name: 'Mato Grosso', code: 'MT', value: 950000, meta: 900000, pct: 105.6 },
+            { name: 'Mato Grosso do Sul', code: 'MS', value: 850000, meta: 800000, pct: 106.3 },
+            { name: 'Distrito Federal', code: 'DF', value: 820000, meta: 800000, pct: 102.5 },
+            { name: 'Pará', code: 'PA', value: 650000, meta: 700000, pct: 92.9 },
+            { name: 'Maranhão', code: 'MA', value: 520000, meta: 550000, pct: 94.5 },
+            { name: 'Paraíba', code: 'PB', value: 420000, meta: 400000, pct: 105.0 },
+            { name: 'Rio Grande do Norte', code: 'RN', value: 380000, meta: 390000, pct: 97.4 },
+            { name: 'Alagoas', code: 'AL', value: 310000, meta: 320000, pct: 96.9 },
+            { name: 'Piauí', code: 'PI', value: 280000, meta: 290000, pct: 96.6 },
+            { name: 'Sergipe', code: 'SE', value: 250000, meta: 240000, pct: 104.2 },
+            { name: 'Amazonas', code: 'AM', value: 240000, meta: 250000, pct: 96.0 },
+            { name: 'Rondônia', code: 'RO', value: 190000, meta: 180000, pct: 105.6 },
+            { name: 'Tocantins', code: 'TO', value: 150000, meta: 140000, pct: 107.1 },
+            { name: 'Acre', code: 'AC', value: 85000, meta: 90000, pct: 94.4 },
+            { name: 'Amapá', code: 'AP', value: 65000, meta: 70000, pct: 92.9 },
+            { name: 'Roraima', code: 'RR', value: 50000, meta: 55000, pct: 90.9 }
+        ];
 
-        const COORDENADAS_ESTADOS = {
-            'AC': [-70.55, -9.02], 'AL': [-36.27, -9.57], 'AM': [-64.68, -4.15],
-            'AP': [-51.77, 1.41], 'BA': [-41.71, -12.58], 'CE': [-39.63, -5.09],
-            'DF': [-47.88, -15.79], 'ES': [-40.34, -19.18], 'GO': [-49.84, -15.83],
-            'MA': [-45.27, -5.42], 'MG': [-44.55, -18.51], 'MS': [-54.54, -20.51],
-            'MT': [-55.92, -12.68], 'PA': [-52.29, -3.79], 'PB': [-36.78, -7.24],
-            'PE': [-37.99, -8.36], 'PI': [-42.80, -7.71], 'PR': [-51.49, -24.89],
-            'RJ': [-42.87, -22.28], 'RN': [-36.56, -5.81], 'RO': [-62.82, -10.83],
-            'RR': [-61.40, 2.09], 'RS': [-53.50, -29.75], 'SC': [-50.45, -27.24],
-            'SE': [-37.38, -10.57], 'SP': [-48.50, -22.18], 'TO': [-48.29, -10.25]
-        };
+        const REGIOES = [
+            { name: 'Sudeste', pct: 103.8, val: 'R$ 30.85M' },
+            { name: 'Sul', pct: 104.1, val: 'R$ 11.40M' },
+            { name: 'Nordeste', pct: 97.4, val: 'R$ 7.76M' },
+            { name: 'Centro-Oeste', pct: 105.1, val: 'R$ 4.72M' },
+            { name: 'Norte', pct: 95.8, val: 'R$ 1.43M' }
+        ];
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initClock();
-            initChart();
-            carregarGeoJson();
-            renderizarTabelaHierarquia(currentData);
-            renderizarRankings(currentData);
-            selecionarEstado('SP', false);
-            iniciarAutoRotacao();
-        });
+        let autoTvActive = true;
+        let autoTvSeconds = 25;
 
-        function initClock() {
-            function update() {
-                const now = new Date();
-                const clockEl = document.getElementById('clock');
-                const dateEl = document.getElementById('date');
-                if (clockEl) clockEl.innerText = now.toLocaleTimeString('pt-BR');
-                if (dateEl) dateEl.innerText = now.toLocaleDateString('pt-BR');
-
-                nextRefreshSeconds--;
-                if (nextRefreshSeconds <= 0) nextRefreshSeconds = 600;
-                const nextEl = document.getElementById('next-update');
-                if (nextEl) {
-                    const m = Math.floor(nextRefreshSeconds / 60);
-                    const s = nextRefreshSeconds % 60;
-                    nextEl.innerText = `Atualização em: ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-                }
-            }
-            update();
-            setInterval(update, 1000);
+        function formatBRL(v) {
+            return Number(v).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
         }
 
-        function initChart() {
-            const chartDom = document.getElementById('echarts-map-container');
-            if (!chartDom) return;
-            myChart = echarts.init(chartDom, 'dark', { renderer: 'canvas' });
+        function initMap() {
+            const chartDom = document.getElementById('brazil-map');
+            const myChart = echarts.init(chartDom);
 
-            myChart.on('click', function (params) {
-                if (params.name) {
-                    selecionarEstado(params.name, true);
-                }
-            });
-
-            window.addEventListener('resize', () => {
-                if (myChart) myChart.resize();
-            });
-        }
-
-        function carregarGeoJson() {
-            if (window.BRAZIL_GEO_JSON && typeof echarts !== 'undefined') {
-                echarts.registerMap('brazil', window.BRAZIL_GEO_JSON);
-                isGeoJsonLoaded = true;
-                renderizarMapa(currentData);
-            }
-        }
-
-        function renderizarMapa(data) {
-            if (!myChart || !isGeoJsonLoaded) return;
-
-            const ufsMap = data.ufs_map || {};
-            const regionsConfig = [];
-            const activeScatter = [];
-
-            const selU = ufsMap[selectedUf];
-            const coordSel = COORDENADAS_ESTADOS[selectedUf];
-            if (coordSel && selU) {
-                activeScatter.push({
-                    name: `${selU.nome || selectedUf} (${selectedUf})`,
-                    value: [...coordSel, selU.share_atual],
-                    uf: selectedUf,
-                    nome: selU.nome || selectedUf,
-                    share: selU.share_atual,
-                    status: selU.status,
-                    diff: selU.diff_pp
-                });
-            }
-
-            Object.keys(ufsMap).forEach(uf => {
-                const u = ufsMap[uf];
-                const isFilteredRegion = (activeRegionFilter === 'TODAS' || u.regiao === activeRegionFilter);
-                const isSelected = (uf === selectedUf);
-
-                let areaColor = '#182234';
-                if (u.share_atual >= 30) {
-                    areaColor = '#b45309';
-                } else if (u.share_atual >= 8) {
-                    areaColor = '#0369a1';
-                } else if (u.share_atual >= 2) {
-                    areaColor = '#0f766e';
-                } else if (u.share_atual >= 0.5) {
-                    areaColor = '#334155';
-                }
-
-                if (!isFilteredRegion) {
-                    areaColor = 'rgba(15, 23, 42, 0.3)';
-                }
-
-                let borderColor = 'rgba(255, 215, 0, 0.22)';
-                let borderWidth = 1;
-                let shadowColor = 'rgba(0, 0, 0, 0.4)';
-                let shadowBlur = 4;
-                let customLabel = undefined;
-
-                if (isSelected) {
-                    areaColor = '#ffd700';
-                    borderColor = '#ffffff';
-                    borderWidth = 3;
-                    shadowColor = 'rgba(255, 215, 0, 1)';
-                    shadowBlur = 32;
-                    customLabel = {
-                        show: true,
-                        color: '#000000',
-                        fontWeight: 900,
-                        fontSize: 12.5,
-                        textBorderWidth: 0,
-                        formatter: function () {
-                            return `${uf}\n${u.share_atual}%`;
-                        }
-                    };
-                }
-
-                regionsConfig.push({
-                    name: uf,
-                    itemStyle: {
-                        areaColor: areaColor,
-                        borderColor: borderColor,
-                        borderWidth: borderWidth,
-                        shadowColor: shadowColor,
-                        shadowBlur: shadowBlur
-                    },
-                    label: customLabel,
-                    emphasis: {
-                        itemStyle: {
-                            areaColor: '#ffd700',
-                            borderColor: '#ffffff',
-                            borderWidth: 2.5,
-                            shadowBlur: 25,
-                            shadowColor: 'rgba(255, 215, 0, 0.95)'
-                        },
-                        label: {
-                            show: true,
-                            color: '#000000',
-                            fontWeight: 900,
-                            fontSize: 13,
-                            textBorderWidth: 0
-                        }
-                    }
-                });
-            });
+            // Mapeamento para ECharts GeoJSON
+            const mapSeriesData = ESTADOS_DATA.map(e => ({
+                name: e.name,
+                value: e.pct,
+                realizado: e.value,
+                meta: e.meta
+            }));
 
             const option = {
-                backgroundColor: 'transparent',
                 tooltip: {
                     trigger: 'item',
-                    backgroundColor: 'rgba(9, 14, 22, 0.95)',
-                    borderColor: 'rgba(255, 215, 0, 0.6)',
-                    borderWidth: 1.5,
-                    padding: [10, 14],
-                    textStyle: { color: '#f8fafc', fontFamily: 'Montserrat' },
-                    formatter: function (params) {
-                        const uf = params.name;
-                        const u = ufsMap[uf];
-                        if (!u) return params.name;
-                        const stColor = u.status === 'MAIOR' ? '#00e676' : '#ff5252';
-                        const stIcon = u.status === 'MAIOR' ? '▲' : '▼';
+                    backgroundColor: 'rgba(18, 24, 38, 0.95)',
+                    borderColor: '#cb9727',
+                    borderWidth: 1,
+                    textStyle: { color: '#ffffff', fontFamily: 'Montserrat', fontSize: 12 },
+                    formatter: function(params) {
+                        const d = ESTADOS_DATA.find(e => e.name === params.name);
+                        if (!d) return params.name;
+                        const cls = d.pct >= 100 ? '#00d26a' : (d.pct >= 80 ? '#ffd600' : '#ff2424');
                         return `
-                            <div style="font-weight:900; font-size:1.05rem; color:#ffd700; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:5px; margin-bottom:6px;">
-                                ${u.nome || uf} (${uf}) • ${u.regiao || 'Brasil'}
-                            </div>
-                            <div style="font-size:0.8rem; line-height:1.6;">
-                                <div>Posição Ranking: <b style="color:#fff;">#${u.rank || '-'}</b></div>
-                                <div>Share Atual (YTD): <b style="color:#ffd700; font-size:0.95rem;">${u.share_atual}%</b></div>
-                                <div>Share Ano Anterior: <b style="color:#cbd5e1;">${u.share_ant}%</b></div>
-                                <div>Variação: <b style="color:${stColor};">${stIcon} ${(u.diff_pp >= 0 ? '+' : '') + u.diff_pp} p.p.</b></div>
-                            </div>
+                            <strong style="color:#f5d372; font-size:14px;">${d.name} (${d.code})</strong><br/>
+                            Faturado: <strong>${formatBRL(d.value)}</strong><br/>
+                            Meta: <strong>${formatBRL(d.meta)}</strong><br/>
+                            Atingimento: <span style="color:${cls}; font-weight:800;">${d.pct.toFixed(1)}%</span>
                         `;
                     }
                 },
-                geo: {
+                visualMap: {
+                    min: 80,
+                    max: 110,
+                    text: ['Alta Meta', 'Abaixo'],
+                    realtime: false,
+                    calculable: true,
+                    inRange: {
+                        color: ['#ff2424', '#ffd600', '#00d26a']
+                    },
+                    textStyle: { color: '#94a3b8' },
+                    left: '20',
+                    bottom: '20'
+                },
+                series: [{
+                    name: 'Brasil',
+                    type: 'map',
                     map: 'brazil',
-                    roam: false,
-                    zoom: 1.25,
-                    center: [-54, -14.5],
-                    aspectScale: 0.88,
-                    nameProperty: 'sigla',
+                    roam: true,
+                    aspectScale: 0.95,
+                    zoom: 1.15,
                     label: {
                         show: true,
                         color: '#ffffff',
-                        fontSize: 9.5,
-                        fontWeight: 800,
-                        lineHeight: 11,
-                        textBorderColor: '#000000',
-                        textBorderWidth: 2.5,
-                        formatter: function (params) {
-                            const uf = params.name;
-                            const u = ufsMap[uf];
-                            if (u && u.share_atual >= 0.5) {
-                                return `${uf}\n${u.share_atual}%`;
-                            }
-                            return uf;
+                        fontSize: 9,
+                        fontWeight: '700',
+                        formatter: function(p) {
+                            const d = ESTADOS_DATA.find(e => e.name === p.name);
+                            return d ? d.code : p.name;
                         }
                     },
                     itemStyle: {
-                        areaColor: '#101726',
-                        borderColor: 'rgba(255, 255, 255, 0.12)',
-                        borderWidth: 1
+                        borderColor: 'rgba(255, 255, 255, 0.25)',
+                        borderWidth: 1,
+                        areaColor: '#1a2233'
                     },
-                    regions: regionsConfig
-                },
-                series: [
-                    {
-                        name: 'Estado em Evidência',
-                        type: 'effectScatter',
-                        coordinateSystem: 'geo',
-                        data: activeScatter,
-                        symbolSize: 14,
-                        showEffectOn: 'render',
-                        rippleEffect: {
-                            brushType: 'stroke',
-                            scale: 4,
-                            period: 2
-                        },
+                    emphasis: {
+                        label: { show: true, color: '#000', fontWeight: '800' },
                         itemStyle: {
-                            color: '#ffd700',
-                            shadowBlur: 20,
-                            shadowColor: '#ffffff'
-                        },
-                        label: {
-                            show: true,
-                            position: 'top',
-                            distance: 12,
-                            formatter: function (params) {
-                                return `{badge|📍 ${params.data.uf}: ${params.data.share}%}`;
-                            },
-                            rich: {
-                                badge: {
-                                    backgroundColor: 'rgba(10, 15, 24, 0.95)',
-                                    borderColor: '#ffd700',
-                                    borderWidth: 1.5,
-                                    color: '#ffd700',
-                                    fontWeight: 900,
-                                    fontSize: 12,
-                                    padding: [4, 8],
-                                    borderRadius: 6,
-                                    shadowBlur: 14,
-                                    shadowColor: 'rgba(0, 0, 0, 0.85)'
-                                }
-                            }
-                        },
-                        zlevel: 10
-                    }
-                ]
+                            areaColor: '#f5d372',
+                            borderColor: '#ffffff',
+                            borderWidth: 2,
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(0,0,0,0.5)'
+                        }
+                    },
+                    data: mapSeriesData
+                }]
             };
 
-            myChart.setOption(option, true);
+            myChart.setOption(option);
+            window.addEventListener('resize', () => myChart.resize());
         }
 
-        function selecionarEstado(uf, autoScroll = false) {
-            selectedUf = uf;
-            const ufsMap = currentData.ufs_map || {};
-            const u = ufsMap[uf];
-            if (!u) return;
+        function renderSideStats() {
+            // Top Estados
+            const tbody = document.getElementById('top-estados-body');
+            tbody.innerHTML = ESTADOS_DATA.slice(0, 6).map(e => {
+                const cls = e.pct >= 100 ? 'pos' : (e.pct >= 80 ? 'warn' : 'neg');
+                return `
+                    <tr>
+                        <td><strong>${e.code}</strong></td>
+                        <td>${formatBRL(e.value)}</td>
+                        <td>${formatBRL(e.meta)}</td>
+                        <td><span class="badge-pct ${cls}">${e.pct.toFixed(1)}%</span></td>
+                    </tr>
+                `;
+            }).join('');
 
-            document.getElementById('spot-uf').innerText = uf;
-            document.getElementById('spot-nome').innerText = u.nome || uf;
-            document.getElementById('spot-regiao').innerText = `Região ${u.regiao || 'Brasil'}`;
-
-            const isMaior = u.status === 'MAIOR';
-            const statusBox = document.getElementById('spot-status');
-            statusBox.className = `spotlight-status-badge ${isMaior ? 'maior' : 'menor'}`;
-            document.getElementById('spot-status-txt').innerText = isMaior ? '▲' : '▼';
-            const diffTxt = document.getElementById('spot-diff-txt');
-            diffTxt.innerText = `${u.diff_pp >= 0 ? '+' : ''}${u.diff_pp} p.p.`;
-            diffTxt.style.color = isMaior ? 'var(--green)' : 'var(--red)';
-
-            document.getElementById('spot-share-atual').innerText = `${u.share_atual}%`;
-            document.getElementById('spot-share-ant').innerText = `${u.share_ant}%`;
-            const varPpEl = document.getElementById('spot-var-pp');
-            varPpEl.innerText = `${u.diff_pp >= 0 ? '+' : ''}${u.diff_pp} p.p.`;
-            varPpEl.style.color = isMaior ? 'var(--green)' : 'var(--red)';
-            document.getElementById('spot-rank').innerText = `${u.rank || 1}º Lugar`;
-
-            const estadoObj = (currentData.estados || []).find(e => e.uf === uf);
-            const topCatsEl = document.getElementById('spot-top-cats');
-            if (topCatsEl && estadoObj && estadoObj.categorias) {
-                topCatsEl.innerHTML = '<span style="color:#94a3b8; font-weight:700;">Top Categorias na UF:</span> ' +
-                    estadoObj.categorias.slice(0, 4).map(c => `
-                        <div class="spot-cat-pill">
-                            <span>${c.categoria}:</span>
-                            <b>${c.share_atual}%</b>
-                            <small style="color:${c.status === 'MAIOR' ? 'var(--green)' : 'var(--red)'};">${c.diff_pp >= 0 ? '+' : ''}${c.diff_pp}</small>
+            // Regiões Bars
+            const regContainer = document.getElementById('regioes-bars');
+            regContainer.innerHTML = REGIOES.map(r => {
+                const cls = r.pct >= 100 ? '#00d26a' : (r.pct >= 80 ? '#ffd600' : '#ff2424');
+                const w = Math.min(100, (r.pct / 120) * 100);
+                return `
+                    <div>
+                        <div style="display:flex; justify-content:space-between; font-size:0.72rem; margin-bottom:2px;">
+                            <span>${r.name} (${r.val})</span>
+                            <span style="color:${cls}; font-weight:800;">${r.pct.toFixed(1)}%</span>
                         </div>
-                    `).join('');
-            }
-
-            if (autoScroll) {
-                expandedUfs.add(uf);
-                if (estadoObj && estadoObj.categorias && estadoObj.categorias.length > 0) {
-                    expandedCats.add(`${uf}_${estadoObj.categorias[0].categoria}`);
-                }
-                renderizarTabelaHierarquia(currentData);
-                setTimeout(() => {
-                    const targetRow = document.querySelector(`.row-uf[data-uf="${uf}"]`);
-                    if (targetRow) {
-                        targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    }
-                }, 50);
-            } else {
-                document.querySelectorAll('.row-uf').forEach(row => {
-                    row.classList.toggle('selected', row.getAttribute('data-uf') === uf);
-                });
-            }
-
-            renderizarMapa(currentData);
-        }
-
-        function renderizarTabelaHierarquia(data) {
-            const tbody = document.getElementById('hierarchy-table-body');
-            if (!tbody || !data || !data.estados) return;
-
-            const q = (document.getElementById('input-search-hierarquia').value || '').toLowerCase().trim();
-            let html = '';
-
-            data.estados.forEach(est => {
-                const isUfExpanded = expandedUfs.has(est.uf);
-                const isMaior = est.status === 'MAIOR';
-                const diffStr = (isMaior ? '▲ ' : '▼ ') + (est.diff_pp >= 0 ? '+' : '') + est.diff_pp + ' p.p.';
-
-                const matchUf = !q || est.nome.toLowerCase().includes(q) || est.uf.toLowerCase().includes(q);
-
-                if (matchUf || q) {
-                    html += `
-                        <tr class="row-uf ${est.uf === selectedUf ? 'selected' : ''}" data-uf="${est.uf}" onclick="onRowUfClick('${est.uf}', event)">
-                            <td style="text-align:center; font-weight:800; color:var(--gold);">${est.rank}</td>
-                            <td>
-                                <span class="toggle-icon ${isUfExpanded ? 'expanded' : ''}" onclick="toggleUfExpand('${est.uf}', event)">▶</span>
-                                <span class="uf-tag">${est.uf}</span>
-                                <span class="uf-name-sub">${est.nome}</span>
-                            </td>
-                            <td style="text-align:right;" class="val-share gold">${est.share_atual}%</td>
-                            <td style="text-align:right;" class="val-share">${est.share_ant}%</td>
-                            <td style="text-align:right;" class="val-diff ${isMaior ? 'positive' : 'negative'}">${diffStr}</td>
-                        </tr>
-                    `;
-                }
-
-                if ((isUfExpanded || q) && est.categorias) {
-                    est.categorias.forEach(cat => {
-                        const catKey = `${est.uf}_${cat.categoria}`;
-                        const isCatExpanded = expandedCats.has(catKey);
-                        const isCatMaior = cat.status === 'MAIOR';
-                        const catDiffStr = (isCatMaior ? '▲ ' : '▼ ') + (cat.diff_pp >= 0 ? '+' : '') + cat.diff_pp + ' p.p.';
-
-                        const matchCat = matchUf || !q || cat.categoria.toLowerCase().includes(q);
-
-                        if (matchCat || q) {
-                            html += `
-                                <tr class="row-cat" data-cat-key="${catKey}" onclick="toggleCatExpand('${catKey}', event)">
-                                    <td style="text-align:center; color:#94a3b8; font-size:0.68rem;">${cat.rank}</td>
-                                    <td class="cat-indent">
-                                        <span class="toggle-icon ${isCatExpanded ? 'expanded' : ''}">▶</span>
-                                        <span class="cat-name-txt">📦 ${cat.categoria}</span>
-                                    </td>
-                                    <td style="text-align:right;" class="val-share">${cat.share_atual}%</td>
-                                    <td style="text-align:right; color:#94a3b8;">${cat.share_ant}%</td>
-                                    <td style="text-align:right;" class="val-diff ${isCatMaior ? 'positive' : 'negative'}">${catDiffStr}</td>
-                                </tr>
-                            `;
-                        }
-
-                        if ((isCatExpanded || q) && cat.produtos) {
-                            cat.produtos.forEach(prod => {
-                                const isProdMaior = prod.status === 'MAIOR';
-                                const prodDiffStr = (isProdMaior ? '▲ ' : '▼ ') + (prod.diff_pp >= 0 ? '+' : '') + prod.diff_pp + ' p.p.';
-                                const matchProd = matchCat || !q || prod.produto.toLowerCase().includes(q);
-
-                                if (matchProd) {
-                                    html += `
-                                        <tr class="row-prod">
-                                            <td style="text-align:center; font-size:0.65rem; color:#64748b;">${prod.rank}º</td>
-                                            <td class="prod-indent" title="${prod.produto}">
-                                                <span class="prod-rank-badge">#${prod.rank}</span>
-                                                <span>${prod.produto}</span>
-                                            </td>
-                                            <td style="text-align:right; font-weight:700; color:#e2e8f0;">${prod.share_atual}%</td>
-                                            <td style="text-align:right; color:#64748b;">${prod.share_ant}%</td>
-                                            <td style="text-align:right;" class="val-diff ${isProdMaior ? 'positive' : 'negative'}">${prodDiffStr}</td>
-                                        </tr>
-                                    `;
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-
-            tbody.innerHTML = html;
-        }
-
-        function onRowUfClick(uf, event) {
-            selecionarEstado(uf, false);
-        }
-
-        function toggleUfExpand(uf, event) {
-            if (event) event.stopPropagation();
-            if (expandedUfs.has(uf)) {
-                expandedUfs.delete(uf);
-            } else {
-                expandedUfs.add(uf);
-            }
-            selecionarEstado(uf, false);
-            renderizarTabelaHierarquia(currentData);
-        }
-
-        function toggleCatExpand(catKey, event) {
-            if (event) event.stopPropagation();
-            if (expandedCats.has(catKey)) {
-                expandedCats.delete(catKey);
-            } else {
-                expandedCats.add(catKey);
-            }
-            renderizarTabelaHierarquia(currentData);
-        }
-
-        function expandirTodosEstados(expand) {
-            if (expand) {
-                (currentData.estados || []).forEach(est => {
-                    expandedUfs.add(est.uf);
-                    (est.categorias || []).forEach(cat => expandedCats.add(`${est.uf}_${cat.categoria}`));
-                });
-            } else {
-                expandedUfs.clear();
-                expandedCats.clear();
-            }
-            renderizarTabelaHierarquia(currentData);
-        }
-
-        function filtrarTabelaHierarquia() {
-            renderizarTabelaHierarquia(currentData);
-        }
-
-        function filtrarRegiaoMapa(regiao) {
-            activeRegionFilter = regiao;
-            document.querySelectorAll('.region-filter-chips .chip').forEach(c => {
-                c.classList.toggle('active', c.getAttribute('data-region') === regiao);
-            });
-            renderizarMapa(currentData);
-        }
-
-        function trocarPainelDetalhe(painel) {
-            const btnHier = document.getElementById('tab-btn-hierarquia');
-            const btnRank = document.getElementById('tab-btn-rankings');
-            const pnlHier = document.getElementById('panel-hierarquia');
-            const pnlRank = document.getElementById('panel-rankings');
-
-            if (painel === 'hierarquia') {
-                btnHier.classList.add('active');
-                btnRank.classList.remove('active');
-                pnlHier.style.display = 'block';
-                pnlRank.style.display = 'none';
-            } else {
-                btnHier.classList.remove('active');
-                btnRank.classList.add('active');
-                pnlHier.style.display = 'none';
-                pnlRank.style.display = 'block';
-            }
-        }
-
-        function renderizarRankings(data) {
-            const catListEl = document.getElementById('rank-categorias-list');
-            const prodListEl = document.getElementById('rank-produtos-list');
-
-            if (catListEl && data.ranking_categorias) {
-                catListEl.innerHTML = data.ranking_categorias.map((c, i) => `
-                    <div class="rank-item-card">
-                        <div class="r-pos">#${i + 1}</div>
-                        <div class="r-info">
-                            <div class="r-title">${c.categoria}</div>
-                            <div class="r-sub">Share Brasil: <b style="color:#ffd700;">${c.share_atual}%</b> &bull; Ano Ant: ${c.share_ant}%</div>
-                        </div>
-                        <div class="r-diff ${c.status === 'MAIOR' ? 'positive' : 'negative'}">
-                            ${c.diff_pp >= 0 ? '▲ +' : '▼ '}${c.diff_pp} p.p.
+                        <div style="background:#182030; height:6px; border-radius:3px; overflow:hidden;">
+                            <div style="background:${cls}; width:${w}%; height:100%; border-radius:3px;"></div>
                         </div>
                     </div>
-                `).join('');
-            }
-
-            if (prodListEl && data.top_produtos) {
-                prodListEl.innerHTML = data.top_produtos.map((p, i) => `
-                    <div class="rank-item-card">
-                        <div class="r-pos" style="color:#00e5ff;">#${i + 1}</div>
-                        <div class="r-info">
-                            <div class="r-title">${p.produto}</div>
-                            <div class="r-sub">${p.categoria} &bull; <b style="color:#ffd700;">${p.share_atual}%</b></div>
-                        </div>
-                        <div class="r-diff ${p.status === 'MAIOR' ? 'positive' : 'negative'}">
-                            ${p.diff_pp >= 0 ? '▲ +' : '▼ '}${p.diff_pp} p.p.
-                        </div>
-                    </div>
-                `).join('');
-            }
+                `;
+            }).join('');
         }
 
-        function iniciarAutoRotacao() {
-            const ufs = (currentData.estados || []).map(e => e.uf).slice(0, 10);
-            let idx = 0;
-            if (autoRotateTimer) clearInterval(autoRotateTimer);
-
-            autoRotateTimer = setInterval(() => {
-                if (!isAutoRotateActive) return;
-                idx = (idx + 1) % ufs.length;
-                selecionarEstado(ufs[idx], false);
-            }, 6000);
-        }
-
-        function toggleAutoRotacao() {
-            isAutoRotateActive = !isAutoRotateActive;
-            const btn = document.getElementById('btn-toggle-auto');
-            if (isAutoRotateActive) {
-                btn.classList.remove('paused');
-                btn.innerHTML = '<i class="fa-solid fa-pause"></i> Rotação TV';
+        function toggleAutoTV() {
+            autoTvActive = !autoTvActive;
+            const badge = document.getElementById('auto-tv-badge');
+            const txt = document.getElementById('auto-tv-text');
+            if (autoTvActive) {
+                badge.style.borderColor = '#00d26a';
+                badge.style.color = '#00d26a';
+                txt.innerText = `AUTO-TV: ATIVA (${autoTvSeconds}s)`;
             } else {
-                btn.classList.add('paused');
-                btn.innerHTML = '<i class="fa-solid fa-play"></i> Rotação Pausada';
+                badge.style.borderColor = '#ff2424';
+                badge.style.color = '#ff2424';
+                txt.innerText = 'AUTO-TV: PAUSADA';
             }
         }
 
-        function atualizarFiltros(manual = false) {
-            console.log('Filtros atualizados.');
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(() => {});
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            renderSideStats();
+
+            // Auto-TV (Mapa -> Países)
+            setInterval(() => {
+                if (!autoTvActive) return;
+                autoTvSeconds--;
+                if (autoTvSeconds <= 0) {
+                    autoTvSeconds = 25;
+                    window.location.href = 'paises.html';
+                }
+                const txt = document.getElementById('auto-tv-text');
+                if (txt && autoTvActive) txt.innerText = `AUTO-TV: ATIVA (${autoTvSeconds}s)`;
+            }, 1000);
+        });
     </script>
 </body>
 </html>
