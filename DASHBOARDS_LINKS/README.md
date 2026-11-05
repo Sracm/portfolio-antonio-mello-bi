@@ -581,3 +581,6 @@ Este diretório contém o inventário consolidado de **todos os 90 dashboards** 
 ---
 
 | 108 | **Dashboard PORTIFOLIO08 - Logística de Coletas Domiciliares & Móveis** | Microsoft Power BI | [📊 Abrir](https://sracm.github.io/portfolio-bi/powerbi_coletas/) | [⚡ Power BI HD](https://sracm.github.io/portfolio-bi/powerbi_coletas/) | [💻 GitHub](https://github.com/Sracm/portfolio-bi) |
+
+| 109 | **Dashboard PORTIFOLIO09 - Gestão de Ordens de Serviço & Recepção** | Microsoft Power BI | [📊 Abrir](https://sracm.github.io/portfolio-bi/powerbi_ordens_servico/) | [⚡ Power BI HD](https://sracm.github.io/portfolio-bi/powerbi_ordens_servico/) | [💻 GitHub](https://github.com/Sracm/portfolio-bi) |
+| 110 | **Dashboard PORTIFOLIO10 - Indicadores Detalhe Operacional & Metas** | Microsoft Power BI | [📊 Abrir](https://sracm.github.io/portfolio-bi/powerbi_operacional_metas/) | [⚡ Power BI HD](https://sracm.github.io/portfolio-bi/powerbi_operacional_metas/) | [💻 GitHub](https://github.com/Sracm/portfolio-bi) |

@@ -1022,5 +1022,27 @@
     "tech": "Microsoft Power BI Pro",
     "github_repo": "https://github.com/Sracm/portfolio-bi",
     "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_coletas/"
+  },
+  {
+    "id": 109,
+    "title": "Dashboard PORTIFOLIO09 - Gestão de Ordens de Serviço & Recepção",
+    "department": "Microsoft Power BI",
+    "powerbi_url": "https://sracm.github.io/portfolio-bi/powerbi_ordens_servico/",
+    "web_url": "https://sracm.github.io/portfolio-bi/powerbi_ordens_servico/",
+    "description": "Dashboard em Microsoft Power BI Pro para controle de 1.339.165 ordens de serviço (Particular 1.141M, Convênio 190k, Beneficência 7.2k), curva horária de fluxo de recepção e ranking de produtividade de atendentes.",
+    "tech": "Microsoft Power BI Pro",
+    "github_repo": "https://github.com/Sracm/portfolio-bi",
+    "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_ordens_servico/"
+  },
+  {
+    "id": 110,
+    "title": "Dashboard PORTIFOLIO10 - Indicadores Detalhe Operacional & Metas (Ac Consultoria BI)",
+    "department": "Microsoft Power BI",
+    "powerbi_url": "https://sracm.github.io/portfolio-bi/powerbi_operacional_metas/",
+    "web_url": "https://sracm.github.io/portfolio-bi/powerbi_operacional_metas/",
+    "description": "Painel oficial Power BI Pro da Ac Consultoria BI com comparativo anual (2024 vs 2025), linhas de referência de 100% de meta e 6 velocímetros executivos de desvio e atingimento.",
+    "tech": "Microsoft Power BI Pro",
+    "github_repo": "https://github.com/Sracm/portfolio-bi",
+    "live_portfolio_url": "https://sracm.github.io/portfolio-bi/powerbi_operacional_metas/"
   }
 ]
