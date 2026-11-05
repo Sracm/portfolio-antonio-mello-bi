@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>ACM CORP | DRE Gerencial & Analytics</title>
+
+  <!-- Google Fonts & Chart.js -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg-body: #0b0f19;
+      --bg-card: #121826;
+      --bg-card-hover: #182032;
+      --border-card: #1e293b;
+      --border-highlight: #334155;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-sub: #64748b;
+
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-green: #10b981;
+      --accent-red: #f43f5e;
+      --accent-amber: #f59e0b;
+      --accent-purple: #c084fc;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      padding: 24px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* Header Bar */
+    .header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: linear-gradient(135deg, rgba(18, 24, 38, 0.95), rgba(30, 41, 59, 0.6));
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 20px 28px;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .header-info {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #0284c7, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      color: #fff;
+    }
+
+    .header-titles h1 {
+      font-size: 22px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .badge-demo {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .header-titles p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .author-badge {
+      text-align: right;
+      padding-right: 14px;
+      border-right: 1px solid var(--border-card);
+    }
+
+    .author-badge .sub {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-sub);
+    }
+
+    .author-badge .name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #e2e8f0;
+    }
+
+    .btn-action {
+      background: #1e293b;
+      color: #fff;
+      border: 1px solid var(--border-highlight);
+      padding: 10px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      background: var(--accent-blue);
+      color: #04101e;
+      border-color: var(--accent-blue);
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .filter-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .filter-select {
+      background: #0b0f19;
+      color: var(--text-main);
+      border: 1px solid var(--border-highlight);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .filter-select:focus {
+      border-color: var(--accent-blue);
+    }
+
+    /* KPI Cards */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-highlight);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--card-accent, #38bdf8);
+    }
+
+    .kpi-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .kpi-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    .kpi-val {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .kpi-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 10px;
+      margin-top: 6px;
+    }
+
+    .badge-var {
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .var-pos {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent-green);
+    }
+
+    .var-neg {
+      background: rgba(244, 63, 94, 0.15);
+      color: var(--accent-red);
+    }
+
+    /* Layout Charts */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1150px) {
+      .charts-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .chart-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .box-header {
+      margin-bottom: 16px;
+    }
+
+    .box-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .box-desc {
+      font-size: 12px;
+      color: var(--text-sub);
+    }
+
+    .chart-container {
+      position: relative;
+      flex-grow: 1;
+      min-height: 310px;
+    }
+
+    /* Table DRE */
+    .table-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+
+    .dre-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .dre-table th {
+      background: #080c14;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 16px;
+      text-align: right;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .dre-table th:first-child {
+      text-align: left;
+    }
+
+    .dre-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .dre-table td:first-child {
+      text-align: left;
+    }
+
+    .row-group {
+      background: rgba(30, 41, 59, 0.4);
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .row-subtotal {
+      background: rgba(14, 165, 233, 0.08);
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    .row-highlight {
+      background: rgba(16, 185, 129, 0.1);
+      font-weight: 800;
+      color: #34d399;
+      font-size: 14px;
+    }
+
+    .row-account {
+      color: #cbd5e1;
+      padding-left: 28px !important;
+    }
+
+    .footer-bar {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-sub);
+      border-top: 1px solid var(--border-card);
+    }
+  
+    /* ADAPTATIVO MOBILE & QUALQUER TELA */
+    @media (max-width: 900px) {
+      body {
+        padding: 10px 8px !important;
+        overflow-x: hidden;
+      }
+      .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .header-bar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding-bottom: 12px !important;
+      }
+      .header-info {
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 10px !important;
+      }
+      .header-titles h1 {
+        font-size: 16px !important;
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        line-height: 1.3 !important;
+      }
+      .header-titles p {
+        font-size: 11px !important;
+      }
+      .header-actions {
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        justify-content: space-between !important;
+        gap: 8px !important;
+      }
+      .author-badge {
+        display: none !important;
+      }
+      .btn-action, .btn-export {
+        flex: 1 1 calc(50% - 6px) !important;
+        min-height: 42px !important;
+        font-size: 12px !important;
+        justify-content: center !important;
+        padding: 8px 10px !important;
+        box-sizing: border-box !important;
+      }
+      .filter-bar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+        padding: 12px !important;
+      }
+      .filter-group, .filter-item {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 6px !important;
+        width: 100% !important;
+        margin: 0 !important;
+      }
+      .filter-group .filter-label, .filter-item .filter-label {
+        margin-left: 0 !important;
+        font-size: 11px !important;
+      }
+      .filter-select, .filter-input {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: 42px !important;
+        font-size: 13px !important;
+        box-sizing: border-box !important;
+      }
+      .kpis-grid, .kpi-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+      }
+      .kpi-card {
+        padding: 12px 10px !important;
+      }
+      .kpi-title {
+        font-size: 11px !important;
+      }
+      .kpi-tag {
+        font-size: 9px !important;
+        padding: 2px 5px !important;
+      }
+      .kpi-val {
+        font-size: 18px !important;
+        word-break: break-all !important;
+      }
+      .kpi-footer {
+        font-size: 10px !important;
+      }
+      .charts-row, .grid-3col, .grid-2col, .itens-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+      }
+      .chart-box, .panel-box, .item-card {
+        padding: 14px 10px !important;
+      }
+      .chart-container {
+        height: 250px !important;
+        min-height: 250px !important;
+      }
+      .table-box, .panel-box {
+        padding: 12px 8px !important;
+      }
+      .table-container, .table-wrapper {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        display: block !important;
+      }
+      .dre-table, .glosas-table, .audit-table {
+        min-width: 580px !important;
+        font-size: 11px !important;
+      }
+      .dre-table th, .dre-table td,
+      .glosas-table th, .glosas-table td,
+      .audit-table th, .audit-table td {
+        padding: 8px 8px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .kpis-grid, .kpi-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .btn-action, .btn-export {
+        flex: 1 1 100% !important;
+      }
+      .chart-container {
+        height: 220px !important;
+      }
+    }
+</style>
+
+<script>
+  window.FALLBACK_FILTROS = {
+  "meses": [
+    {
+      "mes": 1,
+      "mes_nome": "Janeiro"
+    },
+    {
+      "mes": 2,
+      "mes_nome": "Fevereiro"
+    },
+    {
+      "mes": 3,
+      "mes_nome": "Marco"
+    },
+    {
+      "mes": 4,
+      "mes_nome": "Abril"
+    },
+    {
+      "mes": 5,
+      "mes_nome": "Maio"
+    },
+    {
+      "mes": 6,
+      "mes_nome": "Junho"
+    },
+    {
+      "mes": 7,
+      "mes_nome": "Julho"
+    },
+    {
+      "mes": 8,
+      "mes_nome": "Agosto"
+    },
+    {
+      "mes": 9,
+      "mes_nome": "Setembro"
+    },
+    {
+      "mes": 10,
+      "mes_nome": "Outubro"
+    },
+    {
+      "mes": 11,
+      "mes_nome": "Novembro"
+    },
+    {
+      "mes": 12,
+      "mes_nome": "Dezembro"
+    }
+  ],
+  "unidades": [
+    "B2B Enterprise & Atacado",
+    "Lojas Conceito (Varejo Fisico)",
+    "Varejo Digital (E-comm)"
+  ]
+}
+;
+  window.FALLBACK_DADOS = {
+  "grupos": {
+    "1. RECEITA BRUTA": {
+      "contas": [
+        {
+          "conta": "Venda Canal B2B Corporativo",
+          "orcado": 18393109.16,
+          "realizado": 18277980.99,
+          "sinal": 1,
+          "subgrupo": "1.1 Receita de Vendas",
+          "variacao_pct": -0.63,
+          "variacao_reais": -115128.17
+        },
+        {
+          "conta": "Venda de Produtos E-commerce",
+          "orcado": 55045359.67,
+          "realizado": 55534383.51,
+          "sinal": 1,
+          "subgrupo": "1.1 Receita de Vendas",
+          "variacao_pct": 0.89,
+          "variacao_reais": 489023.84
+        },
+        {
+          "conta": "Venda de Produtos Lojas Proprias",
+          "orcado": 36659075.76,
+          "realizado": 36927584.92,
+          "sinal": 1,
+          "subgrupo": "1.1 Receita de Vendas",
+          "variacao_pct": 0.73,
+          "variacao_reais": 268509.16
+        },
+        {
+          "conta": "Assinaturas & Servicos Digitais",
+          "orcado": 12316740.040000001,
+          "realizado": 12270063.76,
+          "sinal": 1,
+          "subgrupo": "1.2 Receita de Servicos",
+          "variacao_pct": -0.38,
+          "variacao_reais": -46676.28
+        }
+      ],
+      "orcado": 122414284.63000001,
+      "realizado": 123010013.18
+    },
+    "2. DEDUCOES DA RECEITA": {
+      "contas": [
+        {
+          "conta": "ICMS s/ Vendas",
+          "orcado": 14683867.41,
+          "realizado": 14685583.97,
+          "sinal": -1,
+          "subgrupo": "2.1 Impostos sobre Vendas",
+          "variacao_pct": 0.01,
+          "variacao_reais": 1716.56
+        },
+        {
+          "conta": "PIS / COFINS",
+          "orcado": 6720199.0,
+          "realizado": 6760891.97,
+          "sinal": -1,
+          "subgrupo": "2.1 Impostos sobre Vendas",
+          "variacao_pct": 0.61,
+          "variacao_reais": 40692.97
+        },
+        {
+          "conta": "Descontos Comerciais Concedidos",
+          "orcado": 2441892.98,
+          "realizado": 2464398.05,
+          "sinal": -1,
+          "subgrupo": "2.2 Devolucoes & Descontos",
+          "variacao_pct": 0.92,
+          "variacao_reais": 22505.07
+        },
+        {
+          "conta": "Devolucoes e Cancelamentos",
+          "orcado": 4280981.65,
+          "realizado": 4288184.63,
+          "sinal": -1,
+          "subgrupo": "2.2 Devolucoes & Descontos",
+          "variacao_pct": 0.17,
+          "variacao_reais": 7202.98
+        }
+      ],
+      "orcado": 28126941.04,
+      "realizado": 28199058.62
+    },
+    "3. CUSTOS (CMV/CPV)": {
+      "contas": [
+        {
+          "conta": "Custo de Aquisicao de Mercadorias",
+          "orcado": 41001210.94,
+          "realizado": 41251543.67,
+          "sinal": -1,
+          "subgrupo": "3.1 Custo Mercadorias",
+          "variacao_pct": 0.61,
+          "variacao_reais": 250332.73
+        },
+        {
+          "conta": "Embalagens e Materiais de Apoio",
+          "orcado": 2935089.83,
+          "realizado": 2902387.91,
+          "sinal": -1,
+          "subgrupo": "3.2 Insumos & Embalagens",
+          "variacao_pct": -1.11,
+          "variacao_reais": -32701.92
+        }
+      ],
+      "orcado": 43936300.769999996,
+      "realizado": 44153931.58
+    },
+    "4. DESPESAS OPERACIONAIS": {
+      "contas": [
+        {
+          "conta": "Comissoes e Bonificacoes de Vendas",
+          "orcado": 2430158.9,
+          "realizado": 2439613.25,
+          "sinal": -1,
+          "subgrupo": "4.1 Despesas Comerciais & MKT",
+          "variacao_pct": 0.39,
+          "variacao_reais": 9454.35
+        },
+        {
+          "conta": "Midia de Performance & Google/Meta Ads",
+          "orcado": 6331106.8,
+          "realizado": 6246602.82,
+          "sinal": -1,
+          "subgrupo": "4.1 Despesas Comerciais & MKT",
+          "variacao_pct": -1.33,
+          "variacao_reais": -84503.98
+        },
+        {
+          "conta": "Taxas de Marketplaces & Gateways",
+          "orcado": 3400940.83,
+          "realizado": 3386335.23,
+          "sinal": -1,
+          "subgrupo": "4.1 Despesas Comerciais & MKT",
+          "variacao_pct": -0.43,
+          "variacao_reais": -14605.6
+        },
+        {
+          "conta": "Frete Entrega ao Cliente (Outbound)",
+          "orcado": 4875369.55,
+          "realizado": 4880526.57,
+          "sinal": -1,
+          "subgrupo": "4.2 Despesas Logisticas & Fulfillment",
+          "variacao_pct": 0.11,
+          "variacao_reais": 5157.02
+        },
+        {
+          "conta": "Operacao de Armazenagem e CD",
+          "orcado": 1953654.17,
+          "realizado": 1960841.74,
+          "sinal": -1,
+          "subgrupo": "4.2 Despesas Logisticas & Fulfillment",
+          "variacao_pct": 0.37,
+          "variacao_reais": 7187.57
+        },
+        {
+          "conta": "Folha de Pagamento & Encargos Adm",
+          "orcado": 7804240.88,
+          "realizado": 7813162.7,
+          "sinal": -1,
+          "subgrupo": "4.3 Despesas Gerais & Adm (G&A)",
+          "variacao_pct": 0.11,
+          "variacao_reais": 8921.82
+        },
+        {
+          "conta": "Ocupacao, Facilities & Alugueis",
+          "orcado": 2907992.75,
+          "realizado": 2924176.68,
+          "sinal": -1,
+          "subgrupo": "4.3 Despesas Gerais & Adm (G&A)",
+          "variacao_pct": 0.56,
+          "variacao_reais": 16183.93
+        },
+        {
+          "conta": "Servicos de Terceiros e Consultorias",
+          "orcado": 1466446.95,
+          "realizado": 1456522.14,
+          "sinal": -1,
+          "subgrupo": "4.3 Despesas Gerais & Adm (G&A)",
+          "variacao_pct": -0.68,
+          "variacao_reais": -9924.81
+        },
+        {
+          "conta": "Software, Cloud & Licencas de TI",
+          "orcado": 2460316.73,
+          "realizado": 2434115.57,
+          "sinal": -1,
+          "subgrupo": "4.3 Despesas Gerais & Adm (G&A)",
+          "variacao_pct": -1.06,
+          "variacao_reais": -26201.16
+        }
+      ],
+      "orcado": 33630227.559999995,
+      "realizado": 33541896.7
+    },
+    "5. DEPRECIACAO & AMORTIZACAO": {
+      "contas": [
+        {
+          "conta": "Depreciacao de Ativos & Amortizacao",
+          "orcado": 2424271.95,
+          "realizado": 2399812.32,
+          "sinal": -1,
+          "subgrupo": "5.1 D&A",
+          "variacao_pct": -1.01,
+          "variacao_reais": -24459.63
+        }
+      ],
+      "orcado": 2424271.95,
+      "realizado": 2399812.32
+    },
+    "6. RESULTADO FINANCEIRO": {
+      "contas": [
+        {
+          "conta": "Rendimento de Aplicacoes Financeiras",
+          "orcado": 1169953.79,
+          "realizado": 1175911.02,
+          "sinal": 1,
+          "subgrupo": "6.1 Receitas Financeiras",
+          "variacao_pct": 0.51,
+          "variacao_reais": 5957.23
+        },
+        {
+          "conta": "Juros Passivos & Despesas Bancarias",
+          "orcado": 2161552.3,
+          "realizado": 2152602.34,
+          "sinal": -1,
+          "subgrupo": "6.2 Despesas Financeiras",
+          "variacao_pct": -0.41,
+          "variacao_reais": -8949.96
+        }
+      ],
+      "orcado": 3331506.09,
+      "realizado": 3328513.36
+    },
+    "7. IMPOSTOS S/ LUCRO": {
+      "contas": [
+        {
+          "conta": "Provisao para IRPJ e CSLL",
+          "orcado": 3391509.37,
+          "realizado": 3386150.77,
+          "sinal": -1,
+          "subgrupo": "7.1 IRPJ e CSLL",
+          "variacao_pct": -0.16,
+          "variacao_reais": -5358.6
+        }
+      ],
+      "orcado": 3391509.37,
+      "realizado": 3386150.77
+    }
+  },
+  "kpis": {
+    "ebitda": {
+      "margem_pct": 18.05184470447336,
+      "orc": 16720815.260000013,
+      "real": 17115126.280000005,
+      "var_pct": 2.3582045125710684
+    },
+    "lucro_bruto": {
+      "margem_pct": 53.42950423301803,
+      "orc": 50351042.82000001,
+      "real": 50657022.980000004,
+      "var_pct": 0.607693789171051
+    },
+    "lucro_liquido": {
+      "margem_pct": 10.91906723019919,
+      "orc": 9913435.430000015,
+      "real": 10352471.870000005,
+      "var_pct": 4.428701262040596
+    },
+    "rec_bruta": {
+      "orc": 122414284.63000001,
+      "real": 123010013.18,
+      "var_pct": 0.48664953751157414
+    },
+    "rol": {
+      "margem_bruta_pct": 77.0758022936422,
+      "orc": 94287343.59,
+      "real": 94810954.56,
+      "var_pct": 0.5553353717089261
+    }
+  },
+  "mensal": {
+    "ebitda": [
+      878833.62,
+      1001569.6,
+      1533960.54,
+      962464.36,
+      1460983.89,
+      1299639.18,
+      1357728.11,
+      1482130.47,
+      1516061.62,
+      1526317.76,
+      2095567.36,
+      1999869.77
+    ],
+    "lucro_liquido": [
+      429790.96,
+      528562.89,
+      1009890.36,
+      472646.13,
+      950906.57,
+      761567.54,
+      821870.58,
+      912292.64,
+      945235.37,
+      926812.49,
+      1391741.22,
+      1201155.12
+    ],
+    "margem_ebitda": [
+      14.3,
+      15.7,
+      21.4,
+      14.5,
+      19.6,
+      17.2,
+      17.9,
+      18.9,
+      18.4,
+      18.1,
+      20.7,
+      17.8
+    ],
+    "meses": [
+      "Jan",
+      "Fev",
+      "Mar",
+      "Abr",
+      "Mai",
+      "Jun",
+      "Jul",
+      "Ago",
+      "Set",
+      "Out",
+      "Nov",
+      "Dez"
+    ],
+    "rol": [
+      6134213.66,
+      6369942.27,
+      7179394.13,
+      6645067.32,
+      7443502.9,
+      7575777.3,
+      7582787.27,
+      7862595.33,
+      8228680.56,
+      8416835.87,
+      10137522.11,
+      11234635.84
+    ]
+  },
+  "opex_donut": {
+    "labels": [
+      "1 Despesas Comerciais & MKT",
+      "2 Despesas Logisticas & Fulfillment",
+      "3 Despesas Gerais & Adm (G&A)"
+    ],
+    "values": [
+      12072551.3,
+      6841368.31,
+      14627977.09
+    ]
+  },
+  "totais": {
+    "cmv": {
+      "orc": 43936300.769999996,
+      "real": 44153931.58
+    },
+    "da": {
+      "orc": 2424271.95,
+      "real": 2399812.32
+    },
+    "deducoes": {
+      "orc": 28126941.04,
+      "real": 28199058.62
+    },
+    "ebit": {
+      "orc": 14296543.310000014,
+      "real": 14715313.960000005
+    },
+    "ebitda": {
+      "orc": 16720815.260000013,
+      "real": 17115126.280000005
+    },
+    "lair": {
+      "orc": 13304944.800000014,
+      "real": 13738622.640000004
+    },
+    "lucro_bruto": {
+      "orc": 50351042.82000001,
+      "real": 50657022.980000004
+    },
+    "lucro_liquido": {
+      "orc": 9913435.430000015,
+      "real": 10352471.870000005
+    },
+    "opex": {
+      "orc": 33630227.559999995,
+      "real": 33541896.7
+    },
+    "rec_bruta": {
+      "orc": 122414284.63000001,
+      "real": 123010013.18
+    },
+    "res_fin": {
+      "orc": -991598.5099999998,
+      "real": -976691.3199999998
+    },
+    "rol": {
+      "orc": 94287343.59,
+      "real": 94810954.56
+    },
+    "tributos": {
+      "orc": 3391509.37,
+      "real": 3386150.77
+    }
+  },
+  "waterfall": {
+    "labels": [
+      "Rec. Bruta",
+      "(-) Dedu\u00e7\u00f5es",
+      "(=) ROL",
+      "(-) CMV",
+      "(=) L. Bruto",
+      "(-) OPEX",
+      "(=) EBITDA",
+      "(-) D&A",
+      "(+/-) Fin.",
+      "(-) Tributos",
+      "(=) L. L\u00edquido"
+    ],
+    "values": [
+      123010013.18,
+      -28199058.62,
+      94810954.56,
+      -44153931.58,
+      50657022.980000004,
+      -33541896.7,
+      17115126.280000005,
+      -2399812.32,
+      -976691.3199999998,
+      -3386150.77,
+      10352471.870000005
+    ]
+  }
+}
+;
+  
+  // Interceptador inteligente de fetch para funcionar perfeitamente tanto no GitHub Pages quanto no Flask
+  const _origFetch = window.fetch;
+  window.fetch = async function(url, options) {
+    try {
+      const res = await _origFetch(url, options);
+      if (res.ok) return res;
+      throw new Error('API indisponivel');
+    } catch (err) {
+      if (typeof url === 'string') {
+        if (url.includes('/api/filtros')) {
+          return new Response(JSON.stringify(window.FALLBACK_FILTROS), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+          });
+        }
+        if (url.includes('/api/dados')) {
+          return new Response(JSON.stringify(window.FALLBACK_DADOS), {
+            status: 200,
+            headers: { 'Content-Type': 'application/json' }
+          });
+        }
+      }
+      throw err;
+    }
+  };
+</script>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header-bar">
+      <div class="header-info">
+        <div class="logo-badge">ACM</div>
+        <div class="header-titles">
+          <h1>
+            ACM HOLDING CORP
+            <span class="badge-demo">PROJETO PYTHON / FLASK (PORTFÓLIO)</span>
+          </h1>
+          <p>Demonstrativo de Resultados do Exercício (DRE) Gerencial & Analytics Financeiro (IFRS/CPC)</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="author-badge">
+          <div class="sub">Especialista BI</div>
+          <div class="name">Antonio Carlos de Mello</div>
+        </div>
+              <button class="btn-action" id="btn-fullscreen" onclick="toggleFullscreen()" title="Modo Tela Cheia (F11 ou tecla F)">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" id="icon-fs-svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5h-4m4 0v-4m0 4l-5-5"/>
+        </svg>
+        <span id="text-fullscreen">Tela Cheia</span>
+      </button>
+      <button class="btn-action" onclick="baixarExcel()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+          Exportar Excel Formato CFO
+        </button>
+      </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <span class="filter-label">Unidade de Negócio:</span>
+        <select id="sel-unidade" class="filter-select" onchange="carregarDados()">
+          <option value="TODAS">Consolidado Geral (Todas as Unidades)</option>
+        </select>
+
+        <span class="filter-label" style="margin-left: 12px;">Mês / Período:</span>
+        <select id="sel-mes" class="filter-select" onchange="carregarDados()">
+          <option value="ANO_TODO">Ano Completo 2026 (Consolidado)</option>
+        </select>
+      </div>
+
+      <div style="font-size: 12px; color: var(--text-muted);">
+        💡 Banco de dados: <strong>SQLite fato_dre (828 lançamentos contábeis)</strong>
+      </div>
+    </div>
+
+    <!-- KPI Grid -->
+    <div class="kpi-grid">
+      <div class="kpi-card" style="--card-accent: #38bdf8;">
+        <div class="kpi-top">
+          <span class="kpi-title">Receita Bruta Total</span>
+          <span class="kpi-tag">Faturamento</span>
+        </div>
+        <div class="kpi-val" id="kpi-rb-val">R$ 0</div>
+        <div class="kpi-footer">
+          <span id="kpi-rb-orc" style="color: var(--text-sub);">Orçado: R$ 0</span>
+          <span class="badge-var var-pos" id="kpi-rb-var">+0.0%</span>
+        </div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: #6366f1;">
+        <div class="kpi-top">
+          <span class="kpi-title">Receita Líquida (ROL)</span>
+          <span class="kpi-tag" id="kpi-rol-tag">79% da Bruta</span>
+        </div>
+        <div class="kpi-val" id="kpi-rol-val">R$ 0</div>
+        <div class="kpi-footer">
+          <span id="kpi-rol-orc" style="color: var(--text-sub);">Orçado: R$ 0</span>
+          <span class="badge-var var-pos" id="kpi-rol-var">+0.0%</span>
+        </div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: #10b981;">
+        <div class="kpi-top">
+          <span class="kpi-title">Lucro Bruto</span>
+          <span class="kpi-tag" id="kpi-lb-tag">Margem: 55%</span>
+        </div>
+        <div class="kpi-val" id="kpi-lb-val">R$ 0</div>
+        <div class="kpi-footer">
+          <span id="kpi-lb-orc" style="color: var(--text-sub);">Orçado: R$ 0</span>
+          <span class="badge-var var-pos" id="kpi-lb-var">+0.0%</span>
+        </div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: #f59e0b;">
+        <div class="kpi-top">
+          <span class="kpi-title">EBITDA (LAJIDA)</span>
+          <span class="kpi-tag" id="kpi-ebitda-tag">Margem: 28%</span>
+        </div>
+        <div class="kpi-val" id="kpi-ebitda-val">R$ 0</div>
+        <div class="kpi-footer">
+          <span id="kpi-ebitda-orc" style="color: var(--text-sub);">Orçado: R$ 0</span>
+          <span class="badge-var var-pos" id="kpi-ebitda-var">+0.0%</span>
+        </div>
+      </div>
+
+      <div class="kpi-card" style="--card-accent: #c084fc;">
+        <div class="kpi-top">
+          <span class="kpi-title">Resultado Líquido</span>
+          <span class="kpi-tag" id="kpi-ll-tag">Margem: 18%</span>
+        </div>
+        <div class="kpi-val" id="kpi-ll-val">R$ 0</div>
+        <div class="kpi-footer">
+          <span id="kpi-ll-orc" style="color: var(--text-sub);">Orçado: R$ 0</span>
+          <span class="badge-var var-pos" id="kpi-ll-var">+0.0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="charts-row">
+      <div class="chart-box">
+        <div class="box-header">
+          <div class="box-title">Cascata Contábil do DRE (Waterfall)</div>
+          <div class="box-desc">Decomposição financeira passo a passo: Receita Bruta até o Lucro Líquido</div>
+        </div>
+        <div class="chart-container">
+          <canvas id="chartWaterfall"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-box">
+        <div class="box-header">
+          <div class="box-title">Composição do OPEX Operacional</div>
+          <div class="box-desc">Distribuição de custos por centros de custos</div>
+        </div>
+        <div class="chart-container">
+          <canvas id="chartOpex"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly Trend -->
+    <div class="chart-box" style="margin-bottom: 24px;">
+      <div class="box-header">
+        <div class="box-title">Evolução Mensal: Receita Líquida, EBITDA e Lucro Líquido (2026)</div>
+        <div class="box-desc">Histórico com curva de margem operacional EBITDA (%)</div>
+      </div>
+      <div class="chart-container" style="min-height: 280px;">
+        <canvas id="chartMensal"></canvas>
+      </div>
+    </div>
+
+    <!-- Table Box -->
+    <div class="table-box">
+      <div class="box-header">
+        <div class="box-title">Demonstrativo de Resultados do Exercício (DRE Analítico)</div>
+        <div class="box-desc">Análise Vertical (AV % sobre ROL) e Variação Realizado vs Orçado</div>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="dre-table">
+          <thead>
+            <tr>
+              <th>Conta / Estrutura Contábil</th>
+              <th>Orçado (R$)</th>
+              <th>Realizado (R$)</th>
+              <th>Variação (R$)</th>
+              <th>Var. (%)</th>
+              <th>AV (%) ROL</th>
+            </tr>
+          </thead>
+          <tbody id="dre-table-body">
+            <!-- Gerado via API -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-bar">
+      ⚡ Modelo de Portfólio Fullstack Flask / Python / SQLite | Especialista em BI: <strong>Antonio Carlos de
+        Mello</strong>
+    </footer>
+
+  </div>
+
+  <script>
+    let chartWaterfall = null;
+    let chartOpex = null;
+    let chartMensal = null;
+
+    const fmtMoeda = (v) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 }).format(v);
+    const fmtPct = (v) => (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+
+    async function inicializarFiltros() {
+      try {
+        const resp = await fetch('/api/filtros');
+        const data = await resp.json();
+
+        const selUn = document.getElementById('sel-unidade');
+        data.unidades.forEach(u => {
+          const opt = document.createElement('option');
+          opt.value = u;
+          opt.innerText = u;
+          selUn.appendChild(opt);
+        });
+
+        const selMes = document.getElementById('sel-mes');
+        data.meses.forEach(m => {
+          const opt = document.createElement('option');
+          opt.value = m.mes;
+          opt.innerText = m.mes_nome + ' / 2026';
+          selMes.appendChild(opt);
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function carregarDados() {
+      const un = document.getElementById('sel-unidade').value;
+      const mes = document.getElementById('sel-mes').value;
+
+      const resp = await fetch(`/api/dados?unidade=${encodeURIComponent(un)}&mes=${encodeURIComponent(mes)}`);
+      const data = await resp.json();
+
+      // 1. Atualizar KPIs
+      const k = data.kpis;
+      document.getElementById('kpi-rb-val').innerText = fmtMoeda(k.rec_bruta.real);
+      document.getElementById('kpi-rb-orc').innerText = "Orçado: " + fmtMoeda(k.rec_bruta.orc);
+      document.getElementById('kpi-rb-var').innerText = fmtPct(k.rec_bruta.var_pct);
+      document.getElementById('kpi-rb-var').className = 'badge-var ' + (k.rec_bruta.var_pct >= 0 ? 'var-pos' : 'var-neg');
+
+      document.getElementById('kpi-rol-val').innerText = fmtMoeda(k.rol.real);
+      document.getElementById('kpi-rol-orc').innerText = "Orçado: " + fmtMoeda(k.rol.orc);
+      document.getElementById('kpi-rol-var').innerText = fmtPct(k.rol.var_pct);
+      document.getElementById('kpi-rol-var').className = 'badge-var ' + (k.rol.var_pct >= 0 ? 'var-pos' : 'var-neg');
+      document.getElementById('kpi-rol-tag').innerText = k.rol.margem_bruta_pct.toFixed(1) + "% da Bruta";
+
+      document.getElementById('kpi-lb-val').innerText = fmtMoeda(k.lucro_bruto.real);
+      document.getElementById('kpi-lb-orc').innerText = "Orçado: " + fmtMoeda(k.lucro_bruto.orc);
+      document.getElementById('kpi-lb-var').innerText = fmtPct(k.lucro_bruto.var_pct);
+      document.getElementById('kpi-lb-var').className = 'badge-var ' + (k.lucro_bruto.var_pct >= 0 ? 'var-pos' : 'var-neg');
+      document.getElementById('kpi-lb-tag').innerText = "Margem: " + k.lucro_bruto.margem_pct.toFixed(1) + "%";
+
+      document.getElementById('kpi-ebitda-val').innerText = fmtMoeda(k.ebitda.real);
+      document.getElementById('kpi-ebitda-orc').innerText = "Orçado: " + fmtMoeda(k.ebitda.orc);
+      document.getElementById('kpi-ebitda-var').innerText = fmtPct(k.ebitda.var_pct);
+      document.getElementById('kpi-ebitda-var').className = 'badge-var ' + (k.ebitda.var_pct >= 0 ? 'var-pos' : 'var-neg');
+      document.getElementById('kpi-ebitda-tag').innerText = "Margem: " + k.ebitda.margem_pct.toFixed(1) + "%";
+
+      document.getElementById('kpi-ll-val').innerText = fmtMoeda(k.lucro_liquido.real);
+      document.getElementById('kpi-ll-orc').innerText = "Orçado: " + fmtMoeda(k.lucro_liquido.orc);
+      document.getElementById('kpi-ll-var').innerText = fmtPct(k.lucro_liquido.var_pct);
+      document.getElementById('kpi-ll-var').className = 'badge-var ' + (k.lucro_liquido.var_pct >= 0 ? 'var-pos' : 'var-neg');
+      document.getElementById('kpi-ll-tag').innerText = "Margem: " + k.lucro_liquido.margem_pct.toFixed(1) + "%";
+
+      // 2. Tabela DRE
+      renderizarTabela(data.grupos, data.totais, k.rol.real);
+
+      // 3. Gráficos
+      renderizarWaterfall(data.waterfall);
+      renderizarOpex(data.opex_donut);
+      renderizarMensal(data.mensal);
+    }
+
+    function renderizarTabela(grupos, totais, rolBase) {
+      const tbody = document.getElementById('dre-table-body');
+      tbody.innerHTML = '';
+
+      function addRow(tipo, label, orc, real, invertido = false) {
+        const varAbs = real - orc;
+        const varPct = orc ? (varAbs / orc) * 100 : 0;
+        const avPct = rolBase ? (Math.abs(real) / rolBase) * 100 : 0;
+
+        let varClass = 'var-pos';
+        if (!invertido && varAbs < 0) varClass = 'var-neg';
+        if (invertido && varAbs > 0) varClass = 'var-neg';
+
+        let rowClass = 'row-account';
+        if (tipo === 'header') rowClass = 'row-group';
+        if (tipo === 'subtotal') rowClass = 'row-subtotal';
+        if (tipo === 'highlight') rowClass = 'row-highlight';
+
+        const tr = document.createElement('tr');
+        tr.className = rowClass;
+        tr.innerHTML = `
+        <td>${label}</td>
+        <td>${fmtMoeda(orc)}</td>
+        <td>${fmtMoeda(real)}</td>
+        <td style="color: ${varAbs >= 0 ? '#10b981' : '#f43f5e'}">${fmtMoeda(varAbs)}</td>
+        <td><span class="badge-var ${varClass}">${fmtPct(varPct)}</span></td>
+        <td style="color: #94a3b8; font-weight: 600;">${avPct.toFixed(1)}%</td>
+      `;
+        tbody.appendChild(tr);
+      }
+
+      // 1. Receita Bruta
+      addRow('header', '1. RECEITA OPERACIONAL BRUTA', totais.rec_bruta.orc, totais.rec_bruta.real);
+      grupos["1. RECEITA BRUTA"]?.contas.forEach(c => addRow('item', c.conta, c.orcado, c.realizado));
+
+      // 2. Deduções
+      addRow('header', '2. (-) DEDUÇÕES DA RECEITA BRUTA', totais.deducoes.orc, totais.deducoes.real, true);
+      grupos["2. DEDUCOES DA RECEITA"]?.contas.forEach(c => addRow('item', c.conta, c.orcado, c.realizado, true));
+
+      // 3. Receita Líquida
+      addRow('subtotal', '(=) RECEITA OPERACIONAL LÍQUIDA (ROL)', totais.rol.orc, totais.rol.real);
+
+      // 4. Custos CMV
+      addRow('header', '3. (-) CUSTOS DAS MERCADORIAS (CMV/CPV)', totais.cmv.orc, totais.cmv.real, true);
+      grupos["3. CUSTOS (CMV/CPV)"]?.contas.forEach(c => addRow('item', c.conta, c.orcado, c.realizado, true));
+
+      // 5. Lucro Bruto
+      addRow('subtotal', '(=) LUCRO BRUTO', totais.lucro_bruto.orc, totais.lucro_bruto.real);
+
+      // 6. OPEX
+      addRow('header', '4. (-) DESPESAS OPERACIONAIS (OPEX)', totais.opex.orc, totais.opex.real, true);
+      grupos["4. DESPESAS OPERACIONAIS"]?.contas.forEach(c => addRow('item', c.conta, c.orcado, c.realizado, true));
+
+      // 7. EBITDA
+      addRow('highlight', '(=) EBITDA (LAJIDA)', totais.ebitda.orc, totais.ebitda.real);
+
+      // 8. D&A
+      addRow('header', '5. (-) DEPRECIAÇÃO & AMORTIZAÇÃO (D&A)', totais.da.orc, totais.da.real, true);
+
+      // 9. EBIT
+      addRow('subtotal', '(=) EBIT (LUCRO OPERACIONAL)', totais.ebit.orc, totais.ebit.real);
+
+      // 10. Res Financ
+      addRow('header', '6. (+/-) RESULTADO FINANCEIRO LÍQUIDO', totais.res_fin.orc, totais.res_fin.real);
+
+      // 11. LAIR
+      addRow('subtotal', '(=) LAIR (RESULTADO ANTES DOS TRIBUTOS)', totais.lair.orc, totais.lair.real);
+
+      // 12. Impostos
+      addRow('header', '7. (-) IMPOSTOS S/ O LUCRO (IRPJ & CSLL)', totais.tributos.orc, totais.tributos.real, true);
+
+      // 13. Lucro Líquido
+      addRow('highlight', '(=) RESULTADO LÍQUIDO DO EXERCÍCIO', totais.lucro_liquido.orc, totais.lucro_liquido.real);
+    }
+
+    function renderizarWaterfall(wf) {
+      const ctx = document.getElementById('chartWaterfall').getContext('2d');
+      if (chartWaterfall) chartWaterfall.destroy();
+
+      const colors = wf.values.map((v, i) => {
+        if ([0, 2, 4, 6, 10].includes(i)) return '#0284c7';
+        return v >= 0 ? '#10b981' : '#f43f5e';
+      });
+
+      chartWaterfall = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: wf.labels,
+          datasets: [{
+            data: wf.values,
+            backgroundColor: colors,
+            borderRadius: 6
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => fmtMoeda(ctx.raw)
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+            y: {
+              ticks: {
+                color: '#64748b',
+                callback: (v) => 'R$ ' + (v / 1000000).toFixed(1) + 'M'
+              },
+              grid: { color: 'rgba(255,255,255,0.05)' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderizarOpex(donut) {
+      const ctx = document.getElementById('chartOpex').getContext('2d');
+      if (chartOpex) chartOpex.destroy();
+
+      chartOpex = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: donut.labels,
+          datasets: [{
+            data: donut.values,
+            backgroundColor: ['#38bdf8', '#818cf8', '#c084fc', '#fb923c', '#facc15', '#4ade80'],
+            borderColor: '#121826',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right', labels: { color: '#94a3b8', boxWidth: 12, font: { size: 11 } } },
+            tooltip: { callbacks: { label: (ctx) => ' ' + fmtMoeda(ctx.raw) } }
+          },
+          cutout: '68%'
+        }
+      });
+    }
+
+    function renderizarMensal(mensal) {
+      const ctx = document.getElementById('chartMensal').getContext('2d');
+      if (chartMensal) chartMensal.destroy();
+
+      chartMensal = new Chart(ctx, {
+        data: {
+          labels: mensal.meses,
+          datasets: [
+            {
+              type: 'line',
+              label: 'Margem EBITDA (%)',
+              data: mensal.margem_ebitda,
+              borderColor: '#f59e0b',
+              backgroundColor: '#f59e0b',
+              borderWidth: 2,
+              pointRadius: 4,
+              yAxisID: 'y1'
+            },
+            {
+              type: 'bar',
+              label: 'Receita Líquida',
+              data: mensal.rol,
+              backgroundColor: 'rgba(56, 189, 248, 0.45)',
+              borderColor: '#38bdf8',
+              borderWidth: 1,
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'EBITDA',
+              data: mensal.ebitda,
+              backgroundColor: 'rgba(99, 102, 241, 0.75)',
+              borderColor: '#6366f1',
+              borderWidth: 1,
+              borderRadius: 6,
+              yAxisID: 'y'
+            },
+            {
+              type: 'bar',
+              label: 'Lucro Líquido',
+              data: mensal.lucro_liquido,
+              backgroundColor: 'rgba(16, 185, 129, 0.85)',
+              borderColor: '#10b981',
+              borderWidth: 1,
+              borderRadius: 6,
+              yAxisID: 'y'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { color: '#cbd5e1', boxWidth: 14 } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => {
+                  if (ctx.dataset.yAxisID === 'y1') return ' Margem EBITDA: ' + ctx.raw.toFixed(1) + '%';
+                  return ' ' + ctx.dataset.label + ': ' + fmtMoeda(ctx.raw);
+                }
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+            y: {
+              position: 'left',
+              ticks: {
+                color: '#64748b',
+                callback: (v) => 'R$ ' + (v / 1000000).toFixed(1) + 'M'
+              },
+              grid: { color: 'rgba(255,255,255,0.05)' }
+            },
+            y1: {
+              position: 'right',
+              min: 0,
+              max: 50,
+              ticks: { color: '#f59e0b', callback: (v) => v + '%' },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+    function baixarExcel() {
+      const un = document.getElementById('sel-unidade').value;
+      const mes = document.getElementById('sel-mes').value;
+      window.location.href = `/api/exportar/excel?unidade=${encodeURIComponent(un)}&mes=${encodeURIComponent(mes)}`;
+    }
+
+    window.onload = async () => {
+      await inicializarFiltros();
+      await carregarDados();
+    };
+  
+  function toggleFullscreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen) docEl.requestFullscreen();
+      else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
+      else if (docEl.msRequestFullscreen) docEl.msRequestFullscreen();
+    } else {
+      if (document.exitFullscreen) document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      else if (document.msExitFullscreen) document.msExitFullscreen();
+    }
+  }
+
+  function updateFullscreenUI() {
+    const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    const txt = document.getElementById('text-fullscreen');
+    const svg = document.getElementById('icon-fs-svg');
+    if (txt) txt.textContent = isFS ? 'Sair Tela Cheia' : 'Tela Cheia';
+    if (svg) {
+      svg.innerHTML = isFS
+        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 9L4 4m0 0l5 0m-5 0l0 5m11 0l5-5m0 0l-5 0m5 0l0 5M9 15l-5 5m0 0l5 0m-5 0l0-5m11 0l5 5m0 0l-5 0m5 0l0-5"/>'
+        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-5h-4m4 0v4m0-4l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5h-4m4 0v-4m0 4l-5-5"/>';
+    }
+  }
+
+  document.addEventListener('fullscreenchange', updateFullscreenUI);
+  document.addEventListener('webkitfullscreenchange', updateFullscreenUI);
+  document.addEventListener('msfullscreenchange', updateFullscreenUI);
+  document.addEventListener('keydown', (e) => {
+    if ((e.key === 'f' || e.key === 'F') && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+      toggleFullscreen();
+    }
+  });
+</script>
+
+</body>
+
+</html>
