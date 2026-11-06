@@ -2,6 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Soluções Ambientais, Gestão de Resíduos & OKRs</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -246,11 +249,14 @@
     <div class="flex flex-wrap items-center gap-2.5">
       <!-- Seletor de Modelo / OKR -->
       <div class="bg-slate-900 p-1 rounded-xl border border-slate-800 flex items-center text-xs">
-        <button id="btnModelo1" onclick="switchModel('ambiental')" class="px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom">
-          🌿 OKR 1: Ambiental & ESG
+        <button id="btnModeloAll" onclick="switchModel('completo')" class="px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom">
+          📊 Visão Completa (OKRs 1 & 2)
         </button>
         <button id="btnModelo3" onclick="switchModel('eficiencia')" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom">
           🚚 OKR 2: Eficiência do Negócio
+        </button>
+        <button id="btnModelo1" onclick="switchModel('ambiental')" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom">
+          🌿 OKR 1: Transição Operacional
         </button>
         <button id="btnModelo2" onclick="switchModel('tatico')" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom">
           🏭 Modelo 3: Plantas
@@ -770,7 +776,7 @@
   <!-- ========================================================== -->
   <!-- SEÇÃO 2: OKR 1 - AMBIENTAL & ESG (EMISSÕES, RESÍDUOS, ESCOPOS) -->
   <!-- ========================================================== -->
-  <section id="viewAmbiental" class="mt-6 space-y-6 hidden">
+  <section id="viewAmbiental" class="mt-8 space-y-6">
 
     <!-- BANNER OKR 1 -->
     <div class="bg-gradient-to-r from-slate-900 via-slate-900/90 to-emerald-950/40 border border-emerald-900/40 rounded-2xl p-5 relative overflow-hidden emerald-glow">
@@ -1029,29 +1035,34 @@
       const viewAmbiental = document.getElementById('viewAmbiental');
       const viewTatico = document.getElementById('viewTatico');
 
+      const btnAll = document.getElementById('btnModeloAll');
       const btn1 = document.getElementById('btnModelo1');
       const btn2 = document.getElementById('btnModelo2');
       const btn3 = document.getElementById('btnModelo3');
 
       // Reset botões
-      [btn1, btn2, btn3].forEach(b => {
-        b.className = 'px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom';
+      [btnAll, btn1, btn2, btn3].forEach(b => {
+        if (b) b.className = 'px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom';
       });
 
-      // Esconder todas
+      // Esconder todas inicialmente
       viewEficiencia.classList.add('hidden');
       viewAmbiental.classList.add('hidden');
       viewTatico.classList.add('hidden');
 
-      if (mode === 'eficiencia') {
+      if (mode === 'completo') {
         viewEficiencia.classList.remove('hidden');
-        btn3.className = 'px-3 py-1.5 rounded-lg font-medium bg-amber-600 text-white shadow-sm transition-all-custom';
+        viewAmbiental.classList.remove('hidden');
+        if (btnAll) btnAll.className = 'px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom';
+      } else if (mode === 'eficiencia') {
+        viewEficiencia.classList.remove('hidden');
+        if (btn3) btn3.className = 'px-3 py-1.5 rounded-lg font-medium bg-amber-600 text-white shadow-sm transition-all-custom';
       } else if (mode === 'ambiental') {
         viewAmbiental.classList.remove('hidden');
-        btn1.className = 'px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom';
+        if (btn1) btn1.className = 'px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom';
       } else if (mode === 'tatico') {
         viewTatico.classList.remove('hidden');
-        btn2.className = 'px-3 py-1.5 rounded-lg font-medium bg-cyan-600 text-white shadow-sm transition-all-custom';
+        if (btn2) btn2.className = 'px-3 py-1.5 rounded-lg font-medium bg-cyan-600 text-white shadow-sm transition-all-custom';
       }
     }
   </script>
