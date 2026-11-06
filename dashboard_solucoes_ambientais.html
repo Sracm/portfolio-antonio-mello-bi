@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Executivo de Soluções Ambientais & ESG</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .emerald-glow { box-shadow: 0 4px 20px -2px rgba(16, 185, 129, 0.15); }
+    .transition-all-custom { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased p-4 md:p-8">
+
+  <!-- TOPBAR HEADER -->
+  <header class="flex flex-col lg:flex-row lg:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+    <div>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-500/20">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl md:text-2xl font-bold tracking-tight text-white">ECOSOLUTIONS BI <span class="text-emerald-400 font-normal">| Gestão Ambiental & ESG</span></h1>
+            <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2.5 py-0.5 rounded-full font-medium flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Em Produção
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">Painel Estratégico de OKRs (Q3/Q4) • Autor: <strong class="text-slate-300">Antonio Carlos (Analista Pleno de BI)</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SELETOR DE MODELOS & FILTROS -->
+    <div class="flex flex-wrap items-center gap-3">
+      <!-- Seletor de Modelo -->
+      <div class="bg-slate-900 p-1 rounded-xl border border-slate-800 flex items-center text-xs">
+        <button id="btnModelo1" onclick="switchModel('executivo')" class="px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom">
+          Modelo 1: Executivo (OKR)
+        </button>
+        <button id="btnModelo2" onclick="switchModel('tatico')" class="px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom">
+          Modelo 2: Tático por Planta
+        </button>
+      </div>
+
+      <!-- Filtro Planta -->
+      <select id="filtroPlanta" class="bg-slate-900 border border-slate-800 text-slate-200 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-emerald-500">
+        <option value="todas">Todas as Unidades (5)</option>
+        <option value="sp">Planta São Paulo (Matriz)</option>
+        <option value="mg">Planta Minas Gerais</option>
+        <option value="pr">Planta Paraná</option>
+        <option value="ba">Complexo Bahia</option>
+      </select>
+
+      <div class="bg-slate-900 border border-slate-800 text-slate-300 text-xs px-3 py-2 rounded-xl flex items-center gap-2">
+        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        <span>Exercício: <strong>2024 Acumulado</strong></span>
+      </div>
+
+      <!-- Botão Voltar ao Portfólio -->
+      <a href="index.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-800 text-slate-300 hover:text-white text-xs px-3.5 py-2 rounded-xl flex items-center gap-1.5 transition-all-custom font-medium">
+        <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+        <span>Voltar ao Portfólio</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- BANNER OKR ESTRATÉGICO -->
+  <section class="mt-6 bg-gradient-to-r from-slate-900 via-slate-900/90 to-emerald-950/40 border border-emerald-900/40 rounded-2xl p-5 relative overflow-hidden emerald-glow">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-emerald-400">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Objetivo Estratégico Corporativo (O1)
+        </div>
+        <h2 class="text-lg md:text-xl font-bold text-white mt-1">Acelerar a Transição Circular e Reduzir a Pegada de Carbono Operacional</h2>
+        <p class="text-xs text-slate-400 mt-1 max-w-3xl">Meta anual vinculada aos compromissos Net-Zero e mitigação de custos de descarte industrial.</p>
+      </div>
+
+      <div class="flex items-center gap-6 bg-slate-950/70 border border-slate-800/80 px-5 py-3 rounded-xl">
+        <div class="text-right">
+          <span class="text-xs text-slate-400 block">Progresso do OKR</span>
+          <span class="text-2xl font-black text-emerald-400">91.8%</span>
+        </div>
+        <div class="w-16 h-16 relative flex items-center justify-center">
+          <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+            <path class="text-slate-800" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+            <path class="text-emerald-500" stroke-dasharray="91.8, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+          </svg>
+          <span class="absolute text-xs font-bold text-slate-200">🟢 OK</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- MODELO 1: VISÃO EXECUTIVA & ESTRATÉGICA (OKR) -->
+  <!-- ========================================== -->
+  <main id="viewExecutivo" class="mt-6 space-y-6">
+
+    <!-- CAMADA 1: 4 BIG NUMBERS / CARDS OKR -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- Card 1: Emissões Totais -->
+      <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-5 transition-all-custom">
+        <div class="flex items-center justify-between text-slate-400 text-xs">
+          <span class="font-medium flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> KR 1.1 • Emissões GEE (tCO₂e)
+          </span>
+          <span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-[11px] font-semibold">-6.4% vs Meta</span>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between">
+          <span class="text-2xl lg:text-3xl font-extrabold text-white">1.170 <span class="text-sm font-medium text-slate-400">t</span></span>
+          <span class="text-xs text-slate-400">Meta: ≤ 1.250 t</span>
+        </div>
+        <div class="mt-3">
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-emerald-500 h-1.5 rounded-full" style="width: 93.6%"></div>
+          </div>
+          <div class="flex justify-between items-center text-[11px] text-slate-400 mt-1.5">
+            <span>Redução acumulada: <strong>80 tCO₂e</strong></span>
+            <span class="text-emerald-400 font-semibold">Dentro do Limite</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Taxa de Desvio de Aterro -->
+      <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-5 transition-all-custom">
+        <div class="flex items-center justify-between text-slate-400 text-xs">
+          <span class="font-medium flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-teal-500"></span> KR 1.2 • Desvio de Aterro (Circular)
+          </span>
+          <span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-[11px] font-semibold">+3.8 p.p.</span>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between">
+          <span class="text-2xl lg:text-3xl font-extrabold text-emerald-400">88.8%</span>
+          <span class="text-xs text-slate-400">Meta: ≥ 85.0%</span>
+        </div>
+        <div class="mt-3">
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-teal-500 h-1.5 rounded-full" style="width: 100%"></div>
+          </div>
+          <div class="flex justify-between items-center text-[11px] text-slate-400 mt-1.5">
+            <span>Aterro evitado: <strong>1.420 toneladas</strong></span>
+            <span class="text-teal-400 font-semibold">Superou Meta 🚀</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Eficiência Hídrica -->
+      <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-5 transition-all-custom">
+        <div class="flex items-center justify-between text-slate-400 text-xs">
+          <span class="font-medium flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-500"></span> KR 1.3 • Eficiência Hídrica
+          </span>
+          <span class="bg-cyan-500/10 text-cyan-400 px-2 py-0.5 rounded text-[11px] font-semibold">-11.2% consumo</span>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between">
+          <span class="text-2xl lg:text-3xl font-extrabold text-white">0.38 <span class="text-sm font-medium text-slate-400">m³/t prod</span></span>
+          <span class="text-xs text-slate-400">Meta: ≤ 0.45</span>
+        </div>
+        <div class="mt-3">
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-cyan-500 h-1.5 rounded-full" style="width: 84%"></div>
+          </div>
+          <div class="flex justify-between items-center text-[11px] text-slate-400 mt-1.5">
+            <span>Água de Reúso: <strong>62.4%</strong></span>
+            <span class="text-cyan-400 font-semibold">Excelente</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Economia / Receita Circular -->
+      <div class="bg-slate-900 border border-slate-800 hover:border-emerald-500/40 rounded-2xl p-5 transition-all-custom">
+        <div class="flex items-center justify-between text-slate-400 text-xs">
+          <span class="font-medium flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span> KR 1.4 • Receita & Custo Evitado
+          </span>
+          <span class="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded text-[11px] font-semibold">118% da Meta</span>
+        </div>
+        <div class="mt-3 flex items-baseline justify-between">
+          <span class="text-2xl lg:text-3xl font-extrabold text-white">R$ 415 <span class="text-sm font-medium text-slate-400">mil</span></span>
+          <span class="text-xs text-slate-400">Meta: R$ 350 mil</span>
+        </div>
+        <div class="mt-3">
+          <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
+            <div class="bg-amber-400 h-1.5 rounded-full" style="width: 100%"></div>
+          </div>
+          <div class="flex justify-between items-center text-[11px] text-slate-400 mt-1.5">
+            <span>Economia em descarte: <strong>R$ 290k</strong></span>
+            <span class="text-amber-400 font-semibold">+ R$ 125k recicláveis</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CAMADA 2: GRÁFICOS ANALÍTICOS (TENDÊNCIA + DESTINAÇÃO) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Gráfico 1: Curva de Descarbonização Real vs Meta OKR (2 colunas) -->
+      <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800/80 gap-2">
+          <div>
+            <h3 class="font-bold text-white text-sm md:text-base flex items-center gap-2">
+              <span>📉 Curva de Descarbonização: Real vs Meta Mensal</span>
+            </h3>
+            <p class="text-xs text-slate-400 mt-0.5">Evolução de Emissões GEE (tCO₂e) acumuladas ao longo de 2024</p>
+          </div>
+          <div class="flex items-center gap-4 text-xs">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 rounded-sm bg-emerald-500"></span>
+              <span class="text-slate-300">Emissão Real</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-0.5 bg-rose-400"></span>
+              <span class="text-slate-300">Teto da Meta OKR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gráfico em SVG de Alta Precisão -->
+        <div class="mt-6 relative h-64 w-full">
+          <svg class="w-full h-full overflow-visible" viewBox="0 0 700 220">
+            <line x1="40" y1="20" x2="680" y2="20" stroke="#1e293b" stroke-dasharray="4" />
+            <text x="30" y="24" fill="#64748b" font-size="10" text-anchor="end">1.400</text>
+
+            <line x1="40" y1="70" x2="680" y2="70" stroke="#1e293b" stroke-dasharray="4" />
+            <text x="30" y="74" fill="#64748b" font-size="10" text-anchor="end">1.250 (Meta)</text>
+
+            <line x1="40" y1="120" x2="680" y2="120" stroke="#1e293b" stroke-dasharray="4" />
+            <text x="30" y="124" fill="#64748b" font-size="10" text-anchor="end">1.100</text>
+
+            <line x1="40" y1="170" x2="680" y2="170" stroke="#1e293b" stroke-dasharray="4" />
+            <text x="30" y="174" fill="#64748b" font-size="10" text-anchor="end">950</text>
+
+            <!-- Linha de Meta OKR -->
+            <path d="M 60,60 L 130,62 L 200,65 L 270,68 L 340,70 L 410,72 L 480,75 L 550,78 L 620,80" 
+                  fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="6,4" />
+
+            <!-- Área sob a linha real -->
+            <defs>
+              <linearGradient id="emeraldGradient2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#10b981" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+              </linearGradient>
+            </defs>
+            <polygon points="60,190 60,85 130,95 200,75 270,105 340,90 410,115 480,125 550,135 620,140 620,190" 
+                     fill="url(#emeraldGradient2)" />
+
+            <!-- Linha Real -->
+            <path d="M 60,85 L 130,95 L 200,75 L 270,105 L 340,90 L 410,115 L 480,125 L 550,135 L 620,140" 
+                  fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+
+            <!-- Pontos -->
+            <circle cx="60" cy="85" r="4.5" fill="#10b981" />
+            <text x="60" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Jan</text>
+            <circle cx="130" cy="95" r="4.5" fill="#10b981" />
+            <text x="130" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Fev</text>
+            <circle cx="200" cy="75" r="4.5" fill="#10b981" />
+            <text x="200" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Mar</text>
+            <circle cx="270" cy="105" r="4.5" fill="#10b981" />
+            <text x="270" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Abr</text>
+            <circle cx="340" cy="90" r="4.5" fill="#10b981" />
+            <text x="340" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Mai</text>
+            <circle cx="410" cy="115" r="4.5" fill="#10b981" />
+            <text x="410" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Jun</text>
+            <circle cx="480" cy="125" r="4.5" fill="#10b981" />
+            <text x="480" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Jul</text>
+            <circle cx="550" cy="135" r="4.5" fill="#10b981" />
+            <text x="550" y="208" fill="#94a3b8" font-size="11" text-anchor="middle">Ago</text>
+            <circle cx="620" cy="140" r="6" fill="#34d399" stroke="#064e3b" stroke-width="2" />
+            <text x="620" y="208" fill="#34d399" font-weight="bold" font-size="11" text-anchor="middle">Set (At.)</text>
+          </svg>
+        </div>
+
+        <div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span>Insight do Analista: <strong>Queda de -14.3%</strong> nas emissões desde Março via eletrificação e logística reversa otimizada.</span>
+          </div>
+          <span class="text-emerald-400 font-semibold cursor-pointer hover:underline">Ver Detalhes →</span>
+        </div>
+      </div>
+
+      <!-- Gráfico 2: Composição da Destinação de Resíduos -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
+            <h3 class="font-bold text-white text-sm md:text-base flex items-center gap-2">
+              <span>♻️ Matriz de Destinação</span>
+            </h3>
+            <span class="text-xs text-emerald-400 font-semibold">Total: 1.600 t</span>
+          </div>
+
+          <div class="mt-6 space-y-4">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-300 font-medium">Reciclagem Mecânica</span>
+                <span class="text-emerald-400 font-bold">54.0% <span class="text-slate-500 font-normal">(864 t)</span></span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-emerald-500 h-2 rounded-full" style="width: 54%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-300 font-medium">Compostagem Orgânica</span>
+                <span class="text-teal-400 font-bold">21.5% <span class="text-slate-500 font-normal">(344 t)</span></span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-teal-500 h-2 rounded-full" style="width: 21.5%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-300 font-medium">Coprocessamento (Energia)</span>
+                <span class="text-cyan-400 font-bold">13.3% <span class="text-slate-500 font-normal">(212 t)</span></span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-cyan-500 h-2 rounded-full" style="width: 13.3%"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-slate-300 font-medium">Aterro Industrial (Rejeito)</span>
+                <span class="text-rose-400 font-bold">11.2% <span class="text-slate-500 font-normal">(180 t)</span></span>
+              </div>
+              <div class="w-full bg-slate-800 rounded-full h-2">
+                <div class="bg-rose-500/80 h-2 rounded-full" style="width: 11.2%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-400">Taxa Real de Desvio:</span>
+            <span class="text-emerald-400 font-extrabold text-sm">88.8%</span>
+          </div>
+          <div class="flex items-center justify-between text-[11px] text-slate-500 mt-1">
+            <span>Meta de Desvio: <strong>85.0%</strong></span>
+            <span class="text-emerald-400 font-medium">+3.8 p.p. superado</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CAMADA 3: DETALHAMENTO & MATRIZ DE CONFORMIDADE (DRILLDOWN) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- Detalhe Escopos de Emissão -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <h3 class="font-bold text-white text-sm md:text-base flex items-center justify-between pb-3 border-b border-slate-800/80">
+          <span>🌿 Emissões por Escopo (GHG)</span>
+          <span class="text-xs text-slate-400">Protocolo GHG</span>
+        </h3>
+
+        <div class="mt-4 flex items-center justify-center gap-6">
+          <div class="w-32 h-32 relative flex items-center justify-center">
+            <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+              <path stroke="#10b981" stroke-dasharray="42, 100" stroke-dashoffset="0" stroke-width="5" stroke-linecap="round" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path stroke="#06b6d4" stroke-dasharray="28, 100" stroke-dashoffset="-42" stroke-width="5" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path stroke="#6366f1" stroke-dasharray="30, 100" stroke-dashoffset="-70" stroke-width="5" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+            <div class="absolute text-center">
+              <span class="text-xs text-slate-400 block">Total</span>
+              <span class="text-base font-bold text-white">1.170t</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span class="text-slate-300 font-medium">Escopo 1 (Direto): <strong>42%</strong></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-500"></span>
+              <span class="text-slate-300 font-medium">Escopo 2 (Energia): <strong>28%</strong></span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+              <span class="text-slate-300 font-medium">Escopo 3 (Cadeia): <strong>30%</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-3 bg-slate-950/60 rounded-xl text-xs text-slate-400 border border-slate-800/80">
+          💡 <strong>Visão de Analista:</strong> Redução drástica do Escopo 2 via migração para o Mercado Livre de Energia com I-REC (Certificados de Energia Renovável).
+        </div>
+      </div>
+
+      <!-- Tabela Executiva de Conformidade e Licenças Ambientais -->
+      <div class="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-2xl p-6">
+        <div class="flex items-center justify-between pb-3 border-b border-slate-800/80">
+          <div>
+            <h3 class="font-bold text-white text-sm md:text-base">📋 Matriz de Conformidade & Condicionantes Ambientais</h3>
+            <p class="text-xs text-slate-400">Monitoramento regulatório para mitigação de risco de multas e paralisações</p>
+          </div>
+          <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded-md font-medium">
+            100% Em Dia
+          </span>
+        </div>
+
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="text-slate-400 border-b border-slate-800 font-semibold">
+              <tr>
+                <th class="pb-2">Unidade / Planta</th>
+                <th class="pb-2">Tipo de Licença</th>
+                <th class="pb-2">Órgão Regulador</th>
+                <th class="pb-2">Vencimento</th>
+                <th class="pb-2">Status</th>
+                <th class="pb-2 text-right">Plano de Ação</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr>
+                <td class="py-2.5 font-medium text-white">Planta SP - Matriz</td>
+                <td class="py-2.5">LO (Licença de Operação)</td>
+                <td class="py-2.5">CETESB</td>
+                <td class="py-2.5">14/11/2026</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium">Vigente</span></td>
+                <td class="py-2.5 text-right text-slate-400">Monitorar Efluentes</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 font-medium text-white">Planta MG</td>
+                <td class="py-2.5">Outorga de Água Subterrânea</td>
+                <td class="py-2.5">IGAM</td>
+                <td class="py-2.5">08/04/2025</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 font-medium">Renovação Aberta</span></td>
+                <td class="py-2.5 text-right text-emerald-400 font-medium">Protocolo Enviado</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 font-medium text-white">Complexo BA</td>
+                <td class="py-2.5">Autorização de Queima Limpa</td>
+                <td class="py-2.5">INEMA</td>
+                <td class="py-2.5">22/09/2027</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium">Vigente</span></td>
+                <td class="py-2.5 text-right text-slate-400">Auditoria Anual</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 font-medium text-white">Planta PR</td>
+                <td class="py-2.5">CADRI de Resíduos Perigosos</td>
+                <td class="py-2.5">IAT</td>
+                <td class="py-2.5">30/03/2026</td>
+                <td class="py-2.5"><span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-medium">Vigente</span></td>
+                <td class="py-2.5 text-right text-slate-400">Rastreabilidade MTR</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODELO 2: VISÃO TÁTICA POR PLANTA (ENGENHARIA) -->
+  <!-- ========================================== -->
+  <main id="viewTatico" class="mt-6 space-y-6 hidden">
+
+    <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl flex items-center justify-between">
+      <div>
+        <h3 class="font-bold text-white text-base">🏭 Visão Tática Operacional: Desempenho Comparativo por Planta</h3>
+        <p class="text-xs text-slate-400">Benchmarking interno para identificar as unidades com melhor índice de eficiência e oportunidades de melhoria contínua.</p>
+      </div>
+      <span class="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl border border-slate-700">Classificação por Eco-Score</span>
+    </div>
+
+    <!-- Tabela Comparativa de Plantas -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs">
+          <thead class="text-slate-400 border-b border-slate-800 font-semibold uppercase tracking-wider">
+            <tr>
+              <th class="pb-3">Ranking</th>
+              <th class="pb-3">Planta Industrial</th>
+              <th class="pb-3">Volume Produção</th>
+              <th class="pb-3">Emissões (tCO₂e)</th>
+              <th class="pb-3">Intensidade (kg/unid)</th>
+              <th class="pb-3">Desvio de Aterro</th>
+              <th class="pb-3">Água Reciclada</th>
+              <th class="pb-3">Eco-Score Geral</th>
+              <th class="pb-3 text-right">Status OKR</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800 text-slate-200">
+            <!-- Planta SP -->
+            <tr class="hover:bg-slate-800/40">
+              <td class="py-3 font-bold text-emerald-400">#1 🥇</td>
+              <td class="py-3 font-semibold text-white">Planta São Paulo (Matriz)</td>
+              <td class="py-3">420.000 un</td>
+              <td class="py-3">380 t</td>
+              <td class="py-3 font-medium text-emerald-400">0.90 kg</td>
+              <td class="py-3 font-semibold text-emerald-400">94.2%</td>
+              <td class="py-3">78.5%</td>
+              <td class="py-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-emerald-400 h-2 rounded-full" style="width: 95%"></div>
+                  </div>
+                  <span class="font-bold text-white">95/100</span>
+                </div>
+              </td>
+              <td class="py-3 text-right"><span class="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-bold">Líder ESG</span></td>
+            </tr>
+
+            <!-- Complexo BA -->
+            <tr class="hover:bg-slate-800/40">
+              <td class="py-3 font-bold text-teal-400">#2 🥈</td>
+              <td class="py-3 font-semibold text-white">Complexo Bahia</td>
+              <td class="py-3">310.000 un</td>
+              <td class="py-3">295 t</td>
+              <td class="py-3 font-medium text-teal-400">0.95 kg</td>
+              <td class="py-3 font-semibold text-teal-400">91.0%</td>
+              <td class="py-3">68.0%</td>
+              <td class="py-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-teal-400 h-2 rounded-full" style="width: 90%"></div>
+                  </div>
+                  <span class="font-bold text-white">90/100</span>
+                </div>
+              </td>
+              <td class="py-3 text-right"><span class="px-2.5 py-1 rounded-full bg-teal-500/10 text-teal-400 font-bold">Meta Atingida</span></td>
+            </tr>
+
+            <!-- Planta PR -->
+            <tr class="hover:bg-slate-800/40">
+              <td class="py-3 font-bold text-cyan-400">#3 🥉</td>
+              <td class="py-3 font-semibold text-white">Planta Paraná</td>
+              <td class="py-3">185.000 un</td>
+              <td class="py-3">210 t</td>
+              <td class="py-3 font-medium text-slate-300">1.13 kg</td>
+              <td class="py-3 font-semibold text-emerald-400">86.4%</td>
+              <td class="py-3">55.2%</td>
+              <td class="py-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-cyan-400 h-2 rounded-full" style="width: 84%"></div>
+                  </div>
+                  <span class="font-bold text-white">84/100</span>
+                </div>
+              </td>
+              <td class="py-3 text-right"><span class="px-2.5 py-1 rounded-full bg-cyan-500/10 text-cyan-400 font-bold">Meta Atingida</span></td>
+            </tr>
+
+            <!-- Planta MG -->
+            <tr class="hover:bg-slate-800/40">
+              <td class="py-3 font-bold text-amber-400">#4 ⚠️</td>
+              <td class="py-3 font-semibold text-white">Planta Minas Gerais</td>
+              <td class="py-3">240.000 un</td>
+              <td class="py-3">285 t</td>
+              <td class="py-3 font-medium text-rose-400">1.19 kg</td>
+              <td class="py-3 font-semibold text-amber-400">81.5%</td>
+              <td class="py-3">48.0%</td>
+              <td class="py-3">
+                <div class="flex items-center gap-2">
+                  <div class="w-16 bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div class="bg-amber-400 h-2 rounded-full" style="width: 78%"></div>
+                  </div>
+                  <span class="font-bold text-white">78/100</span>
+                </div>
+              </td>
+              <td class="py-3 text-right"><span class="px-2.5 py-1 rounded-full bg-amber-500/10 text-amber-400 font-bold">Atenção (Gargalo)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CARDS DE DIAGNÓSTICO DO ANALISTA PLENO (O QUE MOSTRAR NA ENTREVISTA) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+        <h4 class="font-bold text-white text-sm flex items-center gap-2 text-rose-400">
+          <span>⚠️ Ponto de Atenção Identificado (Análise Diagnóstica)</span>
+        </h4>
+        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+          A unidade de <strong>Minas Gerais</strong> está com taxa de desvio de aterro em <strong>81.5% (abaixo da meta de 85%)</strong>. A causa raiz mapeada via drilldown foi a ausência de homologação de cooperativas de reciclagem de polímeros no raio de 50km.
+        </p>
+        <div class="mt-3 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-400">
+          <strong>Ação Recomendada pelo Analista:</strong> Homologar novo fornecedor de coprocessamento energético regional no início de Novembro para recuperar +4.2 p.p.
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5">
+        <h4 class="font-bold text-white text-sm flex items-center gap-2 text-emerald-400">
+          <span>🏆 Best Practice Compartilhada (Análise Prescritiva)</span>
+        </h4>
+        <p class="text-xs text-slate-300 mt-2 leading-relaxed">
+          A <strong>Matriz São Paulo</strong> atingiu <strong>94.2% de desvio</strong> com o projeto piloto de compostagem orgânica acelerada in loco, reduzindo 45 viagens mensais de caçamba e economizando R$ 38.000/trimestre.
+        </p>
+        <div class="mt-3 p-3 bg-slate-950 rounded-xl border border-slate-800 text-xs text-slate-400">
+          <strong>Plano de Escala:</strong> Replicar o modelo de compostagem para as plantas da Bahia e Paraná até o Q1/2025.
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-8 pt-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+    <span>ECOSOLUTIONS BI • Projeto Modelo para Apresentação Técnica de Analista Pleno de BI</span>
+    <span>Arquitetura Star Schema • Fórmulas DAX / Modelagem Dimensional • Metodologia OKR</span>
+  </footer>
+
+  <!-- SCRIPT PARA TROCAR DE MODELO -->
+  <script>
+    function switchModel(mode) {
+      const viewExec = document.getElementById('viewExecutivo');
+      const viewTatico = document.getElementById('viewTatico');
+      const btn1 = document.getElementById('btnModelo1');
+      const btn2 = document.getElementById('btnModelo2');
+
+      if (mode === 'executivo') {
+        viewExec.classList.remove('hidden');
+        viewTatico.classList.add('hidden');
+
+        btn1.className = 'px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom';
+        btn2.className = 'px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom';
+      } else {
+        viewExec.classList.add('hidden');
+        viewTatico.classList.remove('hidden');
+
+        btn2.className = 'px-3 py-1.5 rounded-lg font-medium bg-emerald-600 text-white shadow-sm transition-all-custom';
+        btn1.className = 'px-3 py-1.5 rounded-lg font-medium text-slate-400 hover:text-white transition-all-custom';
+      }
+    }
+  </script>
+</body>
+</html>
+
