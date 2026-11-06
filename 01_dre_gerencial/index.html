@@ -51,7 +51,7 @@
     body {
       background-color: var(--bg-body);
       color: var(--text-main);
-      padding: 24px;
+      padding: 0 24px 24px 24px;
       min-height: 100vh;
     }
 
@@ -996,6 +996,113 @@
   color: #94a3b8;
   border-color: rgba(255, 255, 255, 0.15);
 }
+
+/* ════ CONGELAMENTO TOTAL DE PAINÉIS ABAIXO DOS CARDS (FREEZE PANES) ════ */
+.frozen-top-pane {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 99999 !important;
+  background: #0b0f19 !important;
+  border-bottom: 3px solid #CB9727 !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.9) !important;
+  margin-left: -24px !important;
+  margin-right: -24px !important;
+  padding: 10px 24px 8px 24px !important;
+  transition: all 0.2s ease;
+}
+
+.frozen-top-pane .header-bar {
+  padding: 8px 18px !important;
+  margin-bottom: 8px !important;
+  border-radius: 10px !important;
+}
+
+.frozen-top-pane .logo-badge {
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 16px !important;
+  border-radius: 8px !important;
+}
+
+.frozen-top-pane .header-titles h1 {
+  font-size: 16px !important;
+  gap: 8px !important;
+}
+
+.frozen-top-pane .header-titles p {
+  font-size: 11px !important;
+}
+
+.frozen-top-pane .author-badge .name {
+  font-size: 11px !important;
+}
+
+.frozen-top-pane .btn-action {
+  padding: 6px 12px !important;
+  font-size: 11px !important;
+}
+
+.frozen-top-pane .filter-bar {
+  padding: 8px 16px !important;
+  margin-bottom: 8px !important;
+  border-radius: 8px !important;
+}
+
+.frozen-top-pane .filter-label {
+  font-size: 11px !important;
+}
+
+.frozen-top-pane .filter-select {
+  padding: 5px 10px !important;
+  font-size: 11.5px !important;
+}
+
+.frozen-top-pane .kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 10px !important;
+  margin-bottom: 6px !important;
+}
+
+.frozen-top-pane .kpi-card {
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  background: rgba(30, 41, 59, 0.9) !important;
+}
+
+.frozen-top-pane .kpi-val {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+}
+
+.frozen-top-pane .kpi-title {
+  font-size: 10.5px !important;
+}
+
+.frozen-top-pane .kpi-tag {
+  font-size: 9px !important;
+  padding: 1px 5px !important;
+}
+
+.frozen-top-pane .kpi-footer {
+  font-size: 10.5px !important;
+  margin-top: 3px !important;
+}
+
+.freeze-divider-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 12px;
+  background: rgba(203, 151, 39, 0.15);
+  border-radius: 4px;
+  margin-top: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #CB9727;
+}
 </style>
 
 <script>
@@ -1542,7 +1649,9 @@
 
   <div class="container">
 
-    <!-- Header -->
+    <!-- ❄️ ÁREA CONGELADA SUPERIOR (FREEZE PANES) ❄️ -->
+    <div class="frozen-top-pane" id="frozenTopPane">
+      <!-- Header -->
     
     <header class="header-bar">
       <div class="header-info">
@@ -1577,7 +1686,7 @@
       </div>
     </header>
 
-    <div class="frozen-panes-wrapper" id="frozenPanesWrapper">
+    
       <!-- Filter Bar -->
     <div class="filter-bar">
       <div class="filter-group">
@@ -1659,11 +1768,9 @@
         </div>
       </div>
     </div>
-      <div class="frozen-divider-badge">
-        <span>❄️ PAINEL CONGELADO • FILTROS & INDICADORES FIXOS NA ROLAGEM</span>
-        <button class="btn-toggle-freeze" id="btnToggleFreeze" onclick="toggleFreezePanes()">
-          <span id="txtFreezeBtn">❄️ Descongelar</span>
-        </button>
+      <div class="freeze-divider-indicator">
+        <span>❄️ PAINEL CONGELADO ABAIXO DOS CARDS • CABEÇALHO, FILTROS E KPIS FIXOS NA ROLAGEM</span>
+        <span style="font-weight: 600; opacity: 0.85;">ACM HOLDING CORP • FP&A</span>
       </div>
     </div>
 
