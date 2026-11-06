@@ -2881,15 +2881,15 @@
   </script>
 
   <!-- ══════════════════════════════════════════════════════════════════════════
-       🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE MQIA (PADRÃO DRE EMPRESA)
+       🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE PESSOAL (PADRÃO DRE EMPRESA)
        ══════════════════════════════════════════════════════════════════════════ -->
-  <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleChat(true)" title="Abrir Assistente MQIA">
+  <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleChat(true)" title="Abrir Assistente Pessoal">
     <div class="ai-chat-header" id="ai-chat-header">
       <div class="ai-chat-title">
         <span class="ai-icon">
-          <img src="ai_avatar.png" alt="Assistente MQIA" class="ai-avatar-img">
+          <img src="ai_avatar.png" alt="Assistente Pessoal" class="ai-avatar-img">
         </span>
-        <span>Assistente MQIA</span>
+        <span>Assistente Pessoal</span>
       </div>
       <div class="ai-chat-controls">
         <button id="ai-chat-toggle" title="Minimizar" onclick="event.stopPropagation(); toggleChat(false);">_</button>
@@ -2898,7 +2898,7 @@
     <div class="ai-chat-body" id="ai-chat-body">
       <div class="ai-message ai">
         <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 800; color: #fff;" id="mqiaGreetingMsg">Boa noite, Antônio!</p>
-        <p style="margin: 0 0 8px 0; color: #cbd5e1;">Sou a <strong>MQIA</strong>.</p>
+        <p style="margin: 0 0 8px 0; color: #cbd5e1;">Sou seu <strong>Assistente Pessoal</strong>.</p>
         <p style="margin: 0 0 8px 0; color: #cbd5e1; line-height: 1.45;">Minha análise cruza dados e objetivos para trazer clareza às suas decisões.</p>
         <p style="margin: 0; color: #cbd5e1; line-height: 1.45;">Estou pronta e à disposição para o diagnóstico de hoje. Por qual indicador começamos?</p>
       </div>
@@ -2969,7 +2969,7 @@
         var resp = '';
 
         if (ql.includes('resumo') || ql.includes('geral')) {
-          resp = '📊 Diagnóstico Geral da DRE (MQIA):\n' +
+          resp = '📊 Diagnóstico Geral da DRE (Assistente Pessoal):\n' +
                  '• Receita Bruta: R$ 123.010.013 (+0.5% vs orçado)\n' +
                  '• Receita Líquida (ROL): R$ 94.810.955\n' +
                  '• Lucro Bruto: R$ 50.657.023 (Margem: 53.4%)\n' +
