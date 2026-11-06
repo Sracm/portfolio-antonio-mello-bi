@@ -953,8 +953,26 @@
             myChart = echarts.init(chartDom, 'dark', { renderer: 'canvas' });
 
             myChart.on('click', function (params) {
-                if (params.name) {
-                    selecionarEstado(params.name, true);
+                let targetUf = null;
+                if (params.data && params.data.uf) {
+                    targetUf = params.data.uf;
+                } else if (params.name) {
+                    if (currentData.ufs_map && currentData.ufs_map[params.name]) {
+                        targetUf = params.name;
+                    } else {
+                        const m = params.name.match(/\(([A-Z]{2})\)/);
+                        if (m && currentData.ufs_map && currentData.ufs_map[m[1]]) {
+                            targetUf = m[1];
+                        } else {
+                            const found = (currentData.estados || []).find(e => 
+                                e.nome.toLowerCase() === params.name.toLowerCase() || e.uf === params.name
+                            );
+                            if (found) targetUf = found.uf;
+                        }
+                    }
+                }
+                if (targetUf) {
+                    selecionarEstado(targetUf, true);
                 }
             });
 
@@ -1172,7 +1190,7 @@
             myChart.setOption(option, true);
         }
 
-        function selecionarEstado(uf, autoScroll = false) {
+        function selecionarEstado(uf, autoScroll = true) {
             selectedUf = uf;
             const ufsMap = currentData.ufs_map || {};
             const u = ufsMap[uf];
@@ -1210,22 +1228,19 @@
                     `).join('');
             }
 
+            // Regra do Usuário: ao trocar de estado no lado esquerdo, a tabela à direita expande exatamente 1 nível no estado mostrado
+            expandedUfs.clear();
+            expandedCats.clear();
+            expandedUfs.add(uf);
+            renderizarTabelaHierarquia(currentData);
+
             if (autoScroll) {
-                expandedUfs.add(uf);
-                if (estadoObj && estadoObj.categorias && estadoObj.categorias.length > 0) {
-                    expandedCats.add(`${uf}_${estadoObj.categorias[0].categoria}`);
-                }
-                renderizarTabelaHierarquia(currentData);
                 setTimeout(() => {
                     const targetRow = document.querySelector(`.row-uf[data-uf="${uf}"]`);
                     if (targetRow) {
-                        targetRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
-                }, 50);
-            } else {
-                document.querySelectorAll('.row-uf').forEach(row => {
-                    row.classList.toggle('selected', row.getAttribute('data-uf') === uf);
-                });
+                }, 60);
             }
 
             renderizarMapa(currentData);
@@ -1322,11 +1337,10 @@
             if (event) event.stopPropagation();
             if (expandedUfs.has(uf)) {
                 expandedUfs.delete(uf);
+                renderizarTabelaHierarquia(currentData);
             } else {
-                expandedUfs.add(uf);
+                selecionarEstado(uf, false);
             }
-            selecionarEstado(uf, false);
-            renderizarTabelaHierarquia(currentData);
         }
 
         function toggleCatExpand(catKey, event) {
@@ -1420,13 +1434,14 @@
 
         function iniciarAutoRotacao() {
             const ufs = (currentData.estados || []).map(e => e.uf).slice(0, 10);
-            let idx = 0;
+            let idx = ufs.indexOf(selectedUf);
+            if (idx === -1) idx = 0;
             if (autoRotateTimer) clearInterval(autoRotateTimer);
 
             autoRotateTimer = setInterval(() => {
                 if (!isAutoRotateActive) return;
                 idx = (idx + 1) % ufs.length;
-                selecionarEstado(ufs[idx], false);
+                selecionarEstado(ufs[idx], true);
             }, 6000);
         }
 
