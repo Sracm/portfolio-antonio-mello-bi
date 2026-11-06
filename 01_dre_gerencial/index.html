@@ -2948,7 +2948,7 @@
     }
     window.handleChipMQIA = handleChipMQIA;
 
-    function sendMQIA() {
+        function sendMQIA() {
       var input = document.getElementById('ai-chat-input');
       var body = document.getElementById('ai-chat-body');
       if (!input || !body) return;
@@ -2963,44 +2963,149 @@
       input.value = '';
       body.scrollTop = body.scrollHeight;
 
-      // Resposta inteligente
+      // Balão temporário de digitação
+      var typingIndicator = document.createElement('div');
+      typingIndicator.className = 'ai-message ai';
+      typingIndicator.id = 'ai-typing-indicator';
+      typingIndicator.style.opacity = '0.7';
+      typingIndicator.style.fontStyle = 'italic';
+      typingIndicator.textContent = 'Assistente Pessoal analisando dados...';
+      body.appendChild(typingIndicator);
+      body.scrollTop = body.scrollHeight;
+
+      // Resposta inteligente contextual
       setTimeout(function() {
-        var ql = q.toLowerCase();
+        if (typingIndicator && typingIndicator.parentNode) {
+          typingIndicator.parentNode.removeChild(typingIndicator);
+        }
+
+        var ql = q.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
         var resp = '';
 
-        if (ql.includes('resumo') || ql.includes('geral')) {
-          resp = '📊 Diagnóstico Geral da DRE (Assistente Pessoal):\n' +
-                 '• Receita Bruta: R$ 123.010.013 (+0.5% vs orçado)\n' +
-                 '• Receita Líquida (ROL): R$ 94.810.955\n' +
-                 '• Lucro Bruto: R$ 50.657.023 (Margem: 53.4%)\n' +
-                 '• EBITDA: R$ 17.115.126 (Margem: 18.1% • Meta superada)\n' +
-                 '• Resultado Líquido: R$ 10.352.472 (10.9% da ROL).';
-        } else if (ql.includes('ebitda')) {
-          resp = '📈 Margem EBITDA:\n' +
-                 'O EBITDA realizado é de R$ 17.115.126, atingindo 18.1% de Margem Operacional.\n' +
-                 'Está +2.4% acima da meta orçada (R$ 16.720.815), demonstrando forte eficiência operacional.';
-        } else if (ql.includes('lucro')) {
-          resp = '💰 Lucro Líquido:\n' +
-                 'O Resultado Líquido atingiu R$ 10.352.472 no período, representando 10.9% de margem líquida sobre a ROL, superando o orçado em +4.4%.';
-        } else if (ql.includes('despesa') || ql.includes('custo') || ql.includes('opex')) {
-          resp = '🔍 Composição das Despesas e Custos (OPEX):\n' +
-                 '• CMV/Custos: R$ 44.153.732\n' +
-                 '• Folha de Pagamento & Encargos: R$ 7.817.163\n' +
-                 '• Mídia de Performance & Google/Meta Ads: R$ 6.146.505\n' +
-                 '• Frete Entrega ao Cliente: R$ 4.808.527\n' +
-                 'Todas as contas com desvio sob monitoramento rígido.';
-        } else {
-          resp = '⚖️ Margem Bruta & Contribuição:\n' +
-                 'O Lucro Bruto é de R$ 50.657.023 (53.4% da ROL). Na nova tabela de Detalhe da Margem, a Margem de Contribuição atingiu R$ 3.518.371 no mês (+17.15% vs orçado).';
+        // 1. Saudações e Cumprimentos
+        if (
+          ql === 'ola' || ql === 'oi' || ql === 'opa' || ql === 'ola!' || ql === 'oi!' ||
+          ql.startsWith('ola ') || ql.startsWith('oi ') || ql.startsWith('bom dia') ||
+          ql.startsWith('boa tarde') || ql.startsWith('boa noite') ||
+          ql.includes('tudo bem') || ql.includes('como vai') || ql.includes('e ai')
+        ) {
+          var hora = new Date().getHours();
+          var saud = 'Boa noite';
+          if (hora >= 5 && hora < 12) saud = 'Bom dia';
+          else if (hora >= 12 && hora < 18) saud = 'Boa tarde';
+
+          resp = saud + ', Antônio! Tudo bem?\n' +
+                 'Sou seu **Assistente Pessoal** de Finanças & DRE.\n\n' +
+                 'Estou conectado aos dados consolidados da empresa em tempo real. Como posso te apoiar agora?\n' +
+                 '• 💡 Resumo geral da DRE\n' +
+                 '• 📈 Margem EBITDA e metas\n' +
+                 '• 💰 Lucro Líquido e rentabilidade\n' +
+                 '• 🔍 Detalhamento de Custos e OPEX\n' +
+                 '• 💼 Vendas e canais de receita';
+        }
+        // 2. Apresentação / Quem é você
+        else if (
+          ql.includes('quem e voce') || ql.includes('quem e vc') ||
+          ql.includes('o que voce faz') || ql.includes('o que faz') ||
+          ql.includes('ajuda') || ql.includes('help')
+        ) {
+          resp = '🤖 **Assistente Pessoal de Finanças & DRE**\n' +
+                 'Fui desenvolvido para cruzar dados contábeis, metas orçadas e indicadores operacionais em tempo real.\n\n' +
+                 'Posso diagnosticar variações de receitas, analisar margens brutas e líquidas, monitorar despesas operacionais (OPEX) e apontar oportunidades de ganho de eficiência.';
+        }
+        // 3. Resumo Geral / Visão Executiva
+        else if (
+          ql.includes('resumo') || ql.includes('geral') || ql.includes('visao') ||
+          ql.includes('panorama') || ql.includes('status') || ql.includes('resultado')
+        ) {
+          resp = '📊 **Diagnóstico Geral da DRE (Consolidado 2026):**\n' +
+                 '• **Receita Bruta:** R$ 123.010.013 (+0,5% vs orçado de R$ 122,4M)\n' +
+                 '• **Receita Líquida (ROL):** R$ 94.810.955 (77,1% da Receita Bruta)\n' +
+                 '• **Lucro Bruto:** R$ 50.657.023 (Margem Bruta forte de 53,4%)\n' +
+                 '• **EBITDA:** R$ 17.115.126 (Margem EBITDA de 18,1% • Meta superada em +2,4%)\n' +
+                 '• **Resultado Líquido:** R$ 10.352.472 (10,9% da ROL • +4,4% acima do planejado).\n\n' +
+                 'A operação apresenta excelente saúde financeira com todas as metas de rentabilidade superadas.';
+        }
+        // 4. EBITDA / LAJIDA / Margem Operacional
+        else if (ql.includes('ebitda') || ql.includes('lajida') || ql.includes('operacional')) {
+          resp = '📈 **Análise de EBITDA (LAJIDA):**\n' +
+                 '• **EBITDA Realizado:** R$ 17.115.126\n' +
+                 '• **Meta Orçada:** R$ 16.720.815\n' +
+                 '• **Variação Positiva:** +R$ 394.311 (+2,4% superavitário)\n' +
+                 '• **Margem EBITDA:** 18,1% sobre a Receita Líquida.\n\n' +
+                 'O resultado evidencia alta eficiência na alavancagem operacional e rígido controle das despesas fixas.';
+        }
+        // 5. Lucro Líquido & Margem Líquida
+        else if (ql.includes('lucro') || ql.includes('liquido') || ql.includes('rentabilidade')) {
+          resp = '💰 **Análise do Lucro & Rentabilidade:**\n' +
+                 '• **Lucro Bruto:** R$ 50.657.023 (Margem de 53,4%)\n' +
+                 '• **Resultado Líquido Final:** R$ 10.352.472 (Margem Líquida de 10,9%)\n' +
+                 '• **Desempenho vs Orçado:** +R$ 439.036 (+4,4% de ganho sobre a meta de R$ 9,9M).\n\n' +
+                 'A retenção de margem e o resultado final confirmam sustentabilidade financeira sólida.';
+        }
+        // 6. Custos, Despesas, CMV e OPEX
+        else if (
+          ql.includes('despesa') || ql.includes('custo') || ql.includes('opex') ||
+          ql.includes('gasto') || ql.includes('folha') || ql.includes('frete') ||
+          ql.includes('marketing') || ql.includes('midia') || ql.includes('cmv')
+        ) {
+          resp = '🔍 **Composição dos Principais Custos & Despesas (OPEX):**\n' +
+                 '• **CMV / Custos de Mercadorias:** R$ 44.153.732 (46,6% da ROL)\n' +
+                 '• **Folha de Pagamento & Encargos:** R$ 7.817.163 (8,2% da ROL)\n' +
+                 '• **Mídia de Performance (Google & Meta Ads):** R$ 6.146.505 (6,5% da ROL)\n' +
+                 '• **Frete de Entrega ao Cliente:** R$ 4.808.527 (5,1% da ROL)\n' +
+                 '• **Comissões & Bonificações:** R$ 2.459.515 (2,6% da ROL)\n' +
+                 '• **Taxas de Marketplaces:** R$ 3.256.535 (3,4% da ROL)\n\n' +
+                 'As contas encontram-se dentro do limite orçado, com desvios acompanhados preventivamente.';
+        }
+        // 7. Receitas, Canais de Venda e Faturamento
+        else if (
+          ql.includes('receita') || ql.includes('faturamento') || ql.includes('venda') ||
+          ql.includes('canal') || ql.includes('ecommerce') || ql.includes('loja') || ql.includes('b2b')
+        ) {
+          resp = '💼 **Performance de Receita por Canal de Venda:**\n' +
+                 '• **Receita Bruta Total:** R$ 123.010.013 (+0,5% vs orçado)\n' +
+                 '• **E-commerce:** R$ 55.554.564 (45,2% do faturamento total)\n' +
+                 '• **Lojas Próprias:** R$ 36.927.565 (30,0%)\n' +
+                 '• **Canal B2B Corporativo:** R$ 18.277.281 (14,9%)\n' +
+                 '• **Assinaturas & Serviços Digitais:** R$ 12.270.604 (10,0%)\n\n' +
+                 'O E-commerce segue como principal motor de crescimento, mantendo consistência de volume e margem.';
+        }
+        // 8. Margem Bruta & Contribuição
+        else if (ql.includes('margem') || ql.includes('contribuicao')) {
+          resp = '⚖️ **Margem Bruta & Contribuição:**\n' +
+                 '• **Lucro Bruto Realizado:** R$ 50.657.023 (53,4% sobre a Receita Líquida)\n' +
+                 '• **Margem de Contribuição (Setembro):** R$ 3.518.371 (+17,15% acima do orçado de R$ 3.003.178)\n' +
+                 '• **Margem Operacional Líquida (Setembro):** R$ 1.763.847 (+95,10% vs orçado de R$ 904.052).\n\n' +
+                 'A disciplina no mix de produtos gerou ganhos relevantes na margem unitária.';
+        }
+        // 9. Agradecimentos e Fechamento
+        else if (
+          ql.includes('obrigad') || ql.includes('valeu') || ql.includes('top') ||
+          ql.includes('show') || ql.includes('perfeito') || ql.includes('otimo') ||
+          ql.includes('excelente') || ql.includes('parabens') || ql.includes('tchau') ||
+          ql.includes('ate logo')
+        ) {
+          resp = 'À sua total disposição, Antônio! 🎯\n' +
+                 'Se precisar de qualquer outro cruzamento contábil ou detalhamento de conta, basta me chamar.';
+        }
+        // 10. Resposta Padrão Inteligente (Fallback)
+        else {
+          resp = '💡 **Assistente Pessoal:**\n' +
+                 'Analisei sua consulta sobre "' + q + '".\n\n' +
+                 'Com base nos dados contábeis consolidados da DRE:\n' +
+                 '• A **Receita Líquida** é de **R$ 94,8M** com **EBITDA de R$ 17,1M** (18,1% de margem operacional).\n' +
+                 '• O **Resultado Líquido** atinge **R$ 10,35M** superando o orçado em +4,4%.\n\n' +
+                 'Você pode aprofundar clicando nos chips acima ou perguntando sobre *Resumo*, *EBITDA*, *Lucro Líquido*, *Despesas* ou *Vendas*.';
         }
 
         var botMsg = document.createElement('div');
         botMsg.className = 'ai-message ai';
         botMsg.style.whiteSpace = 'pre-line';
-        botMsg.textContent = resp;
+        botMsg.innerHTML = resp.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
         body.appendChild(botMsg);
         body.scrollTop = body.scrollHeight;
-      }, 350);
+      }, 400);
     }
     window.sendMQIA = sendMQIA;
 
