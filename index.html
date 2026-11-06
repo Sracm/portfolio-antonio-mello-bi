@@ -512,6 +512,11 @@
       border: 1px solid rgba(242, 200, 17, 0.4);
       color: #F2C811;
     }
+    .tech-n8n {
+      background: rgba(234, 75, 113, 0.15) !important;
+      color: #ff6d5a !important;
+      border: 1px solid rgba(234, 75, 113, 0.4) !important;
+    }
     .tech-fullstack {
       background: rgba(40, 167, 69, 0.15);
       border: 1px solid rgba(40, 167, 69, 0.4);
@@ -1087,6 +1092,27 @@
     "is_static": false,
     "live_url": "powerbi_okrs/",
     "github_repo": "https://github.com/Sracm/portfolio-bi"
+  },
+  {
+    "id": 16,
+    "title": "Automação de Processos & Workflows com n8n & IA",
+    "department": "Automação & Processos (n8n)",
+    "description": "Cockpit operacional e analítico de orquestração de esteiras de dados corporativos com n8n e LLMs: monitoramento de saúde de cluster (99.85%), redução de 384h de trabalho/mês (2.4 FTEs), economia de R$ 26.540/mês e simulador de execuções em tempo real.",
+    "url": "16_automacao_processos_n8n/index.html",
+    "tech": "n8n / Python / LLM",
+    "stack": [
+      "n8n Workflow Automation",
+      "OpenRouter / GPT-4o",
+      "Sankhya ERP API",
+      "SQLite / Data Warehouse",
+      "Redução de FTE & ROI",
+      "WhatsApp Business API"
+    ],
+    "impact": "Redução do tempo de fechamento contábil e auditoria de 45 min para 2.4 segundos (+1.125x mais rápido), poupando 384 horas/mês da equipe.",
+    "image": "static/portfolio_screenshots/dash_16_automacao_n8n.jpg",
+    "is_static": false,
+    "live_url": "16_automacao_processos_n8n/index.html",
+    "github_repo": "https://github.com/Sracm/portfolio-bi"
   }
 ];
     let currentDept = 'ALL';
@@ -1109,6 +1135,11 @@
       const deptoPrincipal = 'Diretoria Executiva';
       if (depts[deptoPrincipal]) {
         html += `<button class="filter-tab filter-tab-featured" onclick="setDepartmentFilter('${deptoPrincipal}')">⭐ ${deptoPrincipal} (${depts[deptoPrincipal]})</button>`;
+      }
+
+      // Destaque para Automação n8n & IA
+      if (depts['Automação & Processos (n8n)']) {
+        html += `<button class="filter-tab filter-tab-featured" style="border-color: rgba(234, 75, 113, 0.6); color: #ff6d5a;" onclick="setDepartmentFilter('Automação & Processos (n8n)')"><i class="fa-solid fa-network-wired"></i> Automação & n8n (${depts['Automação & Processos (n8n)']})</button>`;
       }
 
       // Destaque para Microsoft Power BI
@@ -1173,8 +1204,9 @@
 
       grid.innerHTML = filtered.map(d => {
         const isPowerBI = d.tech.includes('Power BI');
-        const techBadgeClass = isPowerBI ? 'tech-powerbi' : 'tech-fullstack';
-        const techLabel = isPowerBI ? '<i class="fa-solid fa-chart-pie"></i> Microsoft Power BI' : '<i class="fa-brands fa-python"></i> Web Python';
+        const isN8N = d.tech.includes('n8n');
+        const techBadgeClass = isPowerBI ? 'tech-powerbi' : (isN8N ? 'tech-n8n' : 'tech-fullstack');
+        const techLabel = isPowerBI ? '<i class="fa-solid fa-chart-pie"></i> Microsoft Power BI' : (isN8N ? '<i class="fa-solid fa-network-wired"></i> n8n & IA' : '<i class="fa-brands fa-python"></i> Web Python');
 
         const stackBadges = (d.stack || []).map(s => `<span class="stack-tag">${s}</span>`).join('');
         const imgUrl = d.image || 'static/portfolio_screenshots/pbi_sample.jpg';

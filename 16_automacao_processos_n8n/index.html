@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cockpit de Automação & Orquestração n8n | Eficiência & Workflows Inteligentes</title>
+
+  <!-- Google Fonts: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome 6 Pro/Free -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Chart.js 4 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      --bg-dark: #07090e;
+      --bg-card: #0f141f;
+      --bg-card-hover: #151c2c;
+      --bg-panel: #111827;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(203, 151, 39, 0.4);
+      --mq-gold: #cb9727;
+      --mq-gold-light: #f5d372;
+      --n8n-pink: #ea4b71;
+      --n8n-orange: #ff6d5a;
+      --cyan-neon: #00d2ff;
+      --green-neon: #00e676;
+      --red-neon: #ff3366;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ════ TOPBAR HEADER ════ */
+    .app-header {
+      background: rgba(15, 20, 31, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 12px 28px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .n8n-badge-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #ea4b71 0%, #ff6d5a 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(234, 75, 113, 0.4);
+    }
+
+    .header-titles h1 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-titles p {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .badge-status-cluster {
+      background: rgba(0, 230, 118, 0.12);
+      border: 1px solid rgba(0, 230, 118, 0.4);
+      color: var(--green-neon);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--green-neon);
+      border-radius: 50%;
+      animation: pulse-green 1.8s infinite;
+    }
+
+    @keyframes pulse-green {
+      0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(0, 230, 118, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-voltar {
+      background: #1e2638;
+      color: var(--mq-gold-light);
+      border: 1px solid var(--border-gold);
+      padding: 7px 15px;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-voltar:hover {
+      background: var(--mq-gold);
+      color: #000;
+      box-shadow: 0 0 15px rgba(203, 151, 39, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-trigger-run {
+      background: linear-gradient(135deg, #ea4b71 0%, #ff6d5a 100%);
+      color: #fff;
+      border: none;
+      padding: 7px 18px;
+      border-radius: 7px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(234, 75, 113, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn-trigger-run:hover {
+      box-shadow: 0 6px 20px rgba(234, 75, 113, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .btn-trigger-run:active {
+      transform: scale(0.97);
+    }
+
+    /* ════ MAIN CONTAINER ════ */
+    .dashboard-content {
+      flex: 1;
+      padding: 22px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      max-width: 1720px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* ════ 1. KPI HERO METRICS (IMPACTO & EFICIÊNCIA) ════ */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(203, 151, 39, 0.3);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--card-accent, var(--mq-gold));
+    }
+
+    .kpi-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .kpi-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .kpi-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--card-accent, var(--mq-gold));
+      font-size: 0.95rem;
+    }
+
+    .kpi-value {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .kpi-footer {
+      margin-top: 6px;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kpi-tag-positive {
+      color: var(--green-neon);
+      font-weight: 700;
+    }
+
+    /* ════ 2. WORKFLOW CANVAS INTERATIVO N8N ════ */
+    .section-canvas {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .canvas-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .canvas-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .canvas-title h2 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .workflow-selector-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .wf-pill {
+      background: #182030;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .wf-pill.active {
+      background: rgba(203, 151, 39, 0.2);
+      border-color: var(--mq-gold);
+      color: var(--mq-gold-light);
+    }
+
+    /* N8N Interactive Pipeline Stage */
+    .n8n-pipeline-viewport {
+      background: radial-gradient(circle at 50% 50%, #111827 0%, #0a0d14 100%);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 28px 20px;
+      position: relative;
+      overflow-x: auto;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .pipeline-track {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 980px;
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .pipeline-svg-wires {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .n8n-node {
+      background: #161e2e;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      width: 145px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    }
+
+    .n8n-node:hover, .n8n-node.selected {
+      transform: translateY(-4px);
+      border-color: var(--node-color, var(--mq-gold));
+      box-shadow: 0 0 25px var(--node-glow, rgba(203, 151, 39, 0.4));
+    }
+
+    .n8n-node.executing {
+      border-color: #00e676 !important;
+      box-shadow: 0 0 30px rgba(0, 230, 118, 0.8) !important;
+      animation: pulse-node 0.8s infinite alternate;
+    }
+
+    @keyframes pulse-node {
+      from { transform: scale(1); }
+      to { transform: scale(1.06); }
+    }
+
+    .node-header-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--node-bg, rgba(234, 75, 113, 0.15));
+      color: var(--node-color, #ea4b71);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .node-title {
+      font-size: 0.74rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .node-subtitle {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+    }
+
+    .node-status-pill {
+      margin-top: 8px;
+      font-size: 0.58rem;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(0, 230, 118, 0.12);
+      color: var(--green-neon);
+      border: 1px solid rgba(0, 230, 118, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .node-port-in, .node-port-out {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      border: 2px solid #0f141f;
+    }
+
+    .node-port-in { left: -5px; }
+    .node-port-out { right: -5px; background: var(--node-color, #ea4b71); }
+
+    /* Node Inspector Panel */
+    .node-inspector-drawer {
+      margin-top: 14px;
+      background: #0a0e17;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .inspector-col-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .inspector-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--mq-gold-light);
+    }
+
+    .inspector-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .inspector-stats {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .stat-pill {
+      font-size: 0.70rem;
+      color: var(--text-muted);
+    }
+
+    .stat-pill strong {
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ════ 3. GRID DE COMPARATIVO & ANALYTICS DE EFICIÊNCIA ════ */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+    }
+
+    .chart-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .panel-top h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .chart-container-box {
+      flex: 1;
+      min-height: 250px;
+      position: relative;
+    }
+
+    /* Comparativo Antes vs Depois Cards */
+    .comparison-table-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .comp-row {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+    }
+
+    .comp-row.header {
+      background: transparent;
+      border: none;
+      padding: 4px 14px;
+      font-weight: 800;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      font-size: 0.65rem;
+    }
+
+    .comp-name {
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .comp-manual {
+      color: #f87171;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+
+    .comp-n8n {
+      color: var(--green-neon);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 800;
+    }
+
+    .comp-gain {
+      color: var(--mq-gold-light);
+      font-weight: 800;
+      background: rgba(203, 151, 39, 0.15);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    /* ════ 4. LOG STREAM & ACTIVE RUNS ════ */
+    .log-stream-panel {
+      background: #090c12;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 18px 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.73rem;
+    }
+
+    .log-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 10px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .log-header h4 {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .log-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 220px;
+      overflow-y: auto;
+    }
+
+    .log-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 5px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.015);
+      transition: background 0.15s;
+    }
+
+    .log-line:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .log-time { color: var(--text-dim); }
+    .log-tag { font-weight: 700; padding: 1px 6px; border-radius: 3px; font-size: 0.65rem; }
+    .log-tag.success { background: rgba(0, 230, 118, 0.15); color: var(--green-neon); }
+    .log-tag.exec { background: rgba(0, 210, 255, 0.15); color: var(--cyan-neon); }
+    .log-msg { color: #cbd5e1; flex: 1; }
+    .log-latency { color: var(--mq-gold-light); }
+
+    /* Modal Payload JSON */
+    .json-preview {
+      background: #06080d;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #38bdf8;
+      font-size: 0.68rem;
+      max-height: 90px;
+      overflow-y: auto;
+      white-space: pre;
+    }
+
+    @media (max-width: 1024px) {
+      .analytics-grid { grid-template-columns: 1fr; }
+      .app-header { flex-direction: column; align-items: flex-start; }
+      .header-right { width: 100%; justify-content: space-between; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ HEADER PRINCIPAL ════ -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="n8n-badge-logo">
+        <i class="fa-solid fa-network-wired"></i>
+      </div>
+      <div class="header-titles">
+        <h1>
+          ORQUESTRAÇÃO & ENGENHARIA DE WORKFLOWS COM n8n & IA
+          <span class="badge-status-cluster">
+            <span class="status-dot"></span> CLUSTER ATIVO (200 OK)
+          </span>
+        </h1>
+        <p>Monitoramento em tempo real de automações corporativas, eficiência operacional e redução de FTE</p>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn-trigger-run" id="btnRunWorkflow" onclick="simularExecucaoLive()">
+        <i class="fa-solid fa-play"></i> Testar Execução Live n8n
+      </button>
+      <a href="../index.html" class="btn-voltar" title="Retornar à página principal do portfólio">
+        <i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio
+      </a>
+    </div>
+  </header>
+
+  <!-- ════ CORPO DO DASHBOARD ════ -->
+  <main class="dashboard-content">
+
+    <!-- ════ 1. KPIS DE IMPACTO E EFICIÊNCIA ════ -->
+    <div class="kpi-grid">
+      <!-- KPI 1: Taxa de Sucesso -->
+      <div class="kpi-card" style="--card-accent: var(--green-neon);">
+        <div class="kpi-top">
+          <span class="kpi-label">Saúde do Pipeline</span>
+          <div class="kpi-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        </div>
+        <div class="kpi-value">99.85%</div>
+        <div class="kpi-footer">
+          <span class="kpi-tag-positive">▲ 14.850 execuções</span> este mês sem interrupção
+        </div>
+      </div>
+
+      <!-- KPI 2: Horas Economizadas -->
+      <div class="kpi-card" style="--card-accent: var(--mq-gold);">
+        <div class="kpi-top">
+          <span class="kpi-label">Tempo de Trabalho Poupado</span>
+          <div class="kpi-icon"><i class="fa-solid fa-business-time"></i></div>
+        </div>
+        <div class="kpi-value">384 h/mês</div>
+        <div class="kpi-footer">
+          <span class="kpi-tag-positive">▲ 2.4 Analistas (FTE)</span> redirecionados para análise estratégica
+        </div>
+      </div>
+
+      <!-- KPI 3: Velocidade de Processamento -->
+      <div class="kpi-card" style="--card-accent: var(--cyan-neon);">
+        <div class="kpi-top">
+          <span class="kpi-label">Velocidade Média de Ciclo</span>
+          <div class="kpi-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+        </div>
+        <div class="kpi-value">2.4 seg</div>
+        <div class="kpi-footer">
+          Vs <strong>45 min manuais</strong> (Ganho de <strong>1.125x</strong> na entrega)
+        </div>
+      </div>
+
+      <!-- KPI 4: Economia Financeira Líquida -->
+      <div class="kpi-card" style="--card-accent: #a855f7;">
+        <div class="kpi-top">
+          <span class="kpi-label">Redução de Custos / ROI</span>
+          <div class="kpi-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+        </div>
+        <div class="kpi-value">R$ 26.540</div>
+        <div class="kpi-footer">
+          Economia mensal em horas extras e retrabalho de digitação
+        </div>
+      </div>
+
+      <!-- KPI 5: Redução de Erro Humano -->
+      <div class="kpi-card" style="--card-accent: #ec4899;">
+        <div class="kpi-top">
+          <span class="kpi-label">Assertividade de Dados</span>
+          <div class="kpi-icon"><i class="fa-solid fa-shield-check"></i></div>
+        </div>
+        <div class="kpi-value">99.98%</div>
+        <div class="kpi-footer">
+          Zero divergência contábil por validação com Schema JSON
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ 2. ARQUITETURA VISUAL DO WORKFLOW N8N (INTERATIVO) ════ -->
+    <section class="section-canvas">
+      <div class="canvas-header">
+        <div class="canvas-title">
+          <span style="font-size:1.3rem; color:var(--n8n-pink);"><i class="fa-solid fa-diagram-project"></i></span>
+          <div>
+            <h2>Arquitetura Ativa do Workflow n8n (Live Canvas)</h2>
+            <p style="font-size:0.72rem; color:var(--text-muted);">Clique nos nós para inspecionar os payloads de entrada, regras de transformação e tempos de execução</p>
+          </div>
+        </div>
+
+        <div class="workflow-selector-pills">
+          <button class="wf-pill active" onclick="trocarWorkflow('dre')">📊 Fechamento DRE & Contábil</button>
+          <button class="wf-pill" onclick="trocarWorkflow('glosas')">⚖️ Auditoria de Glosas com LLM</button>
+          <button class="wf-pill" onclick="trocarWorkflow('alertas')">🚨 Alertas TV & Vendas WhatsApp</button>
+        </div>
+      </div>
+
+      <!-- Pipeline Interativo -->
+      <div class="n8n-pipeline-viewport">
+        <div class="pipeline-track" id="pipelineTrack">
+
+          <!-- NÓ 1: Webhook Trigger -->
+          <div class="n8n-node selected" id="node-1" onclick="selecionarNo(1)" style="--node-color:#ea4b71; --node-bg:rgba(234,75,113,0.15); --node-glow:rgba(234,75,113,0.5);">
+            <div class="node-header-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="node-title">Schedule / Cron</div>
+            <div class="node-subtitle">Trigger Diário 07:00</div>
+            <div class="node-status-pill"><i class="fa-solid fa-check"></i> ATIVO</div>
+            <div class="node-port-out"></div>
+          </div>
+
+          <!-- NÓ 2: ERP Integration -->
+          <div class="n8n-node" id="node-2" onclick="selecionarNo(2)" style="--node-color:#f59e0b; --node-bg:rgba(245,158,11,0.15); --node-glow:rgba(245,158,11,0.5);">
+            <div class="node-port-in"></div>
+            <div class="node-header-icon"><i class="fa-solid fa-database"></i></div>
+            <div class="node-title">Sankhya ERP API</div>
+            <div class="node-subtitle">Extração SQL / Fatos</div>
+            <div class="node-status-pill"><i class="fa-solid fa-check"></i> 828 registros</div>
+            <div class="node-port-out"></div>
+          </div>
+
+          <!-- NÓ 3: Parser & Tratamento -->
+          <div class="n8n-node" id="node-3" onclick="selecionarNo(3)" style="--node-color:#00d2ff; --node-bg:rgba(0,210,255,0.15); --node-glow:rgba(0,210,255,0.5);">
+            <div class="node-port-in"></div>
+            <div class="node-header-icon"><i class="fa-brands fa-js"></i></div>
+            <div class="node-title">Code / Normalizer</div>
+            <div class="node-subtitle">Limpeza & Tipagem</div>
+            <div class="node-status-pill"><i class="fa-solid fa-check"></i> 42ms</div>
+            <div class="node-port-out"></div>
+          </div>
+
+          <!-- NÓ 4: AI & LLM Engine -->
+          <div class="n8n-node" id="node-4" onclick="selecionarNo(4)" style="--node-color:#a855f7; --node-bg:rgba(168,85,247,0.15); --node-glow:rgba(168,85,247,0.5);">
+            <div class="node-port-in"></div>
+            <div class="node-header-icon"><i class="fa-solid fa-brain"></i></div>
+            <div class="node-title">OpenRouter / LLM</div>
+            <div class="node-subtitle">Diagnóstico & Insights</div>
+            <div class="node-status-pill"><i class="fa-solid fa-check"></i> 1.2s</div>
+            <div class="node-port-out"></div>
+          </div>
+
+          <!-- NÓ 5: DW Persistência -->
+          <div class="n8n-node" id="node-5" onclick="selecionarNo(5)" style="--node-color:#10b981; --node-bg:rgba(16,185,129,0.15); --node-glow:rgba(16,185,129,0.5);">
+            <div class="node-port-in"></div>
+            <div class="node-header-icon"><i class="fa-solid fa-server"></i></div>
+            <div class="node-title">SQLite / DW</div>
+            <div class="node-subtitle">Gravação fato_dre</div>
+            <div class="node-status-pill"><i class="fa-solid fa-check"></i> 18ms</div>
+            <div class="node-port-out"></div>
+          </div>
+
+          <!-- NÓ 6: Alerta WhatsApp -->
+          <div class="n8n-node" id="node-6" onclick="selecionarNo(6)" style="--node-color:#25d366; --node-bg:rgba(37,211,102,0.15); --node-glow:rgba(37,211,102,0.5);">
+            <div class="node-port-in"></div>
+            <div class="node-header-icon"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="node-title">WhatsApp Bot</div>
+            <div class="node-subtitle">Notificação Executiva</div>
+            <div class="node-status-pill"><i class="fa-solid fa-check"></i> Entregue</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Detalhes do Nó Inspecionado -->
+      <div class="node-inspector-drawer" id="nodeInspector">
+        <div class="inspector-col-info">
+          <div class="node-header-icon" id="insp-icon" style="background:rgba(234,75,113,0.15); color:#ea4b71;"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <div class="inspector-title" id="insp-title">Nó 1: Schedule Trigger (Cron Corporativo)</div>
+            <div class="inspector-desc" id="insp-desc">Dispara a esteira automaticamente todos os dias às 07:00 da manhã, alinhado com a consolidação bancária noturna.</div>
+          </div>
+        </div>
+
+        <div class="inspector-stats">
+          <div class="stat-pill">Latência: <strong id="insp-latency">2 ms</strong></div>
+          <div class="stat-pill">Status: <strong style="color:var(--green-neon);" id="insp-status">Success (200)</strong></div>
+          <div class="stat-pill">Última Execução: <strong id="insp-last">Hoje, 07:00:02</strong></div>
+        </div>
+
+        <div style="width: 100%; margin-top: 6px;">
+          <div style="font-size:0.65rem; color:var(--text-dim); margin-bottom:4px; font-weight:700;">PAYLOAD DE ENTRADA / SAÍDA TRATADO:</div>
+          <div class="json-preview" id="insp-json">
+{
+  "trigger": "cron_daily_0700",
+  "timestamp": "2026-11-05T07:00:00.128Z",
+  "pipeline_id": "WF_DRE_CONSOLIDATION_V4",
+  "environment": "production"
+}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════ 3. COMPARAÇÃO ANTES VS DEPOIS & GRÁFICOS DE GANHO ════ -->
+    <div class="analytics-grid">
+      <!-- Coluna Esquerda: Gráfico de Economia Acumulada de Tempo -->
+      <div class="chart-panel">
+        <div class="panel-top">
+          <h3><i class="fa-solid fa-chart-area" style="color:var(--mq-gold);"></i> Curva de Horas de Trabalho Economizadas (Acumulado Mensal)</h3>
+          <span style="font-size:0.72rem; color:var(--text-muted);">Mensuração direta em horas-homem (FTE)</span>
+        </div>
+        <div class="chart-container-box">
+          <canvas id="chartEconomiaHoras"></canvas>
+        </div>
+      </div>
+
+      <!-- Coluna Direita: Tabela Comparativa de Processos -->
+      <div class="chart-panel">
+        <div class="panel-top">
+          <h3><i class="fa-solid fa-gauge-high" style="color:var(--cyan-neon);"></i> Benchmark: Rotina Manual vs n8n</h3>
+          <span style="font-size:0.72rem; color:var(--green-neon); font-weight:700;">Automação 100% Homologada</span>
+        </div>
+
+        <div class="comparison-table-panel">
+          <div class="comp-row header">
+            <div>Rotina Operacional</div>
+            <div>Manual</div>
+            <div>Via n8n</div>
+            <div>Ganho</div>
+          </div>
+
+          <div class="comp-row">
+            <div class="comp-name"><i class="fa-solid fa-receipt" style="color:#ea4b71;"></i> Fechamento DRE</div>
+            <div class="comp-manual">45 min</div>
+            <div class="comp-n8n">2.4 seg</div>
+            <div class="comp-gain">+1.125x</div>
+          </div>
+
+          <div class="comp-row">
+            <div class="comp-name"><i class="fa-solid fa-file-medical" style="color:#00d2ff;"></i> Auditoria Glosas</div>
+            <div class="comp-manual">3h 20m</div>
+            <div class="comp-n8n">18.5 seg</div>
+            <div class="comp-gain">+650x</div>
+          </div>
+
+          <div class="comp-row">
+            <div class="comp-name"><i class="fa-solid fa-tv" style="color:#f59e0b;"></i> Carga WebTV Vendas</div>
+            <div class="comp-manual">15 min</div>
+            <div class="comp-n8n">0.8 seg</div>
+            <div class="comp-gain">+1.100x</div>
+          </div>
+
+          <div class="comp-row">
+            <div class="comp-name"><i class="fa-solid fa-scale-balanced" style="color:#10b981;"></i> Conciliação OFX</div>
+            <div class="comp-manual">1h 10m</div>
+            <div class="comp-n8n">4.1 seg</div>
+            <div class="comp-gain">+1.020x</div>
+          </div>
+
+          <div class="comp-row">
+            <div class="comp-name"><i class="fa-solid fa-envelope-open-text" style="color:#a855f7;"></i> Envio de Alertas</div>
+            <div class="comp-manual">20 min</div>
+            <div class="comp-n8n">Instantâneo</div>
+            <div class="comp-gain">Tempo Real</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════ 4. LOGS DE EXECUÇÃO EM TEMPO REAL ════ -->
+    <div class="log-stream-panel">
+      <div class="log-header">
+        <h4><i class="fa-solid fa-terminal" style="color:var(--green-neon);"></i> Console n8n: Execuções e Disparos em Tempo Real</h4>
+        <div style="font-size:0.72rem; color:var(--text-muted);">
+          <span>Worker: <strong>node-orchestrator-01</strong></span> &bull; 
+          <span>Status: <strong style="color:var(--green-neon);">ONLINE</strong></span>
+        </div>
+      </div>
+
+      <div class="log-list" id="logList">
+        <div class="log-line">
+          <span class="log-time">[23:22:15]</span>
+          <span class="log-tag success">SUCCESS</span>
+          <span class="log-msg">Workflow <strong>WF_DRE_CONSOLIDATION_V4</strong> finalizado com 828 registros gravados em SQLite fato_dre.</span>
+          <span class="log-latency">2.34s</span>
+        </div>
+        <div class="log-line">
+          <span class="log-time">[23:20:00]</span>
+          <span class="log-tag exec">CRON</span>
+          <span class="log-msg">Trigger disparado por agendamento cron: sincronização de taxas e faturamento.</span>
+          <span class="log-latency">12ms</span>
+        </div>
+        <div class="log-line">
+          <span class="log-time">[23:15:42]</span>
+          <span class="log-tag success">SUCCESS</span>
+          <span class="log-msg">OpenRouter LLM (GPT-4o mini) gerou parecer executivo da DRE com 4 destaques e resumo CFO.</span>
+          <span class="log-latency">1.18s</span>
+        </div>
+        <div class="log-line">
+          <span class="log-time">[23:10:04]</span>
+          <span class="log-tag success">DISPATCH</span>
+          <span class="log-msg">Webhook WhatsApp entregou mensagem de status consolidado para o número corporativo da Diretoria.</span>
+          <span class="log-latency">410ms</span>
+        </div>
+        <div class="log-line">
+          <span class="log-time">[23:05:00]</span>
+          <span class="log-tag exec">WEBHOOK</span>
+          <span class="log-msg">Healthcheck de nós concluído: 6/6 nós respondendo com latência média de 48ms.</span>
+          <span class="log-latency">48ms</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ════ SCRIPT DE INTERAÇÕES E SIMULAÇÃO ════ -->
+  <script>
+    const NODE_DETAILS = {
+      1: {
+        title: "Nó 1: Schedule Trigger (Cron Corporativo)",
+        desc: "Dispara a esteira automaticamente todos os dias às 07:00 da manhã, alinhado com a consolidação bancária noturna.",
+        icon: "fa-clock",
+        color: "#ea4b71",
+        latency: "2 ms",
+        status: "Success (200 OK)",
+        last: "Hoje, 07:00:00",
+        json: {
+          "trigger": "cron_daily_0700",
+          "timestamp": "2026-11-05T07:00:00.128Z",
+          "pipeline_id": "WF_DRE_CONSOLIDATION_V4",
+          "environment": "production"
+        }
+      },
+      2: {
+        title: "Nó 2: Extração Sankhya ERP via SQL API",
+        desc: "Executa queries otimizadas no banco relacional corporativo extraindo receitas, custos, deduções e despesas operacionais.",
+        icon: "fa-database",
+        color: "#f59e0b",
+        latency: "380 ms",
+        status: "Success (200 OK)",
+        last: "Hoje, 07:00:01",
+        json: {
+          "records_fetched": 828,
+          "source_table": "TGFDRE_LANCAMENTOS",
+          "total_volume_bruto": 123010013.45,
+          "query_time_ms": 380
+        }
+      },
+      3: {
+        title: "Nó 3: Code / Javascript Normalizer",
+        desc: "Padroniza codificações, remove caracteres nulos, calcula margens percentuais preliminares e converte datas em formato ISO.",
+        icon: "fa-js",
+        color: "#00d2ff",
+        latency: "42 ms",
+        status: "Success (200 OK)",
+        last: "Hoje, 07:00:01",
+        json: {
+          "processed_rows": 828,
+          "schema_valid": true,
+          "deduplications": 0,
+          "derived_fields": ["margem_bruta_pct", "ebitda_pct"]
+        }
+      },
+      4: {
+        title: "Nó 4: IA / OpenRouter (GPT-4o mini)",
+        desc: "Cruza os números com metas orçadas e gera parecer inteligente em linguagem natural sobre desvios e oportunidades de EBITDA.",
+        icon: "fa-brain",
+        color: "#a855f7",
+        latency: "1.18 s",
+        status: "Success (200 OK)",
+        last: "Hoje, 07:00:02",
+        json: {
+          "model": "openai/gpt-4o-mini",
+          "tokens_used": 684,
+          "insight": "Lucro Líquido superou orçamento em +4.4% devido à contenção de fretes e OPEX.",
+          "sentiment": "POSITIVO_ESTRAEGICO"
+        }
+      },
+      5: {
+        title: "Nó 5: Persistência em Data Warehouse SQLite",
+        desc: "Insere e atualiza atomicamente a tabela analítica 'fato_dre', alimentando os dashboards executivos em milissegundos.",
+        icon: "fa-server",
+        color: "#10b981",
+        latency: "18 ms",
+        status: "Success (200 OK)",
+        last: "Hoje, 07:00:02",
+        json: {
+          "target_db": "dre_analytics.sqlite",
+          "table": "fato_dre",
+          "upserted_rows": 828,
+          "integrity_check": "PASSED"
+        }
+      },
+      6: {
+        title: "Nó 6: Dispatcher WhatsApp & Alertas",
+        desc: "Envia o diagnóstico executivo estruturado diretamente no WhatsApp corporativo da diretoria e gera log no painel.",
+        icon: "fa-whatsapp",
+        color: "#25d366",
+        latency: "410 ms",
+        status: "Delivered (200 OK)",
+        last: "Hoje, 07:00:03",
+        json: {
+          "channel": "WhatsApp Business API",
+          "recipients": ["+55 11 9xxxx-xxxx", "+55 11 9yyyy-yyyy"],
+          "message_type": "template_executivo_dre",
+          "delivery_status": "SENT_AND_READ"
+        }
+      }
+    };
+
+    function selecionarNo(id) {
+      document.querySelectorAll('.n8n-node').forEach(n => n.classList.remove('selected'));
+      const target = document.getElementById(`node-${id}`);
+      if (target) target.classList.add('selected');
+
+      const data = NODE_DETAILS[id];
+      if (!data) return;
+
+      document.getElementById('insp-title').innerText = data.title;
+      document.getElementById('insp-desc').innerText = data.desc;
+      document.getElementById('insp-latency').innerText = data.latency;
+      document.getElementById('insp-status').innerText = data.status;
+      document.getElementById('insp-last').innerText = data.last;
+      document.getElementById('insp-json').innerText = JSON.stringify(data.json, null, 2);
+
+      const iconBox = document.getElementById('insp-icon');
+      iconBox.style.color = data.color;
+      iconBox.style.background = `${data.color}22`;
+      iconBox.innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+    }
+
+    function trocarWorkflow(tipo) {
+      document.querySelectorAll('.wf-pill').forEach(p => p.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const logList = document.getElementById('logList');
+      const now = new Date().toLocaleTimeString();
+
+      const logLine = document.createElement('div');
+      logLine.className = 'log-line';
+      logLine.innerHTML = `
+        <span class="log-time">[${now}]</span>
+        <span class="log-tag exec">SWITCH</span>
+        <span class="log-msg">Workflow alterado no console para: <strong>${tipo.toUpperCase()}</strong>. Parâmetros recarregados.</span>
+        <span class="log-latency">15ms</span>
+      `;
+      logList.insertBefore(logLine, logList.firstChild);
+    }
+
+    /* Simulação de Execução em Tempo Real */
+    let isExecuting = false;
+    async function simularExecucaoLive() {
+      if (isExecuting) return;
+      isExecuting = true;
+
+      const btn = document.getElementById('btnRunWorkflow');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Executando Nós n8n...';
+      btn.style.opacity = '0.8';
+
+      const nodes = [1, 2, 3, 4, 5, 6];
+      const logList = document.getElementById('logList');
+
+      for (let i = 0; i < nodes.length; i++) {
+        const nodeId = nodes[i];
+        selecionarNo(nodeId);
+
+        const nodeEl = document.getElementById(`node-${nodeId}`);
+        nodeEl.classList.add('executing');
+
+        // Adiciona log em tempo real
+        const now = new Date().toLocaleTimeString();
+        const log = document.createElement('div');
+        log.className = 'log-line';
+        log.innerHTML = `
+          <span class="log-time">[${now}]</span>
+          <span class="log-tag exec">RUNNING</span>
+          <span class="log-msg">Processando <strong>${NODE_DETAILS[nodeId].title}</strong>...</span>
+          <span class="log-latency">${NODE_DETAILS[nodeId].latency}</span>
+        `;
+        logList.insertBefore(log, logList.firstChild);
+
+        await new Promise(r => setTimeout(r, 450));
+        nodeEl.classList.remove('executing');
+      }
+
+      // Finalização
+      const now = new Date().toLocaleTimeString();
+      const logEnd = document.createElement('div');
+      logEnd.className = 'log-line';
+      logEnd.innerHTML = `
+        <span class="log-time">[${now}]</span>
+        <span class="log-tag success">SUCCESS</span>
+        <span class="log-msg"><strong>WORKFLOW COMPLETO EXECUTADO COM SUCESSO!</strong> 828 fatos gravados e alerta entregue em 2.15s.</span>
+        <span class="log-latency">TOTAL: 2.15s</span>
+      `;
+      logList.insertBefore(logEnd, logList.firstChild);
+
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> Execução Concluída!';
+      btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.style.opacity = '1';
+        isExecuting = false;
+      }, 3000);
+    }
+
+    /* Gráfico Chart.js: Horas Economizadas */
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('chartEconomiaHoras').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4'],
+          datasets: [
+            {
+              label: 'Horas Economizadas pela Automação n8n',
+              data: [92, 188, 284, 384],
+              borderColor: '#cb9727',
+              backgroundColor: 'rgba(203, 151, 39, 0.15)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.35,
+              pointBackgroundColor: '#ffd700',
+              pointRadius: 5
+            },
+            {
+              label: 'Carga Horária Manual Teórica (Sem n8n)',
+              data: [105, 210, 315, 420],
+              borderColor: 'rgba(248, 113, 113, 0.4)',
+              borderDash: [5, 5],
+              borderWidth: 2,
+              pointRadius: 0,
+              fill: false
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              labels: {
+                color: '#cbd5e1',
+                font: { family: 'Montserrat', size: 11, weight: 600 }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(15, 20, 31, 0.95)',
+              titleColor: '#ffd700',
+              bodyFont: { family: 'Montserrat' }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#94a3b8', font: { family: 'Montserrat' } }
+            },
+            y: {
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: {
+                color: '#94a3b8',
+                font: { family: 'Montserrat' },
+                callback: v => `${v} h`
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
