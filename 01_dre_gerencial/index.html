@@ -1104,228 +1104,6 @@
   color: #CB9727;
 }
 
-/* ════ AGENTE DE IA OFICIAL: ASSISTENTE MQIA ════ */
-#ai-chat-widget {
-  position: fixed !important;
-  bottom: 24px !important;
-  right: 24px !important;
-  width: 360px !important;
-  height: 520px !important;
-  max-width: calc(100vw - 32px) !important;
-  max-height: calc(100vh - 48px) !important;
-  background: #18191e !important;
-  border: 1.5px solid #CB9727 !important;
-  border-radius: 16px !important;
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.85), 0 0 20px rgba(203, 151, 39, 0.25) !important;
-  display: flex !important;
-  flex-direction: column !important;
-  z-index: 999999 !important;
-  overflow: hidden !important;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
-  font-family: inherit !important;
-}
-
-#ai-chat-widget.ai-chat-collapsed {
-  width: 62px !important;
-  height: 62px !important;
-  border-radius: 31px !important;
-  border: 2.5px solid #CB9727 !important;
-  background: #18191e !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(203, 151, 39, 0.5) !important;
-  cursor: pointer !important;
-  animation: mqiaPulse 2.5s infinite !important;
-}
-
-@keyframes mqiaPulse {
-  0% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0.7); }
-  70% { box-shadow: 0 0 0 14px rgba(203, 151, 39, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0); }
-}
-
-#ai-chat-widget.ai-chat-collapsed .ai-chat-header {
-  padding: 0 !important;
-  height: 100% !important;
-  border: none !important;
-  justify-content: center !important;
-  background: transparent !important;
-}
-
-#ai-chat-widget.ai-chat-collapsed .ai-chat-header .ai-chat-title span,
-#ai-chat-widget.ai-chat-collapsed .ai-chat-controls,
-#ai-chat-widget.ai-chat-collapsed .ai-chat-body,
-#ai-chat-widget.ai-chat-collapsed .ai-chat-footer {
-  display: none !important;
-}
-
-#ai-chat-widget.ai-chat-collapsed .ai-avatar-img {
-  width: 56px !important;
-  height: 56px !important;
-  border: none !important;
-}
-
-.ai-chat-header {
-  height: 54px !important;
-  min-height: 54px !important;
-  background: #121317 !important;
-  border-bottom: 1px solid rgba(203, 151, 39, 0.3) !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  padding: 0 16px !important;
-  cursor: pointer !important;
-  user-select: none !important;
-}
-
-.ai-chat-title {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  color: #CB9727 !important;
-  font-weight: 800 !important;
-  font-size: 14px !important;
-  letter-spacing: 0.4px !important;
-}
-
-.ai-avatar-box {
-  position: relative !important;
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 50% !important;
-  border: 1.5px solid #CB9727 !important;
-  overflow: hidden !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  flex-shrink: 0 !important;
-}
-
-.ai-avatar-img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-}
-
-.ai-chat-controls button {
-  background: none !important;
-  border: none !important;
-  color: #94a3b8 !important;
-  font-size: 20px !important;
-  cursor: pointer !important;
-  line-height: 1 !important;
-  padding: 4px 8px !important;
-  transition: color 0.15s !important;
-}
-.ai-chat-controls button:hover {
-  color: #CB9727 !important;
-}
-
-.ai-chat-body {
-  flex: 1 !important;
-  padding: 14px !important;
-  overflow-y: auto !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 12px !important;
-  background: #18191e !important;
-}
-
-.ai-welcome-box {
-  border-left: 3px solid #CB9727 !important;
-  background: #23252d !important;
-  border-radius: 8px !important;
-  padding: 14px !important;
-  color: #e2e8f0 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
-}
-
-.ai-chips-container {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-  margin-top: 4px !important;
-}
-
-.ai-chip-btn {
-  background: rgba(203, 151, 39, 0.12) !important;
-  border: 1px solid rgba(203, 151, 39, 0.4) !important;
-  color: #CB9727 !important;
-  padding: 4px 10px !important;
-  border-radius: 20px !important;
-  font-size: 11px !important;
-  font-weight: 700 !important;
-  cursor: pointer !important;
-  transition: all 0.15s !important;
-}
-.ai-chip-btn:hover {
-  background: #CB9727 !important;
-  color: #000 !important;
-}
-
-.ai-bubble {
-  max-width: 88% !important;
-  padding: 10px 14px !important;
-  border-radius: 12px !important;
-  font-size: 12.5px !important;
-  line-height: 1.45 !important;
-  word-break: break-word !important;
-}
-.ai-bubble.user {
-  align-self: flex-end !important;
-  background: #CB9727 !important;
-  color: #000000 !important;
-  font-weight: 600 !important;
-  border-bottom-right-radius: 2px !important;
-}
-.ai-bubble.bot {
-  align-self: flex-start !important;
-  background: #23252d !important;
-  color: #f1f5f9 !important;
-  border-left: 3px solid #CB9727 !important;
-  border-bottom-left-radius: 2px !important;
-}
-
-.ai-chat-footer {
-  padding: 10px 14px !important;
-  background: #121317 !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-
-.ai-chat-footer input {
-  flex: 1 !important;
-  background: #23252d !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  border-radius: 8px !important;
-  padding: 10px 12px !important;
-  color: #ffffff !important;
-  font-size: 12.5px !important;
-  outline: none !important;
-}
-.ai-chat-footer input:focus {
-  border-color: #CB9727 !important;
-}
-
-.ai-chat-send-btn {
-  width: 38px !important;
-  height: 38px !important;
-  background: #CB9727 !important;
-  border: none !important;
-  border-radius: 8px !important;
-  color: #000000 !important;
-  font-size: 14px !important;
-  font-weight: bold !important;
-  cursor: pointer !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: transform 0.15s, background 0.15s !important;
-}
-.ai-chat-send-btn:hover {
-  background: #e5ab32 !important;
-  transform: scale(1.05) !important;
-}
 </style>
 
 <script>
@@ -2471,17 +2249,6 @@
   // ══════════════════════════════════════════════════════════════════════════
   let aiDataRef = null;
 
-  function toggleAIChat(e) {
-    if (e) e.stopPropagation();
-    const widget = document.getElementById('ai-chat-widget');
-    widget.classList.toggle('ai-chat-collapsed');
-    if (!widget.classList.contains('ai-chat-collapsed')) {
-      setTimeout(() => {
-        document.getElementById('ai-chat-input').focus();
-      }, 300);
-    }
-  }
-
   function handleAIKeyPress(e) {
     if (e.key === 'Enter') {
       sendAIMessage();
@@ -2910,62 +2677,7 @@
     }
     window.toggleFreezePanes = toggleFreezePanes;
 
-    // ════ MOTOR CONVERSACIONAL DA ASSISTENTE MQIA ════
-    function obterSaudacaoPeriodoMQIA() {
-      const hora = new Date().getHours();
-      if (hora >= 5 && hora < 12) return 'Bom dia';
-      if (hora >= 12 && hora < 18) return 'Boa tarde';
-      return 'Boa noite';
-    }
-
-    function toggleMQIAChat(e) {
-      if (e) e.stopPropagation();
-      const widget = document.getElementById('ai-chat-widget');
-      if (!widget) return;
-      widget.classList.toggle('ai-chat-collapsed');
-      const isCollapsed = widget.classList.contains('ai-chat-collapsed');
-      const btn = document.getElementById('ai-chat-toggle');
-      if (btn) btn.textContent = isCollapsed ? '↑' : '_';
-      if (!isCollapsed) {
-        const inp = document.getElementById('ai-chat-input');
-        if (inp) setTimeout(() => inp.focus(), 150);
-      }
-    }
-    window.toggleMQIAChat = toggleMQIAChat;
-
-    function sendMQIAChip(txt) {
-      const inp = document.getElementById('ai-chat-input');
-      if (inp) inp.value = txt;
-      sendMQIAMessage();
-    }
-    window.sendMQIAChip = sendMQIAChip;
-
-    function handleMQIAKeyPress(e) {
-      if (e.key === 'Enter') {
-        sendMQIAMessage();
-      }
-    }
-    window.handleMQIAKeyPress = handleMQIAKeyPress;
-
-    function appendMQIABubble(sender, text) {
-      const body = document.getElementById('ai-chat-body');
-      if (!body) return;
-      const b = document.createElement('div');
-      b.className = 'ai-bubble ' + (sender === 'user' ? 'user' : 'bot');
-      b.innerHTML = text.replace(/\n/g, '<br>');
-      body.appendChild(b);
-      body.scrollTop = body.scrollHeight;
-    }
-
-    function sendMQIAMessage() {
-      const inp = document.getElementById('ai-chat-input');
-      if (!inp) return;
-      const q = inp.value.trim();
-      if (!q) return;
-      appendMQIABubble('user', q);
-      inp.value = '';
-
-      // Análise em tempo real usando dados reais do dashboard
+    // Análise em tempo real usando dados reais do dashboard
       setTimeout(() => {
         const d = window.aiDataRef || window.FALLBACK_DADOS || {};
         const k = d.kpis || {};
@@ -3008,9 +2720,7 @@
 
     // Inicialização da Saudação
     window.addEventListener('DOMContentLoaded', () => {
-      const grt = document.getElementById('mqiaGreeting');
-      if (grt) {
-        grt.textContent = `${obterSaudacaoPeriodoMQIA()}, Antônio!`;
+      , Antônio!`;
       }
     });
 </script>
@@ -3019,21 +2729,10 @@
   <!-- ══════════════════════════════════════════════════════════════════════════
        🤖 AGENTE DE IA (FINANCEIRO & DRE)
        ══════════════════════════════════════════════════════════════════════════ -->
-  <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleMQIAChat(event)" title="Clique para abrir a Assistente MQIA">
-    <div class="ai-chat-header" id="ai-chat-header" onclick="toggleMQIAChat(event)">
-      <div class="ai-chat-title">
-        <div class="ai-avatar-box">
-          <img src="ai_avatar.png" alt="Avatar IA" class="ai-avatar-img">
-        </div>
-        <span>Assistente MQIA</span>
-      </div>
-      <div class="ai-chat-controls">
-        <button id="ai-chat-toggle" onclick="toggleMQIAChat(event)" title="Minimizar">_</button>
-      </div>
-    </div>
+  
     <div class="ai-chat-body" id="ai-chat-body">
       <div class="ai-welcome-box">
-        <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 800; color: #fff;" id="mqiaGreeting">Boa noite, Antônio!</p>
+        <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 800; color: #fff;" id="">Boa noite, Antônio!</p>
         <p style="margin: 0 0 8px 0; font-size: 13px; color: #cbd5e1;">Sou a <strong>MQIA</strong>.</p>
         <p style="margin: 0 0 8px 0; font-size: 13px; color: #cbd5e1; line-height: 1.45;">Minha análise cruza dados e objetivos para trazer clareza às suas decisões.</p>
         <p style="margin: 0; font-size: 13px; color: #cbd5e1; line-height: 1.45;">Estou pronta e à disposição para o diagnóstico de hoje. Por qual indicador começamos?</p>
