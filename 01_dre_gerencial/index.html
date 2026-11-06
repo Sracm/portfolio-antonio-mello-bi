@@ -1104,6 +1104,208 @@
   color: #CB9727;
 }
 
+
+/* ════ AGENTE DE IA FLUTUANTE (ASSISTENTE MQIA - PADRÃO DRE EMPRESA) ════ */
+#ai-chat-widget {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 350px !important;
+  height: 500px !important;
+  background: #18191e !important;
+  border: 1px solid #CB9727 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 999999 !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  overflow: hidden !important;
+  font-family: inherit !important;
+}
+
+#ai-chat-widget.ai-chat-collapsed {
+  height: 56px !important;
+  width: 56px !important;
+  border-radius: 28px !important;
+  border: 2px solid #CB9727 !important;
+  background: #18191e !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 14px rgba(203, 151, 39, 0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  animation: pulseMQIA 2.5s infinite !important;
+}
+
+@keyframes pulseMQIA {
+  0% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0.7); }
+  70% { box-shadow: 0 0 0 12px rgba(203, 151, 39, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0); }
+}
+
+#ai-chat-widget.ai-chat-collapsed .ai-chat-header {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  justify-content: center !important;
+}
+
+#ai-chat-widget.ai-chat-collapsed .ai-chat-title span:last-child,
+#ai-chat-widget.ai-chat-collapsed .ai-chat-controls,
+#ai-chat-widget.ai-chat-collapsed .ai-chat-body,
+#ai-chat-widget.ai-chat-collapsed .ai-chat-footer {
+  display: none !important;
+}
+
+#ai-chat-widget.ai-chat-collapsed .ai-avatar-img {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  display: block !important;
+}
+
+.ai-chat-header {
+  height: 48px !important;
+  min-height: 48px !important;
+  background: #121317 !important;
+  border-bottom: 1px solid rgba(203, 151, 39, 0.3) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 16px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+}
+
+.ai-chat-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  color: #CB9727 !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+
+.ai-avatar-img {
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 50% !important;
+  object-fit: cover !important;
+  border: 2px solid #CB9727 !important;
+}
+
+.ai-chat-controls button {
+  background: none !important;
+  border: none !important;
+  color: #94a3b8 !important;
+  font-size: 18px !important;
+  cursor: pointer !important;
+  line-height: 1 !important;
+  padding: 4px 6px !important;
+}
+.ai-chat-controls button:hover {
+  color: #CB9727 !important;
+}
+
+.ai-chat-body {
+  flex: 1 !important;
+  padding: 14px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  background: rgba(0, 0, 0, 0.25) !important;
+}
+
+.ai-message {
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  word-wrap: break-word !important;
+}
+
+.ai-message.ai {
+  background: #23252d !important;
+  color: #ffffff !important;
+  border-left: 3px solid #CB9727 !important;
+  align-self: flex-start !important;
+  width: 100% !important;
+}
+
+.ai-message.user {
+  background: rgba(203, 151, 39, 0.2) !important;
+  color: #ffffff !important;
+  border-right: 3px solid #CB9727 !important;
+  align-self: flex-end !important;
+  max-width: 85% !important;
+}
+
+.ai-chips-bar {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin-top: 4px !important;
+}
+
+.ai-chip {
+  background: rgba(203, 151, 39, 0.12) !important;
+  border: 1px solid rgba(203, 151, 39, 0.35) !important;
+  color: #CB9727 !important;
+  padding: 4px 9px !important;
+  border-radius: 16px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+}
+.ai-chip:hover {
+  background: #CB9727 !important;
+  color: #000000 !important;
+}
+
+.ai-chat-footer {
+  height: 52px !important;
+  padding: 8px 12px !important;
+  background: #121317 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.ai-chat-footer input {
+  flex: 1 !important;
+  background: #23252d !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 6px !important;
+  padding: 8px 10px !important;
+  color: #ffffff !important;
+  font-size: 12px !important;
+  outline: none !important;
+}
+.ai-chat-footer input:focus {
+  border-color: #CB9727 !important;
+}
+
+.ai-chat-footer button {
+  background: #CB9727 !important;
+  border: none !important;
+  color: #000000 !important;
+  width: 34px !important;
+  height: 34px !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 13px !important;
+  font-weight: bold !important;
+}
 </style>
 
 <script>
@@ -2676,84 +2878,153 @@
       }
     }
     window.toggleFreezePanes = toggleFreezePanes;
-
-    // Análise em tempo real usando dados reais do dashboard
-      setTimeout(() => {
-        const d = window.aiDataRef || window.FALLBACK_DADOS || {};
-        const k = d.kpis || {};
-        const ql = q.toLowerCase();
-        let resp = '';
-
-        if (ql.includes('resumo') || ql.includes('geral')) {
-          resp = `📊 **Diagnóstico Geral da DRE (MQIA):**\n` +
-                 `• Receita Bruta: **R$ 123.010.013** (+0.5% vs orçado)\n` +
-                 `• Receita Líquida (ROL): **R$ 94.810.955**\n` +
-                 `• Lucro Bruto: **R$ 50.657.023** (Margem: 53.4%)\n` +
-                 `• EBITDA: **R$ 17.115.126** (Margem: 18.1% • Meta superada)\n` +
-                 `• Resultado Líquido: **R$ 10.352.472** (10.9% da ROL).`;
-        } else if (ql.includes('ebitda')) {
-          resp = `📈 **Margem EBITDA:**\n` +
-                 `O EBITDA realizado é de **R$ 17.115.126**, atingindo **18.1% de Margem Operacional**.\n` +
-                 `Está **+2.4% acima da meta orçada** (R$ 16.720.815), demonstrando excelente alavancagem operacional.`;
-        } else if (ql.includes('lucro')) {
-          resp = `💰 **Lucro Líquido:**\n` +
-                 `O Resultado Líquido atingiu **R$ 10.352.472** no período, representando **10.9% de margem líquida** sobre a ROL, superando o orçado em +4.4%.`;
-        } else if (ql.includes('despesa') || ql.includes('opex') || ql.includes('custo')) {
-          resp = `🔍 **Composição das Despesas e Custos (OPEX):**\n` +
-                 `• CMV/Custos: **R$ 44.153.732**\n` +
-                 `• Folha de Pagamento & Encargos: **R$ 7.817.163**\n` +
-                 `• Mídia de Performance & Google/Meta Ads: **R$ 6.146.505**\n` +
-                 `• Frete Entrega ao Cliente: **R$ 4.808.527**\n` +
-                 `Todas as linhas estão sob controle orçamentário.`;
-        } else if (ql.includes('bruta') || ql.includes('margem')) {
-          resp = `⚖️ **Margem Bruta & Contribuição:**\n` +
-                 `O Lucro Bruto é de **R$ 50.657.023** (53.4% da ROL). Na nova tabela de **Detalhe da Margem**, a Margem de Contribuição atingiu **R$ 3.518.371** no mês (+17.15% vs orçado).`;
-        } else {
-          resp = `✨ **Análise MQIA:**\n` +
-                 `Analisei os dados contábeis consolidados para sua pergunta "${q}".\n` +
-                 `A operação mantém saúde financeira sólida com EBITDA em 18.1% e Receita Líquida em R$ 94.8M. Posso detalhar centros de custo ou margem específica se desejar!`;
-        }
-        appendMQIABubble('bot', resp);
-      }, 400);
-    }
-    window.sendMQIAMessage = sendMQIAMessage;
-
-    // Inicialização da Saudação
-    window.addEventListener('DOMContentLoaded', () => {
-      , Antônio!`;
-      }
-    });
-</script>
-
+  </script>
 
   <!-- ══════════════════════════════════════════════════════════════════════════
-       🤖 AGENTE DE IA (FINANCEIRO & DRE)
+       🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE MQIA (PADRÃO DRE EMPRESA)
        ══════════════════════════════════════════════════════════════════════════ -->
-  
+  <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleChat(true)" title="Abrir Assistente MQIA">
+    <div class="ai-chat-header" id="ai-chat-header">
+      <div class="ai-chat-title">
+        <span class="ai-icon">
+          <img src="ai_avatar.png" alt="Assistente MQIA" class="ai-avatar-img">
+        </span>
+        <span>Assistente MQIA</span>
+      </div>
+      <div class="ai-chat-controls">
+        <button id="ai-chat-toggle" title="Minimizar" onclick="event.stopPropagation(); toggleChat(false);">_</button>
+      </div>
+    </div>
     <div class="ai-chat-body" id="ai-chat-body">
-      <div class="ai-welcome-box">
-        <p style="margin: 0 0 8px 0; font-size: 15px; font-weight: 800; color: #fff;" id="">Boa noite, Antônio!</p>
-        <p style="margin: 0 0 8px 0; font-size: 13px; color: #cbd5e1;">Sou a <strong>MQIA</strong>.</p>
-        <p style="margin: 0 0 8px 0; font-size: 13px; color: #cbd5e1; line-height: 1.45;">Minha análise cruza dados e objetivos para trazer clareza às suas decisões.</p>
-        <p style="margin: 0; font-size: 13px; color: #cbd5e1; line-height: 1.45;">Estou pronta e à disposição para o diagnóstico de hoje. Por qual indicador começamos?</p>
+      <div class="ai-message ai">
+        <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 800; color: #fff;" id="mqiaGreetingMsg">Boa noite, Antônio!</p>
+        <p style="margin: 0 0 8px 0; color: #cbd5e1;">Sou a <strong>MQIA</strong>.</p>
+        <p style="margin: 0 0 8px 0; color: #cbd5e1; line-height: 1.45;">Minha análise cruza dados e objetivos para trazer clareza às suas decisões.</p>
+        <p style="margin: 0; color: #cbd5e1; line-height: 1.45;">Estou pronta e à disposição para o diagnóstico de hoje. Por qual indicador começamos?</p>
       </div>
 
-      <div class="ai-chips-container">
-        <button class="ai-chip-btn" onclick="sendMQIAChip('💡 Resumo da DRE')">💡 Resumo da DRE</button>
-        <button class="ai-chip-btn" onclick="sendMQIAChip('📈 Margem EBITDA')">📈 Margem EBITDA</button>
-        <button class="ai-chip-btn" onclick="sendMQIAChip('💰 Lucro Líquido')">💰 Lucro Líquido</button>
-        <button class="ai-chip-btn" onclick="sendMQIAChip('🔍 Maiores Despesas')">🔍 Maiores Despesas</button>
-        <button class="ai-chip-btn" onclick="sendMQIAChip('⚖️ Margem Bruta')">⚖️ Margem Bruta</button>
+      <div class="ai-chips-bar">
+        <button class="ai-chip" onclick="handleChipMQIA('💡 Resumo da DRE')">💡 Resumo da DRE</button>
+        <button class="ai-chip" onclick="handleChipMQIA('📈 Margem EBITDA')">📈 Margem EBITDA</button>
+        <button class="ai-chip" onclick="handleChipMQIA('💰 Lucro Líquido')">💰 Lucro Líquido</button>
+        <button class="ai-chip" onclick="handleChipMQIA('🔍 Maiores Despesas')">🔍 Maiores Despesas</button>
+        <button class="ai-chip" onclick="handleChipMQIA('⚖️ Margem Bruta')">⚖️ Margem Bruta</button>
       </div>
     </div>
     <div class="ai-chat-footer">
-      <input type="text" id="ai-chat-input" placeholder="Faça uma pergunta sobre a DRE..." onkeypress="handleMQIAKeyPress(event)" />
-      <button class="ai-chat-send-btn" id="ai-chat-send" onclick="sendMQIAMessage()" title="Enviar">
-        ➤
-      </button>
+      <input type="text" id="ai-chat-input" placeholder="Faça uma pergunta sobre a DRE..." onkeypress="if(event.key==='Enter') sendMQIA()" />
+      <button id="ai-chat-send" onclick="sendMQIA()" title="Enviar">➤</button>
     </div>
   </div>
 
-</body>
+  <script>
+    // ════ ASSISTENTE MQIA ════
+    function toggleChat(forceOpen) {
+      var widget = document.getElementById('ai-chat-widget');
+      var btnToggle = document.getElementById('ai-chat-toggle');
+      var input = document.getElementById('ai-chat-input');
+      if (!widget) return;
 
+      if (forceOpen === true) {
+        widget.classList.remove('ai-chat-collapsed');
+      } else if (forceOpen === false) {
+        widget.classList.add('ai-chat-collapsed');
+      } else {
+        widget.classList.toggle('ai-chat-collapsed');
+      }
+
+      var isCollapsed = widget.classList.contains('ai-chat-collapsed');
+      if (btnToggle) btnToggle.textContent = isCollapsed ? '↑' : '_';
+      if (!isCollapsed && input) {
+        setTimeout(function() { input.focus(); }, 150);
+      }
+    }
+    window.toggleChat = toggleChat;
+
+    function handleChipMQIA(txt) {
+      var input = document.getElementById('ai-chat-input');
+      if (input) input.value = txt;
+      sendMQIA();
+    }
+    window.handleChipMQIA = handleChipMQIA;
+
+    function sendMQIA() {
+      var input = document.getElementById('ai-chat-input');
+      var body = document.getElementById('ai-chat-body');
+      if (!input || !body) return;
+      var q = input.value.trim();
+      if (!q) return;
+
+      // Mensagem do usuário
+      var userMsg = document.createElement('div');
+      userMsg.className = 'ai-message user';
+      userMsg.textContent = q;
+      body.appendChild(userMsg);
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+
+      // Resposta inteligente
+      setTimeout(function() {
+        var ql = q.toLowerCase();
+        var resp = '';
+
+        if (ql.includes('resumo') || ql.includes('geral')) {
+          resp = '📊 Diagnóstico Geral da DRE (MQIA):\n' +
+                 '• Receita Bruta: R$ 123.010.013 (+0.5% vs orçado)\n' +
+                 '• Receita Líquida (ROL): R$ 94.810.955\n' +
+                 '• Lucro Bruto: R$ 50.657.023 (Margem: 53.4%)\n' +
+                 '• EBITDA: R$ 17.115.126 (Margem: 18.1% • Meta superada)\n' +
+                 '• Resultado Líquido: R$ 10.352.472 (10.9% da ROL).';
+        } else if (ql.includes('ebitda')) {
+          resp = '📈 Margem EBITDA:\n' +
+                 'O EBITDA realizado é de R$ 17.115.126, atingindo 18.1% de Margem Operacional.\n' +
+                 'Está +2.4% acima da meta orçada (R$ 16.720.815), demonstrando forte eficiência operacional.';
+        } else if (ql.includes('lucro')) {
+          resp = '💰 Lucro Líquido:\n' +
+                 'O Resultado Líquido atingiu R$ 10.352.472 no período, representando 10.9% de margem líquida sobre a ROL, superando o orçado em +4.4%.';
+        } else if (ql.includes('despesa') || ql.includes('custo') || ql.includes('opex')) {
+          resp = '🔍 Composição das Despesas e Custos (OPEX):\n' +
+                 '• CMV/Custos: R$ 44.153.732\n' +
+                 '• Folha de Pagamento & Encargos: R$ 7.817.163\n' +
+                 '• Mídia de Performance & Google/Meta Ads: R$ 6.146.505\n' +
+                 '• Frete Entrega ao Cliente: R$ 4.808.527\n' +
+                 'Todas as contas com desvio sob monitoramento rígido.';
+        } else {
+          resp = '⚖️ Margem Bruta & Contribuição:\n' +
+                 'O Lucro Bruto é de R$ 50.657.023 (53.4% da ROL). Na nova tabela de Detalhe da Margem, a Margem de Contribuição atingiu R$ 3.518.371 no mês (+17.15% vs orçado).';
+        }
+
+        var botMsg = document.createElement('div');
+        botMsg.className = 'ai-message ai';
+        botMsg.style.whiteSpace = 'pre-line';
+        botMsg.textContent = resp;
+        body.appendChild(botMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 350);
+    }
+    window.sendMQIA = sendMQIA;
+
+    // Inicialização da Saudação
+    document.addEventListener('DOMContentLoaded', function() {
+      var hora = new Date().getHours();
+      var saudacao = 'Boa noite';
+      if (hora >= 5 && hora < 12) saudacao = 'Bom dia';
+      else if (hora >= 12 && hora < 18) saudacao = 'Boa tarde';
+
+      var grt = document.getElementById('mqiaGreetingMsg');
+      if (grt) {
+        grt.textContent = saudacao + ', Antônio!';
+      }
+
+      var widget = document.getElementById('ai-chat-widget');
+      if (widget) {
+        widget.addEventListener('click', function(e) {
+          if (widget.classList.contains('ai-chat-collapsed')) {
+            toggleChat(true);
+          }
+        });
+      }
+    });
+  </script>
+</body>
 </html>
