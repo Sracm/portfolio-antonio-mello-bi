@@ -41,9 +41,9 @@
     height: 56px !important;
     width: 56px !important;
     border-radius: 28px !important;
-    border: 2px solid #CB9727 !important;
+    border: 2px solid #10b981 !important;
     background: #18191e !important;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 14px rgba(203, 151, 39, 0.5) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 16px rgba(16, 185, 129, 0.6) !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -53,9 +53,9 @@
   }
   
   @keyframes pulseMQIA {
-    0% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0.7); }
-    70% { box-shadow: 0 0 0 12px rgba(203, 151, 39, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0); }
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
   }
   
   #ai-chat-widget.ai-chat-collapsed .ai-chat-header {
@@ -80,6 +80,8 @@
     border-radius: 50% !important;
     border: none !important;
     display: block !important;
+    object-fit: cover !important;
+    object-position: center 18% !important;
   }
   
   .ai-chat-header {
@@ -109,7 +111,8 @@
     height: 32px !important;
     border-radius: 50% !important;
     object-fit: cover !important;
-    border: 2px solid #CB9727 !important;
+    object-position: center 18% !important;
+    border: 2px solid #10b981 !important;
   }
   
   .ai-chat-controls button {
@@ -1074,7 +1077,7 @@
     <div class="ai-chat-header" id="ai-chat-header">
       <div class="ai-chat-title">
         <span class="ai-icon">
-          <img src="ai_avatar.png" alt="Assistente Pessoal" class="ai-avatar-img">
+          <img src="eco_ai_avatar.jpg" alt="Assistente Pessoal" class="ai-avatar-img">
         </span>
         <span>Assistente Pessoal</span>
       </div>
