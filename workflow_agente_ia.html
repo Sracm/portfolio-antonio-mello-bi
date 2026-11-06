@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Workflows de Automação n8n & Agentes de IA | Antonio Mello</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
@@ -37,7 +40,7 @@
       font-family: 'Montserrat', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
-      background-image: 
+      background-image:
         radial-gradient(ellipse at 20% 0%, rgba(168, 85, 247, 0.12) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 10%, rgba(0, 229, 255, 0.10) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 90%, rgba(203, 151, 39, 0.08) 0%, transparent 60%);
@@ -113,8 +116,17 @@
     }
 
     @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+      }
     }
 
     .brand-title p {
@@ -293,8 +305,15 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* WORKFLOW CARD */
@@ -460,11 +479,35 @@
       font-size: 0.9rem;
     }
 
-    .node-icon.trigger { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.4); }
-    .node-icon.ai { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
-    .node-icon.db { background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); }
-    .node-icon.code { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
-    .node-icon.output { background: rgba(0, 229, 255, 0.2); color: #22d3ee; border: 1px solid rgba(0, 229, 255, 0.4); }
+    .node-icon.trigger {
+      background: rgba(239, 68, 68, 0.2);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .node-icon.ai {
+      background: rgba(168, 85, 247, 0.2);
+      color: #c084fc;
+      border: 1px solid rgba(168, 85, 247, 0.4);
+    }
+
+    .node-icon.db {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .node-icon.code {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+    }
+
+    .node-icon.output {
+      background: rgba(0, 229, 255, 0.2);
+      color: #22d3ee;
+      border: 1px solid rgba(0, 229, 255, 0.4);
+    }
 
     .node-title {
       font-size: 0.85rem;
@@ -573,16 +616,38 @@
 
     /* RESPONSIVE */
     @media (max-width: 768px) {
-      .topbar { padding: 0.8rem 1rem; }
-      .main-container { padding: 1rem 1rem 3rem 1rem; }
-      .hero-banner { padding: 1.4rem; }
-      .hero-title { font-size: 1.25rem; }
-      .wf-header { flex-direction: column; align-items: flex-start; }
-      .tabs-nav { flex-direction: column; }
-      .tab-btn { width: 100%; }
+      .topbar {
+        padding: 0.8rem 1rem;
+      }
+
+      .main-container {
+        padding: 1rem 1rem 3rem 1rem;
+      }
+
+      .hero-banner {
+        padding: 1.4rem;
+      }
+
+      .hero-title {
+        font-size: 1.25rem;
+      }
+
+      .wf-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tabs-nav {
+        flex-direction: column;
+      }
+
+      .tab-btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- TOPBAR -->
@@ -619,7 +684,10 @@
       </div>
       <h2 class="hero-title">Arquitetura de Orquestração com Agentes de IA & Pipelines ETL</h2>
       <p class="hero-desc">
-        Abaixo estão documentadas as duas esteiras corporativas construídas em <strong>n8n</strong>. Elas conectam inteligência artificial autônoma (OpenRouter/Gemini), memória conversacional persistente em PostgreSQL, clientes de ferramentas locais (Protocolo MCP) e pipelines de extração/normalização de dados em PDF e CSV com roteamento síncrono.
+        Abaixo estão documentadas as duas esteiras corporativas construídas em <strong>n8n</strong>. Elas conectam
+        inteligência artificial autônoma (OpenRouter/Gemini), memória conversacional persistente em PostgreSQL, clientes
+        de ferramentas locais (Protocolo MCP) e pipelines de extração/normalização de dados em PDF e CSV com roteamento
+        síncrono.
       </p>
     </section>
 
@@ -646,7 +714,8 @@
               <i class="fa-solid fa-brain" style="color: var(--purple);"></i>
               Automação com Agentes de IA & Multi-Agentes (n8n & OpenRouter)
             </h2>
-            <p>Orquestrador autônomo com roteamento de LLMs, memória conversacional PostgreSQL e sub-agentes especialistas</p>
+            <p>Orquestrador autônomo com roteamento de LLMs, memória conversacional PostgreSQL e sub-agentes
+              especialistas</p>
           </div>
           <div class="wf-tags">
             <span class="tag-pill ai"><i class="fa-solid fa-sparkles"></i> OpenRouter LLMs</span>
@@ -657,8 +726,10 @@
           </div>
         </div>
 
-        <div class="wf-image-stage" onclick="openFullImage('static/portfolio_screenshots/n8n_workflow_agente_ia_hd.png', 'Automação com Agentes de IA & Multi-Agentes (n8n & OpenRouter)')">
-          <img src="static/portfolio_screenshots/n8n_workflow_agente_ia_hd.png" alt="Fluxo n8n de Agente de IA e Multi-Agentes">
+        <div class="wf-image-stage"
+          onclick="openFullImage('static/portfolio_screenshots/n8n_workflow_agente_ia_hd.png', 'Automação com Agentes de IA & Multi-Agentes (n8n & OpenRouter)')">
+          <img src="static/portfolio_screenshots/n8n_workflow_agente_ia_hd.png"
+            alt="Fluxo n8n de Agente de IA e Multi-Agentes">
           <div class="zoom-hint">
             <i class="fa-solid fa-magnifying-glass-plus"></i> Clique para ampliar em alta resolução
           </div>
@@ -674,63 +745,72 @@
                 <div class="node-icon trigger"><i class="fa-solid fa-comments"></i></div>
                 <div class="node-title">Chat Trigger</div>
               </div>
-              <p class="node-desc">Recepção de mensagens em tempo real originadas de interfaces executivas, WhatsApp ou portais corporativos.</p>
+              <p class="node-desc">Recepção de mensagens em tempo real originadas de interfaces executivas, WhatsApp ou
+                portais corporativos.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon code"><i class="fa-solid fa-pen-to-square"></i></div>
                 <div class="node-title">Editar Campos</div>
               </div>
-              <p class="node-desc">Sanitização de prompt, enriquecimento de metadados, identificação do remetente e injeção de parâmetros contábeis.</p>
+              <p class="node-desc">Sanitização de prompt, enriquecimento de metadados, identificação do remetente e
+                injeção de parâmetros contábeis.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon ai"><i class="fa-solid fa-robot"></i></div>
                 <div class="node-title">Agente de IA Central</div>
               </div>
-              <p class="node-desc">Núcleo decisor autônomo. Avalia o prompt, consulta ferramentas conectadas e delega tarefas aos sub-agentes.</p>
+              <p class="node-desc">Núcleo decisor autônomo. Avalia o prompt, consulta ferramentas conectadas e delega
+                tarefas aos sub-agentes.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon ai"><i class="fa-solid fa-network-wired"></i></div>
                 <div class="node-title">OpenRouter LLM</div>
               </div>
-              <p class="node-desc">Gateway universal para inferência dinâmica entre GPT-4o, Claude 3.5 Sonnet e DeepSeek, balanceando custo e latência.</p>
+              <p class="node-desc">Gateway universal para inferência dinâmica entre GPT-4o, Claude 3.5 Sonnet e
+                DeepSeek, balanceando custo e latência.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon db"><i class="fa-solid fa-database"></i></div>
                 <div class="node-title">Memória PostgreSQL</div>
               </div>
-              <p class="node-desc">Persistência conversacional contextual. Permite perguntas encadeadas sobre o DRE sem perda de contexto histórico.</p>
+              <p class="node-desc">Persistência conversacional contextual. Permite perguntas encadeadas sobre o DRE sem
+                perda de contexto histórico.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon ai"><i class="fa-solid fa-users-gear"></i></div>
                 <div class="node-title">Sub-Agentes Especialistas</div>
               </div>
-              <p class="node-desc">Agentes dedicados (Vagner & Pinhata) com instruções especializadas para conciliação contábil e auditoria financeira.</p>
+              <p class="node-desc">Agentes dedicados (Vagner & Pinhata) com instruções especializadas para conciliação
+                contábil e auditoria financeira.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon output"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                 <div class="node-title">Google Gemini Vision</div>
               </div>
-              <p class="node-desc">Geração de gráficos visuais explicativos e análise multimodal de comprovantes ou dashboards sob demanda.</p>
+              <p class="node-desc">Geração de gráficos visuais explicativos e análise multimodal de comprovantes ou
+                dashboards sob demanda.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon output"><i class="fa-solid fa-cubes"></i></div>
                 <div class="node-title">Cliente MCP & Tools</div>
               </div>
-              <p class="node-desc">Integração via Model Context Protocol para consulta atômica ao banco de dados SQLite fato_dre e chamadas ERP.</p>
+              <p class="node-desc">Integração via Model Context Protocol para consulta atômica ao banco de dados SQLite
+                fato_dre e chamadas ERP.</p>
             </div>
           </div>
 
           <div class="impact-strip">
             <i class="fa-solid fa-award" style="color: var(--gold); font-size: 1.4rem;"></i>
             <div>
-              <strong>Impacto Estratégico Comprovado:</strong> Redução do tempo de resposta a consultas executivas de 35 minutos para 2.4 segundos, com autonomia de triagem e precisão semântica de 99.8%.
+              <strong>Impacto Estratégico Comprovado:</strong> Redução do tempo de resposta a consultas executivas de 35
+              minutos para 2.4 segundos, com autonomia de triagem e precisão semântica de 99.8%.
             </div>
           </div>
         </div>
@@ -746,7 +826,8 @@
               <i class="fa-solid fa-file-invoice-dollar" style="color: var(--cyan);"></i>
               Automação ETL de Documentos & Leitura de PDF/CSV (n8n)
             </h2>
-            <p>Esteira de produção contínua para captura, roteamento condicional (IF Switch), extração tabular e normalização via JavaScript</p>
+            <p>Esteira de produção contínua para captura, roteamento condicional (IF Switch), extração tabular e
+              normalização via JavaScript</p>
           </div>
           <div class="wf-tags">
             <span class="tag-pill etl"><i class="fa-solid fa-file-pdf"></i> Extração PDF</span>
@@ -757,8 +838,10 @@
           </div>
         </div>
 
-        <div class="wf-image-stage" onclick="openFullImage('static/portfolio_screenshots/n8n_workflow_leitura_pdf_hd.png', 'Automação ETL de Documentos & Leitura de PDF/CSV (n8n)')">
-          <img src="static/portfolio_screenshots/n8n_workflow_leitura_pdf_hd.png" alt="Fluxo n8n de Leitura de PDF e CSV com roteamento">
+        <div class="wf-image-stage"
+          onclick="openFullImage('static/portfolio_screenshots/n8n_workflow_leitura_pdf_hd.png', 'Automação ETL de Documentos & Leitura de PDF/CSV (n8n)')">
+          <img src="static/portfolio_screenshots/n8n_workflow_leitura_pdf_hd.png"
+            alt="Fluxo n8n de Leitura de PDF e CSV com roteamento">
           <div class="zoom-hint">
             <i class="fa-solid fa-magnifying-glass-plus"></i> Clique para ampliar em alta resolução
           </div>
@@ -774,63 +857,72 @@
                 <div class="node-icon trigger"><i class="fa-solid fa-bolt"></i></div>
                 <div class="node-title">Webhook: PDF / CSV</div>
               </div>
-              <p class="node-desc">Ponto de entrada REST síncrono. Recebe arquivos multipart/form-data enviados por e-mails de fornecedores ou sistemas legados.</p>
+              <p class="node-desc">Ponto de entrada REST síncrono. Recebe arquivos multipart/form-data enviados por
+                e-mails de fornecedores ou sistemas legados.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon code"><i class="fa-solid fa-shuffle"></i></div>
                 <div class="node-title">Condicional: "Se" (IF)</div>
               </div>
-              <p class="node-desc">Roteador de bifurcação lógica. Inspeciona a extensão MIME e o cabeçalho do documento para separar fluxos de CSV e PDF.</p>
+              <p class="node-desc">Roteador de bifurcação lógica. Inspeciona a extensão MIME e o cabeçalho do documento
+                para separar fluxos de CSV e PDF.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon output"><i class="fa-solid fa-file-csv"></i></div>
                 <div class="node-title">Parser: Arquivo CSV</div>
               </div>
-              <p class="node-desc">Extração de dados tabulares delimitados por ponto-e-vírgula ou vírgula, tratando encoding UTF-8 / ISO-8859-1 automaticamente.</p>
+              <p class="node-desc">Extração de dados tabulares delimitados por ponto-e-vírgula ou vírgula, tratando
+                encoding UTF-8 / ISO-8859-1 automaticamente.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon output"><i class="fa-solid fa-file-pdf"></i></div>
                 <div class="node-title">Parser: Armarinhos PDF</div>
               </div>
-              <p class="node-desc">Motor de leitura OCR e parsing de texto não estruturado para faturas de armarinhos, notas fiscais de serviço e romaneios.</p>
+              <p class="node-desc">Motor de leitura OCR e parsing de texto não estruturado para faturas de armarinhos,
+                notas fiscais de serviço e romaneios.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon code"><i class="fa-brands fa-js"></i></div>
                 <div class="node-title">Normalizador: Código 1</div>
               </div>
-              <p class="node-desc">Transformação em JavaScript dos campos de CSV: casting de tipos (moeda BRL para float), normalização de datas ISO e validação de CNPJ.</p>
+              <p class="node-desc">Transformação em JavaScript dos campos de CSV: casting de tipos (moeda BRL para
+                float), normalização de datas ISO e validação de CNPJ.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon code"><i class="fa-brands fa-js"></i></div>
                 <div class="node-title">Normalizador: Código</div>
               </div>
-              <p class="node-desc">Expressões regulares (Regex) para captura de valores líquidos, retenções tributárias e identificação de centros de custo contábeis.</p>
+              <p class="node-desc">Expressões regulares (Regex) para captura de valores líquidos, retenções tributárias
+                e identificação de centros de custo contábeis.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon db"><i class="fa-solid fa-reply-all"></i></div>
                 <div class="node-title">Responder ao Webhook</div>
               </div>
-              <p class="node-desc">Devolução síncrona do JSON estruturado e validado para consumo imediato pelo Sankhya ERP ou gravação no banco analítico.</p>
+              <p class="node-desc">Devolução síncrona do JSON estruturado e validado para consumo imediato pelo Sankhya
+                ERP ou gravação no banco analítico.</p>
             </div>
             <div class="node-item">
               <div class="node-header">
                 <div class="node-icon ai"><i class="fa-solid fa-shield-check"></i></div>
                 <div class="node-title">Auditoria de Erros</div>
               </div>
-              <p class="node-desc">Captura atômica de falhas de leitura com emissão de alerta imediato caso o documento esteja corrompido ou fora do padrão.</p>
+              <p class="node-desc">Captura atômica de falhas de leitura com emissão de alerta imediato caso o documento
+                esteja corrompido ou fora do padrão.</p>
             </div>
           </div>
 
           <div class="impact-strip">
             <i class="fa-solid fa-stopwatch" style="color: var(--cyan); font-size: 1.4rem;"></i>
             <div>
-              <strong>Impacto Operacional Comprovado:</strong> Eliminação de 100% da digitação manual de relatórios e faturas, reduzindo o tempo de processamento em 95% e erradicando retrabalho por digitação incorreta.
+              <strong>Impacto Operacional Comprovado:</strong> Eliminação de 100% da digitação manual de relatórios e
+              faturas, reduzindo o tempo de processamento em 95% e erradicando retrabalho por digitação incorreta.
             </div>
           </div>
         </div>
@@ -887,4 +979,5 @@
   </script>
 
 </body>
+
 </html>
