@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,9 @@
   <!-- Google Fonts: Montserrat & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap"
+    rel="stylesheet">
 
   <!-- FontAwesome 6 Pro/Free -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -40,7 +43,11 @@
       --text-dim: #475569;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background-color: var(--bg-space);
@@ -48,7 +55,7 @@
       font-family: 'Montserrat', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
-      background-image: 
+      background-image:
         radial-gradient(circle at 15% 15%, rgba(234, 75, 113, 0.08) 0%, transparent 40%),
         radial-gradient(circle at 85% 20%, rgba(0, 210, 255, 0.08) 0%, transparent 45%),
         radial-gradient(circle at 50% 85%, rgba(168, 85, 247, 0.06) 0%, transparent 50%);
@@ -141,9 +148,17 @@
     }
 
     @keyframes pulse-ring {
-      0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.8); }
-      70% { box-shadow: 0 0 0 10px rgba(0, 230, 118, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.8);
+      }
+
+      70% {
+        box-shadow: 0 0 0 10px rgba(0, 230, 118, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 230, 118, 0);
+      }
     }
 
     .hud-controls {
@@ -174,7 +189,9 @@
       transform: translateY(-2px);
     }
 
-    .btn-action-primary:active { transform: scale(0.97); }
+    .btn-action-primary:active {
+      transform: scale(0.97);
+    }
 
     .btn-back-portfolio {
       background: rgba(30, 41, 59, 0.7);
@@ -361,7 +378,7 @@
 
     /* THE GRAPH CANVAS */
     .graph-stage {
-      background: 
+      background:
         radial-gradient(circle at 50% 50%, rgba(20, 27, 45, 0.7) 0%, rgba(8, 12, 19, 0.95) 100%),
         radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
       background-size: 100% 100%, 24px 24px;
@@ -401,8 +418,13 @@
     }
 
     @keyframes cable-flow {
-      from { stroke-dashoffset: 28; }
-      to { stroke-dashoffset: 0; }
+      from {
+        stroke-dashoffset: 28;
+      }
+
+      to {
+        stroke-dashoffset: 0;
+      }
     }
 
     /* Pipeline 2-Branch Layout Grid */
@@ -434,7 +456,8 @@
       backdrop-filter: blur(8px);
     }
 
-    .tech-node:hover, .tech-node.focused {
+    .tech-node:hover,
+    .tech-node.focused {
       transform: translateY(-5px);
       border-color: var(--node-color, var(--cyan));
       box-shadow: 0 14px 35px rgba(0, 0, 0, 0.7), 0 0 30px var(--node-glow, rgba(0, 210, 255, 0.4));
@@ -447,8 +470,13 @@
     }
 
     @keyframes pulse-node-active {
-      from { transform: scale(1); }
-      to { transform: scale(1.05); }
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.05);
+      }
     }
 
     .node-top-bar {
@@ -519,7 +547,8 @@
     }
 
     /* Node Ports */
-    .port-in, .port-out {
+    .port-in,
+    .port-out {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -531,8 +560,15 @@
       z-index: 3;
     }
 
-    .port-in { left: -6px; }
-    .port-out { right: -6px; background: var(--node-color, var(--cyan)); box-shadow: 0 0 8px var(--node-color); }
+    .port-in {
+      left: -6px;
+    }
+
+    .port-out {
+      right: -6px;
+      background: var(--node-color, var(--cyan));
+      box-shadow: 0 0 8px var(--node-color);
+    }
 
     /* Node Inspector Drawer */
     .inspector-panel {
@@ -738,10 +774,23 @@
       gap: 6px;
     }
 
-    .t-light { width: 9px; height: 9px; border-radius: 50%; }
-    .t-light.red { background: #ff5f56; }
-    .t-light.yellow { background: #ffbd2e; }
-    .t-light.green { background: #27c93f; }
+    .t-light {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+    }
+
+    .t-light.red {
+      background: #ff5f56;
+    }
+
+    .t-light.yellow {
+      background: #ffbd2e;
+    }
+
+    .t-light.green {
+      background: #27c93f;
+    }
 
     .terminal-feed {
       display: flex;
@@ -762,24 +811,72 @@
       transition: all 0.2s;
     }
 
-    .feed-row:hover { background: rgba(0, 210, 255, 0.06); }
+    .feed-row:hover {
+      background: rgba(0, 210, 255, 0.06);
+    }
 
-    .feed-ts { color: var(--text-dim); }
-    .feed-tag { padding: 2px 7px; border-radius: 4px; font-weight: 800; font-size: 0.64rem; }
-    .feed-tag.ok { background: rgba(0, 230, 118, 0.15); color: var(--green); border: 1px solid rgba(0, 230, 118, 0.3); }
-    .feed-tag.ai { background: rgba(168, 85, 247, 0.15); color: var(--purple); border: 1px solid rgba(168, 85, 247, 0.3); }
-    .feed-tag.run { background: rgba(0, 210, 255, 0.15); color: var(--cyan); border: 1px solid rgba(0, 210, 255, 0.3); }
-    .feed-msg { color: #cbd5e1; flex: 1; }
-    .feed-dur { color: var(--gold-light); font-weight: 700; }
+    .feed-ts {
+      color: var(--text-dim);
+    }
+
+    .feed-tag {
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 800;
+      font-size: 0.64rem;
+    }
+
+    .feed-tag.ok {
+      background: rgba(0, 230, 118, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(0, 230, 118, 0.3);
+    }
+
+    .feed-tag.ai {
+      background: rgba(168, 85, 247, 0.15);
+      color: var(--purple);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+    }
+
+    .feed-tag.run {
+      background: rgba(0, 210, 255, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+    }
+
+    .feed-msg {
+      color: #cbd5e1;
+      flex: 1;
+    }
+
+    .feed-dur {
+      color: var(--gold-light);
+      font-weight: 700;
+    }
 
     @media (max-width: 1200px) {
-      .impact-analytics-grid { grid-template-columns: 1fr; }
-      .workflow-grid-layout { min-width: 900px; }
-      .top-hud { flex-direction: column; align-items: flex-start; gap: 14px; }
-      .hud-controls { width: 100%; justify-content: space-between; }
+      .impact-analytics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .workflow-grid-layout {
+        min-width: 900px;
+      }
+
+      .top-hud {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .hud-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- ════ TOPBAR HUD ════ -->
@@ -881,7 +978,8 @@
             <span style="color:var(--n8n-coral);"><i class="fa-solid fa-bezier-curve"></i></span>
             Arquitetura Dinâmica do Workflow n8n & IA (Dual-Branch Pipeline)
           </h2>
-          <p>Fluxo automatizado com bifurcação analítica: extração contábil + triagem de IA + persistência e despacho executivo</p>
+          <p>Fluxo automatizado com bifurcação analítica: extração contábil + triagem de IA + persistência e despacho
+            executivo</p>
         </div>
 
         <div class="wf-preset-chips">
@@ -912,7 +1010,8 @@
 
           <!-- COL 1: Trigger -->
           <div style="grid-column: 1; grid-row: 1 / span 2; align-self: center;">
-            <div class="tech-node focused" id="node-1" onclick="focarNo(1)" style="--node-color:#ea4b71; --node-bg:rgba(234,75,113,0.18); --node-glow:rgba(234,75,113,0.5);">
+            <div class="tech-node focused" id="node-1" onclick="focarNo(1)"
+              style="--node-color:#ea4b71; --node-bg:rgba(234,75,113,0.18); --node-glow:rgba(234,75,113,0.5);">
               <div class="node-top-bar">
                 <div class="node-icon-box"><i class="fa-solid fa-clock"></i></div>
                 <span class="node-badge-type">Trigger</span>
@@ -929,7 +1028,8 @@
 
           <!-- COL 2: ERP API -->
           <div style="grid-column: 2; grid-row: 1 / span 2; align-self: center;">
-            <div class="tech-node" id="node-2" onclick="focarNo(2)" style="--node-color:#f59e0b; --node-bg:rgba(245,158,11,0.18); --node-glow:rgba(245,158,11,0.5);">
+            <div class="tech-node" id="node-2" onclick="focarNo(2)"
+              style="--node-color:#f59e0b; --node-bg:rgba(245,158,11,0.18); --node-glow:rgba(245,158,11,0.5);">
               <div class="port-in"></div>
               <div class="node-top-bar">
                 <div class="node-icon-box"><i class="fa-solid fa-database"></i></div>
@@ -947,7 +1047,8 @@
 
           <!-- COL 3, ROW 1: Code Normalizer (Branch Superior) -->
           <div style="grid-column: 3; grid-row: 1;">
-            <div class="tech-node" id="node-3a" onclick="focarNo('3a')" style="--node-color:#00d2ff; --node-bg:rgba(0,210,255,0.18); --node-glow:rgba(0,210,255,0.5);">
+            <div class="tech-node" id="node-3a" onclick="focarNo('3a')"
+              style="--node-color:#00d2ff; --node-bg:rgba(0,210,255,0.18); --node-glow:rgba(0,210,255,0.5);">
               <div class="port-in"></div>
               <div class="node-top-bar">
                 <div class="node-icon-box"><i class="fa-brands fa-js"></i></div>
@@ -965,7 +1066,8 @@
 
           <!-- COL 3, ROW 2: LLM Engine (Branch Inferior) -->
           <div style="grid-column: 3; grid-row: 2;">
-            <div class="tech-node" id="node-3b" onclick="focarNo('3b')" style="--node-color:#a855f7; --node-bg:rgba(168,85,247,0.18); --node-glow:rgba(168,85,247,0.5);">
+            <div class="tech-node" id="node-3b" onclick="focarNo('3b')"
+              style="--node-color:#a855f7; --node-bg:rgba(168,85,247,0.18); --node-glow:rgba(168,85,247,0.5);">
               <div class="port-in"></div>
               <div class="node-top-bar">
                 <div class="node-icon-box"><i class="fa-solid fa-brain"></i></div>
@@ -983,7 +1085,8 @@
 
           <!-- COL 4, ROW 1: SQLite DW (Branch Superior) -->
           <div style="grid-column: 4; grid-row: 1;">
-            <div class="tech-node" id="node-4a" onclick="focarNo('4a')" style="--node-color:#10b981; --node-bg:rgba(16,185,129,0.18); --node-glow:rgba(16,185,129,0.5);">
+            <div class="tech-node" id="node-4a" onclick="focarNo('4a')"
+              style="--node-color:#10b981; --node-bg:rgba(16,185,129,0.18); --node-glow:rgba(16,185,129,0.5);">
               <div class="port-in"></div>
               <div class="node-top-bar">
                 <div class="node-icon-box"><i class="fa-solid fa-server"></i></div>
@@ -1000,7 +1103,8 @@
 
           <!-- COL 4, ROW 2: WhatsApp Bot (Branch Inferior) -->
           <div style="grid-column: 4; grid-row: 2;">
-            <div class="tech-node" id="node-4b" onclick="focarNo('4b')" style="--node-color:#25d366; --node-bg:rgba(37,211,102,0.18); --node-glow:rgba(37,211,102,0.5);">
+            <div class="tech-node" id="node-4b" onclick="focarNo('4b')"
+              style="--node-color:#25d366; --node-bg:rgba(37,211,102,0.18); --node-glow:rgba(37,211,102,0.5);">
               <div class="port-in"></div>
               <div class="node-top-bar">
                 <div class="node-icon-box"><i class="fa-brands fa-whatsapp"></i></div>
@@ -1022,41 +1126,199 @@
       <div class="inspector-panel" id="inspPanel">
         <div class="inspector-header">
           <div class="inspector-id-block">
-            <div class="node-icon-box" id="inspIcon" style="background:rgba(234,75,113,0.2); color:#ea4b71;"><i class="fa-solid fa-clock"></i></div>
+            <div class="node-icon-box" id="inspIcon" style="background:rgba(234,75,113,0.2); color:#ea4b71;"><i
+                class="fa-solid fa-clock"></i></div>
             <div>
               <div class="insp-node-name" id="inspTitle">Nó 1: Cron Schedule Trigger</div>
-              <div class="insp-node-tech" id="inspDesc">Gatilho temporal automático configurado para executar diariamente às 07:00 com failover redundante.</div>
+              <div class="insp-node-tech" id="inspDesc">Gatilho temporal automático configurado para executar
+                diariamente às 07:00 com failover redundante.</div>
             </div>
           </div>
 
           <div class="inspector-stats-row">
             <div class="insp-stat-item">Latência: <strong id="inspLatency">2 ms</strong></div>
-            <div class="insp-stat-item">Status: <strong style="color:var(--green);" id="inspStatus">200 OK (Healthy)</strong></div>
+            <div class="insp-stat-item">Status: <strong style="color:var(--green);" id="inspStatus">200 OK
+                (Healthy)</strong></div>
             <div class="insp-stat-item">Execuções Mês: <strong id="inspExecs">720 runs</strong></div>
           </div>
         </div>
 
         <div>
-          <div style="font-size:0.66rem; color:var(--text-dim); margin-bottom:4px; font-weight:800; letter-spacing:0.5px;">PAYLOAD JSON DE ENTRADA / SAÍDA TRATADO:</div>
+          <div
+            style="font-size:0.66rem; color:var(--text-dim); margin-bottom:4px; font-weight:800; letter-spacing:0.5px;">
+            PAYLOAD JSON DE ENTRADA / SAÍDA TRATADO:</div>
           <div class="json-code-box" id="inspJson">
-{
-  "trigger": "cron_daily_0700",
-  "pipeline": "WF_DRE_ANALYTICS_V4",
-  "branch_strategy": "parallel_fork",
-  "status": "HEALTHY",
-  "next_scheduled_run": "2026-11-06T07:00:00Z"
-}
+            {
+            "trigger": "cron_daily_0700",
+            "pipeline": "WF_DRE_ANALYTICS_V4",
+            "branch_strategy": "parallel_fork",
+            "status": "HEALTHY",
+            "next_scheduled_run": "2026-11-06T07:00:00Z"
+            }
           </div>
         </div>
       </div>
     </section>
 
     <!-- ════ 3. ANÁLISE COMPARATIVA DE EFICIÊNCIA (ANTES VS DEPOIS) ════ -->
+    
+    <!-- ========================================== -->
+    <!-- ESTEIRAS REAIS EM PRODUCAO NO n8n -->
+    <!-- ========================================== -->
+    <section class="flow-viewport-card" style="margin-top: 1.5rem; border: 1px solid rgba(255, 109, 90, 0.35); background: linear-gradient(180deg, rgba(20, 14, 24, 0.95), rgba(13, 10, 16, 0.98));">
+      <div class="viewport-header" style="flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding-bottom: 1rem;">
+        <div>
+          <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent-cyan); font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-camera"></i> Casos Reais em Produção Corporativa
+          </span>
+          <h2 style="font-size: 1.35rem; font-weight: 800; color: #fff; margin-top: 0.3rem; display: flex; align-items: center; gap: 10px;">
+            Workflows Oficiais n8n & Arquitetura de Agentes
+            <span style="font-size: 0.65rem; background: rgba(0, 242, 254, 0.15); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); padding: 3px 8px; border-radius: 12px; font-weight: 700;">PRODUÇÃO ATIVA</span>
+          </h2>
+          <p style="font-size: 0.82rem; color: #94a3b8; margin-top: 0.2rem;">
+            Capturas de tela das esteiras em execução corporativa: orquestração multi-agente com LangChain/OpenRouter e pipeline ETL de documentos PDF/CSV.
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 8px;">
+          <button id="btnTabWf1" class="btn-action-primary" onclick="switchWorkflowTab(1)" style="font-size: 0.75rem; padding: 7px 14px; background: linear-gradient(135deg, #ff6d5a, #ea4b71); box-shadow: 0 0 15px rgba(234, 75, 113, 0.4);">
+            <i class="fa-solid fa-robot"></i> 1. Agente de IA & OpenRouter (DRE)
+          </button>
+          <button id="btnTabWf2" class="btn-action-primary" onclick="switchWorkflowTab(2)" style="font-size: 0.75rem; padding: 7px 14px; background: #1c1826; border: 1px solid rgba(255, 255, 255, 0.15); color: #94a3b8; box-shadow: none;">
+            <i class="fa-solid fa-file-pdf"></i> 2. Leitura & Extração PDF / CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- WORKFLOW 1: AGENTE DE IA & OPENROUTER (DRE) -->
+      <div id="wfTabContent1" style="display: block; padding: 1.5rem 0;">
+        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; align-items: start;">
+          <div style="background: #090a0f; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+            <img id="imgWf1" src="../static/portfolio_screenshots/n8n_agente_ia_dre.jpg" alt="Agente de IA n8n DRE" style="width: 100%; height: auto; display: block; cursor: zoom-in; transition: transform 0.3s ease;" onclick="openWfModal(this.src, 'Agente de IA Autônomo com n8n & OpenRouter (Automação DRE)')">
+            <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 6px 14px; font-size: 0.75rem; color: #fff; display: flex; align-items: center; gap: 6px; cursor: pointer;" onclick="openWfModal('../static/portfolio_screenshots/n8n_agente_ia_dre.jpg', 'Agente de IA Autônomo com n8n & OpenRouter (Automação DRE)')">
+              <i class="fa-solid fa-magnifying-glass-plus" style="color: var(--accent-cyan);"></i> Clique para Ampliar em HD
+            </div>
+            <div style="position: absolute; top: 12px; left: 12px; background: rgba(234, 75, 113, 0.9); border-radius: 6px; padding: 4px 10px; font-size: 0.7rem; font-weight: 800; color: #fff; letter-spacing: 0.05em;">
+              FLUXO REAL: Pessoal / Automacao dre
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.2rem;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-microchip"></i> Arquitetura do Agente
+              </h4>
+              <p style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
+                Sistema multi-agente construído sobre a engine LangChain no n8n. O nó central atua como Maestro autônomo, tomando decisões com base em contexto e delegando tarefas analíticas.
+              </p>
+              
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.74rem;">
+                <div style="background: #111420; border-left: 3px solid #ff6d5a; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #ff6d5a;">Trigger:</strong> Mensagem recebida no chat
+                </div>
+                <div style="background: #111420; border-left: 3px solid #00f2fe; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #00f2fe;">LLM Core:</strong> Modelo OpenRouter (Dynamic routing)
+                </div>
+                <div style="background: #111420; border-left: 3px solid #ffd700; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #ffd700;">Memória:</strong> PostgreSQL Chat Memory (Contexto longo)
+                </div>
+                <div style="background: #111420; border-left: 3px solid #a855f7; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #a855f7;">Sub-agentes:</strong> Agente Vagner + Agente Pinhata
+                </div>
+                <div style="background: #111420; border-left: 3px solid #22c55e; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #22c55e;">Multimodal:</strong> Google Gemini Vision / Image Gen
+                </div>
+                <div style="background: #111420; border-left: 3px solid #38bdf8; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #38bdf8;">Protocolo MCP:</strong> Cliente MCP conectado a ferramentas
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(0, 242, 254, 0.05); border: 1px solid rgba(0, 242, 254, 0.2); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase;">Tempo de Resposta Médio</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: var(--accent-cyan); margin: 0.2rem 0;">1.8s <span style="font-size: 0.75rem; color: #22c55e;">(vs 35 min manual)</span></div>
+              <div style="font-size: 0.74rem; color: #cbd5e1;">Consultas financeiras e geração de insights em linguagem natural instantâneos.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKFLOW 2: LEITURA E EXTRACAO DE PDF / CSV -->
+      <div id="wfTabContent2" style="display: none; padding: 1.5rem 0;">
+        <div style="display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem; align-items: start;">
+          <div style="background: #090a0f; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+            <img id="imgWf2" src="../static/portfolio_screenshots/n8n_fluxo_leitura_pdf.png" alt="Leitura de PDF n8n" style="width: 100%; height: auto; display: block; cursor: zoom-in; transition: transform 0.3s ease;" onclick="openWfModal(this.src, 'Esteira ETL de Documentos: Leitura de PDF & CSV via Webhook')">
+            <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 6px 14px; font-size: 0.75rem; color: #fff; display: flex; align-items: center; gap: 6px; cursor: pointer;" onclick="openWfModal('../static/portfolio_screenshots/n8n_fluxo_leitura_pdf.png', 'Esteira ETL de Documentos: Leitura de PDF & CSV via Webhook')">
+              <i class="fa-solid fa-magnifying-glass-plus" style="color: var(--accent-cyan);"></i> Clique para Ampliar em HD
+            </div>
+            <div style="position: absolute; top: 12px; left: 12px; background: rgba(34, 197, 94, 0.9); border-radius: 6px; padding: 4px 10px; font-size: 0.7rem; font-weight: 800; color: #fff; letter-spacing: 0.05em;">
+              FLUXO REAL: Pessoal / Leia o PDF [ATIVO]
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 1.2rem;">
+              <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--gold-primary); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-filter"></i> Pipeline de Extração ETL
+              </h4>
+              <p style="font-size: 0.8rem; color: #cbd5e1; line-height: 1.5; margin-bottom: 0.8rem;">
+                Pipeline síncrono para ingestão de notas fiscais, faturas e relatórios armarinhos. Elimina 100% da digitação manual com retorno JSON validado ao webhook chamador.
+              </p>
+              
+              <div style="display: flex; flex-direction: column; gap: 6px; font-size: 0.74rem;">
+                <div style="background: #111420; border-left: 3px solid #ff6d5a; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #ff6d5a;">Webhook PDF:</strong> Endpoint de entrada com validação de payload
+                </div>
+                <div style="background: #111420; border-left: 3px solid #22c55e; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #22c55e;">Roteamento IF (Se):</strong> Bifurcação entre extensão CSV ou PDF
+                </div>
+                <div style="background: #111420; border-left: 3px solid #00f2fe; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #00f2fe;">Branch 1 (CSV):</strong> Extração direta de texto delimitado
+                </div>
+                <div style="background: #111420; border-left: 3px solid #ffd700; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #ffd700;">Branch 2 (PDF):</strong> Parser OCR/Text de Armarinhos
+                </div>
+                <div style="background: #111420; border-left: 3px solid #f59e0b; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #f59e0b;">Nós JS (Código 1/Código):</strong> Limpeza de Regex e cálculo de impostos
+                </div>
+                <div style="background: #111420; border-left: 3px solid #ec4899; padding: 6px 10px; border-radius: 4px; color: #e2e8f0;">
+                  <strong style="color: #ec4899;">Responder Webhook:</strong> Envio imediato da resposta estruturada
+                </div>
+              </div>
+            </div>
+
+            <div style="background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 10px; padding: 1rem;">
+              <div style="font-size: 0.72rem; color: #94a3b8; text-transform: uppercase;">Taxa de Precisão dos Dados</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #22c55e; margin: 0.2rem 0;">99.85% <span style="font-size: 0.75rem; color: var(--accent-cyan);">Zero Erro Humano</span></div>
+              <div style="font-size: 0.74rem; color: #cbd5e1;">Mais de 4.200 páginas e faturas processadas com reconciliação contábil automática.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL LIGHTBOX PARA WORKFLOWS -->
+    <div id="modalWfLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.92); z-index: 99999; backdrop-filter: blur(10px); align-items: center; justify-content: center; flex-direction: column; padding: 2rem; box-sizing: border-box;" onclick="closeWfModal()">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 95%; max-width: 1400px; margin-bottom: 1rem;" onclick="event.stopPropagation()">
+        <div>
+          <span style="font-size: 0.7rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase;">Workflow n8n Oficial em Produção</span>
+          <h3 id="modalWfTitle" style="color: #fff; font-size: 1.2rem; font-weight: 800; margin-top: 0.2rem;">Título</h3>
+        </div>
+        <button onclick="closeWfModal()" style="background: #201a2c; border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 8px 18px; border-radius: 8px; font-weight: 700; cursor: pointer;">
+          <i class="fa-solid fa-xmark"></i> Fechar
+        </button>
+      </div>
+      <div style="width: 95%; max-width: 1400px; max-height: 82vh; overflow: auto; background: #07080c; border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; display: flex; align-items: center; justify-content: center;" onclick="event.stopPropagation()">
+        <img id="modalWfImage" src="" alt="Workflow Ampliado" style="width: 100%; height: auto; display: block;">
+      </div>
+    </div>
+
     <section class="impact-analytics-grid">
       <!-- Chart: Curva de Redução de FTE -->
       <div class="analytic-card">
         <div class="card-headline">
-          <h3><i class="fa-solid fa-chart-line" style="color:var(--gold);"></i> Curva Cumulativa de Horas Economizadas no Mês</h3>
+          <h3><i class="fa-solid fa-chart-line" style="color:var(--gold);"></i> Curva Cumulativa de Horas Economizadas
+            no Mês</h3>
           <span style="font-size:0.74rem; color:var(--text-muted);">Mensuração direta em horas-homem (FTE)</span>
         </div>
         <div class="chart-box-main">
@@ -1080,14 +1342,16 @@
           </div>
 
           <div class="duel-item">
-            <div class="duel-name"><i class="fa-solid fa-file-invoice-dollar" style="color:#ea4b71;"></i> Fechamento DRE</div>
+            <div class="duel-name"><i class="fa-solid fa-file-invoice-dollar" style="color:#ea4b71;"></i> Fechamento DRE
+            </div>
             <div class="duel-manual">45 min</div>
             <div class="duel-n8n"><i class="fa-solid fa-bolt"></i> 2.4s</div>
             <div class="duel-multiplier">+1.125x</div>
           </div>
 
           <div class="duel-item">
-            <div class="duel-name"><i class="fa-solid fa-hospital-user" style="color:#00d2ff;"></i> Auditoria Glosas</div>
+            <div class="duel-name"><i class="fa-solid fa-hospital-user" style="color:#00d2ff;"></i> Auditoria Glosas
+            </div>
             <div class="duel-manual">3h 20m</div>
             <div class="duel-n8n"><i class="fa-solid fa-bolt"></i> 18.5s</div>
             <div class="duel-multiplier">+650x</div>
@@ -1101,7 +1365,8 @@
           </div>
 
           <div class="duel-item">
-            <div class="duel-name"><i class="fa-solid fa-scale-balanced" style="color:#10b981;"></i> Conciliação OFX</div>
+            <div class="duel-name"><i class="fa-solid fa-scale-balanced" style="color:#10b981;"></i> Conciliação OFX
+            </div>
             <div class="duel-manual">1h 10m</div>
             <div class="duel-n8n"><i class="fa-solid fa-bolt"></i> 4.1s</div>
             <div class="duel-multiplier">+1.020x</div>
@@ -1137,19 +1402,22 @@
         <div class="feed-row">
           <span class="feed-ts">[23:58:12]</span>
           <span class="feed-tag ok">SUCCESS</span>
-          <span class="feed-msg">Workflow <strong>WF_DRE_ANALYTICS_V4</strong>: 828 registros consolidados na base SQLite fato_dre.</span>
+          <span class="feed-msg">Workflow <strong>WF_DRE_ANALYTICS_V4</strong>: 828 registros consolidados na base
+            SQLite fato_dre.</span>
           <span class="feed-dur">2.14s</span>
         </div>
         <div class="feed-row">
           <span class="feed-ts">[23:55:00]</span>
           <span class="feed-tag ai">GENAI</span>
-          <span class="feed-msg">OpenRouter LLM gerou diagnóstico executivo: superávit de R$ 394k em EBITDA e margem de 18.1%.</span>
+          <span class="feed-msg">OpenRouter LLM gerou diagnóstico executivo: superávit de R$ 394k em EBITDA e margem de
+            18.1%.</span>
           <span class="feed-dur">1.18s</span>
         </div>
         <div class="feed-row">
           <span class="feed-ts">[23:50:30]</span>
           <span class="feed-tag run">DISPATCH</span>
-          <span class="feed-msg">WhatsApp Business API entregou alerta executivo com 100% de leitura para C-Level.</span>
+          <span class="feed-msg">WhatsApp Business API entregou alerta executivo com 100% de leitura para
+            C-Level.</span>
           <span class="feed-dur">410ms</span>
         </div>
         <div class="feed-row">
@@ -1438,5 +1706,49 @@
       });
     });
   </script>
+
+  <script>
+    function switchWorkflowTab(tabNumber) {
+      const tab1 = document.getElementById('wfTabContent1');
+      const tab2 = document.getElementById('wfTabContent2');
+      const btn1 = document.getElementById('btnTabWf1');
+      const btn2 = document.getElementById('btnTabWf2');
+      if (tabNumber === 1) {
+        tab1.style.display = 'block';
+        tab2.style.display = 'none';
+        btn1.style.background = 'linear-gradient(135deg, #ff6d5a, #ea4b71)';
+        btn1.style.color = '#fff';
+        btn1.style.boxShadow = '0 0 15px rgba(234, 75, 113, 0.4)';
+        btn2.style.background = '#1c1826';
+        btn2.style.color = '#94a3b8';
+        btn2.style.boxShadow = 'none';
+      } else {
+        tab1.style.display = 'none';
+        tab2.style.display = 'block';
+        btn2.style.background = 'linear-gradient(135deg, #22c55e, #059669)';
+        btn2.style.color = '#fff';
+        btn2.style.boxShadow = '0 0 15px rgba(34, 197, 94, 0.4)';
+        btn1.style.background = '#1c1826';
+        btn1.style.color = '#94a3b8';
+        btn1.style.boxShadow = 'none';
+      }
+    }
+
+    function openWfModal(src, title) {
+      document.getElementById('modalWfImage').src = src;
+      document.getElementById('modalWfTitle').textContent = title;
+      const modal = document.getElementById('modalWfLightbox');
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeWfModal() {
+      const modal = document.getElementById('modalWfLightbox');
+      modal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  </script>
 </body>
+
+
 </html>
