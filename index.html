@@ -1233,12 +1233,15 @@
       const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       const qNorm = norm(searchTerm);
       const filtered = DASHBOARDS.filter(d => {
-        const matchesDept = (currentDept === 'ALL' || d.department === currentDept);
         const matchesSearch = !qNorm || 
           norm(d.title).includes(qNorm) || 
           norm(d.description).includes(qNorm) || 
           norm(d.department).includes(qNorm) ||
-          norm(d.tech).includes(qNorm);
+          norm(d.tech).includes(qNorm) ||
+          norm((d.stack || []).join(' ')).includes(qNorm) ||
+          norm(d.impact || '').includes(qNorm);
+        // Se houver termo de busca digitado, pesquisa em todos os dashboards
+        const matchesDept = qNorm ? true : (currentDept === 'ALL' || d.department === currentDept);
         return matchesDept && matchesSearch;
       });
 

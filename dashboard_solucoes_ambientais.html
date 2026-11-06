@@ -12,6 +12,212 @@
     .amber-glow { box-shadow: 0 4px 20px -2px rgba(245, 158, 11, 0.15); }
     .transition-all-custom { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
   </style>
+<style>
+  /* ══════════════════════════════════════════════════════════════════════════
+     🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE PESSOAL (BASE ECOSOLUTIONS BI)
+     ══════════════════════════════════════════════════════════════════════════ */
+  #ai-chat-widget {
+    position: fixed !important;
+    bottom: 20px !important;
+    right: 20px !important;
+    width: 350px !important;
+    height: 520px !important;
+    background: #18191e !important;
+    border: 1px solid #CB9727 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.75) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    z-index: 999999 !important;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    overflow: hidden !important;
+    font-family: inherit !important;
+  }
+  
+  #ai-chat-widget.ai-chat-collapsed {
+    height: 56px !important;
+    width: 56px !important;
+    border-radius: 28px !important;
+    border: 2px solid #CB9727 !important;
+    background: #18191e !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6), 0 0 14px rgba(203, 151, 39, 0.5) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    animation: pulseMQIA 2.5s infinite !important;
+  }
+  
+  @keyframes pulseMQIA {
+    0% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0.7); }
+    70% { box-shadow: 0 0 0 12px rgba(203, 151, 39, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(203, 151, 39, 0); }
+  }
+  
+  #ai-chat-widget.ai-chat-collapsed .ai-chat-header {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    justify-content: center !important;
+  }
+  
+  #ai-chat-widget.ai-chat-collapsed .ai-chat-title span:last-child,
+  #ai-chat-widget.ai-chat-collapsed .ai-chat-controls,
+  #ai-chat-widget.ai-chat-collapsed .ai-chat-body,
+  #ai-chat-widget.ai-chat-collapsed .ai-chat-footer {
+    display: none !important;
+  }
+  
+  #ai-chat-widget.ai-chat-collapsed .ai-avatar-img {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 50% !important;
+    border: none !important;
+    display: block !important;
+  }
+  
+  .ai-chat-header {
+    height: 48px !important;
+    min-height: 48px !important;
+    background: #121317 !important;
+    border-bottom: 1px solid rgba(203, 151, 39, 0.3) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 16px !important;
+    cursor: pointer !important;
+    user-select: none !important;
+  }
+  
+  .ai-chat-title {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    color: #CB9727 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+  }
+  
+  .ai-avatar-img {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2px solid #CB9727 !important;
+  }
+  
+  .ai-chat-controls button {
+    background: none !important;
+    border: none !important;
+    color: #94a3b8 !important;
+    font-size: 18px !important;
+    cursor: pointer !important;
+    line-height: 1 !important;
+    padding: 4px 6px !important;
+  }
+  .ai-chat-controls button:hover {
+    color: #CB9727 !important;
+  }
+  
+  .ai-chat-body {
+    flex: 1 !important;
+    padding: 14px !important;
+    overflow-y: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+  }
+  
+  .ai-message {
+    padding: 10px 14px !important;
+    border-radius: 8px !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    word-wrap: break-word !important;
+  }
+  
+  .ai-message.ai {
+    background: #23252d !important;
+    color: #ffffff !important;
+    border-left: 3px solid #CB9727 !important;
+    align-self: flex-start !important;
+    width: 100% !important;
+  }
+  
+  .ai-message.user {
+    background: rgba(203, 151, 39, 0.2) !important;
+    color: #ffffff !important;
+    border-right: 3px solid #CB9727 !important;
+    align-self: flex-end !important;
+    max-width: 85% !important;
+  }
+  
+  .ai-chips-bar {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    margin-top: 4px !important;
+  }
+  
+  .ai-chip {
+    background: rgba(203, 151, 39, 0.12) !important;
+    border: 1px solid rgba(203, 151, 39, 0.35) !important;
+    color: #CB9727 !important;
+    padding: 4px 9px !important;
+    border-radius: 16px !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+  .ai-chip:hover {
+    background: #CB9727 !important;
+    color: #000000 !important;
+  }
+  
+  .ai-chat-footer {
+    height: 52px !important;
+    padding: 8px 12px !important;
+    background: #121317 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  
+  .ai-chat-footer input {
+    flex: 1 !important;
+    background: #23252d !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 6px !important;
+    padding: 8px 10px !important;
+    color: #ffffff !important;
+    font-size: 12px !important;
+    outline: none !important;
+  }
+  .ai-chat-footer input:focus {
+    border-color: #CB9727 !important;
+  }
+  
+  .ai-chat-footer button {
+    background: #CB9727 !important;
+    border: none !important;
+    color: #000000 !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 6px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+  }
+</style>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen antialiased p-4 md:p-8">
 
@@ -849,5 +1055,255 @@
       }
     }
   </script>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════
+       🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE PESSOAL (BASE ECOSOLUTIONS BI)
+       ══════════════════════════════════════════════════════════════════════════ -->
+  <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleChat(true)" title="Abrir Assistente Pessoal">
+    <div class="ai-chat-header" id="ai-chat-header">
+      <div class="ai-chat-title">
+        <span class="ai-icon">
+          <img src="ai_avatar.png" alt="Assistente Pessoal" class="ai-avatar-img">
+        </span>
+        <span>Assistente Pessoal</span>
+      </div>
+      <div class="ai-chat-controls">
+        <button id="ai-chat-toggle" title="Minimizar" onclick="event.stopPropagation(); toggleChat(false);">_</button>
+      </div>
+    </div>
+    <div class="ai-chat-body" id="ai-chat-body">
+      <div class="ai-message ai">
+        <p style="margin: 0 0 8px 0; font-size: 14px; font-weight: 800; color: #fff;" id="mqiaGreetingMsg">Boa tarde, Antônio!</p>
+        <p style="margin: 0 0 8px 0; color: #cbd5e1;">Sou seu <strong>Assistente Pessoal</strong>.</p>
+        <p style="margin: 0 0 8px 0; color: #cbd5e1; line-height: 1.45;">Minha análise cruza dados e objetivos para trazer clareza às suas decisões.</p>
+        <p style="margin: 0; color: #cbd5e1; line-height: 1.45;">Estou pronta e à disposição para o diagnóstico da base <strong>ECOSOLUTIONS BI</strong>. Por qual indicador começamos?</p>
+      </div>
+
+      <div class="ai-chips-bar">
+        <button class="ai-chip" onclick="handleChipMQIA('💡 Resumo dos OKRs')">💡 Resumo dos OKRs</button>
+        <button class="ai-chip" onclick="handleChipMQIA('🚚 Eficiência de Carga')">🚚 Eficiência de Carga</button>
+        <button class="ai-chip" onclick="handleChipMQIA('♻️ Desvio de Aterro')">♻️ Desvio de Aterro</button>
+        <button class="ai-chip" onclick="handleChipMQIA('🌿 Emissões GEE')">🌿 Emissões GEE</button>
+        <button class="ai-chip" onclick="handleChipMQIA('📈 Faturamento vs Meta')">📈 Faturamento vs Meta</button>
+      </div>
+    </div>
+    <div class="ai-chat-footer">
+      <input type="text" id="ai-chat-input" placeholder="Faça uma pergunta sobre a operação ou OKRs..." onkeypress="if(event.key==='Enter') sendMQIA()" />
+      <button id="ai-chat-send" onclick="sendMQIA()" title="Enviar">➤</button>
+    </div>
+  </div>
+
+
+  <!-- ════ JAVASCRIPT DO ASSISTENTE PESSOAL DE IA (BASE ECOSOLUTIONS) ════ -->
+  <script>
+    function toggleChat(forceOpen) {
+      var widget = document.getElementById('ai-chat-widget');
+      var btnToggle = document.getElementById('ai-chat-toggle');
+      var input = document.getElementById('ai-chat-input');
+      if (!widget) return;
+
+      if (forceOpen === true) {
+        widget.classList.remove('ai-chat-collapsed');
+      } else if (forceOpen === false) {
+        widget.classList.add('ai-chat-collapsed');
+      } else {
+        widget.classList.toggle('ai-chat-collapsed');
+      }
+
+      var isCollapsed = widget.classList.contains('ai-chat-collapsed');
+      if (btnToggle) btnToggle.textContent = isCollapsed ? '↑' : '_';
+      if (!isCollapsed && input) {
+        setTimeout(function() { input.focus(); }, 150);
+      }
+    }
+    window.toggleChat = toggleChat;
+
+    function handleChipMQIA(txt) {
+      var input = document.getElementById('ai-chat-input');
+      if (input) input.value = txt;
+      sendMQIA();
+    }
+    window.handleChipMQIA = handleChipMQIA;
+
+    function gerarRespostaEcoSolutions(promptText) {
+      var q = (promptText || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+      // Saudação
+      if (
+        q === 'ola' || q === 'oi' || q === 'opa' || q === 'ola!' || q === 'oi!' ||
+        q.startsWith('ola ') || q.startsWith('oi ') || q.startsWith('bom dia') ||
+        q.startsWith('boa tarde') || q.startsWith('boa noite') ||
+        q.includes('tudo bem') || q.includes('como vai') || q.includes('e ai')
+      ) {
+        var hora = new Date().getHours();
+        var saud = 'Boa noite';
+        if (hora >= 5 && hora < 12) saud = 'Bom dia';
+        else if (hora >= 12 && hora < 18) saud = 'Boa tarde';
+
+        return saud + ', Antônio! Tudo bem?\n' +
+               'Sou seu **Assistente Pessoal** da base **ECOSOLUTIONS BI | Gestão Ambiental & OKRs**.\n\n' +
+               'Estou conectada a todos os dados consolidados de Jan a Set/2024. O que deseja consultar?\n' +
+               '• 💡 **Resumo dos OKRs** (Ambiental & Eficiência do Negócio)\n' +
+               '• 🚚 **Carga por Caminhão & Viagens** (14,20 t/cam | 3.430 viagens)\n' +
+               '• ♻️ **Desvio de Aterro** (88,8% circularidade)\n' +
+               '• 🌿 **Emissões GEE & Descarbonização** (1.170 tCO₂e)\n' +
+               '• 📈 **Faturamento & Receita** (R$ 14,85M vs R$ 14,20M meta)';
+      }
+
+      // Resumo Geral / OKRs
+      if (q.includes('resumo') || q.includes('geral') || q.includes('visao') || q.includes('status') || q.includes('okr')) {
+        return '📊 **Diagnóstico Consolidado dos OKRs (ECOSOLUTIONS BI):**\n\n' +
+               '**1. OKR 01 - Acelerar a Transição Operacional (ESG):**\n' +
+               '• **Progresso:** 91,8% (Status: No Caminho / OK)\n' +
+               '• **Emissões GEE:** 1.170 tCO₂e (Teto Meta: ≤1.250 tCO₂e | -6,4% de folga)\n' +
+               '• **Desvio de Aterro:** 88,8% (Meta: ≥85,0% | +3,8 p.p. superada)\n' +
+               '• **Eficiência Hídrica:** 0,38 m³/t prod (Meta: ≤0,45 | -11,2% economia)\n' +
+               '• **Receita & Custo Evitado:** R$ 415k (118% da meta atingida)\n\n' +
+               '**2. OKR 02 - Eficiência do Negócio & Logística:**\n' +
+               '• **Progresso:** 94,2% (Status: Superando Metas)\n' +
+               '• **Faturamento Acumulado:** R$ 14.850.000 (+4,6% vs Meta R$ 14,20M)\n' +
+               '• **Volume Peso Processado:** 48.720 toneladas (+4,8% vs Meta)\n' +
+               '• **Viagens de Caminhões:** 3.430 viagens (otimização de -6,2% na frota)\n' +
+               '• **Carga Útil Média:** 14,20 t/caminhão (Meta: 13,50 t/cam | +5,2% ganho)';
+      }
+
+      // Caminhões, Viagens, Ocupação, Logística, Frota, Peso, Carga Útil
+      if (q.includes('caminh') || q.includes('viagem') || q.includes('viagens') || q.includes('carga') || q.includes('frota') || q.includes('logistica') || q.includes('peso') || q.includes('tonelada')) {
+        return '🚚 **Eficiência de Transporte & Carga por Caminhão:**\n\n' +
+               '• **Total de Viagens Realizadas:** 3.430 viagens de caminhões\n' +
+               '• **Volume Total Transportado:** 48.720 toneladas (Jan a Set/2024)\n' +
+               '• **Carga Útil Média:** 14,20 toneladas/caminhão (Meta: 13,50 t/cam)\n' +
+               '• **Ganho de Eficiência:** +5,2% na ocupação útil dos caminhões\n' +
+               '• **Receita Média por Viagem:** R$ 4.329 / caminhão\n' +
+               '• **Evolução de Carga:** Saltou de 13,48 t/cam em Janeiro para **14,76 t/cam em Setembro** (+9,5% de ganho contínuo)\n\n' +
+               '*Impacto: A consolidação de cargas evitou 215 viagens no período, gerando economia líquida de R$ 240,8 mil em óleo diesel e fretes.*';
+      }
+
+      // Faturamento, Receita, Meta Financeira, Vendas
+      if (q.includes('faturam') || q.includes('receita') || q.includes('financeir') || q.includes('meta') || q.includes('r$') || q.includes('valor')) {
+        return '📈 **Performance Financeira & Faturamento:**\n\n' +
+               '• **Faturamento Realizado (Jan-Set):** R$ 14.850.000\n' +
+               '• **Meta Orçada:** R$ 14.200.000\n' +
+               '• **Superávit Acumulado:** +R$ 650.000 (+4,6% acima do planejado)\n' +
+               '• **Evolução Mês a Mês:**\n' +
+               '  - Jan: R$ 1,42M | Fev: R$ 1,48M | Mar: R$ 1,59M\n' +
+               '  - Abr: R$ 1,62M | Mai: R$ 1,68M | Jun: R$ 1,71M\n' +
+               '  - Jul: R$ 1,76M | Ago: R$ 1,78M | Set: R$ 1,81M (recorde)\n' +
+               '• **Receita Unitária:** R$ 304,80 por tonelada processada e R$ 4.329 por caminhão.';
+      }
+
+      // Desvio de Aterro, Resíduos, Circularidade, Destinação, Reciclagem
+      if (q.includes('desvio') || q.includes('aterro') || q.includes('residuo') || q.includes('recicla') || q.includes('circular') || q.includes('destina')) {
+        return '♻️ **Circularidade & Matriz de Destinação de Resíduos:**\n\n' +
+               '• **Taxa de Desvio de Aterro:** 88,8% (Meta: ≥85,0% | +3,8 p.p. superada)\n' +
+               '• **Volume Total Desviado de Aterro:** 1.420 toneladas\n' +
+               '• **Distribuição da Matriz (1.600 t avaliadas):**\n' +
+               '  - ♻️ **Reciclagem Mecânica:** 54,0% (864 t)\n' +
+               '  - 🌱 **Compostagem Orgânica:** 21,5% (344 t)\n' +
+               '  - ⚡ **Coprocessamento Energético:** 13,3% (212 t)\n' +
+               '  - ⛔ **Aterro Industrial (Rejeito restrito):** Apenas 11,2% (180 t)\n\n' +
+               '*Economia gerada: R$ 290k em custos de aterro evitados + R$ 125k de receita direta de recicláveis comercializados.*';
+      }
+
+      // Emissões, GEE, Carbono, CO2, Descarbonização
+      if (q.includes('emiss') || q.includes('gee') || q.includes('carbon') || q.includes('co2') || q.includes('descarboniz')) {
+        return '🌿 **Gestão de Emissões GEE & Descarbonização:**\n\n' +
+               '• **Emissões Realizadas:** 1.170 tCO₂e acumuladas\n' +
+               '• **Teto Máximo da Meta OKR:** ≤ 1.250 tCO₂e\n' +
+               '• **Desempenho:** -6,4% abaixo do limite máximo (dentro da faixa verde)\n' +
+               '• **Redução Efetiva:** 80 tCO₂e reduzidas ativamente\n' +
+               '• **Ações Chave:** Redução contínua de -14,3% nas emissões desde Março via eletrificação de empilhadeiras fabris e otimização da rota logística reversa.';
+      }
+
+      // Plantas, Unidades, Fábricas, São Paulo, Paulínia, Camaçari, Betim, Araucária
+      if (q.includes('planta') || q.includes('unidade') || q.includes('paulinia') || q.includes('camacari') || q.includes('araucaria') || q.includes('betim') || q.includes('caxias')) {
+        return '🏭 **Performance por Unidade Operacional:**\n\n' +
+               '• 🥇 **Planta SP (Paulínia):** 92,4% Desvio | Eco-Score 94,2 (Ouro) | Eficiência 0,32 m³/t\n' +
+               '• 🥇 **Planta BA (Camaçari):** 89,1% Desvio | Eco-Score 90,5 (Ouro) | Eficiência 0,35 m³/t\n' +
+               '• 🥈 **Planta PR (Araucária):** 87,5% Desvio | Eco-Score 88,0 (Prata) | Eficiência 0,39 m³/t\n' +
+               '• 🥈 **Planta MG (Betim):** 85,2% Desvio | Eco-Score 86,4 (Prata) | Eficiência 0,41 m³/t\n' +
+               '• 🥉 **Planta RJ (Caxias):** 82,0% Desvio | Eco-Score 81,2 (Bronze) | Plano de ação em curso.';
+      }
+
+      // Eficiência Hídrica / Água
+      if (q.includes('agua') || q.includes('hidric') || q.includes('reuso')) {
+        return '💧 **Eficiência Hídrica & Reúso:**\n\n' +
+               '• **Consumo Específico:** 0,38 m³ por tonelada produzida\n' +
+               '• **Meta Corporativa:** ≤ 0,45 m³/t\n' +
+               '• **Economia:** -11,2% em relação ao consumo projetado\n' +
+               '• **Índice de Água de Reúso:** 62,4% de toda a água utilizada no processo fabril é recirculada em circuito fechado.';
+      }
+
+      // Resposta genérica
+      return '💡 **Assistente Pessoal (ECOSOLUTIONS BI):**\n\n' +
+             'Analisei sua consulta sobre "' + promptText + '" na base de dados operacionais e de sustentabilidade.\n\n' +
+             '• **Faturamento Acumulado:** R$ 14,85 Milhões (+4,6% vs meta)\n' +
+             '• **Volume Peso & Frota:** 48.720 t em 3.430 viagens (14,20 t/caminhão)\n' +
+             '• **Desvio de Aterro:** 88,8% (+3,8 p.p. vs meta de 85%)\n' +
+             '• **Emissões GEE:** 1.170 tCO₂e (-6,4% abaixo do teto de 1.250 tCO₂e)\n\n' +
+             'Clique nos botões rápidos acima ou pergunte sobre *Carga por Caminhão*, *Faturamento*, *Desvio de Aterro*, *Emissões* ou *Plantas*.';
+    }
+
+    async function sendMQIA() {
+      var input = document.getElementById('ai-chat-input');
+      var body = document.getElementById('ai-chat-body');
+      if (!input || !body) return;
+      var q = input.value.trim();
+      if (!q) return;
+
+      // Mensagem do usuário
+      var userMsg = document.createElement('div');
+      userMsg.className = 'ai-message user';
+      userMsg.textContent = q;
+      body.appendChild(userMsg);
+      input.value = '';
+      body.scrollTop = body.scrollHeight;
+
+      // Indicador de digitação
+      var typingIndicator = document.createElement('div');
+      typingIndicator.className = 'ai-message ai';
+      typingIndicator.id = 'ai-typing-indicator';
+      typingIndicator.style.opacity = '0.7';
+      typingIndicator.style.fontStyle = 'italic';
+      typingIndicator.textContent = 'Assistente Pessoal consultando base EcoSolutions...';
+      body.appendChild(typingIndicator);
+      body.scrollTop = body.scrollHeight;
+
+      setTimeout(function() {
+        if (typingIndicator && typingIndicator.parentNode) {
+          typingIndicator.parentNode.removeChild(typingIndicator);
+        }
+
+        var resposta = gerarRespostaEcoSolutions(q);
+        var botMsg = document.createElement('div');
+        botMsg.className = 'ai-message ai';
+        botMsg.style.whiteSpace = 'pre-line';
+        botMsg.innerHTML = resposta.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        body.appendChild(botMsg);
+        body.scrollTop = body.scrollHeight;
+      }, 350);
+    }
+    window.sendMQIA = sendMQIA;
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var hora = new Date().getHours();
+      var saudacao = 'Boa noite';
+      if (hora >= 5 && hora < 12) saudacao = 'Bom dia';
+      else if (hora >= 12 && hora < 18) saudacao = 'Boa tarde';
+      
+      var el = document.getElementById('mqiaGreetingMsg');
+      if (el) el.textContent = saudacao + ', Antônio!';
+
+      var widget = document.getElementById('ai-chat-widget');
+      if (widget) {
+        widget.addEventListener('click', function(e) {
+          if (widget.classList.contains('ai-chat-collapsed')) {
+            toggleChat(true);
+          }
+        });
+      }
+    });
+  </script>
+
 </body>
 </html>
