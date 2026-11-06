@@ -3048,7 +3048,7 @@ DIRETRIZES:
         else if (hora >= 12 && hora < 18) saud = 'Boa tarde';
 
         return `${saud}, Antônio! Tudo bem?\n` +
-               `Sou seu **Assistente Pessoal** de Finanças & DRE (integrado via OpenRouter à base SQLite **fato_dre**).\n\n` +
+               `Sou seu **Assistente Pessoal** de Finanças & DRE.\n\n` +
                `Estou conectado a 828 registros contábeis consolidados. Como posso te apoiar agora?\n` +
                `• 💡 Resumo geral da DRE\n` +
                `• 📈 Margem EBITDA e metas\n` +
@@ -3058,7 +3058,7 @@ DIRETRIZES:
       }
 
       if (ql.includes('resumo') || ql.includes('geral') || ql.includes('visao') || ql.includes('status')) {
-        return `📊 **Diagnóstico Geral da DRE (Base SQLite fato_dre):**\n` +
+        return `📊 **Diagnóstico Geral da DRE:**\n` +
                `• **Receita Bruta:** ${kpis.receita_bruta} (+0,5% vs orçado)\n` +
                `• **Receita Líquida (ROL):** ${kpis.receita_liquida}\n` +
                `• **Lucro Bruto:** ${kpis.lucro_bruto}\n` +
@@ -3068,7 +3068,7 @@ DIRETRIZES:
       }
 
       if (ql.includes('ebitda') || ql.includes('lajida')) {
-        return `📈 **Análise de EBITDA (fato_dre):**\n` +
+        return `📈 **Análise de EBITDA:**\n` +
                `• **EBITDA Realizado:** ${kpis.ebitda}\n` +
                `• **Meta Orçada:** R$ 16.720.815\n` +
                `• **Superávit:** +R$ 394.311 (+2,4% acima do planejado).\n\n` +
@@ -3084,7 +3084,7 @@ DIRETRIZES:
       }
 
       if (ql.includes('despesa') || ql.includes('custo') || ql.includes('opex') || ql.includes('gasto')) {
-        return `🔍 **Composição de Custos & OPEX (fato_dre):**\n` +
+        return `🔍 **Composição de Custos & OPEX:**\n` +
                `• **CMV / Custos de Mercadorias:** ${kpis.cmv} (46,6% da ROL)\n` +
                `• **Despesas Comerciais & MKT:** ${kpis.despesas_comerciais}\n` +
                `• **Despesas Gerais & Adm (G&A):** ${kpis.despesas_adm}\n` +
@@ -3101,7 +3101,7 @@ DIRETRIZES:
                `• **Assinaturas:** R$ 12.270.604 (10,0%).`;
       }
 
-      return `💡 **Assistente Pessoal (OpenRouter / fato_dre):**\n` +
+      return `💡 **Assistente Pessoal:**\n` +
              `Analisei sua consulta sobre "${q}" diretamente na base de dados contábil.\n\n` +
              `• **Receita Líquida:** ${kpis.receita_liquida}\n` +
              `• **EBITDA:** ${kpis.ebitda}\n` +
@@ -3130,7 +3130,7 @@ DIRETRIZES:
       typingIndicator.id = 'ai-typing-indicator';
       typingIndicator.style.opacity = '0.7';
       typingIndicator.style.fontStyle = 'italic';
-      typingIndicator.textContent = 'Assistente Pessoal consultando OpenRouter & fato_dre...';
+      typingIndicator.textContent = 'Assistente Pessoal analisando dados contábeis...';
       body.appendChild(typingIndicator);
       body.scrollTop = body.scrollHeight;
 
