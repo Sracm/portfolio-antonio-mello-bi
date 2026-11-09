@@ -1431,7 +1431,7 @@
                         const p = DADOS_PLANTAS[pKey];
                         const idx = Math.min(d - 1, p.curvaDiariaReal.length - 1);
                         somaReal += p.curvaDiariaReal[idx] * (d > p.curvaDiariaReal.length ? (d / p.curvaDiariaReal.length) : 1);
-                        somaAnt += (p.metaMes / diasMes) * d * 0.88;
+                        somaAnt += (p.metaMes / diasMes) * d * 0.58;
                     });
                     realSerie.push(Math.round(somaReal));
                     antSerie.push(Math.round(somaAnt));
@@ -1441,12 +1441,13 @@
                 metaDia = p.metaMes / diasMes;
                 realSerie = [];
                 antSerie = [];
+                const fatorAnt = key === 'p2' ? 0.52 : (key === 'p3' ? 0.61 : 0.58);
                 for (let d = 1; d <= diaMax; d++) {
                     const idx = Math.min(d - 1, p.curvaDiariaReal.length - 1);
                     const baseReal = p.curvaDiariaReal[idx];
                     const valReal = d <= p.curvaDiariaReal.length ? baseReal : Math.round(baseReal + (d - p.curvaDiariaReal.length) * (baseReal / p.curvaDiariaReal.length));
                     realSerie.push(valReal);
-                    antSerie.push(Math.round(metaDia * d * (key === 'p2' ? 0.75 : 0.88)));
+                    antSerie.push(Math.round(metaDia * d * fatorAnt));
                 }
             }
 
@@ -1493,11 +1494,14 @@
                             label: 'Fat. Mês Anterior',
                             data: antSerie,
                             borderColor: '#2979FF',
-                            borderDash: [4, 4],
+                            borderDash: [5, 4],
                             backgroundColor: 'transparent',
-                            borderWidth: 1.5,
+                            borderWidth: 2,
                             tension: 0.15,
-                            pointRadius: 0,
+                            pointRadius: labels.map((_, i) => i === labels.length - 1 ? 5 : (i % 2 === 0 ? 3.5 : 0)),
+                            pointBackgroundColor: '#2979FF',
+                            pointBorderColor: '#13141a',
+                            pointBorderWidth: 1.5,
                             order: 3
                         }
                     ]
