@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cockpit Executivo • Performance Operacional por Plantas</title>
+    <title>Real Time Unidades de Negocios • Cockpit Executivo</title>
     
     <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -369,8 +369,8 @@
         }
 
         .legend-dot.ant {
-            background: var(--accent-blue);
-            box-shadow: 0 0 8px rgba(41, 121, 255, 0.7);
+            background: #00D2FF;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.9);
         }
 
         /* ── Grid dos 6 Cards de Plantas (2 colunas x 3 linhas) ───────────── */
@@ -759,7 +759,7 @@
                 <div class="brand-title">NEXUS <span>INDUSTRIAL</span></div>
             </a>
             <div class="brand-separator"></div>
-            <span class="header-subtitle">Cockpit Executivo &bull; Performance & Análise por Unidades de Negócios</span>
+            <span class="header-subtitle">Real Time Unidades de Negocios &bull; Cockpit Executivo</span>
         </div>
 
         <div class="header-filters">
@@ -857,7 +857,7 @@
                     </div>
                     <div class="legend-item">
                         <span class="legend-dot ant"></span>
-                        <span>Fat. Mês Anterior</span>
+                        <span style="color: #00D2FF; font-weight: 700;">Fat. Mês Anterior (M-1)</span>
                     </div>
                 </div>
             </div>
@@ -865,11 +865,11 @@
             <!-- Grid 2 Colunas x 3 Linhas com os 6 Cards de Gráficos -->
             <div class="plants-charts-grid">
 
-                <!-- 1. TODAS UNIDADE DE NEGOCIOS (CONSOLIDADO) -->
+                <!-- 1. TODAS AS UNIDADES DE NEGÓCIOS (CONSOLIDADO) -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">TODAS UNIDADE DE NEGOCIOS</span>
+                            <span class="plant-title">TODAS AS UNIDADES DE NEGÓCIOS</span>
                             <span id="badge-total" class="status-pill dentro">DENTRO DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('total')" title="Ampliar gráfico">
@@ -883,6 +883,7 @@
                             <span class="val-main-fat" id="val-fat-total">R$ 1.082.797</span>
                             <div class="perf-sub-metrics">
                                 <span class="sub-metric-item val-red">Faturamento/dia: <strong id="dia-fat-total">R$ 120.311</strong></span>
+                                <span class="sub-metric-item" style="color: #00D2FF; font-weight: 600;">Mês Ant. (M-1): <strong id="val-ant-total" style="color: #00D2FF;">R$ 868.000</strong></span>
                             </div>
                         </div>
                         <div class="perf-col">
@@ -933,6 +934,7 @@
                             <span class="val-main-fat" id="val-fat-p1">R$ 711.731</span>
                             <div class="perf-sub-metrics">
                                 <span class="sub-metric-item val-red">Faturamento/dia: <strong id="dia-fat-p1">R$ 79.081</strong></span>
+                                <span class="sub-metric-item" style="color: #00D2FF; font-weight: 600;">Mês Ant. (M-1): <strong id="val-ant-p1" style="color: #00D2FF;">R$ 485.000</strong></span>
                             </div>
                         </div>
                         <div class="perf-col">
@@ -983,6 +985,7 @@
                             <span class="val-main-fat" id="val-fat-p2">R$ 171.136</span>
                             <div class="perf-sub-metrics">
                                 <span class="sub-metric-item val-red">Faturamento/dia: <strong id="dia-fat-p2">R$ 19.015</strong></span>
+                                <span class="sub-metric-item" style="color: #00D2FF; font-weight: 600;">Mês Ant. (M-1): <strong id="val-ant-p2" style="color: #00D2FF;">R$ 123.500</strong></span>
                             </div>
                         </div>
                         <div class="perf-col">
@@ -1033,6 +1036,7 @@
                             <span class="val-main-fat" id="val-fat-p3">R$ 191.749</span>
                             <div class="perf-sub-metrics">
                                 <span class="sub-metric-item val-red">Faturamento/dia: <strong id="dia-fat-p3">R$ 21.305</strong></span>
+                                <span class="sub-metric-item" style="color: #00D2FF; font-weight: 600;">Mês Ant. (M-1): <strong id="val-ant-p3" style="color: #00D2FF;">R$ 111.500</strong></span>
                             </div>
                         </div>
                         <div class="perf-col">
@@ -1083,6 +1087,7 @@
                             <span class="val-main-fat" id="val-fat-p4">R$ 124.800</span>
                             <div class="perf-sub-metrics">
                                 <span class="sub-metric-item val-red">Faturamento/dia: <strong id="dia-fat-p4">R$ 13.866</strong></span>
+                                <span class="sub-metric-item" style="color: #00D2FF; font-weight: 600;">Mês Ant. (M-1): <strong id="val-ant-p4" style="color: #00D2FF;">R$ 88.200</strong></span>
                             </div>
                         </div>
                         <div class="perf-col">
@@ -1133,6 +1138,7 @@
                             <span class="val-main-fat" id="val-fat-p5">R$ 83.381</span>
                             <div class="perf-sub-metrics">
                                 <span class="sub-metric-item val-red">Faturamento/dia: <strong id="dia-fat-p5">R$ 9.264</strong></span>
+                                <span class="sub-metric-item" style="color: #00D2FF; font-weight: 600;">Mês Ant. (M-1): <strong id="val-ant-p5" style="color: #00D2FF;">R$ 59.800</strong></span>
                             </div>
                         </div>
                         <div class="perf-col">
@@ -1359,12 +1365,13 @@
         // ── Base de Dados Fictícia de Demonstração para as 5 Unidades ──
         const DADOS_PLANTAS = {
             p1: {
-                nome: "Logistica",
+                nome: "Logística",
                 sigla: "LOG",
                 peso: 0.657,
                 metaMes: 2003005,
                 maiorDia: { dia: "07/11", val: 137498 },
-                curvaDiariaReal: [58200, 119400, 192800, 269100, 361400, 478200, 615698, 672100, 711731]
+                curvaDiariaReal: [58200, 119400, 192800, 269100, 361400, 478200, 615698, 672100, 711731],
+                curvaMesAnterior: [38500, 81200, 131000, 185400, 248000, 319500, 395000, 442000, 485000]
             },
             p2: {
                 nome: "Brasil",
@@ -1372,23 +1379,26 @@
                 peso: 0.158,
                 metaMes: 747500,
                 maiorDia: { dia: "03/11", val: 33905 },
-                curvaDiariaReal: [14200, 31800, 65705, 84200, 102500, 121800, 139400, 155200, 171136]
+                curvaDiariaReal: [14200, 31800, 65705, 84200, 102500, 121800, 139400, 155200, 171136],
+                curvaMesAnterior: [9500, 21000, 38500, 52100, 68000, 83500, 99000, 112000, 123500]
             },
             p3: {
-                nome: "Asia",
+                nome: "Ásia",
                 sigla: "ASI",
                 peso: 0.177,
                 metaMes: 357500,
                 maiorDia: { dia: "03/11", val: 65062 },
-                curvaDiariaReal: [16800, 35400, 100462, 118200, 134100, 151200, 166400, 179800, 191749]
+                curvaDiariaReal: [16800, 35400, 100462, 118200, 134100, 151200, 166400, 179800, 191749],
+                curvaMesAnterior: [11200, 24000, 46500, 59800, 71200, 82500, 93000, 103000, 111500]
             },
             p4: {
-                nome: "Latim America",
+                nome: "Latin America",
                 sigla: "LAT",
                 peso: 0.115,
                 metaMes: 373330,
                 maiorDia: { dia: "05/11", val: 28400 },
-                curvaDiariaReal: [11500, 24100, 39800, 56200, 84600, 96800, 107200, 116500, 124800]
+                curvaDiariaReal: [11500, 24100, 39800, 56200, 84600, 96800, 107200, 116500, 124800],
+                curvaMesAnterior: [7800, 16500, 27400, 39100, 51200, 62400, 72500, 81000, 88200]
             },
             p5: {
                 nome: "Europa",
@@ -1396,7 +1406,8 @@
                 peso: 0.077,
                 metaMes: 253330,
                 maiorDia: { dia: "06/11", val: 18900 },
-                curvaDiariaReal: [7200, 15800, 26400, 38100, 51200, 70100, 75400, 79200, 83381]
+                curvaDiariaReal: [7200, 15800, 26400, 38100, 51200, 70100, 75400, 79200, 83381],
+                curvaMesAnterior: [4800, 10500, 17800, 25600, 33500, 42100, 49200, 54500, 59800]
             }
         };
 
@@ -1431,7 +1442,8 @@
                         const p = DADOS_PLANTAS[pKey];
                         const idx = Math.min(d - 1, p.curvaDiariaReal.length - 1);
                         somaReal += p.curvaDiariaReal[idx] * (d > p.curvaDiariaReal.length ? (d / p.curvaDiariaReal.length) : 1);
-                        somaAnt += (p.metaMes / diasMes) * d * 0.58;
+                        const idxAnt = Math.min(d - 1, p.curvaMesAnterior.length - 1);
+                        somaAnt += p.curvaMesAnterior[idxAnt] * (d > p.curvaMesAnterior.length ? (d / p.curvaMesAnterior.length) : 1);
                     });
                     realSerie.push(Math.round(somaReal));
                     antSerie.push(Math.round(somaAnt));
@@ -1441,13 +1453,16 @@
                 metaDia = p.metaMes / diasMes;
                 realSerie = [];
                 antSerie = [];
-                const fatorAnt = key === 'p2' ? 0.52 : (key === 'p3' ? 0.61 : 0.58);
                 for (let d = 1; d <= diaMax; d++) {
                     const idx = Math.min(d - 1, p.curvaDiariaReal.length - 1);
                     const baseReal = p.curvaDiariaReal[idx];
                     const valReal = d <= p.curvaDiariaReal.length ? baseReal : Math.round(baseReal + (d - p.curvaDiariaReal.length) * (baseReal / p.curvaDiariaReal.length));
                     realSerie.push(valReal);
-                    antSerie.push(Math.round(metaDia * d * fatorAnt));
+
+                    const idxAnt = Math.min(d - 1, p.curvaMesAnterior.length - 1);
+                    const baseAnt = p.curvaMesAnterior[idxAnt];
+                    const valAnt = d <= p.curvaMesAnterior.length ? baseAnt : Math.round(baseAnt + (d - p.curvaMesAnterior.length) * (baseAnt / p.curvaMesAnterior.length));
+                    antSerie.push(valAnt);
                 }
             }
 
@@ -1491,16 +1506,17 @@
                             order: 1
                         },
                         {
-                            label: 'Fat. Mês Anterior',
+                            label: 'Fat. Mês Anterior (M-1)',
                             data: antSerie,
-                            borderColor: '#2979FF',
-                            borderDash: [5, 4],
-                            backgroundColor: 'transparent',
-                            borderWidth: 2,
+                            borderColor: '#00D2FF',
+                            borderDash: [6, 4],
+                            backgroundColor: 'rgba(0, 210, 255, 0.03)',
+                            borderWidth: 2.5,
                             tension: 0.15,
-                            pointRadius: labels.map((_, i) => i === labels.length - 1 ? 5 : (i % 2 === 0 ? 3.5 : 0)),
-                            pointBackgroundColor: '#2979FF',
-                            pointBorderColor: '#13141a',
+                            pointRadius: 4,
+                            pointHoverRadius: 6,
+                            pointBackgroundColor: '#00D2FF',
+                            pointBorderColor: '#0B0D14',
                             pointBorderWidth: 1.5,
                             order: 3
                         }
@@ -1724,6 +1740,8 @@
 
                 document.getElementById('val-fat-' + k).innerText = formatBRL(fatAtual);
                 document.getElementById('dia-fat-' + k).innerText = formatBRL(vDia);
+                const elAnt = document.getElementById('val-ant-' + k);
+                if (elAnt) elAnt.innerText = formatBRL(antSerie[antSerie.length - 1]);
                 document.getElementById('val-meta-' + k).innerText = formatBRL(metaAcum);
                 document.getElementById('diff-meta-' + k).innerText = (diff >= 0 ? '+' : '') + formatBRL(diff);
                 document.getElementById('pct-meta-' + k).innerText = (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%';
@@ -1778,7 +1796,7 @@
             const title = document.getElementById('modal-zoom-title');
             const diaNum = parseInt(document.getElementById('slider-dias').value, 10);
 
-            const nome = key === 'total' ? 'TODAS UNIDADE DE NEGOCIOS' : DADOS_PLANTAS[key].nome.toUpperCase();
+            const nome = key === 'total' ? 'TODAS AS UNIDADES DE NEGÓCIOS' : DADOS_PLANTAS[key].nome.toUpperCase();
             title.innerText = nome;
 
             modal.classList.add('active');
