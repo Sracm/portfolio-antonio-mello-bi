@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -7,23 +8,28 @@
   <meta http-equiv="Expires" content="0">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Antônio Carlos Mello — Especialista em BI & Analytics (Perfil Completo)</title>
-  
+
   <!-- Fontes Google: Montserrat (Títulos Executivos) & Inter (Leitura Clara) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+
   <!-- FontAwesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --primary: #0F172A;        /* Slate executivo escuro */
+      --primary: #0F172A;
+      /* Slate executivo escuro */
       --primary-light: #1E293B;
-      --accent: #B4831B;         /* Dourado Nobre */
+      --accent: #B4831B;
+      /* Dourado Nobre */
       --accent-soft: #FBF6E9;
       --accent-border: #E8D5A7;
-      --text-main: #334155;      /* Cinza legível e elegante */
+      --text-main: #334155;
+      /* Cinza legível e elegante */
       --text-dark: #0F172A;
       --text-muted: #64748B;
       --bg-page: #F8FAFC;
@@ -59,8 +65,9 @@
       padding: 10px 18px;
       border-radius: var(--radius);
       border: 1px solid var(--border-light);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
+
     .print-btn {
       background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
       color: #FFFFFF;
@@ -77,16 +84,19 @@
       transition: all 0.2s ease;
       text-decoration: none;
     }
+
     .print-btn:hover {
       background: var(--accent);
       color: #000;
       transform: translateY(-1px);
     }
+
     .print-btn-primary {
       background: #B4831B;
       color: #000;
       box-shadow: 0 2px 8px rgba(180, 131, 27, 0.35);
     }
+
     .print-btn-primary:hover {
       background: #9A6F14;
       color: #FFF;
@@ -99,7 +109,7 @@
       background: #FFFFFF;
       border-radius: 8px;
       border: 1px solid var(--border-light);
-      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
       overflow: hidden;
     }
 
@@ -111,6 +121,7 @@
       position: relative;
       border-bottom: 3px solid var(--accent);
     }
+
     .cv-name {
       font-family: 'Montserrat', sans-serif;
       font-size: 22px;
@@ -120,6 +131,7 @@
       margin-bottom: 3px;
       line-height: 1.15;
     }
+
     .cv-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 11.5px;
@@ -129,6 +141,7 @@
       letter-spacing: 1px;
       margin-bottom: 6px;
     }
+
     .cv-headline {
       font-size: 11px;
       color: #CBD5E1;
@@ -145,6 +158,7 @@
       padding-top: 10px;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
+
     .contact-item {
       display: inline-flex;
       align-items: center;
@@ -155,19 +169,23 @@
       white-space: nowrap;
       transition: color 0.2s;
     }
+
     .contact-item i {
       color: var(--accent);
       font-size: 12px;
       width: 14px;
       text-align: center;
     }
+
     .contact-item:hover {
       color: #FFFFFF;
     }
+
     .contact-item.highlight {
       color: #FFFFFF;
       font-weight: 600;
     }
+
     .badge-live {
       background: rgba(37, 211, 102, 0.2);
       border: 1px solid #25D366;
@@ -198,10 +216,12 @@
       padding-bottom: 3.5px;
       border-bottom: 1.5px solid var(--border-light);
     }
+
     .section-icon {
       color: var(--accent);
       font-size: 12px;
     }
+
     .section-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 12px;
@@ -218,6 +238,7 @@
       text-align: justify;
       line-height: 1.5;
     }
+
     .summary-text strong {
       color: var(--text-dark);
       font-weight: 700;
@@ -229,6 +250,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px 10px;
     }
+
     .stack-card {
       background: #FFFFFF;
       border: 1px solid var(--border-light);
@@ -237,11 +259,13 @@
       page-break-inside: avoid;
       box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
     }
+
     .stack-card.span-full {
       grid-column: 1 / -1;
       background: linear-gradient(180deg, #FFFFFF 0%, #FDFBF7 100%);
       border-color: #E8D5A7;
     }
+
     .stack-cat-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 10px;
@@ -256,6 +280,7 @@
       align-items: center;
       gap: 6px;
     }
+
     .stack-cat-icon {
       width: 19px;
       height: 19px;
@@ -268,15 +293,18 @@
       font-size: 9.5px;
       flex-shrink: 0;
     }
+
     .stack-card.span-full .stack-cat-icon {
       background: linear-gradient(135deg, #B4831B 0%, #8C6514 100%);
       color: #FFFFFF;
     }
+
     .stack-pills {
       display: flex;
       flex-wrap: wrap;
       gap: 4px;
     }
+
     .stack-pill {
       background: #FFFFFF;
       border: 1px solid #CBD5E1;
@@ -289,12 +317,14 @@
       align-items: center;
       line-height: 1.25;
     }
+
     .stack-pill.highlight {
       background: #FDF8ED;
       border-color: #E8D5A7;
       color: #8C6514;
       font-weight: 700;
     }
+
     .stack-pill.highlight::before {
       content: '●';
       font-size: 6px;
@@ -310,9 +340,11 @@
       border-left: 1.5px solid var(--border-light);
       page-break-inside: avoid;
     }
+
     .job-item:last-child {
       margin-bottom: 0;
     }
+
     .job-item::before {
       content: '';
       position: absolute;
@@ -325,6 +357,7 @@
       border: 1.5px solid #FFFFFF;
       box-shadow: 0 0 0 1px var(--border-light);
     }
+
     .job-item.current::before {
       background: #22C55E;
       box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.3);
@@ -338,12 +371,14 @@
       gap: 4px;
       margin-bottom: 2px;
     }
+
     .job-company {
       font-family: 'Montserrat', sans-serif;
       font-size: 12.5px;
       font-weight: 800;
       color: var(--text-dark);
     }
+
     .job-period {
       font-size: 10px;
       font-weight: 600;
@@ -352,6 +387,7 @@
       padding: 2px 7px;
       border-radius: 3px;
     }
+
     .job-role {
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
@@ -359,6 +395,7 @@
       color: var(--accent);
       margin-bottom: 5px;
     }
+
     .job-desc {
       font-size: 11px;
       color: #334155;
@@ -381,6 +418,7 @@
       padding-left: 0;
       margin-bottom: 4px;
     }
+
     .job-bullets li {
       position: relative;
       padding-left: 12px;
@@ -390,9 +428,11 @@
       text-align: justify;
       line-height: 1.45;
     }
+
     .job-bullets li:last-child {
       margin-bottom: 0;
     }
+
     .job-bullets li::before {
       content: '›';
       position: absolute;
@@ -402,6 +442,7 @@
       font-weight: 800;
       font-size: 12px;
     }
+
     .job-bullets li strong {
       color: var(--text-dark);
       font-weight: 600;
@@ -425,12 +466,15 @@
       gap: 16px;
       page-break-inside: avoid;
     }
+
     .edu-card {
       margin-bottom: 9px;
     }
+
     .edu-card:last-child {
       margin-bottom: 0;
     }
+
     .edu-degree {
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
@@ -439,6 +483,7 @@
       line-height: 1.35;
       margin-bottom: 1px;
     }
+
     .edu-inst {
       font-size: 10.5px;
       color: var(--text-muted);
@@ -452,13 +497,16 @@
       border-bottom: 1px dashed #E2E8F0;
       font-size: 10.5px;
     }
+
     .lang-item:last-child {
       border-bottom: none;
     }
+
     .lang-name {
       font-weight: 600;
       color: var(--text-dark);
     }
+
     .lang-level {
       color: var(--text-muted);
       font-size: 10px;
@@ -470,9 +518,11 @@
     .cert-item {
       margin-bottom: 8px;
     }
+
     .cert-item:last-child {
       margin-bottom: 0;
     }
+
     .cert-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 11px;
@@ -480,6 +530,7 @@
       color: var(--text-dark);
       line-height: 1.35;
     }
+
     .cert-desc {
       font-size: 10px;
       color: #52525B;
@@ -500,26 +551,32 @@
         padding: 0 !important;
         font-size: 10.5px !important;
       }
+
       .print-bar {
         display: none !important;
       }
+
       .cv-container {
         border: none !important;
         box-shadow: none !important;
         border-radius: 0 !important;
         max-width: 100% !important;
       }
+
       .cv-header {
         padding: 14px 20px 10px !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
+
       .cv-body {
         padding: 12px 20px !important;
       }
+
       .job-item {
         page-break-inside: avoid !important;
       }
+
       a {
         text-decoration: none !important;
         color: inherit !important;
@@ -527,15 +584,20 @@
     }
 
     @media screen and (max-width: 768px) {
-      .stack-grid, .edu-cert-grid {
+
+      .stack-grid,
+      .edu-cert-grid {
         grid-template-columns: 1fr;
       }
-      .cv-header, .cv-body {
+
+      .cv-header,
+      .cv-body {
         padding: 16px;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- BARRA DE UTILIDADE NO TOPO -->
@@ -548,6 +610,8 @@
         <span style="font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: #0F172A;">
           📄 Currículo Profissional • Antônio Carlos Mello
         </span>
+        <div style="font-size: 11px; color: #64748B;">Layout Executivo integrado com todo o histórico corporativo e
+          analítico</div>
       </div>
     </div>
     <div style="display: flex; align-items: center; gap: 10px;">
@@ -559,29 +623,32 @@
 
   <!-- CONTAINER DO CURRÍCULO -->
   <main class="cv-container">
-    
+
     <!-- CABEÇALHO EXECUTIVO -->
     <header class="cv-header">
       <h1 class="cv-name">Antônio Carlos Mello</h1>
       <div class="cv-title">Especialista em BI &amp; Analytics • People Analytics • IA</div>
       <div class="cv-headline">
-        People Analytics | BI aplicado a Inteligência de Mercado | Power BI | IA | Decisões estratégicas da empresa MQ Hair Company
+        Especialista em BI &amp; People Analytics | Conectando Power BI e IA Generativa à Estratégia de Negócios e Cultura Data-Driven
       </div>
-      
+
       <!-- CONTATOS & LINKS -->
       <div class="contact-grid">
-        <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener" class="contact-item highlight" title="Abrir LinkedIn">
+        <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener"
+          class="contact-item highlight" title="Abrir LinkedIn">
           <i class="fa-brands fa-linkedin"></i>
           <span>linkedin.com/in/antonio-carlos-mello/</span>
         </a>
-        
-        <a href="https://sracm.github.io/portfolio-bi/" target="_blank" rel="noopener" class="contact-item highlight" title="Acessar Portfólio Online">
+
+        <a href="https://sracm.github.io/portfolio-bi/" target="_blank" rel="noopener" class="contact-item highlight"
+          title="Acessar Portfólio Online">
           <i class="fa-solid fa-chart-pie"></i>
           <span>Portfolio: Antonio Mello</span>
           <span class="badge-live">Live</span>
         </a>
 
-        <a href="https://wa.me/5511999553359" target="_blank" rel="noopener" class="contact-item" title="Conversar no WhatsApp">
+        <a href="https://wa.me/5511999553359" target="_blank" rel="noopener" class="contact-item"
+          title="Conversar no WhatsApp">
           <i class="fa-brands fa-whatsapp"></i>
           <span>(11) 99955-3359</span>
         </a>
@@ -608,8 +675,14 @@
           <h2 class="section-title">Resumo</h2>
         </div>
         <p class="summary-text">
-          Analista de Dados e BI com sólida atuação abrangente em múltiplos segmentos de mercado, especializado na 
-          <strong>implantação de áreas analíticas e cultura de inteligência de negócios do zero</strong>. Histórico de <strong>mais de 500 dashboards e relatórios desenvolvidos em Power BI</strong> para suporte a decisões executivas e operacionais, cobrindo o ciclo analítico ponta a ponta: levantamento de regras de negócio, extração robusta de dados, modelagem dimensional e governança contínua de métricas. Aplicação prática de ferramentas de <strong>IA Generativa e desenvolvimento assistido (Claude Code, Antigravity, ChatGPT e Gemini)</strong> para otimização de rotinas, ganho de escala e máxima agilidade na entrega de diagnósticos corporativos.
+          Analista de Dados e BI com sólida atuação abrangente em múltiplos segmentos de mercado, especializado na
+          <strong>implantação de áreas analíticas e cultura de inteligência de negócios do zero</strong>. Histórico de
+          <strong>mais de 500 dashboards e relatórios desenvolvidos em Power BI</strong> para suporte a decisões
+          executivas e operacionais, cobrindo o ciclo analítico ponta a ponta: levantamento de regras de negócio,
+          extração robusta de dados, modelagem dimensional e governança contínua de métricas. Aplicação prática de
+          ferramentas de <strong>IA Generativa e desenvolvimento assistido (Claude Code, Antigravity, ChatGPT e
+            Gemini)</strong> para otimização de rotinas, ganho de escala e máxima agilidade na entrega de diagnósticos
+          corporativos.
         </p>
       </section>
 
@@ -619,9 +692,9 @@
           <i class="fa-solid fa-layer-group section-icon"></i>
           <h2 class="section-title">Competências, Stack Tecnológico &amp; Idiomas</h2>
         </div>
-        
+
         <div class="stack-grid">
-          
+
           <!-- 1. Principais Competências do Perfil -->
           <div class="stack-card span-full">
             <div class="stack-cat-title">
@@ -754,19 +827,31 @@
           </div>
 
           <p class="job-desc">
-            Estruturação da área de Business Intelligence e cultura analítica do zero, consolidando o ciclo analítico ponta a ponta: engenharia de dados, modelagem dimensional e governança de métricas corporativas para suporte a decisões de C-Level e lideranças operacionais.
+            Estruturação da área de Business Intelligence e cultura analítica do zero, consolidando o ciclo analítico
+            ponta a ponta: engenharia de dados, modelagem dimensional e governança de métricas corporativas para suporte
+            a decisões de C-Level e lideranças operacionais.
           </p>
 
           <div class="job-subtitle">Principais Entregas e Impacto em Números:</div>
           <ul class="job-bullets">
-            <li><strong>Escala e Cobertura Analítica:</strong> Desenvolvimento e sustentação de <strong>mais de 500 dashboards e relatórios em Power BI</strong>, integrando bases do <strong>ERP Sankhya</strong> e bancos relacionais (<strong>Oracle/MariaDB</strong>), com atualização diária e taxa de disponibilidade superior a <strong>99%</strong>.</li>
-            <li><strong>Impacto em Gestão e Finanças:</strong> Criação da esteira analítica para controle de <strong>DRE Gerencial por unidade de negócio</strong>, reduzindo o tempo de consolidação de relatórios financeiros de semanas para visões em tempo quase real.</li>
-            <li><strong>Otimização com IA Generativa:</strong> Redução estimada de <strong>30% a 40% no tempo de prototipação</strong> de queries SQL complexas, DAX e rotinas de ETL via desenvolvimento assistido (<strong>Claude Code, Antigravity, ChatGPT, APIs de LLM</strong>).</li>
-            <li><strong>Automação de Pipelines:</strong> Implantação de painéis contínuos para diretoria e displays operacionais, eliminando mais de <strong>15 horas semanais</strong> de extração manual de dados.</li>
+            <li><strong>Escala e Cobertura Analítica:</strong> Desenvolvimento e sustentação de <strong>mais de 500
+                dashboards e relatórios em Power BI</strong>, integrando bases do <strong>ERP Sankhya</strong> e bancos
+              relacionais (<strong>Oracle/MariaDB</strong>), com atualização diária e taxa de disponibilidade superior a
+              <strong>99%</strong>.</li>
+            <li><strong>Impacto em Gestão e Finanças:</strong> Criação da esteira analítica para controle de <strong>DRE
+                Gerencial por unidade de negócio</strong>, reduzindo o tempo de consolidação de relatórios financeiros
+              de semanas para visões em tempo quase real.</li>
+            <li><strong>Otimização com IA Generativa:</strong> Redução estimada de <strong>30% a 40% no tempo de
+                prototipação</strong> de queries SQL complexas, DAX e rotinas de ETL via desenvolvimento assistido
+              (<strong>Claude Code, Antigravity, ChatGPT, APIs de LLM</strong>).</li>
+            <li><strong>Automação de Pipelines:</strong> Implantação de painéis contínuos para diretoria e displays
+              operacionais, eliminando mais de <strong>15 horas semanais</strong> de extração manual de dados.</li>
           </ul>
 
           <div class="job-tagline">
-            <strong style="color: var(--text-dark);">Stack &amp; Competências:</strong> Power BI (DAX Avançado, Power Query, Star Schema), SQL (Oracle, MariaDB), ERP Sankhya, On-premises Data Gateway, Python (Automação/ETL), IA Generativa &amp; LLM Agents.
+            <strong style="color: var(--text-dark);">Stack &amp; Competências:</strong> Power BI (DAX Avançado, Power
+            Query, Star Schema), SQL (Oracle, MariaDB), ERP Sankhya, On-premises Data Gateway, Python (Automação/ETL),
+            IA Generativa &amp; LLM Agents.
           </div>
         </article>
 
@@ -780,11 +865,14 @@
           <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 5px;">
             <i class="fa-solid fa-location-dot"></i> Osasco, São Paulo, Brasil
           </div>
-          
+
           <ul class="job-bullets">
-            <li>Fazer análises de oportunidades e ameaças, através da correlação de dados internos e externos e mapear os pontos geradores de dados em dashboards eficientes, ajudando nas tomadas de decisões, além de conectar as unidades de negócio com o mapa estratégico;</li>
+            <li>Fazer análises de oportunidades e ameaças, através da correlação de dados internos e externos e mapear
+              os pontos geradores de dados em dashboards eficientes, ajudando nas tomadas de decisões, além de conectar
+              as unidades de negócio com o mapa estratégico;</li>
             <li>Elaboração de dashboard e KPI´s e análises de resultados referentes a modelos analíticos;</li>
-            <li>Utilizava Power bi, ERP Smart Pixeon para criação de <strong>mais de 400 relatórios e aplicações</strong>;</li>
+            <li>Utilizava Power bi, ERP Smart Pixeon para criação de <strong>mais de 400 relatórios e
+                aplicações</strong>;</li>
             <li>Consegui Compreensão completa dos objetivos de negócio para extração de dados relevantes.</li>
           </ul>
 
@@ -792,11 +880,16 @@
           <ul class="job-bullets">
             <li>Reunir informações relevantes (dados de clientes através de um sistema CRM);</li>
             <li>Limpeza de dados (identificação, correção de informações duplicadas, inválidas ou corrompidas);</li>
-            <li>Organizar o material para obter insights valiosos para a empresa, em relação à sua comunicação, estratégias, comportamento do usuário, previsões, produtos, sistemas etc.;</li>
-            <li>Fazer análises de oportunidades e ameaças, através da correlação de dados internos e externos e mapear os pontos geradores de dados em dashboards eficientes, ajudando nas tomadas de decisões, além de conectar as unidades de negócio com o mapa estratégico;</li>
-            <li>Elaboração de dashboard e KPI´s e análises de resultados referentes a modelos analíticos, usando a metodologia Scrum;</li>
+            <li>Organizar o material para obter insights valiosos para a empresa, em relação à sua comunicação,
+              estratégias, comportamento do usuário, previsões, produtos, sistemas etc.;</li>
+            <li>Fazer análises de oportunidades e ameaças, através da correlação de dados internos e externos e mapear
+              os pontos geradores de dados em dashboards eficientes, ajudando nas tomadas de decisões, além de conectar
+              as unidades de negócio com o mapa estratégico;</li>
+            <li>Elaboração de dashboard e KPI´s e análises de resultados referentes a modelos analíticos, usando a
+              metodologia Scrum;</li>
             <li>Garantir a qualidade dos dados, das integrações e a consistência de relatórios;</li>
-            <li>Criar e desenvolver relatórios gerenciais; acompanhar os resultados e fornecer as informações para as áreas de negócios;</li>
+            <li>Criar e desenvolver relatórios gerenciais; acompanhar os resultados e fornecer as informações para as
+              áreas de negócios;</li>
             <li>Acompanhar tendências do mercado, KPIs e estimativas, sugerindo otimizações;</li>
             <li>Compreensão completa dos objetivos de negócio para extração de dados relevantes.</li>
           </ul>
@@ -812,12 +905,16 @@
           <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 5px;">
             <i class="fa-solid fa-location-dot"></i> Taboão da Serra, São Paulo, Brasil
           </div>
-          
+
           <ul class="job-bullets">
-            <li>Desenvolvimento e manutenção de relatórios operacionais, análises e monitoramentos dos indicadores de performance da empresa;</li>
-            <li>Criação e manutenção de dashboard. Acompanhamento e definições das estratégias utilizadas para cada tipo de “Operação/Produto”;</li>
+            <li>Desenvolvimento e manutenção de relatórios operacionais, análises e monitoramentos dos indicadores de
+              performance da empresa;</li>
+            <li>Criação e manutenção de dashboard. Acompanhamento e definições das estratégias utilizadas para cada tipo
+              de “Operação/Produto”;</li>
             <li>Utilizava <strong>Excel, Power bi</strong>;</li>
-            <li>Consegui desenvolver skills: <strong>Projeção de resultados</strong> apontando os itens de maior impacto como ponto de atenção e oportunidades de melhoria do negócio. Acompanhar planos de ação e processos relacionados ao planejamento e controle, propondo e identificando oportunidades de melhoria.</li>
+            <li>Consegui desenvolver skills: <strong>Projeção de resultados</strong> apontando os itens de maior impacto
+              como ponto de atenção e oportunidades de melhoria do negócio. Acompanhar planos de ação e processos
+              relacionados ao planejamento e controle, propondo e identificando oportunidades de melhoria.</li>
           </ul>
         </article>
 
@@ -831,10 +928,16 @@
           <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 5px;">
             <i class="fa-solid fa-location-dot"></i> São Paulo, Brasil
           </div>
-          
+
           <div class="job-subtitle">Principais Atividades:</div>
           <p class="job-desc">
-            Administração e Manutenção da carteira de clientes ativos, Apresentação dos serviços prestados, Pesquisa de satisfação dos clientes; Controle de qualidade; Apoio na administração da operação; Checagem de dados cadastrais de clientes, apoio aos representantes e equipe de vendas, Atendimento e relacionamento com pequenos e grandes clientes, negociação de contratos e pagamento, emissão de faturas, recebimento de notas e analise das documentações, Analise cadastral de clientes, Analise de vendas. Responsável pela prospecção, recuperação e fidelização de clientes e abertura de novos negócios, pós venda, analise de reclamações e soluções. Elaboração de relatórios de acompanhamento de performance e produtividade para os gestores.
+            Administração e Manutenção da carteira de clientes ativos, Apresentação dos serviços prestados, Pesquisa de
+            satisfação dos clientes; Controle de qualidade; Apoio na administração da operação; Checagem de dados
+            cadastrais de clientes, apoio aos representantes e equipe de vendas, Atendimento e relacionamento com
+            pequenos e grandes clientes, negociação de contratos e pagamento, emissão de faturas, recebimento de notas e
+            analise das documentações, Analise cadastral de clientes, Analise de vendas. Responsável pela prospecção,
+            recuperação e fidelização de clientes e abertura de novos negócios, pós venda, analise de reclamações e
+            soluções. Elaboração de relatórios de acompanhamento de performance e produtividade para os gestores.
           </p>
         </article>
 
@@ -848,13 +951,16 @@
           <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 5px;">
             <i class="fa-solid fa-location-dot"></i> Guarulhos, São Paulo, Brasil
           </div>
-          
+
           <ul class="job-bullets">
             <li>Recebimento de Mercadorias, conferir notas fiscais, pedidos e documentos de transporte;</li>
-            <li>Verificar quantidade, qualidade e integridade das mercadorias recebidas, registrando divergências ou avarias no sistema ou relatórios internos;</li>
-            <li>Conferir produtos a serem enviados de acordo com pedidos ou notas fiscais, embalar, etiquetar e organizar mercadorias para transporte seguro;</li>
+            <li>Verificar quantidade, qualidade e integridade das mercadorias recebidas, registrando divergências ou
+              avarias no sistema ou relatórios internos;</li>
+            <li>Conferir produtos a serem enviados de acordo com pedidos ou notas fiscais, embalar, etiquetar e
+              organizar mercadorias para transporte seguro;</li>
             <li>Garantir que a carga seja corretamente separada, conferida e despachada no prazo;</li>
-            <li>Atualizar registros de estoque e sistemas de gestão logística, acompanhando a movimentação de produtos dentro do almoxarifado ou depósito;</li>
+            <li>Atualizar registros de estoque e sistemas de gestão logística, acompanhando a movimentação de produtos
+              dentro do almoxarifado ou depósito;</li>
             <li>Auxiliar em inventários periódicos, verificando discrepâncias e reportando irregularidades.</li>
           </ul>
         </article>
@@ -864,17 +970,18 @@
       <!-- 4. FORMAÇÃO ACADÊMICA & IDIOMAS & CURSOS -->
       <section class="section" style="margin-top: 14px;">
         <div class="edu-cert-grid">
-          
+
           <!-- Formação Acadêmica & Idiomas -->
           <div>
             <div class="section-header">
               <i class="fa-solid fa-graduation-cap section-icon"></i>
               <h2 class="section-title">Formação Acadêmica</h2>
             </div>
-            
+
             <div class="edu-card">
               <div class="edu-degree">UniSant'Anna</div>
-              <div class="edu-inst">Pós-graduação Lato Sensu - Especialização, Administração, Negócios e Marketing · (janeiro de 2005 – julho de 2006)</div>
+              <div class="edu-inst">Pós-graduação Lato Sensu - Especialização, Administração, Negócios e Marketing ·
+                (janeiro de 2005 – julho de 2006)</div>
             </div>
 
             <div class="edu-card">
@@ -911,17 +1018,20 @@
 
             <div class="cert-item">
               <div class="cert-title">Implementação de Automação de Processos (n8n)</div>
-              <div class="cert-desc">(Conexão de endpoints de IA/LLMs a rotinas corporativas automatizadas para análise, extração de dados e alertas em tempo real)</div>
+              <div class="cert-desc">(Conexão de endpoints de IA/LLMs a rotinas corporativas automatizadas para análise,
+                extração de dados e alertas em tempo real)</div>
             </div>
 
             <div class="cert-item">
               <div class="cert-title">Automação e Agentes de IA – Morphix Treinamentos</div>
-              <div class="cert-desc">(Desenvolvimento e integração de agentes autônomos de IA conectados a bases de dados corporativas e dashboards)</div>
+              <div class="cert-desc">(Desenvolvimento e integração de agentes autônomos de IA conectados a bases de
+                dados corporativas e dashboards)</div>
             </div>
 
             <div class="cert-item">
               <div class="cert-title">Python para Ciência e Análise de Dados – Hashtag Treinamentos</div>
-              <div class="cert-desc">(Foco em automação de processos, pipelines de ETL, tratamento e higienização de dados)</div>
+              <div class="cert-desc">(Foco em automação de processos, pipelines de ETL, tratamento e higienização de
+                dados)</div>
             </div>
 
             <div class="cert-item">
@@ -937,5 +1047,5 @@
   </main>
 
 </body>
-</html>
 
+</html>
