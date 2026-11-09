@@ -759,7 +759,7 @@
                 <div class="brand-title">NEXUS <span>INDUSTRIAL</span></div>
             </a>
             <div class="brand-separator"></div>
-            <span class="header-subtitle">Cockpit Executivo &bull; Performance & Análise de Empresas por Plantas</span>
+            <span class="header-subtitle">Cockpit Executivo &bull; Performance & Análise por Unidades de Negócios</span>
         </div>
 
         <div class="header-filters">
@@ -844,7 +844,7 @@
             <div class="section-header">
                 <div class="section-title-group">
                     <h2>Evolução Diária Acumulada: Meta vs Realizado</h2>
-                    <p>Curvas acumuladas dia a dia comparando o ritmo planejado por planta industrial</p>
+                    <p>Curvas acumuladas dia a dia comparando o ritmo planejado por unidade de negócios</p>
                 </div>
                 <div class="executive-legend">
                     <div class="legend-item">
@@ -865,11 +865,11 @@
             <!-- Grid 2 Colunas x 3 Linhas com os 6 Cards de Gráficos -->
             <div class="plants-charts-grid">
 
-                <!-- 1. TODAS AS PLANTAS (CONSOLIDADO) -->
+                <!-- 1. TODAS UNIDADE DE NEGOCIOS (CONSOLIDADO) -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">TODAS AS PLANTAS (TOTAL)</span>
+                            <span class="plant-title">TODAS UNIDADE DE NEGOCIOS</span>
                             <span id="badge-total" class="status-pill dentro">DENTRO DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('total')" title="Ampliar gráfico">
@@ -915,11 +915,11 @@
                     </div>
                 </div>
 
-                <!-- 2. PLANTA 01 - SUDESTE -->
+                <!-- 2. LOGISTICA -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">PLANTA 01 - SUDESTE</span>
+                            <span class="plant-title">LOGISTICA</span>
                             <span id="badge-p1" class="status-pill dentro">DENTRO DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('p1')" title="Ampliar gráfico">
@@ -965,11 +965,11 @@
                     </div>
                 </div>
 
-                <!-- 3. PLANTA 02 - SUL -->
+                <!-- 3. BRASIL -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">PLANTA 02 - SUL</span>
+                            <span class="plant-title">BRASIL</span>
                             <span id="badge-p2" class="status-pill fora">FORA DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('p2')" title="Ampliar gráfico">
@@ -1015,11 +1015,11 @@
                     </div>
                 </div>
 
-                <!-- 4. PLANTA 03 - NORDESTE -->
+                <!-- 4. ASIA -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">PLANTA 03 - NORDESTE</span>
+                            <span class="plant-title">ASIA</span>
                             <span id="badge-p3" class="status-pill dentro">DENTRO DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('p3')" title="Ampliar gráfico">
@@ -1065,11 +1065,11 @@
                     </div>
                 </div>
 
-                <!-- 5. PLANTA 04 - CENTRO-OESTE -->
+                <!-- 5. LATIM AMERICA -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">PLANTA 04 - CENTRO-OESTE</span>
+                            <span class="plant-title">LATIM AMERICA</span>
                             <span id="badge-p4" class="status-pill dentro">DENTRO DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('p4')" title="Ampliar gráfico">
@@ -1115,11 +1115,11 @@
                     </div>
                 </div>
 
-                <!-- 6. PLANTA 05 - NORTE & EXPORTAÇÃO -->
+                <!-- 6. EUROPA -->
                 <div class="plant-chart-card">
                     <div class="plant-card-header">
                         <div class="plant-title-box">
-                            <span class="plant-title">PLANTA 05 - EXPORTAÇÃO</span>
+                            <span class="plant-title">EUROPA</span>
                             <span id="badge-p5" class="status-pill dentro">DENTRO DA META</span>
                         </div>
                         <button class="btn-card-zoom" onclick="abrirZoom('p5')" title="Ampliar gráfico">
@@ -1174,7 +1174,7 @@
         <section class="section-card">
             <div class="section-header">
                 <div class="section-title-group">
-                    <h2>Quadro Consolidado de Resultados por Planta Industrial</h2>
+                    <h2>Quadro Consolidado de Resultados por Unidade de Negócios</h2>
                     <p>Demonstrativo tabular de faturamento realizado, metas operacionais e projeção linear</p>
                 </div>
             </div>
@@ -1341,7 +1341,7 @@
         <div class="modal-container" onclick="event.stopPropagation()">
             <div class="modal-header">
                 <div>
-                    <h3 class="modal-title" id="modal-zoom-title">PLANTA 01 - SUDESTE</h3>
+                    <h3 class="modal-title" id="modal-zoom-title">LOGISTICA</h3>
                     <p style="font-size:0.75rem; color:#A0A0AA; margin-top:2px;">Detalhamento analítico da curva diária acumulada de meta vs faturamento</p>
                 </div>
                 <button class="modal-close-btn" onclick="fecharModalZoomDirect()">&times;</button>
@@ -1356,43 +1356,43 @@
          LÓGICA JAVASCRIPT: MODELO DE DADOS FICTÍCIOS & ENGINE CHART.JS
          ══════════════════════════════════════════════════════════════════ -->
     <script>
-        // ── Base de Dados Fictícia de Demonstração para as 5 Plantas ──
+        // ── Base de Dados Fictícia de Demonstração para as 5 Unidades ──
         const DADOS_PLANTAS = {
             p1: {
-                nome: "Planta 01 - Sudeste",
-                sigla: "P01",
+                nome: "Logistica",
+                sigla: "LOG",
                 peso: 0.657,
                 metaMes: 2003005,
                 maiorDia: { dia: "07/11", val: 137498 },
                 curvaDiariaReal: [58200, 119400, 192800, 269100, 361400, 478200, 615698, 672100, 711731]
             },
             p2: {
-                nome: "Planta 02 - Sul",
-                sigla: "P02",
+                nome: "Brasil",
+                sigla: "BRA",
                 peso: 0.158,
                 metaMes: 747500,
                 maiorDia: { dia: "03/11", val: 33905 },
                 curvaDiariaReal: [14200, 31800, 65705, 84200, 102500, 121800, 139400, 155200, 171136]
             },
             p3: {
-                nome: "Planta 03 - Nordeste",
-                sigla: "P03",
+                nome: "Asia",
+                sigla: "ASI",
                 peso: 0.177,
                 metaMes: 357500,
                 maiorDia: { dia: "03/11", val: 65062 },
                 curvaDiariaReal: [16800, 35400, 100462, 118200, 134100, 151200, 166400, 179800, 191749]
             },
             p4: {
-                nome: "Planta 04 - Centro-Oeste",
-                sigla: "P04",
+                nome: "Latim America",
+                sigla: "LAT",
                 peso: 0.115,
                 metaMes: 373330,
                 maiorDia: { dia: "05/11", val: 28400 },
                 curvaDiariaReal: [11500, 24100, 39800, 56200, 84600, 96800, 107200, 116500, 124800]
             },
             p5: {
-                nome: "Planta 05 - Exportação",
-                sigla: "P05",
+                nome: "Europa",
+                sigla: "EUR",
                 peso: 0.077,
                 metaMes: 253330,
                 maiorDia: { dia: "06/11", val: 18900 },
@@ -1774,7 +1774,7 @@
             const title = document.getElementById('modal-zoom-title');
             const diaNum = parseInt(document.getElementById('slider-dias').value, 10);
 
-            const nome = key === 'total' ? 'TODAS AS PLANTAS (CONSOLIDADO TOTAL)' : DADOS_PLANTAS[key].nome.toUpperCase();
+            const nome = key === 'total' ? 'TODAS UNIDADE DE NEGOCIOS' : DADOS_PLANTAS[key].nome.toUpperCase();
             title.innerText = nome;
 
             modal.classList.add('active');
