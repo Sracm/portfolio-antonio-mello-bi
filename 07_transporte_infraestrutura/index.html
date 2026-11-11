@@ -146,6 +146,220 @@
                 flex: 1 1 100% !important;
             }
         }
+
+        /* ══════════════════════════════════════════════════════════════════════════
+           🤖 AGENTE DE IA FLUTUANTE — VIA METRÓPOLE (FROTA, DIESEL & FACILITIES)
+           ══════════════════════════════════════════════════════════════════════════ */
+        #ai-chat-widget {
+            position: fixed !important;
+            bottom: 24px !important;
+            right: 24px !important;
+            width: 360px !important;
+            height: 520px !important;
+            background: #0d1627 !important;
+            border: 1px solid #00d2ff !important;
+            border-radius: 16px !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 210, 255, 0.25) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            z-index: 999999 !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            overflow: hidden !important;
+            font-family: inherit !important;
+        }
+
+        #ai-chat-widget.ai-chat-collapsed {
+            height: 58px !important;
+            width: 58px !important;
+            border-radius: 29px !important;
+            border: 2px solid #00d2ff !important;
+            background: #0d1627 !important;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 210, 255, 0.6) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            animation: pulseTranspIA 2.5s infinite !important;
+        }
+
+        @keyframes pulseTranspIA {
+            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.7); }
+            70% { box-shadow: 0 0 0 14px rgba(0, 210, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
+        }
+
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-header {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            justify-content: center !important;
+        }
+
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-title span:last-child,
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-controls,
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-body,
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-footer {
+            display: none !important;
+        }
+
+        #ai-chat-widget.ai-chat-collapsed .ai-avatar-img {
+            width: 52px !important;
+            height: 52px !important;
+            border-radius: 50% !important;
+            border: none !important;
+            display: block !important;
+            object-fit: cover !important;
+        }
+
+        .ai-chat-header {
+            height: 50px !important;
+            min-height: 50px !important;
+            background: linear-gradient(90deg, #091222, #132446) !important;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 16px !important;
+            cursor: pointer !important;
+            user-select: none !important;
+        }
+
+        .ai-chat-title {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            color: #00d2ff !important;
+            font-weight: 800 !important;
+            font-size: 13.5px !important;
+            letter-spacing: 0.4px !important;
+        }
+
+        .ai-avatar-img {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 2px solid #00d2ff !important;
+        }
+
+        .ai-chat-controls button {
+            background: none !important;
+            border: none !important;
+            color: #94a3b8 !important;
+            font-size: 18px !important;
+            cursor: pointer !important;
+            line-height: 1 !important;
+            padding: 4px 6px !important;
+        }
+        .ai-chat-controls button:hover {
+            color: #00d2ff !important;
+        }
+
+        .ai-chat-body {
+            flex: 1 !important;
+            padding: 14px !important;
+            overflow-y: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+            background: rgba(7, 13, 24, 0.95) !important;
+        }
+
+        .ai-message {
+            padding: 10px 14px !important;
+            border-radius: 8px !important;
+            font-size: 12.5px !important;
+            line-height: 1.5 !important;
+            word-wrap: break-word !important;
+        }
+
+        .ai-message.ai {
+            background: #111d33 !important;
+            color: #e2e8f0 !important;
+            border-left: 3px solid #00d2ff !important;
+            align-self: flex-start !important;
+            width: 100% !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .ai-message.user {
+            background: rgba(0, 210, 255, 0.15) !important;
+            color: #ffffff !important;
+            border-right: 3px solid #00d2ff !important;
+            align-self: flex-end !important;
+            max-width: 85% !important;
+        }
+
+        .ai-chips-bar {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 6px !important;
+            margin-top: 4px !important;
+        }
+
+        .ai-chip {
+            background: rgba(0, 210, 255, 0.12) !important;
+            border: 1px solid rgba(0, 210, 255, 0.35) !important;
+            color: #00d2ff !important;
+            padding: 5px 10px !important;
+            border-radius: 16px !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+        }
+        .ai-chip:hover {
+            background: #00d2ff !important;
+            color: #0b1528 !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .ai-chat-footer {
+            height: 54px !important;
+            padding: 8px 12px !important;
+            background: #091222 !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .ai-chat-footer input {
+            flex: 1 !important;
+            background: #111d33 !important;
+            border: 1px solid rgba(0, 210, 255, 0.25) !important;
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            color: #ffffff !important;
+            font-size: 12px !important;
+            outline: none !important;
+        }
+        .ai-chat-footer input:focus {
+            border-color: #00d2ff !important;
+            box-shadow: 0 0 8px rgba(0, 210, 255, 0.3) !important;
+        }
+
+        .ai-chat-footer button {
+            background: linear-gradient(135deg, #00d2ff, #0090ff) !important;
+            border: none !important;
+            color: #0b1528 !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            font-weight: 800 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.2s ease !important;
+        }
+        .ai-chat-footer button:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5) !important;
+        }
     </style>
 
     <script>
@@ -1665,12 +1879,230 @@
             }
         });
 
+        // ══════════════════════════════════════════════════════════════════════════
+        // 🤖 AGENTE DE IA FLUTUANTE — VIA METRÓPOLE (FROTA, DIESEL & FACILITIES)
+        // ══════════════════════════════════════════════════════════════════════════
+        function toggleChat(forceOpen) {
+            const widget = document.getElementById('ai-chat-widget');
+            const btnToggle = document.getElementById('ai-chat-toggle');
+            const input = document.getElementById('ai-chat-input');
+            if (!widget) return;
+
+            if (forceOpen === true) {
+                widget.classList.remove('ai-chat-collapsed');
+            } else if (forceOpen === false) {
+                widget.classList.add('ai-chat-collapsed');
+            } else {
+                widget.classList.toggle('ai-chat-collapsed');
+            }
+
+            const isCollapsed = widget.classList.contains('ai-chat-collapsed');
+            if (btnToggle) btnToggle.textContent = isCollapsed ? '↑' : '_';
+            if (!isCollapsed && input) {
+                setTimeout(() => input.focus(), 150);
+            }
+        }
+        window.toggleChat = toggleChat;
+
+        function handleChipTransp(txt) {
+            const input = document.getElementById('ai-chat-input');
+            if (input) input.value = txt;
+            sendTranspIA();
+        }
+        window.handleChipTransp = handleChipTransp;
+
+        function appendMessageTransp(sender, text) {
+            const chatBody = document.getElementById('ai-chat-body');
+            if (!chatBody) return;
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `ai-message ${sender}`;
+            
+            const formatted = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            msgDiv.innerHTML = formatted;
+
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function sendTranspIA() {
+            const input = document.getElementById('ai-chat-input');
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+
+            appendMessageTransp('user', text);
+            input.value = '';
+
+            setTimeout(() => {
+                const resp = gerarRespostaTranspIA(text);
+                appendMessageTransp('ai', resp);
+            }, 300);
+        }
+        window.sendTranspIA = sendTranspIA;
+
+        function gerarRespostaTranspIA(promptText) {
+            const q = (promptText || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+            // Saudação
+            if (
+                q === 'ola' || q === 'oi' || q === 'opa' || q === 'ola!' || q === 'oi!' ||
+                q.startsWith('ola ') || q.startsWith('oi ') || q.startsWith('bom dia') ||
+                q.startsWith('boa tarde') || q.startsWith('boa noite') ||
+                q.includes('tudo bem') || q.includes('como vai') || q.includes('e ai')
+            ) {
+                const hora = new Date().getHours();
+                let saud = 'Boa noite';
+                if (hora >= 5 && hora < 12) saud = 'Bom dia';
+                else if (hora >= 12 && hora < 18) saud = 'Boa tarde';
+
+                return `${saud}, Antônio! Tudo bem?\n` +
+                       `Sou o **Assistente IA de Gestão de Frota, Diesel & Facilities da Via Metrópole**.\n\n` +
+                       `Conectado diretamente à telemetria dos 100 ônibus urbanos e às 4 garagens operacionais. O que você deseja inspecionar?\n` +
+                       `• 🚍 **Status da Frota & IPK** (100 carros | 94 ativos | IPK 2.64 pass/km)\n` +
+                       `• ⛽ **Consumo de Diesel** (754.510 L | Rendimento 2.42 km/l)\n` +
+                       `• ⏰ **Curva de Horários de Pico** (Pico Manhã 06h-08h | Tarde 17h-19h)\n` +
+                       `• 🏢 **Custos de Garagens & Facilities** (R$ 420.550/mês)\n` +
+                       `• 💧 **Água de Reuso & Lavagem** (68.5% reuso | 12.450 lavagens)\n` +
+                       `• 💡 **Oportunidades de Redução de Custos** (-6.4% em diesel)`;
+            }
+
+            // Status da Frota / IPK
+            if (q.includes('frota') || q.includes('ipk') || q.includes('onibus') || q.includes('veiculo') || q.includes('status da frota') || q.includes('passageiro')) {
+                return `🚍 **Diagnóstico Operacional da Frota (Via Metrópole):**\n\n` +
+                       `• **Frota Total Cadastrada:** 100 ônibus urbanos (Padron 13m, BRT Articulado 18m e Elétricos BYD).\n` +
+                       `• **Frota Operacional Ativa:** 94 ônibus em circulação regular (94% de disponibilidade operacional).\n` +
+                       `• **Em Manutenção Preventiva:** 6 veículos retidos em garagens para revisão mecânica periódica.\n` +
+                       `• **Passageiros Transportados:** 4.820.450 passageiros acumulados (3.986.870 pagantes + 833.580 gratuidades/estudantes).\n` +
+                       `• **IPK Médio Geral:** **2.64 passageiros/km** (Meta contratual: >2.30 pass/km).\n` +
+                       `• **Quilometragem Rodada:** 1.825.930 km com 98.6% de cumprimento do quadro de partidas.`;
+            }
+
+            // Diesel / Combustível / Rendimento
+            if (q.includes('diesel') || q.includes('combustivel') || q.includes('consumo') || q.includes('rendimento') || q.includes('km/l') || q.includes('litro')) {
+                return `⛽ **Eficiência Energética & Consumo de Diesel:**\n\n` +
+                       `• **Volume Total Consumido:** 754.510 litros de Diesel S10.\n` +
+                       `• **Rendimento Médio da Frota:** **2.42 km/litro** (acima do baseline de 2.27 km/l, gerando economia líquida de 6.4%).\n` +
+                       `• **Top Eficiência:** Linha 101-T (Troncal Expresso) atingiu 2.58 km/l com telemetria de condução econômica (Eco-Drive).\n` +
+                       `• **Pegada de Carbono:** 1.992 toneladas de CO2 geradas, com redução de 136 t CO2 após adoção de rotas otimizadas e frota elétrica experimental.`;
+            }
+
+            // Horários de Pico
+            if (q.includes('pico') || q.includes('horario') || q.includes('manha') || q.includes('tarde') || q.includes('curva horaria')) {
+                return `⏰ **Comportamento da Curva Horária de Demanda:**\n\n` +
+                       `• 🌅 **Pico Manhã (06:00 às 08:30):** Concentração de 34.2% da demanda diária. Taxa média de ocupação de **88.4%**. Linhas com maior carregamento: Troncal 101-T e Corredor BRT 401.\n` +
+                       `• 🌇 **Pico Tarde/Noite (17:00 às 19:30):** Concentração de 38.6% da demanda diária. Taxa média de ocupação de **91.2%**.\n` +
+                       `• 🌤️ **Entrepico / Vale (10:00 às 15:00):** Ocupação média de 48.5%. Recomendação técnica: modulação do intervalo entre viagens (headway) de 8 para 14 min para economizar diesel sem penalizar tempo de espera.`;
+            }
+
+            // Garagens / Facilities / Custos Prediais
+            if (q.includes('garagem') || q.includes('facilit') || q.includes('predial') || q.includes('aluguel') || q.includes('energia') || q.includes('kwh') || q.includes('instalac')) {
+                return `🏢 **Facilities & Gestão Patrimonial de Garagens:**\n\n` +
+                       `Custo Operacional Predial Consolidado: **R$ 420.550/mês** distribuído em 6 instalações:\n` +
+                       `• **Garagem Leste (Itaquera):** 35 vagas | Aluguel R$ 48.000 | Energia R$ 38.400 | Total R$ 94.600\n` +
+                       `• **Garagem Norte (Cantareira):** 40 vagas | Aluguel R$ 52.000 | Energia R$ 42.100 | Total R$ 103.500\n` +
+                       `• **Garagem Sul (Santo Amaro):** 30 vagas | Aluguel R$ 42.000 | Energia R$ 35.800 | Total R$ 86.200\n` +
+                       `• **Garagem Oeste (Butantã):** 25 vagas | Aluguel R$ 36.000 | Energia R$ 29.500 | Total R$ 73.800\n` +
+                       `• **Centro de Controle & CCO:** Prédio Administrativo | Total R$ 62.450/mês.\n` +
+                       `• **Energia Elétrica Total:** 245.800 kWh (R$ 184.350) com migração prevista de 2 garagens para o Mercado Livre de Energia.`;
+            }
+
+            // Água / Reuso / Sustentabilidade
+            if (q.includes('agua') || q.includes('reuso') || q.includes('lavagem') || q.includes('sustentab') || q.includes('co2')) {
+                return `💧 **Sustentabilidade: Água de Reuso & Lavagem de Frota:**\n\n` +
+                       `• **Índice de Reuso Hídrico:** **68.5%** do volume total utilizado.\n` +
+                       `• **Lavagens de Ônibus Realizadas:** 12.450 lavagens completas por sistema automático de rolos.\n` +
+                       `• **Volume Consumido:** 4.120 m³ de rede concessionária vs 8.940 m³ provenientes de captação pluvial e estação de tratamento de efluentes (ETE interna).\n` +
+                       `• **Economia Financeira Gerada:** R$ 89.400/ano em tarifas de água tratada.`;
+            }
+
+            // Linhas Críticas / Alertas
+            if (q.includes('critica') || q.includes('alerta') || q.includes('baixa ocupacao') || q.includes('prejuizo') || q.includes('ocios')) {
+                return `⚠️ **Alertas Operacionais & Linhas com Baixa Rentabilidade:**\n\n` +
+                       `1. 🔴 **Linha 501-N (Noturna Centro ⇄ Periferia Norte):**\n` +
+                       `   - IPK: 1.18 pass/km (crítico)\n` +
+                       `   - Ocupação: 36.4% fora do horário de pico\n` +
+                       `   - Ação sugerida: substituição de ônibus Padron 13m por Micro-ônibus alimentador após as 23h.\n` +
+                       `2. 🟠 **Linha 302-A (Polo Corporativo Sul):**\n` +
+                       `   - Queda de 18% nos passageiros de sexta-feira devido ao regime híbrido de trabalho.\n` +
+                       `   - Ação: reprogramação de tabela horária com recolhimento antecipado de 3 carros.`;
+            }
+
+            // Oportunidades / Redução de Custos
+            if (q.includes('oportunidade') || q.includes('economia') || q.includes('reduzir') || q.includes('otimiz') || q.includes('melhoria')) {
+                return `💡 **Plano de Otimização & Redução de Despesas:**\n\n` +
+                       `1. **Eco-Drive e Telemetria CAN-BUS:** Redução contínua de 6.4% em diesel (-48.200 litros/mês).\n` +
+                       `2. **Mercado Livre de Energia (ACL):** Potencial de redução de 22% na fatura de energia das Garagens Norte e Leste (-R$ 17.500/mês).\n` +
+                       `3. **Ajuste Fino de Headway no Entrepico:** Otimização de 48 partidas de baixo carregamento, poupando 12.800 km rodados/mês.\n` +
+                       `4. **Expansão de Água de Reuso na Garagem Oeste:** Elevação da taxa de reuso para 80%, zerando o uso de água potável na lavagem externa.`;
+            }
+
+            // Resposta Padrão
+            return `Compreendi sua solicitação sobre **"${promptText}"**.\n\n` +
+                   `Os indicadores operacionais da Via Metrópole mostram estabilidade no IPK (2.64 pass/km) e cumprimento de viagens em 98.6%.\n\n` +
+                   `Você pode me perguntar com detalhes sobre:\n` +
+                   `• **Frota & Ônibus** (disponibilidade, manutenção em box, passageiros)\n` +
+                   `• **Diesel & Eficiência** (km/litro, consumo por linha, pegada de carbono)\n` +
+                   `• **Horários de Pico** (carregamento manhã e tarde vs entrepico)\n` +
+                   `• **Custos de Facilities** (aluguel de garagens, energia elétrica e água de reuso)\n` +
+                   `• **Linhas Críticas** (trechos com baixa ocupação e plano de ação)`;
+        }
+        window.gerarRespostaTranspIA = gerarRespostaTranspIA;
+
         // Initialize on DOM Ready
         document.addEventListener('DOMContentLoaded', async () => {
+            const horaNow = new Date().getHours();
+            let saudNow = 'Boa noite';
+            if (horaNow >= 5 && horaNow < 12) saudNow = 'Bom dia';
+            else if (horaNow >= 12 && horaNow < 18) saudNow = 'Boa tarde';
+            const greetingEl = document.getElementById('transpGreetingMsg');
+            if (greetingEl) greetingEl.textContent = `${saudNow}, Antônio!`;
+
             await carregarFiltros();
             await carregarDados();
         });
     </script>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE OPERACIONAL (VIA METRÓPOLE)
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleChat(true)" title="Abrir Assistente de IA Operacional">
+        <div class="ai-chat-header" id="ai-chat-header">
+            <div class="ai-chat-title">
+                <span class="ai-icon">
+                    <img src="viacao_ai_avatar.png" alt="Assistente IA" class="ai-avatar-img" onerror="this.onerror=null; this.src='../viacao_ai_avatar.png';">
+                </span>
+                <span>Assistente IA • Frota &amp; Facilities</span>
+            </div>
+            <div class="ai-chat-controls">
+                <button id="ai-chat-toggle" title="Minimizar" onclick="event.stopPropagation(); toggleChat(false);">_</button>
+            </div>
+        </div>
+        <div class="ai-chat-body" id="ai-chat-body">
+            <div class="ai-message ai">
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; font-weight: 800; color: #fff;" id="transpGreetingMsg">Boa tarde, Antônio!</p>
+                <p style="margin: 0 0 8px 0; color: #cbd5e1;">Sou o <strong>Assistente IA da Frota &amp; Facilities (Via Metrópole)</strong>.</p>
+                <p style="margin: 0 0 8px 0; color: #cbd5e1; line-height: 1.45;">Monitorando em tempo real <strong>100 ônibus urbanos</strong>, consumo de diesel, IPK por itinerário, garagens operacionais e custos de utilities (energia e água de reuso).</p>
+                <p style="margin: 0; color: #cbd5e1; line-height: 1.45;">Por qual indicador operacional começamos hoje?</p>
+            </div>
+
+            <div class="ai-chips-bar">
+                <button class="ai-chip" onclick="handleChipTransp('🚍 Status da Frota & IPK')">🚍 Status da Frota &amp; IPK</button>
+                <button class="ai-chip" onclick="handleChipTransp('⛽ Consumo de Diesel & Meta')">⛽ Consumo de Diesel &amp; Meta</button>
+                <button class="ai-chip" onclick="handleChipTransp('⏰ Horários de Pico (Manhã & Tarde)')">⏰ Horários de Pico</button>
+                <button class="ai-chip" onclick="handleChipTransp('🏢 Garagens & Custos Prediais')">🏢 Garagens &amp; Custos Prediais</button>
+                <button class="ai-chip" onclick="handleChipTransp('⚠️ Linhas Críticas & Ocupação')">⚠️ Linhas Críticas</button>
+                <button class="ai-chip" onclick="handleChipTransp('💧 Água de Reuso & Lavagem')">💧 Água de Reuso</button>
+                <button class="ai-chip" onclick="handleChipTransp('💡 Oportunidades de Economia')">💡 Oportunidades de Economia</button>
+            </div>
+        </div>
+        <div class="ai-chat-footer">
+            <input type="text" id="ai-chat-input" placeholder="Pergunte sobre frota, diesel, IPK, garagens, custos..." onkeypress="if(event.key==='Enter') sendTranspIA()" />
+            <button id="ai-chat-send" onclick="sendTranspIA()" title="Enviar">➤</button>
+        </div>
+    </div>
 </body>
 
 </html>

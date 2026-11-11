@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel TV - Países & Exportação Global (Material de Construção)</title>
-    
+
     <!-- Google Fonts: Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="css/style.css">
     <script src="js/echarts.min.js"></script>
 
@@ -24,6 +26,7 @@
             --red-neon: #ff2424;
             --yellow-neon: #ffd600;
         }
+
         body {
             background-color: var(--bg-dark);
             color: #ffffff;
@@ -32,6 +35,7 @@
             padding: 0;
             overflow-x: hidden;
         }
+
         .header {
             background: rgba(18, 24, 38, 0.95);
             border-bottom: 2px solid rgba(203, 151, 39, 0.3);
@@ -40,6 +44,7 @@
             top: 0;
             z-index: 1000;
         }
+
         .header-top {
             display: flex;
             justify-content: space-between;
@@ -48,12 +53,14 @@
             gap: 8px;
             margin-bottom: 6px;
         }
+
         .nav-tabs-container {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
             align-items: center;
         }
+
         .tab-btn {
             background: #182030;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -69,22 +76,28 @@
             align-items: center;
             gap: 5px;
         }
-        .tab-btn:hover, .tab-btn.active {
+
+        .tab-btn:hover,
+        .tab-btn.active {
             background: linear-gradient(135deg, #cb9727 0%, #a6781b 100%);
             color: #000;
             border-color: #cb9727;
             box-shadow: 0 0 10px rgba(203, 151, 39, 0.4);
         }
+
         .tab-btn.btn-voltar {
             background: #252830;
             color: #f5d372;
             border-color: rgba(203, 151, 39, 0.5);
         }
+
         .tab-btn.btn-voltar:hover {
             background: #cb9727;
             color: #000;
         }
-        html, body {
+
+        html,
+        body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -93,19 +106,23 @@
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
+
         .dashboard-container {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
+
         @media (min-width: 960px) {
             body {
                 overflow: hidden;
             }
+
             .dashboard-container {
                 height: 100vh;
                 overflow: hidden;
             }
+
             .paises-container {
                 flex: 1;
                 min-height: 0;
@@ -119,12 +136,14 @@
                 width: 100%;
                 margin: 0 auto;
             }
+
             .kpi-row-paises {
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
                 gap: 8px;
                 flex-shrink: 0;
             }
+
             .charts-row-paises {
                 display: grid;
                 grid-template-columns: 1.35fr 1fr;
@@ -133,6 +152,7 @@
                 min-height: 0;
                 overflow: hidden;
             }
+
             .chart-box {
                 background: var(--card-dark);
                 border: 1px solid rgba(255, 255, 255, 0.08);
@@ -145,12 +165,14 @@
                 box-sizing: border-box;
                 overflow: hidden;
             }
+
             .chart-content {
                 flex: 1;
                 width: 100%;
                 height: 100%;
                 min-height: 0;
             }
+
             .table-paises-box {
                 background: var(--card-dark);
                 border: 1px solid rgba(255, 255, 255, 0.08);
@@ -163,6 +185,7 @@
                 box-sizing: border-box;
                 overflow: hidden;
             }
+
             .table-scroll-container {
                 flex: 1;
                 min-height: 0;
@@ -170,6 +193,7 @@
                 overflow-x: auto;
             }
         }
+
         @media (max-width: 959px) {
             .paises-container {
                 padding: 12px;
@@ -177,16 +201,19 @@
                 flex-direction: column;
                 gap: 12px;
             }
+
             .kpi-row-paises {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 8px;
             }
+
             .charts-row-paises {
                 display: grid;
                 grid-template-columns: 1fr;
                 gap: 12px;
             }
+
             .chart-box {
                 background: var(--card-dark);
                 border: 1px solid rgba(255, 255, 255, 0.08);
@@ -194,6 +221,7 @@
                 padding: 12px;
                 height: 280px;
             }
+
             .table-paises-box {
                 background: var(--card-dark);
                 border: 1px solid rgba(255, 255, 255, 0.08);
@@ -202,11 +230,13 @@
                 overflow-x: auto;
             }
         }
+
         @media (max-width: 600px) {
             .kpi-row-paises {
                 grid-template-columns: 1fr;
             }
         }
+
         .kpi-card-mini {
             background: var(--card-dark);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -216,6 +246,7 @@
             flex-direction: column;
             border-left: 3px solid var(--gold);
         }
+
         .kpi-label {
             font-size: 0.63rem;
             color: #94a3b8;
@@ -223,6 +254,7 @@
             text-transform: uppercase;
             letter-spacing: 0.3px;
         }
+
         .kpi-val {
             font-size: 1.15rem;
             font-weight: 900;
@@ -230,11 +262,13 @@
             margin-top: 1px;
             letter-spacing: 0.5px;
         }
+
         .kpi-sub {
             font-size: 0.62rem;
             color: #00d26a;
             font-weight: 700;
         }
+
         .chart-box-title {
             font-size: 0.76rem;
             font-weight: 800;
@@ -247,11 +281,13 @@
             align-items: center;
             flex-shrink: 0;
         }
+
         .table-custom {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.70rem;
         }
+
         .table-custom th {
             text-align: left;
             color: #94a3b8;
@@ -265,23 +301,39 @@
             background: #121826;
             z-index: 5;
         }
+
         .table-custom td {
             padding: 3px 6px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             white-space: nowrap;
         }
+
         .table-custom tr:hover {
             background: rgba(203, 151, 39, 0.12);
         }
+
         .badge-pct {
             font-weight: 800;
             padding: 1px 5px;
             border-radius: 4px;
             font-size: 0.65rem;
         }
-        .badge-pct.pos { background: rgba(0, 210, 106, 0.15); color: #00d26a; }
-        .badge-pct.warn { background: rgba(255, 214, 0, 0.15); color: #ffd600; }
-        .badge-pct.neg { background: rgba(255, 36, 36, 0.15); color: #ff2424; }
+
+        .badge-pct.pos {
+            background: rgba(0, 210, 106, 0.15);
+            color: #00d26a;
+        }
+
+        .badge-pct.warn {
+            background: rgba(255, 214, 0, 0.15);
+            color: #ffd600;
+        }
+
+        .badge-pct.neg {
+            background: rgba(255, 36, 36, 0.15);
+            color: #ff2424;
+        }
+
         .auto-tv-indicator {
             display: inline-flex;
             align-items: center;
@@ -294,6 +346,7 @@
             color: #00d26a;
             font-weight: 700;
         }
+
         .pulse-dot {
             width: 8px;
             height: 8px;
@@ -304,24 +357,32 @@
         }
     </style>
 </head>
+
 <body>
     <div class="dashboard-container">
         <!-- Header -->
         <header class="header">
             <div class="header-top">
                 <div class="nav-tabs-container">
-                    <a href="unidades.html" class="tab-btn"><i class="fa-solid fa-gauge-high"></i> Unidade de Negócios</a>
-                    <a href="trimestre.html" class="tab-btn"><i class="fa-solid fa-chart-pie"></i> Trimestral (Glosas & RCM)</a>
-                    <a href="mapa_brasil.html" class="tab-btn" style="color:#ffd700;"><i class="fa-solid fa-map-location-dot"></i> Mapa Brasil</a>
-                    <a href="paises.html" class="tab-btn active"><i class="fa-solid fa-earth-americas"></i> Países & Global</a>
-                    <a href="../index.html" class="tab-btn btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar ao Portfólio</a>
+                    <a href="unidades.html" class="tab-btn"><i class="fa-solid fa-gauge-high"></i> Unidade de
+                        Negócios</a>
+                    <a href="trimestre.html" class="tab-btn"><i class="fa-solid fa-chart-pie"></i> Trimestral (Glosas &
+                        RCM)</a>
+                    <a href="mapa_brasil.html" class="tab-btn" style="color:#ffd700;"><i
+                            class="fa-solid fa-map-location-dot"></i> Mapa Brasil</a>
+                    <a href="paises.html" class="tab-btn active"><i class="fa-solid fa-earth-americas"></i> Países &
+                        Global</a>
+                    <a href="../index.html" class="tab-btn btn-voltar"><i class="fa-solid fa-arrow-left"></i> Voltar ao
+                        Portfólio</a>
                 </div>
                 <div class="header-actions-right" style="display:flex; align-items:center; gap:8px;">
-                    <div class="auto-tv-indicator" id="auto-tv-badge" onclick="toggleAutoTV()" style="cursor:pointer;" title="Clique para pausar/retomar alternância automática">
+                    <div class="auto-tv-indicator" id="auto-tv-badge" onclick="toggleAutoTV()" style="cursor:pointer;"
+                        title="Clique para pausar/retomar alternância automática">
                         <div class="pulse-dot"></div>
                         <span id="auto-tv-text">AUTO-TV: ATIVA (25s)</span>
                     </div>
-                    <button class="btn-action" onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i> Tela Cheia</button>
+                    <button class="btn-action" onclick="toggleFullScreen()"><i class="fa-solid fa-expand"></i> Tela
+                        Cheia</button>
                 </div>
             </div>
         </header>
@@ -381,20 +442,20 @@
                     <i class="fa-solid fa-ship" style="color:#cb9727;"></i>
                 </div>
                 <div class="table-scroll-container">
-                <table class="table-custom">
-                    <thead>
-                        <tr>
-                            <th>País de Destino</th>
-                            <th>Região Global</th>
-                            <th>Volume (Ton)</th>
-                            <th>Realizado (US$)</th>
-                            <th>Meta (US$)</th>
-                            <th>Atingimento</th>
-                            <th>Status Operacional</th>
-                        </tr>
-                    </thead>
-                    <tbody id="paises-table-body"></tbody>
-                </table>
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>País de Destino</th>
+                                <th>Região Global</th>
+                                <th>Volume (Ton)</th>
+                                <th>Realizado (US$)</th>
+                                <th>Meta (US$)</th>
+                                <th>Atingimento</th>
+                                <th>Status Operacional</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paises-table-body"></tbody>
+                    </table>
                 </div>
             </div>
         </main>
@@ -433,7 +494,7 @@
             // 1. Gráfico de Barras Países
             const barDom = document.getElementById('chart-paises-bar');
             const barChart = echarts.init(barDom);
-            
+
             const countries = PAISES_DATA.map(p => p.country).reverse();
             const values = PAISES_DATA.map(p => p.real / 1000).reverse();
 
@@ -444,7 +505,7 @@
                     backgroundColor: 'rgba(18, 24, 38, 0.95)',
                     borderColor: '#cb9727',
                     textStyle: { color: '#ffffff', fontFamily: 'Montserrat' },
-                    formatter: function(params) {
+                    formatter: function (params) {
                         const item = params[0];
                         return `<strong>${item.name}</strong><br/>Faturamento: <strong>US$ ${(item.value * 1000).toLocaleString('en-US')}</strong>`;
                     }
@@ -549,7 +610,7 @@
 
         function toggleFullScreen() {
             if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(() => {});
+                document.documentElement.requestFullscreen().catch(() => { });
             } else {
                 if (document.exitFullscreen) document.exitFullscreen();
             }
@@ -573,4 +634,5 @@
         });
     </script>
 </body>
+
 </html>
