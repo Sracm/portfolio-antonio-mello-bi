@@ -692,6 +692,10 @@
       gap: 6px;
       margin-bottom: 1.2rem;
     }
+    .card-stack:empty {
+      display: none;
+      margin-bottom: 0;
+    }
 
     .stack-tag {
       background: #25282C;
@@ -1307,16 +1311,7 @@
         "description": "Cockpit de inteligência comercial para empresa de transporte rodoviário interestadual (Nordeste, SP, ES, BA, AL e DF). Cruza rotas mais e menos ocupadas (Load Factor), sazonalidade mês a mês e dia da semana, eficiência e gastos de óleo diesel por km, divisão de linhas regulares vs fretamento corporativo/turismo, mapa georreferenciado interativo e simulador de Yield Management.",
         "url": "dashboard_viacao_rotas_onibus.html",
         "tech": "Executive Analytics / Leaflet.js / Chart.js / Dark Glass",
-        "stack": [
-          "Rotas Mais & Menos Ocupadas (Load Factor)",
-          "Mapa Geográfico Interativo com Rotas Ativas (Leaflet)",
-          "Sazonalidade Mês a Mês (Passageiros x Receita x Ocupação)",
-          "Comportamento por Dia da Semana (Yield de Pico)",
-          "Eficiência & Gasto de Combustível Diesel S10",
-          "Linhas Regulares ANTT vs Fretamento & Eventos",
-          "Simulador de Otimização Comercial & Precificação",
-          "Matriz Analítica de Rentabilidade por Trecho"
-        ],
+        "stack": [],
         "impact": "Apoio à Diretoria Comercial na precificação dinâmica, redução de ociosidade em trechos críticos e economia de combustível em malha interestadual de 430 mil passageiros/mês.",
         "image": "static/portfolio_screenshots/dash_viacao_rotas_onibus.jpg",
         "is_static": false,
