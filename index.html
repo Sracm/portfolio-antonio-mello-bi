@@ -784,6 +784,96 @@
   <script>
     const DASHBOARDS = [
     {
+        "id": 11,
+        "title": "Cockpit TV - Unidades de Negócios & Performance Global",
+        "department": "Diretoria & Cockpit TV",
+        "description": "Cockpit executivo estilo TV com 6 velocímetros dinâmicos por Unidade de Negócios, análise trimestral (Convênio, Glosa, Total, Qtde, Recuperação), mapa do Brasil regional e exportações por país.",
+        "url": "08_unidade_de_negocios/index.html",
+        "tech": "ECharts & Fullstack Web TV",
+        "stack": [
+            "ECharts",
+            "Cyberpunk Dark UI",
+            "Auto-TV Rotator",
+            "Mapas Geográficos",
+            "Analytics Executivo"
+        ],
+        "impact": "Monitoramento em tempo real para salas de diretoria e TVs corporativas, com metas trimestrais e zero compliance.",
+        "image": "static/portfolio_screenshots/dash_portfolio_08_unidade_negocios.jpg",
+        "is_static": false,
+        "live_url": "08_unidade_de_negocios/index.html",
+        "github_repo": "https://github.com/Sracm/portfolio-bi"
+    },
+    {
+        "id": 10,
+        "title": "Gestão de Transporte, Frota de Ônibus, Combustível & Facilities",
+        "department": "Mobilidade & Infraestrutura",
+        "description": "Gestão de frota de ônibus, passageiros, curva horária de pico, índice de passageiros por km (IPK), consumo de diesel, energia elétrica (kWh), água e aluguel de garagens operacionais.",
+        "url": "07_transporte_infraestrutura/index.html",
+        "tech": "Fullstack Python / Chart.js",
+        "stack": [
+            "Python 3",
+            "Flask",
+            "Chart.js",
+            "Gestão de Frotas",
+            "Facilities & Utilities"
+        ],
+        "impact": "Redução de 6.4% no custo de diesel por passageiro, otimização de itinerários e controle de custos prediais de garagens.",
+        "image": "static/portfolio_screenshots/dash_portfolio_07_transporte.jpg",
+        "is_static": false,
+        "live_url": "07_transporte_infraestrutura/index.html",
+        "secondary_url": null,
+        "secondary_label": null,
+        "github_repo": "https://github.com/Sracm/portfolio-bi"
+    },
+    {
+        "id": 19,
+        "title": "<i class=\"fa-solid fa-chart-line\" style=\"color: #00D2FF; margin-right: 6px;\"></i>Real Time Unidades de Negocios",
+        "department": "Automação & Processos (n8n)",
+        "description": "Cockpit executivo e gerencial em tempo real por unidades de negócios: curvas diárias acumuladas de Meta vs Realizado, projeções lineares de fechamento, histórico comparativo do mês anterior (M-1), quadro consolidado de resultados operacionais, modalidades de faturamento e matriz executiva por unidade (Logística, Brasil, Ásia, Latim América e Europa).",
+        "url": "dashboard_analise_plantas.html",
+        "tech": "Executive Analytics / Chart.js / Real Time",
+        "stack": [
+            "Curvas Diárias Acumuladas",
+            "Meta vs Realizado em Tempo Real",
+            "Comparativo Mês Anterior (M-1)",
+            "Projeção Linear de Fechamento",
+            "Unidades (Logística, Brasil, Ásia, Latim América, Europa)",
+            "Modalidades Financeiras & Faturamento",
+            "Slider Interativo de Período",
+            "Quadro Comparativo Consolidado"
+        ],
+        "impact": "Governança executiva operacional em tempo real com monitoramento de R$ 3.6M faturados, atingimento de 111.5% da meta acumulada e visibilidade preditiva de desvios operacionais.",
+        "image": "static/portfolio_screenshots/dash_analise_plantas.jpg",
+        "is_static": false,
+        "live_url": "dashboard_analise_plantas.html",
+        "secondary_url": null,
+        "secondary_label": null,
+        "github_repo": "https://github.com/Sracm/portfolio-bi"
+    },
+    {
+        "id": 4,
+        "title": "Dashboard de Acompanhamento de Efetividade da Automação",
+        "department": "Automação & Processos (n8n)",
+        "description": "Cockpit executivo para monitoramento contínuo da efetividade, ROI e desempenho de esteiras automatizadas com n8n & IA: disponibilidade de cluster de 99.85%, redução de 384h/mês de trabalho (2.4 FTEs), economia líquida de R$ 26.540 e assertividade de 99.98%.",
+        "url": "16_automacao_processos_n8n/index.html",
+        "tech": "n8n / Python / Fullstack / LLMs",
+        "stack": [
+            "n8n Workflow Automation",
+            "Métricas de ROI & FTE",
+            "Monitoramento de Ciclo (2.4s)",
+            "Dual-Branch Pipeline",
+            "Integração ERP Sankhya",
+            "Simulação em Tempo Real"
+        ],
+        "impact": "Redução de tempo de trabalho em 1.125x (de 45 min manuais para 2.4s automatizados), erradicação de 99.8% do retrabalho e liberação de 2.4 analistas para tarefas estratégicas.",
+        "image": "static/portfolio_screenshots/dash_16_automacao_n8n.jpg",
+        "is_static": false,
+        "live_url": "16_automacao_processos_n8n/index.html",
+        "secondary_url": null,
+        "secondary_label": null,
+        "github_repo": "https://github.com/Sracm/portfolio-bi"
+    },
+    {
         "id": 1,
         "title": "Automação com Agentes de IA & Multi-Agentes (n8n & OpenRouter)",
         "department": "Automação & Processos (n8n)",
@@ -851,49 +941,26 @@
         "github_repo": "https://github.com/Sracm/portfolio-bi"
     },
     {
-        "id": 4,
-        "title": "Dashboard de Acompanhamento de Efetividade da Automação",
-        "department": "Automação & Processos (n8n)",
-        "description": "Cockpit executivo para monitoramento contínuo da efetividade, ROI e desempenho de esteiras automatizadas com n8n & IA: disponibilidade de cluster de 99.85%, redução de 384h/mês de trabalho (2.4 FTEs), economia líquida de R$ 26.540 e assertividade de 99.98%.",
-        "url": "16_automacao_processos_n8n/index.html",
-        "tech": "n8n / Python / Fullstack / LLMs",
+        "id": 20,
+        "title": "<i class=\"fa-solid fa-bus\" style=\"color: #ffb300; margin-right: 6px;\"></i>Viação Brasil Rotas • Transporte Interestadual & Fretamento",
+        "department": "Logística & Transporte Rodoviário",
+        "description": "Cockpit de inteligência comercial para empresa de transporte rodoviário interestadual (Nordeste, SP, ES, BA, AL e DF). Cruza rotas mais e menos ocupadas (Load Factor), sazonalidade mês a mês e dia da semana, eficiência e gastos de óleo diesel por km, divisão de linhas regulares vs fretamento corporativo/turismo, mapa georreferenciado interativo e simulador de Yield Management.",
+        "url": "dashboard_viacao_rotas_onibus.html",
+        "tech": "Executive Analytics / Leaflet.js / Chart.js / Dark Glass",
         "stack": [
-            "n8n Workflow Automation",
-            "Métricas de ROI & FTE",
-            "Monitoramento de Ciclo (2.4s)",
-            "Dual-Branch Pipeline",
-            "Integração ERP Sankhya",
-            "Simulação em Tempo Real"
+            "Rotas Mais & Menos Ocupadas (Load Factor)",
+            "Mapa Geográfico Interativo com Rotas Ativas (Leaflet)",
+            "Sazonalidade Mês a Mês (Passageiros x Receita x Ocupação)",
+            "Comportamento por Dia da Semana (Yield de Pico)",
+            "Eficiência & Gasto de Combustível Diesel S10",
+            "Linhas Regulares ANTT vs Fretamento & Eventos",
+            "Simulador de Otimização Comercial & Precificação",
+            "Matriz Analítica de Rentabilidade por Trecho"
         ],
-        "impact": "Redução de tempo de trabalho em 1.125x (de 45 min manuais para 2.4s automatizados), erradicação de 99.8% do retrabalho e liberação de 2.4 analistas para tarefas estratégicas.",
-        "image": "static/portfolio_screenshots/dash_16_automacao_n8n.jpg",
+        "impact": "Apoio à Diretoria Comercial na precificação dinâmica, redução de ociosidade em trechos críticos e economia de combustível em malha interestadual de 430 mil passageiros/mês.",
+        "image": "static/portfolio_screenshots/dash_portfolio_07_transporte.jpg",
         "is_static": false,
-        "live_url": "16_automacao_processos_n8n/index.html",
-        "secondary_url": null,
-        "secondary_label": null,
-        "github_repo": "https://github.com/Sracm/portfolio-bi"
-    },
-    {
-        "id": 19,
-        "title": "<i class=\"fa-solid fa-chart-line\" style=\"color: #00D2FF; margin-right: 6px;\"></i>Real Time Unidades de Negocios",
-        "department": "Automação & Processos (n8n)",
-        "description": "Cockpit executivo e gerencial em tempo real por unidades de negócios: curvas diárias acumuladas de Meta vs Realizado, projeções lineares de fechamento, histórico comparativo do mês anterior (M-1), quadro consolidado de resultados operacionais, modalidades de faturamento e matriz executiva por unidade (Logística, Brasil, Ásia, Latim América e Europa).",
-        "url": "dashboard_analise_plantas.html",
-        "tech": "Executive Analytics / Chart.js / Real Time",
-        "stack": [
-            "Curvas Diárias Acumuladas",
-            "Meta vs Realizado em Tempo Real",
-            "Comparativo Mês Anterior (M-1)",
-            "Projeção Linear de Fechamento",
-            "Unidades (Logística, Brasil, Ásia, Latim América, Europa)",
-            "Modalidades Financeiras & Faturamento",
-            "Slider Interativo de Período",
-            "Quadro Comparativo Consolidado"
-        ],
-        "impact": "Governança executiva operacional em tempo real com monitoramento de R$ 3.6M faturados, atingimento de 111.5% da meta acumulada e visibilidade preditiva de desvios operacionais.",
-        "image": "static/portfolio_screenshots/dash_analise_plantas.jpg",
-        "is_static": false,
-        "live_url": "dashboard_analise_plantas.html",
+        "live_url": "dashboard_viacao_rotas_onibus.html",
         "secondary_url": null,
         "secondary_label": null,
         "github_repo": "https://github.com/Sracm/portfolio-bi"
@@ -1005,48 +1072,6 @@
         "live_url": "06_gestao_agendas/index.html",
         "secondary_url": "powerbi_agendas/",
         "secondary_label": "<i class='fa-solid fa-chart-pie'></i> Power BI",
-        "github_repo": "https://github.com/Sracm/portfolio-bi"
-    },
-    {
-        "id": 10,
-        "title": "Gestão de Transporte Urbano & Infraestrutura (PORTIFOLIO07 Web)",
-        "department": "Mobilidade & Infraestrutura",
-        "description": "Gestão de frota de ônibus, passageiros, curva horária de pico, índice de passageiros por km (IPK), consumo de diesel, energia elétrica (kWh), água e aluguel de garagens operacionais.",
-        "url": "07_transporte_infraestrutura/index.html",
-        "tech": "Fullstack Python / Chart.js",
-        "stack": [
-            "Python 3",
-            "Flask",
-            "Chart.js",
-            "Gestão de Frotas",
-            "Facilities & Utilities"
-        ],
-        "impact": "Redução de 6.4% no custo de diesel por passageiro, otimização de itinerários e controle de custos prediais de garagens.",
-        "image": "static/portfolio_screenshots/dash_portfolio_07_transporte.jpg",
-        "is_static": false,
-        "live_url": "07_transporte_infraestrutura/index.html",
-        "secondary_url": "powerbi_transporte/",
-        "secondary_label": "<i class='fa-solid fa-chart-pie'></i> Power BI",
-        "github_repo": "https://github.com/Sracm/portfolio-bi"
-    },
-    {
-        "id": 11,
-        "title": "Cockpit TV - Unidades de Negócios & Performance Global",
-        "department": "Diretoria & Cockpit TV",
-        "description": "Cockpit executivo estilo TV com 6 velocímetros dinâmicos por Unidade de Negócios, análise trimestral (Convênio, Glosa, Total, Qtde, Recuperação), mapa do Brasil regional e exportações por país.",
-        "url": "08_unidade_de_negocios/index.html",
-        "tech": "ECharts & Fullstack Web TV",
-        "stack": [
-            "ECharts",
-            "Cyberpunk Dark UI",
-            "Auto-TV Rotator",
-            "Mapas Geográficos",
-            "Analytics Executivo"
-        ],
-        "impact": "Monitoramento em tempo real para salas de diretoria e TVs corporativas, com metas trimestrais e zero compliance.",
-        "image": "static/portfolio_screenshots/dash_portfolio_08_unidade_negocios.jpg",
-        "is_static": false,
-        "live_url": "08_unidade_de_negocios/index.html",
         "github_repo": "https://github.com/Sracm/portfolio-bi"
     },
     {

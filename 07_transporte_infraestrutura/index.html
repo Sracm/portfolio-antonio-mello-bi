@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
@@ -14,7 +15,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -50,33 +53,40 @@
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
         }
+
         .glass-panel {
             background: rgba(15, 23, 42, 0.82);
             backdrop-filter: blur(14px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
         }
+
         .glass-card {
             background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: all 0.25s ease;
         }
+
         .glass-card:hover {
             transform: translateY(-2px);
             border-color: rgba(2, 132, 199, 0.4);
             box-shadow: 0 10px 25px -5px rgba(2, 132, 199, 0.2);
         }
+
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: rgba(15, 23, 42, 0.6);
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: rgba(100, 116, 139, 0.4);
             border-radius: 4px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: rgba(2, 132, 199, 0.6);
         }
@@ -86,719 +96,737 @@
             header.glass-panel {
                 padding: 12px 14px !important;
             }
+
             main {
                 padding: 12px 8px !important;
                 margin: 0 !important;
                 max-width: 100% !important;
             }
-            .grid-cols-6, .grid-cols-4 {
+
+            .grid-cols-6,
+            .grid-cols-4 {
                 grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
                 gap: 8px !important;
             }
+
             .grid-cols-2 {
                 grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
                 gap: 12px !important;
             }
+
             .header-actions-mobile {
                 width: 100% !important;
                 display: flex !important;
                 flex-wrap: wrap !important;
                 gap: 8px !important;
             }
+
             .header-actions-mobile button {
                 flex: 1 1 calc(50% - 4px) !important;
                 justify-content: center !important;
             }
+
             .overflow-x-auto {
                 -webkit-overflow-scrolling: touch !important;
             }
+
             table {
                 min-width: 640px !important;
             }
         }
+
         @media (max-width: 480px) {
-            .grid-cols-6, .grid-cols-4 {
+
+            .grid-cols-6,
+            .grid-cols-4 {
                 grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
             }
+
             .header-actions-mobile button {
                 flex: 1 1 100% !important;
             }
         }
     </style>
 
-<script>
-  window.FALLBACK_FILTROS = {
-  "anos": [
-    2026,
-    2025
-  ],
-  "combustiveis": [
-    "Diesel S10",
-    "Eletricidade"
-  ],
-  "garagens": [
-    {
-      "id_instalacao": "CENTRO-ADM",
-      "nome_instalacao": "Centro de Controle Operacional (CCO) & Adm",
-      "tipo_instalacao": "Pr\u00e9dio Administrativo & CCO"
-    },
-    {
-      "id_instalacao": "GAR-LESTE",
-      "nome_instalacao": "Garagem Operacional Leste - Itaquera",
-      "tipo_instalacao": "Garagem Operacional"
-    },
-    {
-      "id_instalacao": "GAR-NORTE",
-      "nome_instalacao": "Garagem Operacional Norte - Cantareira",
-      "tipo_instalacao": "Garagem Operacional"
-    },
-    {
-      "id_instalacao": "GAR-OESTE",
-      "nome_instalacao": "Garagem Operacional Oeste - Butant\u00e3",
-      "tipo_instalacao": "Garagem Operacional"
-    },
-    {
-      "id_instalacao": "GAR-SUL",
-      "nome_instalacao": "Garagem Operacional Sul - Santo Amaro",
-      "tipo_instalacao": "Garagem Operacional"
-    },
-    {
-      "id_instalacao": "TERM-CENTRAL",
-      "nome_instalacao": "Terminal Urbano de Integra\u00e7\u00e3o Central",
-      "tipo_instalacao": "Terminal de Passageiros"
-    }
-  ],
-  "linhas": [
-    {
-      "codigo_linha": "101-T",
-      "id_linha": "L-101",
-      "nome_linha": "Term. Central - Cco. Universit\u00e1ria",
-      "tipo_servico": "Troncal Expresso"
-    },
-    {
-      "codigo_linha": "102-E",
-      "id_linha": "L-102",
-      "nome_linha": "Term. Central - Aeroporto Metropolitano",
-      "tipo_servico": "Troncal Expresso"
-    },
-    {
-      "codigo_linha": "201-P",
-      "id_linha": "L-201",
-      "nome_linha": "Term. Santo Amaro - Term. Itaquera",
-      "tipo_servico": "Perimetral Sul-Leste"
-    },
-    {
-      "codigo_linha": "202-P",
-      "id_linha": "L-202",
-      "nome_linha": "Term. Santana - Term. Pinheiros",
-      "tipo_servico": "Perimetral Norte-Oeste"
-    },
-    {
-      "codigo_linha": "301-A",
-      "id_linha": "L-301",
-      "nome_linha": "Term. Central - Distrito Industrial Norte",
-      "tipo_servico": "Alimentadora Industrial"
-    },
-    {
-      "codigo_linha": "302-A",
-      "id_linha": "L-302",
-      "nome_linha": "Term. Santo Amaro - Polo Tecnol\u00f3gico Sul",
-      "tipo_servico": "Alimentadora Corporativa"
-    },
-    {
-      "codigo_linha": "303-A",
-      "id_linha": "L-303",
-      "nome_linha": "Term. Itaquera - Hospital Regional Leste",
-      "tipo_servico": "Alimentadora Sa\u00fade"
-    },
-    {
-      "codigo_linha": "401-BRT",
-      "id_linha": "L-401",
-      "nome_linha": "Corredor BRT Eixo Leste-Oeste",
-      "tipo_servico": "BRT Exclusivo"
-    },
-    {
-      "codigo_linha": "402-BRT",
-      "id_linha": "L-402",
-      "nome_linha": "Corredor BRT Eixo Norte-Sul",
-      "tipo_servico": "BRT Exclusivo"
-    },
-    {
-      "codigo_linha": "501-N",
-      "id_linha": "L-501",
-      "nome_linha": "Coruja Noturna - Circular Central",
-      "tipo_servico": "Noturna Circular"
-    }
-  ],
-  "tipos_onibus": [
-    "Articulado BRT (18.6m)",
-    "El\u00e9trico E-Bus Bateria (12.5m)",
-    "Micro-\u00f4nibus Urbano (9.2m)",
-    "Padr\u00f3n Urbano (13.2m)",
-    "Superarticulado (23.0m)"
-  ]
-}
-;
-  window.FALLBACK_DADOS = {
-  "charts": {
-    "facilities": {
-      "agua_m3": [
-        6575.5,
-        5963.1,
-        6546.0,
-        5728.6,
-        6209.8,
-        6866.1,
-        6476.9,
-        6566.0,
-        6025.2,
-        6914.5,
-        6224.6,
-        6300.9,
-        6146.4,
-        6479.5,
-        5669.6,
-        6376.0,
-        6369.9,
-        6510.7,
-        6723.8,
-        6175.9,
-        5984.2,
-        5958.4
-      ],
-      "agua_reuso_m3": [
-        3036.3,
-        3042.8,
-        2945.3,
-        3052.5,
-        3116.4,
-        3156.7,
-        2981.8,
-        3239.6,
-        2930.7,
-        3034.9,
-        3092.6,
-        3366.7,
-        2980.0,
-        3322.6,
-        2958.2,
-        3077.2,
-        3053.9,
-        2996.0,
-        3317.5,
-        3035.2,
-        3069.6,
-        3042.2
-      ],
-      "custo_predial": [
-        948406.45,
-        946811.15,
-        975891.58,
-        959802.29,
-        955616.03,
-        942586.08,
-        977577.51,
-        965511.81,
-        943513.92,
-        965120.91,
-        952198.19,
-        966209.91,
-        1024690.45,
-        1023778.01,
-        998160.6,
-        999533.55,
-        1011793.06,
-        1016915.73,
-        1019615.83,
-        1016520.69,
-        1012237.88,
-        1003155.85
-      ],
-      "energia_kwh": [
-        552030.0,
-        537607.0,
-        518076.0,
-        542737.0,
-        558911.0,
-        538592.0,
-        567344.0,
-        507812.0,
-        509611.0,
-        567439.0,
-        576360.0,
-        505643.0,
-        517298.0,
-        531806.0,
-        570200.0,
-        580343.0,
-        518868.0,
-        518012.0,
-        523754.0,
-        551960.0,
-        540975.0,
-        540481.0
-      ],
-      "labels": [
-        "2025-01",
-        "2025-02",
-        "2025-03",
-        "2025-04",
-        "2025-05",
-        "2025-06",
-        "2025-07",
-        "2025-08",
-        "2025-09",
-        "2025-10",
-        "2025-11",
-        "2025-12",
-        "2026-01",
-        "2026-02",
-        "2026-03",
-        "2026-04",
-        "2026-05",
-        "2026-06",
-        "2026-07",
-        "2026-08",
-        "2026-09",
-        "2026-10"
-      ]
-    },
-    "garagens": {
-      "agua": [
-        650054.4,
-        538700.49,
-        458391.99,
-        388013.37,
-        497763.59,
-        92435.61
-      ],
-      "aluguel": [
-        4162500.0,
-        3262500.0,
-        2812500.0,
-        2587500.0,
-        2137500.0,
-        1237500.0
-      ],
-      "energia": [
-        2763525.7,
-        1527146.44,
-        2248170.43,
-        2125181.59,
-        838327.91,
-        501224.22
-      ],
-      "labels": [
-        "Santo Amaro",
-        "Itaquera",
-        "Cantareira",
-        "Butant\u00e3",
-        "Terminal Urbano de Integra\u00e7\u00e3o Central",
-        "Centro de Controle Operacional (CCO) & Adm"
-      ],
-      "nomes_completos": [
-        "Garagem Operacional Sul - Santo Amaro",
-        "Garagem Operacional Leste - Itaquera",
-        "Garagem Operacional Norte - Cantareira",
-        "Garagem Operacional Oeste - Butant\u00e3",
-        "Terminal Urbano de Integra\u00e7\u00e3o Central",
-        "Centro de Controle Operacional (CCO) & Adm"
-      ],
-      "total": [
-        5550580.31,
-        4381424.41,
-        3779290.76,
-        3472631.45,
-        2912417.23,
-        1529303.32
-      ]
-    },
-    "linhas": {
-      "ipk": [
-        2.75,
-        2.88,
-        2.5,
-        1.96,
-        3.04,
-        2.32,
-        1.56,
-        1.13,
-        2.56,
-        2.04
-      ],
-      "labels": [
-        "401-BRT",
-        "402-BRT",
-        "101-T",
-        "102-E",
-        "501-N",
-        "302-A",
-        "202-P",
-        "201-P",
-        "303-A",
-        "301-A"
-      ],
-      "nomes": [
-        "Corredor BRT Eixo Leste-Oeste",
-        "Corredor BRT Eixo Norte-Sul",
-        "Term. Central - Cco. Universit\u00e1ria",
-        "Term. Central - Aeroporto Metropolitano",
-        "Coruja Noturna - Circular Central",
-        "Term. Santo Amaro - Polo Tecnol\u00f3gico Sul",
-        "Term. Santana - Term. Pinheiros",
-        "Term. Santo Amaro - Term. Itaquera",
-        "Term. Itaquera - Hospital Regional Leste",
-        "Term. Central - Distrito Industrial Norte"
-      ],
-      "ocupacao": [
-        71.8,
-        71.6,
-        71.4,
-        71.4,
-        68.5,
-        71.2,
-        71.7,
-        71.4,
-        71.9,
-        71.3
-      ],
-      "passageiros": [
-        1896694,
-        1892970,
-        1177401,
-        1160878,
-        892007,
-        843109,
-        836159,
-        832266,
-        830564,
-        824595
-      ]
-    },
-    "mensal": {
-      "capacidade": [
-        751384,
-        651116,
-        673297,
-        715039,
-        752676,
-        703697,
-        718465,
-        736744,
-        705893,
-        698487,
-        688889,
-        755111,
-        719745,
-        648056,
-        754199,
-        716523,
-        684503,
-        712925,
-        763496,
-        682876,
-        712989,
-        742436
-      ],
-      "diesel_litros": [
-        118430.0,
-        101330.0,
-        106618.0,
-        111161.0,
-        117589.0,
-        111284.0,
-        112648.0,
-        116546.0,
-        111480.0,
-        111873.0,
-        109247.0,
-        118821.0,
-        113396.0,
-        102317.0,
-        119168.0,
-        112533.0,
-        107258.0,
-        113679.0,
-        120422.0,
-        109184.0,
-        112906.0,
-        117054.0
-      ],
-      "labels": [
-        "2025-01",
-        "2025-02",
-        "2025-03",
-        "2025-04",
-        "2025-05",
-        "2025-06",
-        "2025-07",
-        "2025-08",
-        "2025-09",
-        "2025-10",
-        "2025-11",
-        "2025-12",
-        "2026-01",
-        "2026-02",
-        "2026-03",
-        "2026-04",
-        "2026-05",
-        "2026-06",
-        "2026-07",
-        "2026-08",
-        "2026-09",
-        "2026-10"
-      ],
-      "passageiros": [
-        538253,
-        463290,
-        477468,
-        509359,
-        531806,
-        502894,
-        513900,
-        523287,
-        504592,
-        503664,
-        488614,
-        541475,
-        514817,
-        463389,
-        537066,
-        512218,
-        483102,
-        507566,
-        548603,
-        480876,
-        512381,
-        528023
-      ]
-    }
-  },
-  "kpis": {
-    "agua_rede_m3_total": 138791.6,
-    "agua_reuso_m3_total": 67848.7,
-    "aluguel_total_rs": 16200000.0,
-    "capacidade_ofertada": 15688546,
-    "cumprimento_viagens_pct": 99.2,
-    "custo_combustivel_rs": 15952953.17,
-    "custo_energia_total": 10003576.29,
-    "custo_predial_total_rs": 21625647.48,
-    "emissoes_co2_ton": 6647.3,
-    "energia_kwh_total": 11875861.0,
-    "frota_ativa": 100,
-    "ipk_geral": 2.21,
-    "km_rodados": 5072171.3,
-    "passageiros_gratuidades": 2403253,
-    "passageiros_pagantes": 8783390,
-    "pct_reuso_agua": 32.8,
-    "rendimento_kml": 2.0,
-    "taxa_ocupacao_pct": 71.3,
-    "total_diesel_litros": 2474943.0,
-    "total_kwh_eletrico": 160871.0,
-    "total_lavagens_onibus": 242317,
-    "total_passageiros": 11186643,
-    "viagens_realizadas": 166723
-  },
-  "tabela_garagens": [
-    {
-      "agua_rs": 650054.4,
-      "aluguel_total": 4162500.0,
-      "capacidade_vagas_onibus": 160,
-      "energia_rs": 2763525.7,
-      "nome_instalacao": "Garagem Operacional Sul - Santo Amaro",
-      "tipo_instalacao": "Garagem Operacional",
-      "total_predial": 5550580.31
-    },
-    {
-      "agua_rs": 538700.49,
-      "aluguel_total": 3262500.0,
-      "capacidade_vagas_onibus": 130,
-      "energia_rs": 1527146.44,
-      "nome_instalacao": "Garagem Operacional Leste - Itaquera",
-      "tipo_instalacao": "Garagem Operacional",
-      "total_predial": 4381424.41
-    },
-    {
-      "agua_rs": 458391.99,
-      "aluguel_total": 2812500.0,
-      "capacidade_vagas_onibus": 110,
-      "energia_rs": 2248170.43,
-      "nome_instalacao": "Garagem Operacional Norte - Cantareira",
-      "tipo_instalacao": "Garagem Operacional",
-      "total_predial": 3779290.76
-    },
-    {
-      "agua_rs": 388013.37,
-      "aluguel_total": 2587500.0,
-      "capacidade_vagas_onibus": 95,
-      "energia_rs": 2125181.59,
-      "nome_instalacao": "Garagem Operacional Oeste - Butant\u00e3",
-      "tipo_instalacao": "Garagem Operacional",
-      "total_predial": 3472631.45
-    },
-    {
-      "agua_rs": 497763.59,
-      "aluguel_total": 2137500.0,
-      "capacidade_vagas_onibus": 24,
-      "energia_rs": 838327.91,
-      "nome_instalacao": "Terminal Urbano de Integra\u00e7\u00e3o Central",
-      "tipo_instalacao": "Terminal de Passageiros",
-      "total_predial": 2912417.23
-    },
-    {
-      "agua_rs": 92435.61,
-      "aluguel_total": 1237500.0,
-      "capacidade_vagas_onibus": 0,
-      "energia_rs": 501224.22000000003,
-      "nome_instalacao": "Centro de Controle Operacional (CCO) & Adm",
-      "tipo_instalacao": "Pr\u00e9dio Administrativo & CCO",
-      "total_predial": 1529303.32
-    }
-  ],
-  "tabela_linhas": [
-    {
-      "codigo_linha": "401-BRT",
-      "ipk": 2.75,
-      "km": 690690.0,
-      "nome_linha": "Corredor BRT Eixo Leste-Oeste",
-      "ocupacao": 71.8,
-      "passageiros": 1896694,
-      "tipo_servico": "BRT Exclusivo"
-    },
-    {
-      "codigo_linha": "402-BRT",
-      "ipk": 2.88,
-      "km": 656213.5,
-      "nome_linha": "Corredor BRT Eixo Norte-Sul",
-      "ocupacao": 71.6,
-      "passageiros": 1892970,
-      "tipo_servico": "BRT Exclusivo"
-    },
-    {
-      "codigo_linha": "101-T",
-      "ipk": 2.5,
-      "km": 470730.0,
-      "nome_linha": "Term. Central - Cco. Universit\u00e1ria",
-      "ocupacao": 71.4,
-      "passageiros": 1177401,
-      "tipo_servico": "Troncal Expresso"
-    },
-    {
-      "codigo_linha": "102-E",
-      "ipk": 1.96,
-      "km": 592883.6,
-      "nome_linha": "Term. Central - Aeroporto Metropolitano",
-      "ocupacao": 71.4,
-      "passageiros": 1160878,
-      "tipo_servico": "Troncal Expresso"
-    },
-    {
-      "codigo_linha": "501-N",
-      "ipk": 3.04,
-      "km": 293600.0,
-      "nome_linha": "Coruja Noturna - Circular Central",
-      "ocupacao": 68.5,
-      "passageiros": 892007,
-      "tipo_servico": "Noturna Circular"
-    },
-    {
-      "codigo_linha": "302-A",
-      "ipk": 2.32,
-      "km": 363990.0,
-      "nome_linha": "Term. Santo Amaro - Polo Tecnol\u00f3gico Sul",
-      "ocupacao": 71.2,
-      "passageiros": 843109,
-      "tipo_servico": "Alimentadora Corporativa"
-    },
-    {
-      "codigo_linha": "202-P",
-      "ipk": 1.56,
-      "km": 536563.4,
-      "nome_linha": "Term. Santana - Term. Pinheiros",
-      "ocupacao": 71.7,
-      "passageiros": 836159,
-      "tipo_servico": "Perimetral Norte-Oeste"
-    },
-    {
-      "codigo_linha": "201-P",
-      "ipk": 1.13,
-      "km": 739558.4,
-      "nome_linha": "Term. Santo Amaro - Term. Itaquera",
-      "ocupacao": 71.4,
-      "passageiros": 832266,
-      "tipo_servico": "Perimetral Sul-Leste"
-    },
-    {
-      "codigo_linha": "303-A",
-      "ipk": 2.56,
-      "km": 323888.4,
-      "nome_linha": "Term. Itaquera - Hospital Regional Leste",
-      "ocupacao": 71.9,
-      "passageiros": 830564,
-      "tipo_servico": "Alimentadora Sa\u00fade"
-    },
-    {
-      "codigo_linha": "301-A",
-      "ipk": 2.04,
-      "km": 404054.0,
-      "nome_linha": "Term. Central - Distrito Industrial Norte",
-      "ocupacao": 71.3,
-      "passageiros": 824595,
-      "tipo_servico": "Alimentadora Industrial"
-    }
-  ]
-}
-;
-  
-  // Interceptador inteligente de fetch para funcionar perfeitamente tanto no GitHub Pages quanto no Flask
-  const _origFetch = window.fetch;
-  window.fetch = async function(url, options) {
-    try {
-      const res = await _origFetch(url, options);
-      if (res.ok) return res;
-      throw new Error('API indisponivel');
-    } catch (err) {
-      if (typeof url === 'string') {
-        if (url.includes('/api/filtros')) {
-          return new Response(JSON.stringify(window.FALLBACK_FILTROS), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' }
-          });
+    <script>
+        window.FALLBACK_FILTROS = {
+            "anos": [
+                2026,
+                2025
+            ],
+            "combustiveis": [
+                "Diesel S10",
+                "Eletricidade"
+            ],
+            "garagens": [
+                {
+                    "id_instalacao": "CENTRO-ADM",
+                    "nome_instalacao": "Centro de Controle Operacional (CCO) & Adm",
+                    "tipo_instalacao": "Pr\u00e9dio Administrativo & CCO"
+                },
+                {
+                    "id_instalacao": "GAR-LESTE",
+                    "nome_instalacao": "Garagem Operacional Leste - Itaquera",
+                    "tipo_instalacao": "Garagem Operacional"
+                },
+                {
+                    "id_instalacao": "GAR-NORTE",
+                    "nome_instalacao": "Garagem Operacional Norte - Cantareira",
+                    "tipo_instalacao": "Garagem Operacional"
+                },
+                {
+                    "id_instalacao": "GAR-OESTE",
+                    "nome_instalacao": "Garagem Operacional Oeste - Butant\u00e3",
+                    "tipo_instalacao": "Garagem Operacional"
+                },
+                {
+                    "id_instalacao": "GAR-SUL",
+                    "nome_instalacao": "Garagem Operacional Sul - Santo Amaro",
+                    "tipo_instalacao": "Garagem Operacional"
+                },
+                {
+                    "id_instalacao": "TERM-CENTRAL",
+                    "nome_instalacao": "Terminal Urbano de Integra\u00e7\u00e3o Central",
+                    "tipo_instalacao": "Terminal de Passageiros"
+                }
+            ],
+            "linhas": [
+                {
+                    "codigo_linha": "101-T",
+                    "id_linha": "L-101",
+                    "nome_linha": "Term. Central - Cco. Universit\u00e1ria",
+                    "tipo_servico": "Troncal Expresso"
+                },
+                {
+                    "codigo_linha": "102-E",
+                    "id_linha": "L-102",
+                    "nome_linha": "Term. Central - Aeroporto Metropolitano",
+                    "tipo_servico": "Troncal Expresso"
+                },
+                {
+                    "codigo_linha": "201-P",
+                    "id_linha": "L-201",
+                    "nome_linha": "Term. Santo Amaro - Term. Itaquera",
+                    "tipo_servico": "Perimetral Sul-Leste"
+                },
+                {
+                    "codigo_linha": "202-P",
+                    "id_linha": "L-202",
+                    "nome_linha": "Term. Santana - Term. Pinheiros",
+                    "tipo_servico": "Perimetral Norte-Oeste"
+                },
+                {
+                    "codigo_linha": "301-A",
+                    "id_linha": "L-301",
+                    "nome_linha": "Term. Central - Distrito Industrial Norte",
+                    "tipo_servico": "Alimentadora Industrial"
+                },
+                {
+                    "codigo_linha": "302-A",
+                    "id_linha": "L-302",
+                    "nome_linha": "Term. Santo Amaro - Polo Tecnol\u00f3gico Sul",
+                    "tipo_servico": "Alimentadora Corporativa"
+                },
+                {
+                    "codigo_linha": "303-A",
+                    "id_linha": "L-303",
+                    "nome_linha": "Term. Itaquera - Hospital Regional Leste",
+                    "tipo_servico": "Alimentadora Sa\u00fade"
+                },
+                {
+                    "codigo_linha": "401-BRT",
+                    "id_linha": "L-401",
+                    "nome_linha": "Corredor BRT Eixo Leste-Oeste",
+                    "tipo_servico": "BRT Exclusivo"
+                },
+                {
+                    "codigo_linha": "402-BRT",
+                    "id_linha": "L-402",
+                    "nome_linha": "Corredor BRT Eixo Norte-Sul",
+                    "tipo_servico": "BRT Exclusivo"
+                },
+                {
+                    "codigo_linha": "501-N",
+                    "id_linha": "L-501",
+                    "nome_linha": "Coruja Noturna - Circular Central",
+                    "tipo_servico": "Noturna Circular"
+                }
+            ],
+            "tipos_onibus": [
+                "Articulado BRT (18.6m)",
+                "El\u00e9trico E-Bus Bateria (12.5m)",
+                "Micro-\u00f4nibus Urbano (9.2m)",
+                "Padr\u00f3n Urbano (13.2m)",
+                "Superarticulado (23.0m)"
+            ]
         }
-        if (url.includes('/api/dados')) {
-          return new Response(JSON.stringify(window.FALLBACK_DADOS), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' }
-          });
+            ;
+        window.FALLBACK_DADOS = {
+            "charts": {
+                "facilities": {
+                    "agua_m3": [
+                        6575.5,
+                        5963.1,
+                        6546.0,
+                        5728.6,
+                        6209.8,
+                        6866.1,
+                        6476.9,
+                        6566.0,
+                        6025.2,
+                        6914.5,
+                        6224.6,
+                        6300.9,
+                        6146.4,
+                        6479.5,
+                        5669.6,
+                        6376.0,
+                        6369.9,
+                        6510.7,
+                        6723.8,
+                        6175.9,
+                        5984.2,
+                        5958.4
+                    ],
+                    "agua_reuso_m3": [
+                        3036.3,
+                        3042.8,
+                        2945.3,
+                        3052.5,
+                        3116.4,
+                        3156.7,
+                        2981.8,
+                        3239.6,
+                        2930.7,
+                        3034.9,
+                        3092.6,
+                        3366.7,
+                        2980.0,
+                        3322.6,
+                        2958.2,
+                        3077.2,
+                        3053.9,
+                        2996.0,
+                        3317.5,
+                        3035.2,
+                        3069.6,
+                        3042.2
+                    ],
+                    "custo_predial": [
+                        948406.45,
+                        946811.15,
+                        975891.58,
+                        959802.29,
+                        955616.03,
+                        942586.08,
+                        977577.51,
+                        965511.81,
+                        943513.92,
+                        965120.91,
+                        952198.19,
+                        966209.91,
+                        1024690.45,
+                        1023778.01,
+                        998160.6,
+                        999533.55,
+                        1011793.06,
+                        1016915.73,
+                        1019615.83,
+                        1016520.69,
+                        1012237.88,
+                        1003155.85
+                    ],
+                    "energia_kwh": [
+                        552030.0,
+                        537607.0,
+                        518076.0,
+                        542737.0,
+                        558911.0,
+                        538592.0,
+                        567344.0,
+                        507812.0,
+                        509611.0,
+                        567439.0,
+                        576360.0,
+                        505643.0,
+                        517298.0,
+                        531806.0,
+                        570200.0,
+                        580343.0,
+                        518868.0,
+                        518012.0,
+                        523754.0,
+                        551960.0,
+                        540975.0,
+                        540481.0
+                    ],
+                    "labels": [
+                        "2025-01",
+                        "2025-02",
+                        "2025-03",
+                        "2025-04",
+                        "2025-05",
+                        "2025-06",
+                        "2025-07",
+                        "2025-08",
+                        "2025-09",
+                        "2025-10",
+                        "2025-11",
+                        "2025-12",
+                        "2026-01",
+                        "2026-02",
+                        "2026-03",
+                        "2026-04",
+                        "2026-05",
+                        "2026-06",
+                        "2026-07",
+                        "2026-08",
+                        "2026-09",
+                        "2026-10"
+                    ]
+                },
+                "garagens": {
+                    "agua": [
+                        650054.4,
+                        538700.49,
+                        458391.99,
+                        388013.37,
+                        497763.59,
+                        92435.61
+                    ],
+                    "aluguel": [
+                        4162500.0,
+                        3262500.0,
+                        2812500.0,
+                        2587500.0,
+                        2137500.0,
+                        1237500.0
+                    ],
+                    "energia": [
+                        2763525.7,
+                        1527146.44,
+                        2248170.43,
+                        2125181.59,
+                        838327.91,
+                        501224.22
+                    ],
+                    "labels": [
+                        "Santo Amaro",
+                        "Itaquera",
+                        "Cantareira",
+                        "Butant\u00e3",
+                        "Terminal Urbano de Integra\u00e7\u00e3o Central",
+                        "Centro de Controle Operacional (CCO) & Adm"
+                    ],
+                    "nomes_completos": [
+                        "Garagem Operacional Sul - Santo Amaro",
+                        "Garagem Operacional Leste - Itaquera",
+                        "Garagem Operacional Norte - Cantareira",
+                        "Garagem Operacional Oeste - Butant\u00e3",
+                        "Terminal Urbano de Integra\u00e7\u00e3o Central",
+                        "Centro de Controle Operacional (CCO) & Adm"
+                    ],
+                    "total": [
+                        5550580.31,
+                        4381424.41,
+                        3779290.76,
+                        3472631.45,
+                        2912417.23,
+                        1529303.32
+                    ]
+                },
+                "linhas": {
+                    "ipk": [
+                        2.75,
+                        2.88,
+                        2.5,
+                        1.96,
+                        3.04,
+                        2.32,
+                        1.56,
+                        1.13,
+                        2.56,
+                        2.04
+                    ],
+                    "labels": [
+                        "401-BRT",
+                        "402-BRT",
+                        "101-T",
+                        "102-E",
+                        "501-N",
+                        "302-A",
+                        "202-P",
+                        "201-P",
+                        "303-A",
+                        "301-A"
+                    ],
+                    "nomes": [
+                        "Corredor BRT Eixo Leste-Oeste",
+                        "Corredor BRT Eixo Norte-Sul",
+                        "Term. Central - Cco. Universit\u00e1ria",
+                        "Term. Central - Aeroporto Metropolitano",
+                        "Coruja Noturna - Circular Central",
+                        "Term. Santo Amaro - Polo Tecnol\u00f3gico Sul",
+                        "Term. Santana - Term. Pinheiros",
+                        "Term. Santo Amaro - Term. Itaquera",
+                        "Term. Itaquera - Hospital Regional Leste",
+                        "Term. Central - Distrito Industrial Norte"
+                    ],
+                    "ocupacao": [
+                        71.8,
+                        71.6,
+                        71.4,
+                        71.4,
+                        68.5,
+                        71.2,
+                        71.7,
+                        71.4,
+                        71.9,
+                        71.3
+                    ],
+                    "passageiros": [
+                        1896694,
+                        1892970,
+                        1177401,
+                        1160878,
+                        892007,
+                        843109,
+                        836159,
+                        832266,
+                        830564,
+                        824595
+                    ]
+                },
+                "mensal": {
+                    "capacidade": [
+                        751384,
+                        651116,
+                        673297,
+                        715039,
+                        752676,
+                        703697,
+                        718465,
+                        736744,
+                        705893,
+                        698487,
+                        688889,
+                        755111,
+                        719745,
+                        648056,
+                        754199,
+                        716523,
+                        684503,
+                        712925,
+                        763496,
+                        682876,
+                        712989,
+                        742436
+                    ],
+                    "diesel_litros": [
+                        118430.0,
+                        101330.0,
+                        106618.0,
+                        111161.0,
+                        117589.0,
+                        111284.0,
+                        112648.0,
+                        116546.0,
+                        111480.0,
+                        111873.0,
+                        109247.0,
+                        118821.0,
+                        113396.0,
+                        102317.0,
+                        119168.0,
+                        112533.0,
+                        107258.0,
+                        113679.0,
+                        120422.0,
+                        109184.0,
+                        112906.0,
+                        117054.0
+                    ],
+                    "labels": [
+                        "2025-01",
+                        "2025-02",
+                        "2025-03",
+                        "2025-04",
+                        "2025-05",
+                        "2025-06",
+                        "2025-07",
+                        "2025-08",
+                        "2025-09",
+                        "2025-10",
+                        "2025-11",
+                        "2025-12",
+                        "2026-01",
+                        "2026-02",
+                        "2026-03",
+                        "2026-04",
+                        "2026-05",
+                        "2026-06",
+                        "2026-07",
+                        "2026-08",
+                        "2026-09",
+                        "2026-10"
+                    ],
+                    "passageiros": [
+                        538253,
+                        463290,
+                        477468,
+                        509359,
+                        531806,
+                        502894,
+                        513900,
+                        523287,
+                        504592,
+                        503664,
+                        488614,
+                        541475,
+                        514817,
+                        463389,
+                        537066,
+                        512218,
+                        483102,
+                        507566,
+                        548603,
+                        480876,
+                        512381,
+                        528023
+                    ]
+                }
+            },
+            "kpis": {
+                "agua_rede_m3_total": 138791.6,
+                "agua_reuso_m3_total": 67848.7,
+                "aluguel_total_rs": 16200000.0,
+                "capacidade_ofertada": 15688546,
+                "cumprimento_viagens_pct": 99.2,
+                "custo_combustivel_rs": 15952953.17,
+                "custo_energia_total": 10003576.29,
+                "custo_predial_total_rs": 21625647.48,
+                "emissoes_co2_ton": 6647.3,
+                "energia_kwh_total": 11875861.0,
+                "frota_ativa": 100,
+                "ipk_geral": 2.21,
+                "km_rodados": 5072171.3,
+                "passageiros_gratuidades": 2403253,
+                "passageiros_pagantes": 8783390,
+                "pct_reuso_agua": 32.8,
+                "rendimento_kml": 2.0,
+                "taxa_ocupacao_pct": 71.3,
+                "total_diesel_litros": 2474943.0,
+                "total_kwh_eletrico": 160871.0,
+                "total_lavagens_onibus": 242317,
+                "total_passageiros": 11186643,
+                "viagens_realizadas": 166723
+            },
+            "tabela_garagens": [
+                {
+                    "agua_rs": 650054.4,
+                    "aluguel_total": 4162500.0,
+                    "capacidade_vagas_onibus": 160,
+                    "energia_rs": 2763525.7,
+                    "nome_instalacao": "Garagem Operacional Sul - Santo Amaro",
+                    "tipo_instalacao": "Garagem Operacional",
+                    "total_predial": 5550580.31
+                },
+                {
+                    "agua_rs": 538700.49,
+                    "aluguel_total": 3262500.0,
+                    "capacidade_vagas_onibus": 130,
+                    "energia_rs": 1527146.44,
+                    "nome_instalacao": "Garagem Operacional Leste - Itaquera",
+                    "tipo_instalacao": "Garagem Operacional",
+                    "total_predial": 4381424.41
+                },
+                {
+                    "agua_rs": 458391.99,
+                    "aluguel_total": 2812500.0,
+                    "capacidade_vagas_onibus": 110,
+                    "energia_rs": 2248170.43,
+                    "nome_instalacao": "Garagem Operacional Norte - Cantareira",
+                    "tipo_instalacao": "Garagem Operacional",
+                    "total_predial": 3779290.76
+                },
+                {
+                    "agua_rs": 388013.37,
+                    "aluguel_total": 2587500.0,
+                    "capacidade_vagas_onibus": 95,
+                    "energia_rs": 2125181.59,
+                    "nome_instalacao": "Garagem Operacional Oeste - Butant\u00e3",
+                    "tipo_instalacao": "Garagem Operacional",
+                    "total_predial": 3472631.45
+                },
+                {
+                    "agua_rs": 497763.59,
+                    "aluguel_total": 2137500.0,
+                    "capacidade_vagas_onibus": 24,
+                    "energia_rs": 838327.91,
+                    "nome_instalacao": "Terminal Urbano de Integra\u00e7\u00e3o Central",
+                    "tipo_instalacao": "Terminal de Passageiros",
+                    "total_predial": 2912417.23
+                },
+                {
+                    "agua_rs": 92435.61,
+                    "aluguel_total": 1237500.0,
+                    "capacidade_vagas_onibus": 0,
+                    "energia_rs": 501224.22000000003,
+                    "nome_instalacao": "Centro de Controle Operacional (CCO) & Adm",
+                    "tipo_instalacao": "Pr\u00e9dio Administrativo & CCO",
+                    "total_predial": 1529303.32
+                }
+            ],
+            "tabela_linhas": [
+                {
+                    "codigo_linha": "401-BRT",
+                    "ipk": 2.75,
+                    "km": 690690.0,
+                    "nome_linha": "Corredor BRT Eixo Leste-Oeste",
+                    "ocupacao": 71.8,
+                    "passageiros": 1896694,
+                    "tipo_servico": "BRT Exclusivo"
+                },
+                {
+                    "codigo_linha": "402-BRT",
+                    "ipk": 2.88,
+                    "km": 656213.5,
+                    "nome_linha": "Corredor BRT Eixo Norte-Sul",
+                    "ocupacao": 71.6,
+                    "passageiros": 1892970,
+                    "tipo_servico": "BRT Exclusivo"
+                },
+                {
+                    "codigo_linha": "101-T",
+                    "ipk": 2.5,
+                    "km": 470730.0,
+                    "nome_linha": "Term. Central - Cco. Universit\u00e1ria",
+                    "ocupacao": 71.4,
+                    "passageiros": 1177401,
+                    "tipo_servico": "Troncal Expresso"
+                },
+                {
+                    "codigo_linha": "102-E",
+                    "ipk": 1.96,
+                    "km": 592883.6,
+                    "nome_linha": "Term. Central - Aeroporto Metropolitano",
+                    "ocupacao": 71.4,
+                    "passageiros": 1160878,
+                    "tipo_servico": "Troncal Expresso"
+                },
+                {
+                    "codigo_linha": "501-N",
+                    "ipk": 3.04,
+                    "km": 293600.0,
+                    "nome_linha": "Coruja Noturna - Circular Central",
+                    "ocupacao": 68.5,
+                    "passageiros": 892007,
+                    "tipo_servico": "Noturna Circular"
+                },
+                {
+                    "codigo_linha": "302-A",
+                    "ipk": 2.32,
+                    "km": 363990.0,
+                    "nome_linha": "Term. Santo Amaro - Polo Tecnol\u00f3gico Sul",
+                    "ocupacao": 71.2,
+                    "passageiros": 843109,
+                    "tipo_servico": "Alimentadora Corporativa"
+                },
+                {
+                    "codigo_linha": "202-P",
+                    "ipk": 1.56,
+                    "km": 536563.4,
+                    "nome_linha": "Term. Santana - Term. Pinheiros",
+                    "ocupacao": 71.7,
+                    "passageiros": 836159,
+                    "tipo_servico": "Perimetral Norte-Oeste"
+                },
+                {
+                    "codigo_linha": "201-P",
+                    "ipk": 1.13,
+                    "km": 739558.4,
+                    "nome_linha": "Term. Santo Amaro - Term. Itaquera",
+                    "ocupacao": 71.4,
+                    "passageiros": 832266,
+                    "tipo_servico": "Perimetral Sul-Leste"
+                },
+                {
+                    "codigo_linha": "303-A",
+                    "ipk": 2.56,
+                    "km": 323888.4,
+                    "nome_linha": "Term. Itaquera - Hospital Regional Leste",
+                    "ocupacao": 71.9,
+                    "passageiros": 830564,
+                    "tipo_servico": "Alimentadora Sa\u00fade"
+                },
+                {
+                    "codigo_linha": "301-A",
+                    "ipk": 2.04,
+                    "km": 404054.0,
+                    "nome_linha": "Term. Central - Distrito Industrial Norte",
+                    "ocupacao": 71.3,
+                    "passageiros": 824595,
+                    "tipo_servico": "Alimentadora Industrial"
+                }
+            ]
         }
-      }
-      throw err;
-    }
-  };
-</script>
+            ;
+
+        // Interceptador inteligente de fetch para funcionar perfeitamente tanto no GitHub Pages quanto no Flask
+        const _origFetch = window.fetch;
+        window.fetch = async function (url, options) {
+            try {
+                const res = await _origFetch(url, options);
+                if (res.ok) return res;
+                throw new Error('API indisponivel');
+            } catch (err) {
+                if (typeof url === 'string') {
+                    if (url.includes('/api/filtros')) {
+                        return new Response(JSON.stringify(window.FALLBACK_FILTROS), {
+                            status: 200,
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                    }
+                    if (url.includes('/api/dados')) {
+                        return new Response(JSON.stringify(window.FALLBACK_DADOS), {
+                            status: 200,
+                            headers: { 'Content-Type': 'application/json' }
+                        });
+                    }
+                }
+                throw err;
+            }
+        };
+    </script>
 
 </head>
+
 <body class="min-h-screen flex flex-col custom-scrollbar">
 
     <!-- Top Navigation Header -->
     <header class="glass-panel sticky top-0 z-50 border-b border-slate-800 px-6 py-3.5">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-            
+
             <!-- Brand & Authority Info -->
             <div class="flex items-center space-x-4">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
+                <div
+                    class="w-11 h-11 rounded-xl bg-gradient-to-tr from-sky-600 via-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-sky-500/20">
                     <i class="fa-solid fa-bus text-white text-xl"></i>
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-950/70 border border-sky-800/50 px-2.5 py-0.5 rounded-full">
+                        <span
+                            class="text-xs font-bold uppercase tracking-wider text-sky-400 bg-sky-950/70 border border-sky-800/50 px-2.5 py-0.5 rounded-full">
                             VIA METRÓPOLE MOBILIDADE &amp; INFRAESTRUTURA
                         </span>
-                        <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">
-                            <i class="fa-solid fa-circle text-[8px] mr-1 text-emerald-400 animate-pulse"></i>Modelo Power BI Oficial
+                        <span
+                            class="text-xs font-semibold px-2 py-0.5 rounded-full bg-emerald-950/60 text-emerald-400 border border-emerald-800/40">
+                            <i class="fa-solid fa-circle text-[8px] mr-1 text-emerald-400 animate-pulse"></i>Dashboard
+                            Executivo Oficial
                         </span>
                     </div>
-                    <h1 class="text-xl font-heading font-extrabold text-white tracking-tight flex items-center gap-2 mt-0.5">
+                    <h1
+                        class="text-xl font-heading font-extrabold text-white tracking-tight flex items-center gap-2 mt-0.5">
                         Gestão de Transporte, Frota de Ônibus, Combustível &amp; Facilities
                     </h1>
                 </div>
@@ -806,29 +834,22 @@
 
             <!-- Quick Action Buttons & Fullscreen -->
             <div class="header-actions-mobile flex items-center space-x-3 w-full md:w-auto justify-end">
-                <a href="../index.html" class="px-3.5 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/40 flex items-center gap-2 transition" title="Voltar ao Portfólio Principal">
+                <a href="../index.html"
+                    class="px-3.5 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/40 flex items-center gap-2 transition"
+                    title="Voltar ao Portfólio Principal">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Voltar ao Portfólio</span>
                 </a>
-                <a href="https://app.powerbi.com/view?r=eyJrIjoiMGM2MDVkMmEtNmExYi00NzQxLTk5YzEtNzJlNjQ5YmM3MTc5IiwidCI6IjcwM2ZiM2ZjLTI3ZTAtNDEyYS1hZjAxLWZkNWMzY2Q5OWU1MyJ9" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/40 flex items-center gap-2 transition" title="Abrir Relatório Oficial no Power BI Service Cloud">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <span>Power BI Cloud Oficial</span>
-                </a>
-                <a href="../powerbi_transporte/" target="_blank" rel="noopener" class="px-3.5 py-2 rounded-lg bg-sky-950/80 hover:bg-sky-900 text-sky-300 text-xs font-bold border border-sky-700/50 flex items-center gap-2 transition" title="Visualizador Power BI com Modelagem Star Schema">
-                    <i class="fa-solid fa-diagram-project"></i>
-                    <span>Power BI Viewer</span>
-                </a>
-                <button id="btn-fullscreen" onclick="toggleFullscreen()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 flex items-center gap-2 transition" title="Modo Tela Cheia (F11 ou tecla F)">
+                <button id="btn-fullscreen" onclick="toggleFullscreen()"
+                    class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 flex items-center gap-2 transition"
+                    title="Modo Tela Cheia (F11 ou tecla F)">
                     <i class="fa-solid fa-expand" id="icon-fullscreen"></i>
                     <span id="label-fullscreen">Tela Cheia</span>
                 </button>
-                <button onclick="carregarDados()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 flex items-center gap-2 transition">
+                <button onclick="carregarDados()"
+                    class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 flex items-center gap-2 transition">
                     <i class="fa-solid fa-arrows-rotate"></i>
                     <span>Atualizar</span>
-                </button>
-                <button onclick="exportarExcel()" class="px-4 py-2 rounded-lg bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-500 hover:to-blue-500 text-white text-xs font-semibold shadow-lg shadow-sky-900/30 flex items-center gap-2 transition" title="Baixar Pasta de Trabalho Excel com Star Schema">
-                    <i class="fa-solid fa-file-excel"></i>
-                    <span>Baixar Modelo Power BI (.xlsx)</span>
                 </button>
             </div>
         </div>
@@ -838,7 +859,8 @@
     <main class="flex-grow max-w-7xl w-full mx-auto p-6 space-y-6">
 
         <!-- Executive Banner Context -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 bg-gradient-to-r from-sky-950/40 via-slate-900/60 to-blue-950/40 p-4 rounded-2xl border border-sky-900/30">
+        <div
+            class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 bg-gradient-to-r from-sky-950/40 via-slate-900/60 to-blue-950/40 p-4 rounded-2xl border border-sky-900/30">
             <div class="space-y-1">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-chart-line text-sky-400"></i>
@@ -847,10 +869,12 @@
                     </h2>
                 </div>
                 <p class="text-xs text-slate-400">
-                    Acompanhamento de passageiros transportados, taxa de ocupação, índice IPK, consumo de diesel (km/l), eletricidade de recarga, contas de energia/água e aluguéis de garagens operacionais.
+                    Acompanhamento de passageiros transportados, taxa de ocupação, índice IPK, consumo de diesel (km/l),
+                    eletricidade de recarga, contas de energia/água e aluguéis de garagens operacionais.
                 </p>
             </div>
-            <div class="flex items-center gap-3 text-xs bg-slate-950/60 px-3.5 py-2 rounded-xl border border-slate-800 text-slate-300">
+            <div
+                class="flex items-center gap-3 text-xs bg-slate-950/60 px-3.5 py-2 rounded-xl border border-slate-800 text-slate-300">
                 <i class="fa-solid fa-database text-sky-400"></i>
                 <span>Star Schema: <strong>34.764 registros diários</strong> + 6 Dimensões</span>
             </div>
@@ -862,7 +886,8 @@
                 <!-- Filtro Ano -->
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-400 mb-1">Ano de Exercício</label>
-                    <select id="filtro-ano" onchange="carregarDados()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <select id="filtro-ano" onchange="carregarDados()"
+                        class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
                         <option value="TODOS">Todos os Anos (Consolidado)</option>
                     </select>
                 </div>
@@ -870,7 +895,8 @@
                 <!-- Filtro Linha / Itinerário -->
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-400 mb-1">Linha / Itinerário</label>
-                    <select id="filtro-linha" onchange="carregarDados()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <select id="filtro-linha" onchange="carregarDados()"
+                        class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
                         <option value="TODAS">Todas as Linhas (10 Itinerários)</option>
                     </select>
                 </div>
@@ -878,7 +904,8 @@
                 <!-- Filtro Garagem / Instalação -->
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-400 mb-1">Garagem / Terminal</label>
-                    <select id="filtro-garagem" onchange="carregarDados()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <select id="filtro-garagem" onchange="carregarDados()"
+                        class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
                         <option value="TODAS">Todas as Garagens &amp; Terminais</option>
                     </select>
                 </div>
@@ -886,7 +913,8 @@
                 <!-- Filtro Tipo Combustível -->
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-400 mb-1">Matriz Energética</label>
-                    <select id="filtro-combustivel" onchange="carregarDados()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <select id="filtro-combustivel" onchange="carregarDados()"
+                        class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
                         <option value="TODOS">Todos (Diesel + Elétrico)</option>
                     </select>
                 </div>
@@ -894,7 +922,8 @@
                 <!-- Filtro Tipo Veículo -->
                 <div>
                     <label class="block text-[11px] font-semibold text-slate-400 mb-1">Tipo de Ônibus</label>
-                    <select id="filtro-veiculo" onchange="carregarDados()" class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                    <select id="filtro-veiculo" onchange="carregarDados()"
+                        class="w-full bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-sky-500 focus:outline-none">
                         <option value="TODOS">Toda a Frota (100 Ônibus)</option>
                     </select>
                 </div>
@@ -950,12 +979,14 @@
                 <div class="glass-card p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
                     <div class="flex items-center justify-between">
                         <span class="text-[11px] font-medium text-slate-400">Taxa Média Ocupação</span>
-                        <div class="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                        <div
+                            class="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
                             <i class="fa-solid fa-gauge text-sm"></i>
                         </div>
                     </div>
                     <div class="my-2">
-                        <div class="text-xl sm:text-2xl font-bold font-mono text-emerald-400" id="kpi-ocupacao">--%</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-emerald-400" id="kpi-ocupacao">--%
+                        </div>
                     </div>
                     <div class="text-[10px] text-slate-400">
                         <span>Meta Operacional: <strong>75% - 85%</strong></span>
@@ -998,12 +1029,14 @@
                 <div class="glass-card p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
                     <div class="flex items-center justify-between">
                         <span class="text-[11px] font-medium text-slate-400">Frota Ativa</span>
-                        <div class="w-7 h-7 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
+                        <div
+                            class="w-7 h-7 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400">
                             <i class="fa-solid fa-van-shuttle text-sm"></i>
                         </div>
                     </div>
                     <div class="my-2">
-                        <div class="text-xl sm:text-2xl font-bold font-mono text-indigo-300" id="kpi-frota">-- / 100</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-indigo-300" id="kpi-frota">-- / 100
+                        </div>
                     </div>
                     <div class="text-[10px] text-slate-400 flex items-center justify-between">
                         <span>Emissões: <strong id="kpi-co2" class="text-slate-200">-- t CO2</strong></span>
@@ -1032,7 +1065,8 @@
                         </div>
                     </div>
                     <div class="my-2">
-                        <div class="text-xl sm:text-2xl font-bold font-mono text-amber-400" id="kpi-energia-kwh">-- kWh</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-amber-400" id="kpi-energia-kwh">-- kWh
+                        </div>
                     </div>
                     <div class="text-[10px] text-slate-400 flex items-center justify-between">
                         <span>Custo Fatura: <strong id="kpi-energia-custo" class="text-slate-200">R$ --</strong></span>
@@ -1065,7 +1099,8 @@
                         </div>
                     </div>
                     <div class="my-2">
-                        <div class="text-xl sm:text-2xl font-bold font-mono text-sky-400" id="kpi-aluguel-rs">R$ --</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-sky-400" id="kpi-aluguel-rs">R$ --
+                        </div>
                     </div>
                     <div class="text-[10px] text-slate-400">
                         <span>Contratos de Locação Ativos</span>
@@ -1075,13 +1110,16 @@
                 <!-- FAC 4: Custo Predial Total -->
                 <div class="glass-card p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
                     <div class="flex items-center justify-between">
-                        <span class="text-[11px] font-medium text-slate-400">Custo Predial Total (Aluguel + IPTU + Manut)</span>
-                        <div class="w-7 h-7 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
+                        <span class="text-[11px] font-medium text-slate-400">Custo Predial Total (Aluguel + IPTU +
+                            Manut)</span>
+                        <div
+                            class="w-7 h-7 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400">
                             <i class="fa-solid fa-warehouse text-sm"></i>
                         </div>
                     </div>
                     <div class="my-2">
-                        <div class="text-xl sm:text-2xl font-bold font-mono text-purple-300" id="kpi-custo-predial-rs">R$ --</div>
+                        <div class="text-xl sm:text-2xl font-bold font-mono text-purple-300" id="kpi-custo-predial-rs">
+                            R$ --</div>
                     </div>
                     <div class="text-[10px] text-slate-400 flex items-center justify-between">
                         <span>Lavagens Frota: <strong id="kpi-lavagens" class="text-slate-200">--</strong></span>
@@ -1151,7 +1189,8 @@
                             <i class="fa-solid fa-building-circle-check text-indigo-400"></i>
                             Custos Prediais &amp; Aluguéis por Garagem / Instalação
                         </h4>
-                        <p class="text-[11px] text-slate-400">Composição de aluguel, energia e água por base operacional</p>
+                        <p class="text-[11px] text-slate-400">Composição de aluguel, energia e água por base operacional
+                        </p>
                     </div>
                 </div>
                 <div class="h-[280px]">
@@ -1170,12 +1209,14 @@
                             <i class="fa-solid fa-route text-sky-400"></i>
                             Detalhamento Operacional por Linha &amp; Itinerário
                         </h4>
-                        <p class="text-[11px] text-slate-400">Passageiros, quilometragem, índice IPK e taxa de ocupação</p>
+                        <p class="text-[11px] text-slate-400">Passageiros, quilometragem, índice IPK e taxa de ocupação
+                        </p>
                     </div>
                 </div>
                 <div class="overflow-x-auto max-h-[360px] custom-scrollbar">
                     <table class="w-full text-left text-xs border-collapse">
-                        <thead class="sticky top-0 bg-slate-900/95 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                        <thead
+                            class="sticky top-0 bg-slate-900/95 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
                             <tr>
                                 <th class="py-2.5 px-3">Código</th>
                                 <th class="py-2.5 px-3">Nome da Linha / Itinerário</th>
@@ -1201,12 +1242,14 @@
                             <i class="fa-solid fa-warehouse text-purple-400"></i>
                             Gestão de Contratos de Aluguel &amp; Custos das Instalações (Facilities)
                         </h4>
-                        <p class="text-[11px] text-slate-400">Aluguéis contratuais, despesas de energia, água e custos consolidados</p>
+                        <p class="text-[11px] text-slate-400">Aluguéis contratuais, despesas de energia, água e custos
+                            consolidados</p>
                     </div>
                 </div>
                 <div class="overflow-x-auto max-h-[320px] custom-scrollbar">
                     <table class="w-full text-left text-xs border-collapse">
-                        <thead class="sticky top-0 bg-slate-900/95 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                        <thead
+                            class="sticky top-0 bg-slate-900/95 text-[11px] uppercase tracking-wider text-slate-400 border-b border-slate-800">
                             <tr>
                                 <th class="py-2.5 px-3">Instalação / Garagem</th>
                                 <th class="py-2.5 px-3">Tipo</th>
@@ -1229,9 +1272,11 @@
 
     <!-- Footer -->
     <footer class="glass-panel border-t border-slate-800/80 py-4 px-6 mt-8">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-500">
             <div>
-                © 2026 <strong>Via Metrópole Mobilidade &amp; Infraestrutura</strong> — Projeto de Demonstração Técnica Power BI &amp; Analytics
+                © 2026 <strong>Via Metrópole Mobilidade &amp; Infraestrutura</strong> — Projeto de Demonstração Técnica
+                Power BI &amp; Analytics
             </div>
             <div>
                 Especialista em BI &amp; Analytics: <strong>Antonio Carlos de Mello</strong>
@@ -1627,5 +1672,5 @@
         });
     </script>
 </body>
-</html>
 
+</html>
