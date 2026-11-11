@@ -1831,22 +1831,15 @@
 
         const stackBadges = (d.stack || []).map(s => `<span class="stack-tag">${s}</span>`).join('');
         const imgUrl = d.image || 'static/portfolio_screenshots/pbi_sample.jpg';
-
         const targetDashUrl = d.live_url;
-        const safeTitle = (d.title || '').replace(/'/g, "\\'");
-        const safeDept = (d.department || '').replace(/'/g, "\\'");
-        const safeLiveUrl = (targetDashUrl || '').replace(/'/g, "\\'");
-
-        // O clique na imagem sempre abre o Lightbox ampliado para visualização em alta definição sem sair da página
-        const previewClick = `openLightbox('${imgUrl}', '${safeTitle}', '${safeDept}', '${safeLiveUrl}')`;
-        const previewLabel = `<i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar Detalhes & KPIs`;
+        const plainTitle = (d.title || '').replace(/<[^>]+>/g, '').trim();
 
         return `
           <div class="dashboard-card">
-            <div class="card-preview-container" onclick="${previewClick}" title="Clique para ampliar tela e inspecionar detalhes dos gráficos">
-              <img src="${imgUrl}" alt="${d.title}" class="card-preview-img" loading="lazy">
+            <div class="card-preview-container" onclick="openLightboxById(${d.id})" title="Clique para ampliar tela e inspecionar detalhes dos gráficos">
+              <img src="${imgUrl}" alt="${plainTitle}" class="card-preview-img" loading="lazy">
               <div class="card-preview-overlay">
-                <div class="btn-zoom">${previewLabel}</div>
+                <div class="btn-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar Detalhes & KPIs</div>
               </div>
             </div>
 
@@ -1878,7 +1871,7 @@
                 </a>
                 ` : ''}
                 ${d.secondary_url ? `
-                <a href="${d.secondary_url}" ${d.secondary_url.endsWith('.png') || d.secondary_url.endsWith('.jpg') ? `onclick="event.preventDefault(); openLightbox('${d.secondary_url}', '${safeTitle}', '${safeDept}', '')"` : 'target="_blank" rel="noopener"'} class="btn-card" style="flex: 1; background: #182030; color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.4); text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <a href="${d.secondary_url}" ${d.secondary_url.endsWith('.png') || d.secondary_url.endsWith('.jpg') ? `onclick="event.preventDefault(); openLightboxSecondaryById(${d.id})"` : 'target="_blank" rel="noopener"'} class="btn-card" style="flex: 1; background: #182030; color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.4); text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
                   ${d.secondary_label || 'Ver Alternativa'}
                 </a>
                 ` : ''}
@@ -1891,6 +1884,19 @@
     }
 
     /* LIGHTBOX CONTROLLERS */
+    function openLightboxById(id) {
+      const d = DASHBOARDS.find(item => item.id === id);
+      if (!d) return;
+      const imgUrl = d.image || 'static/portfolio_screenshots/pbi_sample.jpg';
+      openLightbox(imgUrl, d.title, d.department, d.live_url || '');
+    }
+
+    function openLightboxSecondaryById(id) {
+      const d = DASHBOARDS.find(item => item.id === id);
+      if (!d || !d.secondary_url) return;
+      openLightbox(d.secondary_url, d.title, d.department, '');
+    }
+
     function openLightbox(imgSrc, title, dept, liveUrl) {
       const imgEl = document.getElementById('lightboxImg');
       const titleEl = document.getElementById('lightboxTitle');
