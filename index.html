@@ -33,6 +33,10 @@
       --font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -56,7 +60,7 @@
 
     a { text-decoration: none; color: inherit; }
 
-    /* HEADER */
+    /* HEADER COM MENU DE NAVEGAÇÃO */
     header.portfolio-header {
       position: sticky;
       top: 0;
@@ -64,10 +68,11 @@
       background: rgba(10, 10, 10, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(203, 151, 39, 0.25);
-      padding: 1rem 2.5rem;
+      padding: 0.9rem 2.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
     }
 
     .brand-logo {
@@ -92,8 +97,84 @@
       font-weight: 700;
       color: var(--mq-white);
       letter-spacing: 0.5px;
+      text-decoration: none;
     }
     .brand-title span { color: var(--mq-gold); }
+
+    /* MENU COM ÂNCORAS NO CABEÇALHO */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-link {
+      color: #C0C5CE;
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 6px 4px;
+      position: relative;
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+
+    .nav-link i {
+      font-size: 0.76rem;
+      color: var(--mq-gold);
+      opacity: 0.85;
+      transition: all 0.25s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--mq-gold-gradient);
+      transition: width 0.25s ease;
+      border-radius: 2px;
+    }
+
+    .nav-link:hover {
+      color: #FFFFFF;
+    }
+
+    .nav-link:hover i {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 950px) {
+      header.portfolio-header {
+        padding: 0.8rem 1.2rem;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .header-nav {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 14px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        overflow-x: auto;
+      }
+      .nav-link {
+        font-size: 0.74rem;
+        white-space: nowrap;
+      }
+    }
 
     .header-actions {
       display: flex;
@@ -598,6 +679,218 @@
       box-shadow: 0 4px 12px rgba(203, 151, 39, 0.4);
     }
 
+    /* SEÇÃO SOBRE & TRAJETÓRIA */
+    .about-section {
+      max-width: 1350px;
+      margin: 0 auto 3.5rem;
+      padding: 0 2rem;
+      position: relative;
+    }
+
+    .about-card-wrapper {
+      background: linear-gradient(145deg, #12141a 0%, #1a1e27 100%);
+      border: 1px solid rgba(203, 151, 39, 0.35);
+      border-radius: 18px;
+      padding: 2.8rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-card-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 340px;
+      height: 340px;
+      background: radial-gradient(circle, rgba(203, 151, 39, 0.14) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .about-header-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(203, 151, 39, 0.45);
+      background: rgba(203, 151, 39, 0.1);
+      color: var(--mq-gold-light);
+      padding: 5px 14px;
+      border-radius: 50px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .about-title {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #FFF;
+      margin-bottom: 1.8rem;
+      line-height: 1.25;
+    }
+    .about-title span.highlight {
+      background: var(--mq-gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2.6rem;
+      align-items: stretch;
+    }
+
+    .about-text-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .about-text-lead {
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.65;
+      border-left: 3px solid var(--mq-gold);
+      padding: 10px 18px;
+      background: rgba(203, 151, 39, 0.06);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .about-p {
+      font-size: 0.95rem;
+      color: #C0C6CF;
+      line-height: 1.75;
+    }
+
+    .about-pillars {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .pillar-card {
+      background: rgba(10, 12, 16, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 1.15rem 1.3rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: all 0.3s ease;
+    }
+    .pillar-card:hover {
+      border-color: var(--mq-gold);
+      transform: translateX(4px);
+      background: rgba(203, 151, 39, 0.06);
+    }
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(203, 151, 39, 0.15);
+      border: 1px solid rgba(203, 151, 39, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mq-gold);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+    .pillar-content h4 {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 0.3rem;
+    }
+    .pillar-content p {
+      font-size: 0.81rem;
+      color: #9AA0A6;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 992px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .about-card-wrapper {
+        padding: 1.8rem;
+      }
+      .about-title {
+        font-size: 1.7rem;
+      }
+    }
+
+    /* SEÇÃO STACK TECNOLÓGICA */
+    .stack-section {
+      max-width: 1350px;
+      margin: 0 auto 3rem;
+      padding: 0 2rem;
+    }
+
+    .stack-wrapper {
+      background: var(--mq-dark-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 1.8rem 2.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .stack-header h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stack-header h3 i { color: var(--mq-gold); }
+    .stack-header p {
+      font-size: 0.82rem;
+      color: #8C939D;
+      margin-top: 3px;
+    }
+
+    .stack-badges-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .tech-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #DDD;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .tech-chip:hover {
+      border-color: var(--mq-gold);
+      background: rgba(203, 151, 39, 0.14);
+      color: #FFF;
+      transform: translateY(-2px);
+    }
+    .tech-chip i {
+      color: var(--mq-gold);
+    }
+
     /* MODAL DE EXPANSÃO DA TELA (LIGHTBOX) */
     .lightbox-modal {
       display: none;
@@ -607,64 +900,92 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(8px);
+      background: rgba(5, 7, 10, 0.94);
+      backdrop-filter: blur(10px);
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.28s ease;
     }
     .lightbox-modal.active {
       display: flex;
+      opacity: 1;
     }
 
     .lightbox-content {
-      max-width: 90vw;
-      max-height: 88vh;
+      max-width: 95vw;
+      max-height: 94vh;
+      width: fit-content;
       position: relative;
-      border: 2px solid var(--mq-gold);
-      border-radius: 8px;
+      border: 1px solid rgba(203, 151, 39, 0.5);
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(203, 151, 39, 0.25);
+      background: #0c0d11;
+      display: flex;
+      flex-direction: column;
+      transform: scale(0.96);
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .lightbox-modal.active .lightbox-content {
+      transform: scale(1);
+    }
+
+    .lightbox-img-wrapper {
+      max-height: calc(94vh - 75px);
+      overflow: auto;
       background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .lightbox-content img {
-      width: 100%;
+      max-width: 100%;
+      max-height: calc(94vh - 75px);
+      width: auto;
       height: auto;
-      max-height: 80vh;
       display: block;
       object-fit: contain;
+      user-select: none;
     }
 
     .lightbox-caption {
-      padding: 12px 18px;
-      background: #111;
+      padding: 14px 22px;
+      background: #11141a;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .lightbox-close {
-      position: absolute;
-      top: 15px;
-      right: 20px;
+      position: fixed;
+      top: 20px;
+      right: 25px;
       color: #fff;
-      font-size: 2rem;
+      font-size: 1.8rem;
       cursor: pointer;
-      background: rgba(0, 0, 0, 0.6);
-      width: 44px;
-      height: 44px;
+      background: rgba(20, 22, 28, 0.9);
+      width: 46px;
+      height: 46px;
       display: flex;
       align-items: center;
       justify-content: center;
       border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.2s;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: all 0.25s;
+      z-index: 10000;
     }
     .lightbox-close:hover {
       background: var(--mq-gold);
       color: #000;
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(203, 151, 39, 0.6);
     }
 
     /* FOOTER */
@@ -704,13 +1025,21 @@
 </head>
 <body>
 
-  <!-- CABEÇALHO EXECUTIVO -->
+  <!-- CABEÇALHO EXECUTIVO COM NAVEGAÇÃO SUAVE -->
   <header class="portfolio-header">
     <div class="brand-logo">
-      <div class="brand-title">Antonio Mello <span>Business Intelligence</span></div>
+      <a href="#inicio" class="brand-title">Antonio Mello <span>Business Intelligence</span></a>
     </div>
     
-        <div class="header-actions">
+    <nav class="header-nav" aria-label="Navegação do Portfólio">
+      <a href="#inicio" class="nav-link"><i class="fa-solid fa-house"></i> Início</a>
+      <a href="#sobre" class="nav-link"><i class="fa-solid fa-user-tie"></i> Sobre</a>
+      <a href="#projetos" class="nav-link"><i class="fa-solid fa-chart-pie"></i> Projetos</a>
+      <a href="#stack" class="nav-link"><i class="fa-solid fa-layer-group"></i> Stack</a>
+      <a href="#contato" class="nav-link"><i class="fa-solid fa-envelope"></i> Contato</a>
+    </nav>
+
+    <div class="header-actions">
       <a href="curriculo.html?v=20261109" class="btn btn-outline" title="Acessar Currículo Executivo">
         <i class="fa-solid fa-file-lines"></i> CURRÍCULO
       </a>
@@ -718,14 +1047,13 @@
   </header>
 
   <!-- HERO SECTION -->
-  <section class="hero">
+  <section class="hero" id="inicio">
     <div class="hero-tag">Visão completa, controle total.</div>
     <h1 style="color: #FFFFFF;">Cockpit Executivo Estratégico</h1>
     <p class="lead">
       Confira as telas reais de cada solução implementada. Painéis desenhados para tomada de decisão ágil, clareza métrica e alta densidade de valor analítico para Diretorias e Gestores.
     </p>
 
-    
     <!-- CONTATOS & LINKEDIN EM DESTAQUE -->
     <div class="hero-contact-actions">
       <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener noreferrer" class="hero-contact-btn hero-btn-linkedin" title="Acessar Perfil no LinkedIn">
@@ -737,11 +1065,95 @@
         <span>Contato: 11-99955-3359</span>
       </a>
     </div>
+  </section>
 
-        </section>
+  <!-- SEÇÃO SOBRE & TRAJETÓRIA -->
+  <section class="about-section" id="sobre">
+    <div class="about-card-wrapper">
+      <div class="about-header-tag">
+        <i class="fa-solid fa-compass"></i> Perfil & Trajetória Executiva
+      </div>
+      <h2 class="about-title">Sobre & <span class="highlight">Trajetória</span></h2>
 
-  <!-- CONTROLES: BUSCA & FILTROS POR DEPARTAMENTO -->
-  <section class="controls-container">
+      <div class="about-grid">
+        <div class="about-text-content">
+          <p class="about-text-lead">
+            Como Especialista em Business Intelligence e Analytics, transformo dados dispersos em decisões que geram resultado financeiro e operacional.
+          </p>
+
+          <p class="about-p">
+            Minha trajetória é marcada por estruturar áreas de Business Intelligence do zero. Entro onde ainda predominam processos manuais e planilhas paralelas, e construo uma cultura analítica sólida: dados organizados, rotinas automatizadas e visões executivas confiáveis para a tomada de decisão.
+          </p>
+
+          <p class="about-p">
+            Ao longo da carreira, desenvolvi mais de 500 dashboards e soluções em Power BI, atuando no ciclo completo: alinho com a liderança para entender o problema de negócio e definir OKRs e KPIs, estruturo a engenharia de dados (modelagem dimensional, Star Schema e DAX) e entrego o painel pronto com métricas governadas. Tenho atuação prática em setores complexos como saúde hospitalar, logística rodoviária e controladoria.
+          </p>
+
+          <p class="about-p">
+            Para ganhar escala, integro ao BI tradicional fluxos de automação com n8n, Python e desenvolvimento assistido por IA (Claude Code, Gemini, ChatGPT), acelerando diagnósticos e eliminando tarefas repetitivas que custam tempo e dinheiro às organizações.
+          </p>
+        </div>
+
+        <div class="about-pillars">
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-sitemap"></i></div>
+            <div class="pillar-content">
+              <h4>Estruturação do Zero</h4>
+              <p>Eliminação de planilhas paralelas e implantação de cultura analítica governada e confiável.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="pillar-content">
+              <h4>+500 Dashboards & DAX Avançado</h4>
+              <p>Modelagem dimensional Star Schema, métricas auditadas e painéis de alta performance executiva.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-briefcase"></i></div>
+            <div class="pillar-content">
+              <h4>Negócios Complexos</h4>
+              <p>Atuação estratégica em Saúde Hospitalar, Logística Rodoviária, Controladoria e Faturamento.</p>
+            </div>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon"><i class="fa-solid fa-robot"></i></div>
+            <div class="pillar-content">
+              <h4>Automação & IA Generativa</h4>
+              <p>Workflows em n8n, scripts Python e engenharia assistida por LLMs (Claude Code, Gemini, ChatGPT).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO STACK TECNOLÓGICA -->
+  <section class="stack-section" id="stack">
+    <div class="stack-wrapper">
+      <div class="stack-header">
+        <h3><i class="fa-solid fa-layer-group"></i> Stack Tecnológica & Arquitetura Analítica</h3>
+        <p>Ecossistema corporativo aplicado em projetos de missão crítica e alta escala de decisão</p>
+      </div>
+
+      <div class="stack-badges-grid">
+        <span class="tech-chip"><i class="fa-solid fa-chart-pie"></i> Microsoft Power BI</span>
+        <span class="tech-chip"><i class="fa-solid fa-calculator"></i> DAX Avançado & Star Schema</span>
+        <span class="tech-chip"><i class="fa-brands fa-python"></i> Python & Flask Analytics</span>
+        <span class="tech-chip"><i class="fa-solid fa-network-wired"></i> n8n & Agentes Autônomos</span>
+        <span class="tech-chip"><i class="fa-solid fa-database"></i> SQL Server & PostgreSQL</span>
+        <span class="tech-chip"><i class="fa-solid fa-brain"></i> IA Generativa (Claude / Gemini)</span>
+        <span class="tech-chip"><i class="fa-solid fa-code-branch"></i> Git & GitHub Pages</span>
+        <span class="tech-chip"><i class="fa-solid fa-tv"></i> ECharts & Dashboards TV</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTROLES: BUSCA & FILTROS POR DEPARTAMENTO (PROJETOS) -->
+  <section class="controls-container" id="projetos">
     <div class="search-box-wrapper">
       <i class="fa-solid fa-search"></i>
       <input type="text" id="searchInput" placeholder="Buscar por nome do dashboard, tecnologia, métrica ou departamento..." onkeyup="filterDashboards()">
@@ -759,20 +1171,47 @@
 
   <!-- MODAL LIGHTBOX DE ZOOM NA TELA -->
   <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox(event)">
-    <div class="lightbox-close" onclick="closeLightboxDirect()">&times;</div>
+    <div class="lightbox-close" onclick="closeLightboxDirect()" title="Fechar tela ampliada (ESC)">&times;</div>
     <div class="lightbox-content" onclick="event.stopPropagation()">
-      <img id="lightboxImg" src="" alt="Dashboard Zoom">
+      <div class="lightbox-img-wrapper">
+        <img id="lightboxImg" src="" alt="Dashboard Zoom">
+      </div>
       <div class="lightbox-caption">
         <div>
-          <span id="lightboxTitle" style="font-weight: 700; font-size: 1rem; color: #fff;">Título do Dashboard</span>
-          <span id="lightboxDept" style="display: block; font-size: 0.75rem; color: #CB9727; font-weight: 600;">Departamento</span>
+          <div id="lightboxTitle" style="font-weight: 800; font-size: 1.05rem; color: #fff; margin-bottom: 2px;">Título do Dashboard</div>
+          <span id="lightboxDept" style="display: inline-block; font-size: 0.78rem; color: #CB9727; font-weight: 700; text-transform: uppercase;">Departamento</span>
         </div>
-        <div style="font-size: 0.75rem; color: #999; background: #222; padding: 4px 10px; border-radius: 4px; border: 1px solid #444;">
-          <i class="fa-solid fa-image"></i> Demonstração Visual Estática
+        <div style="display: flex; align-items: center; gap: 10px;" id="lightboxActions">
+          <span style="font-size: 0.75rem; color: #999; background: #222; padding: 5px 12px; border-radius: 4px; border: 1px solid #444;">
+            <i class="fa-solid fa-magnifying-glass-plus"></i> Imagem Ampliada
+          </span>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- FOOTER / CONTATO -->
+  <footer class="portfolio-footer" id="contato">
+    <div class="footer-content">
+      <div class="footer-logo">Antonio Mello <span>Business Intelligence</span></div>
+      <p class="footer-desc">
+        Especialista em Business Intelligence & Arquitetura de Decisão • Power BI, Modelagem Dimensional, DAX Avançado, Web Analytics Python & Automações com n8n e Agentes IA.
+      </p>
+
+      <div class="contact-chips">
+        <a href="https://wa.me/5511999553359" target="_blank" rel="noopener noreferrer" class="contact-chip" title="WhatsApp Direto">
+          <i class="fa-brands fa-whatsapp"></i> (11) 99955-3359
+        </a>
+        <a href="https://www.linkedin.com/in/antonio-carlos-mello/" target="_blank" rel="noopener noreferrer" class="contact-chip" title="Perfil LinkedIn">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn Oficial
+        </a>
+        <a href="https://github.com/Sracm" target="_blank" rel="noopener noreferrer" class="contact-chip" title="GitHub de Projetos">
+          <i class="fa-brands fa-github"></i> github.com/Sracm
+        </a>
+        <a href="curriculo.html?v=20261109" class="contact-chip" title="Currículo Executivo">
+          <i class="fa-solid fa-file-lines"></i> Currículo Executivo
+        </a>
+      </div>
 
       <p style="font-size: 0.75rem; color: #555;">
         &copy; 2026 Antonio Mello • Executive Analytics & BI Architecture • Todos os direitos reservados.
@@ -1316,16 +1755,17 @@
         const imgUrl = d.image || 'static/portfolio_screenshots/pbi_sample.jpg';
 
         const targetDashUrl = d.live_url;
-        const previewClick = targetDashUrl
-          ? `window.open('${targetDashUrl}', '_blank')`
-          : `openLightbox('${imgUrl}', '${d.title.replace(/'/g, "\\'")}', '${d.department}')`;
-        const previewLabel = d.live_url
-          ? `<i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Dashboard Interativo`
-          : `<i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar Tela`;
+        const safeTitle = (d.title || '').replace(/'/g, "\\'");
+        const safeDept = (d.department || '').replace(/'/g, "\\'");
+        const safeLiveUrl = (targetDashUrl || '').replace(/'/g, "\\'");
+
+        // O clique na imagem sempre abre o Lightbox ampliado para visualização em alta definição sem sair da página
+        const previewClick = `openLightbox('${imgUrl}', '${safeTitle}', '${safeDept}', '${safeLiveUrl}')`;
+        const previewLabel = `<i class="fa-solid fa-magnifying-glass-plus"></i> Ampliar Detalhes & KPIs`;
 
         return `
           <div class="dashboard-card">
-            <div class="card-preview-container" onclick="${previewClick}">
+            <div class="card-preview-container" onclick="${previewClick}" title="Clique para ampliar tela e inspecionar detalhes dos gráficos">
               <img src="${imgUrl}" alt="${d.title}" class="card-preview-img" loading="lazy">
               <div class="card-preview-overlay">
                 <div class="btn-zoom">${previewLabel}</div>
@@ -1360,7 +1800,7 @@
                 </a>
                 ` : ''}
                 ${d.secondary_url ? `
-                <a href="${d.secondary_url}" ${d.secondary_url.endsWith('.png') || d.secondary_url.endsWith('.jpg') ? `onclick="event.preventDefault(); openLightbox('${d.secondary_url}', '${d.title.replace(/'/g, "\\'")}', '${d.department}')"` : 'target="_blank" rel="noopener"'} class="btn-card" style="flex: 1; background: #182030; color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.4); text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <a href="${d.secondary_url}" ${d.secondary_url.endsWith('.png') || d.secondary_url.endsWith('.jpg') ? `onclick="event.preventDefault(); openLightbox('${d.secondary_url}', '${safeTitle}', '${safeDept}', '')"` : 'target="_blank" rel="noopener"'} class="btn-card" style="flex: 1; background: #182030; color: #f5d372; border: 1px solid rgba(242, 200, 17, 0.4); text-decoration: none; border-radius: 6px; padding: 8px 6px; font-weight: 700; font-size: 0.74rem; display: flex; align-items: center; justify-content: center; gap: 6px;">
                   ${d.secondary_label || 'Ver Alternativa'}
                 </a>
                 ` : ''}
@@ -1373,12 +1813,37 @@
     }
 
     /* LIGHTBOX CONTROLLERS */
-    function openLightbox(imgSrc, title, dept) {
-      document.getElementById('lightboxImg').src = imgSrc;
-      document.getElementById('lightboxTitle').textContent = title;
+    function openLightbox(imgSrc, title, dept, liveUrl) {
+      const imgEl = document.getElementById('lightboxImg');
+      const titleEl = document.getElementById('lightboxTitle');
       const deptEl = document.getElementById('lightboxDept');
+      const actionsEl = document.getElementById('lightboxActions');
+      const modal = document.getElementById('lightboxModal');
+
+      if (imgEl) imgEl.src = imgSrc;
+      if (titleEl) titleEl.innerHTML = title;
       if (deptEl) deptEl.textContent = dept || 'Demonstração Executiva';
-      document.getElementById('lightboxModal').classList.add('active');
+
+      if (actionsEl) {
+        if (liveUrl) {
+          actionsEl.innerHTML = `
+            <a href="${liveUrl}" target="_blank" rel="noopener" class="btn btn-gold" style="padding: 7px 15px; font-size: 0.78rem; text-decoration: none;">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Abrir Painel Interativo
+            </a>
+            <span style="font-size: 0.72rem; color: #aaa; background: rgba(255,255,255,0.06); padding: 5px 10px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1);">
+              <i class="fa-solid fa-expand"></i> Tela Ampliada
+            </span>
+          `;
+        } else {
+          actionsEl.innerHTML = `
+            <span style="font-size: 0.75rem; color: #999; background: #222; padding: 5px 12px; border-radius: 4px; border: 1px solid #444;">
+              <i class="fa-solid fa-image"></i> Demonstração Visual Estática
+            </span>
+          `;
+        }
+      }
+
+      modal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
 
@@ -1389,9 +1854,17 @@
     }
 
     function closeLightboxDirect() {
-      document.getElementById('lightboxModal').classList.remove('active');
+      const modal = document.getElementById('lightboxModal');
+      if (modal) modal.classList.remove('active');
       document.body.style.overflow = 'auto';
     }
+
+    // Fechar Lightbox com tecla ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' || e.key === 'Esc') {
+        closeLightboxDirect();
+      }
+    });
   </script>
 </body>
 </html>
