@@ -2584,6 +2584,220 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ══════════════════════════════════════════════════════════════════════════
+           🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE OPERACIONAL (VIAÇÃO S/A)
+           ══════════════════════════════════════════════════════════════════════════ */
+        #ai-chat-widget {
+            position: fixed !important;
+            bottom: 24px !important;
+            right: 24px !important;
+            width: 360px !important;
+            height: 520px !important;
+            background: #0d1627 !important;
+            border: 1px solid var(--accent-cyan) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 210, 255, 0.25) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            z-index: 999999 !important;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+            overflow: hidden !important;
+            font-family: inherit !important;
+        }
+
+        #ai-chat-widget.ai-chat-collapsed {
+            height: 58px !important;
+            width: 58px !important;
+            border-radius: 29px !important;
+            border: 2px solid var(--accent-cyan) !important;
+            background: #0d1627 !important;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.7), 0 0 16px rgba(0, 210, 255, 0.6) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            padding: 0 !important;
+            animation: pulseViacaoIA 2.5s infinite !important;
+        }
+
+        @keyframes pulseViacaoIA {
+            0% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0.7); }
+            70% { box-shadow: 0 0 0 14px rgba(0, 210, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 210, 255, 0); }
+        }
+
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-header {
+            background: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            justify-content: center !important;
+        }
+
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-title span:last-child,
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-controls,
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-body,
+        #ai-chat-widget.ai-chat-collapsed .ai-chat-footer {
+            display: none !important;
+        }
+
+        #ai-chat-widget.ai-chat-collapsed .ai-avatar-img {
+            width: 52px !important;
+            height: 52px !important;
+            border-radius: 50% !important;
+            border: none !important;
+            display: block !important;
+            object-fit: cover !important;
+        }
+
+        .ai-chat-header {
+            height: 50px !important;
+            min-height: 50px !important;
+            background: linear-gradient(90deg, #091222, #132446) !important;
+            border-bottom: 1px solid rgba(0, 210, 255, 0.3) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            padding: 0 16px !important;
+            cursor: pointer !important;
+            user-select: none !important;
+        }
+
+        .ai-chat-title {
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            color: var(--accent-cyan) !important;
+            font-weight: 800 !important;
+            font-size: 13.5px !important;
+            letter-spacing: 0.4px !important;
+        }
+
+        .ai-avatar-img {
+            width: 32px !important;
+            height: 32px !important;
+            border-radius: 50% !important;
+            object-fit: cover !important;
+            border: 2px solid var(--accent-cyan) !important;
+        }
+
+        .ai-chat-controls button {
+            background: none !important;
+            border: none !important;
+            color: #94a3b8 !important;
+            font-size: 18px !important;
+            cursor: pointer !important;
+            line-height: 1 !important;
+            padding: 4px 6px !important;
+        }
+        .ai-chat-controls button:hover {
+            color: var(--accent-cyan) !important;
+        }
+
+        .ai-chat-body {
+            flex: 1 !important;
+            padding: 14px !important;
+            overflow-y: auto !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+            background: rgba(7, 13, 24, 0.9) !important;
+        }
+
+        .ai-message {
+            padding: 10px 14px !important;
+            border-radius: 8px !important;
+            font-size: 12.5px !important;
+            line-height: 1.5 !important;
+            word-wrap: break-word !important;
+        }
+
+        .ai-message.ai {
+            background: #111d33 !important;
+            color: #e2e8f0 !important;
+            border-left: 3px solid var(--accent-cyan) !important;
+            align-self: flex-start !important;
+            width: 100% !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .ai-message.user {
+            background: rgba(0, 210, 255, 0.15) !important;
+            color: #ffffff !important;
+            border-right: 3px solid var(--accent-cyan) !important;
+            align-self: flex-end !important;
+            max-width: 85% !important;
+        }
+
+        .ai-chips-bar {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 6px !important;
+            margin-top: 4px !important;
+        }
+
+        .ai-chip {
+            background: rgba(0, 210, 255, 0.12) !important;
+            border: 1px solid rgba(0, 210, 255, 0.35) !important;
+            color: var(--accent-cyan) !important;
+            padding: 5px 10px !important;
+            border-radius: 16px !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            cursor: pointer !important;
+            transition: all 0.2s ease !important;
+        }
+        .ai-chip:hover {
+            background: var(--accent-cyan) !important;
+            color: #0b1528 !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .ai-chat-footer {
+            height: 54px !important;
+            padding: 8px 12px !important;
+            background: #091222 !important;
+            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .ai-chat-footer input {
+            flex: 1 !important;
+            background: #111d33 !important;
+            border: 1px solid rgba(0, 210, 255, 0.25) !important;
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            color: #ffffff !important;
+            font-size: 12px !important;
+            outline: none !important;
+        }
+        .ai-chat-footer input:focus {
+            border-color: var(--accent-cyan) !important;
+            box-shadow: 0 0 8px rgba(0, 210, 255, 0.3) !important;
+        }
+
+        .ai-chat-footer button {
+            background: linear-gradient(135deg, var(--accent-cyan), #0090ff) !important;
+            border: none !important;
+            color: #0b1528 !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 6px !important;
+            cursor: pointer !important;
+            font-weight: 800 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.2s ease !important;
+        }
+        .ai-chat-footer button:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.5) !important;
+        }
     </style>
 </head>
 
@@ -6438,7 +6652,247 @@
             document.getElementById("sim-res-lucro").innerText = `${lucroExtra >= 0 ? '+ ' : ''}R$ ${(lucroExtra / 1000000).toFixed(2)} Mi`;
             document.getElementById("sim-res-lucro").style.color = lucroExtra >= 0 ? 'var(--accent-cyan)' : 'var(--accent-red)';
         }
+
+        // ══════════════════════════════════════════════════════════════════════════
+        // 🤖 SCRIPT DO ASSISTENTE DE IA OPERACIONAL — VIAÇÃO S/A
+        // ══════════════════════════════════════════════════════════════════════════
+        function toggleChat(forceOpen) {
+            const widget = document.getElementById('ai-chat-widget');
+            const btnToggle = document.getElementById('ai-chat-toggle');
+            const input = document.getElementById('ai-chat-input');
+            if (!widget) return;
+
+            if (forceOpen === true) {
+                widget.classList.remove('ai-chat-collapsed');
+            } else if (forceOpen === false) {
+                widget.classList.add('ai-chat-collapsed');
+            } else {
+                widget.classList.toggle('ai-chat-collapsed');
+            }
+
+            const isCollapsed = widget.classList.contains('ai-chat-collapsed');
+            if (btnToggle) btnToggle.textContent = isCollapsed ? '↑' : '_';
+            if (!isCollapsed && input) {
+                setTimeout(() => input.focus(), 150);
+            }
+        }
+        window.toggleChat = toggleChat;
+
+        function handleChipViacao(txt) {
+            const input = document.getElementById('ai-chat-input');
+            if (input) input.value = txt;
+            sendViacaoIA();
+        }
+        window.handleChipViacao = handleChipViacao;
+
+        function appendMessageViacao(sender, text) {
+            const chatBody = document.getElementById('ai-chat-body');
+            if (!chatBody) return;
+
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `ai-message ${sender}`;
+            
+            const formatted = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\n/g, '<br>');
+            msgDiv.innerHTML = formatted;
+
+            chatBody.appendChild(msgDiv);
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function sendViacaoIA() {
+            const input = document.getElementById('ai-chat-input');
+            if (!input) return;
+            const text = input.value.trim();
+            if (!text) return;
+
+            appendMessageViacao('user', text);
+            input.value = '';
+
+            setTimeout(() => {
+                const resp = gerarRespostaViacaoIA(text);
+                appendMessageViacao('ai', resp);
+            }, 300);
+        }
+        window.sendViacaoIA = sendViacaoIA;
+
+        function gerarRespostaViacaoIA(promptText) {
+            const q = (promptText || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+            // Saudação
+            if (
+                q === 'ola' || q === 'oi' || q === 'opa' || q === 'ola!' || q === 'oi!' ||
+                q.startsWith('ola ') || q.startsWith('oi ') || q.startsWith('bom dia') ||
+                q.startsWith('boa tarde') || q.startsWith('boa noite') ||
+                q.includes('tudo bem') || q.includes('como vai') || q.includes('e ai')
+            ) {
+                const hora = new Date().getHours();
+                let saud = 'Boa noite';
+                if (hora >= 5 && hora < 12) saud = 'Bom dia';
+                else if (hora >= 12 && hora < 18) saud = 'Boa tarde';
+
+                return `${saud}, Antônio! Tudo bem?\n` +
+                       `Sou o **Assistente IA de Telemetria & Operações da Viação S/A**.\n\n` +
+                       `Estou conectado em tempo real aos 480 ônibus Double Decker e à malha de 5 polos operacionais. O que você gostaria de inspecionar?\n` +
+                       `• 🚍 **Status da Frota** (480 carros | 438 ativos | 318 viagens/dia)\n` +
+                       `• 🔧 **Ônibus em Box** (42 em manutenção preventiva/corretiva)\n` +
+                       `• 🛣️ **Rotas Mais Ocupadas** (Tietê ➔ Salvador: 96.7%)\n` +
+                       `• ⚠️ **Alertas & Ociosidade** (Vitória ➔ Brasília: 62.0%)\n` +
+                       `• ⛽ **Gasto com Diesel S10** (R$ 6,10/L | 2,42 km/L)\n` +
+                       `• 🎯 **Pontualidade OTP** (96.4% on-time vs Meta ANTT >95%)`;
+            }
+
+            // Status da Frota
+            if (q.includes('frota') || q.includes('onibus') || q.includes('veiculo') || q.includes('status da frota') || q.includes('double decker')) {
+                return `🚍 **Diagnóstico Operacional da Frota (Viação S/A):**\n\n` +
+                       `• **Frota Total Cadastrada:** 480 ônibus Double Decker (G8 1800 DD Scania/Volvo 8x2 e 6x2).\n` +
+                       `• **Frota Ativa em Rota:** 438 ônibus (91.3% de prontidão máxima).\n` +
+                       `• **Viagens Simultâneas Hoje:** 318 viagens ativas cortando SP, BA, ES, AL e DF.\n` +
+                       `• **Veículos em Manutenção:** 42 ônibus retidos em box de oficina (8.7% da frota).\n` +
+                       `• **Quadro Técnico:** 36 revisões preventivas regulamentares ANTT e 6 corretivas rápidas.\n` +
+                       `• **Nível de Serviço:** 96.4% de Pontualidade OTP (acima da meta regulatória de 95%).`;
+            }
+
+            // Manutenção / Oficinas / Box
+            if (q.includes('oficina') || q.includes('box') || q.includes('manutenc') || q.includes('preventiv') || q.includes('corretiv') || q.includes('socorro')) {
+                return `🔧 **Status das Oficinas & Ônibus em Box:**\n\n` +
+                       `Atualmente temos **42 ônibus em box** distribuídos nas oficinas centrais:\n` +
+                       `• 🔴 **São Paulo (SP):** 18 ônibus (Previsão de liberação até 14/Nov)\n` +
+                       `• 🔴 **Bahia (BA):** 12 ônibus (Polo Salvador & Feira de Santana)\n` +
+                       `• 🟠 **Espírito Santo (ES):** 6 ônibus (Garagem Central Vitória)\n` +
+                       `• 🟠 **Distrito Federal (DF):** 4 ônibus (Polo Brasília Norte)\n` +
+                       `• 🟡 **Alagoas (AL):** 2 ônibus (Apoio Terminal Maceió)\n\n` +
+                       `**Classificação das OS:**\n` +
+                       `- 72.5% Preventivas Programadas ANTT (óleo, filtros, freios retarder)\n` +
+                       `- 18.0% Preditivas por Telemetria (calibração sensores ADAS, ponto cego, injeção)\n` +
+                       `- 9.5% Corretivas Rápidas (ar-condicionado, suspensão a ar)\n` +
+                       `*Tempo médio em box: 2.4 dias por intervenção.*`;
+            }
+
+            // Rotas Mais Ocupadas / Load Factor
+            if (q.includes('mais ocupad') || q.includes('top rota') || q.includes('melhores rotas') || q.includes('load factor') || q.includes('alta ocupacao')) {
+                return `🛣️ **Top Rotas com Maior Ocupação (>80%):**\n\n` +
+                       `1. 🟢 **Tietê (SP) ➔ Salvador (BA):** 96.7% de ocupação (58/60 assentos) • Meta: 80.0% (+16.7 p.p.)\n` +
+                       `2. 🟢 **Belo Horizonte (MG) ➔ Salvador (BA):** 91.2% • Meta: 78.0% (+13.2 p.p.)\n` +
+                       `3. 🟢 **São Paulo (SP) ➔ Brasília (DF):** 88.7% • Meta: 75.0% (+13.7 p.p.)\n` +
+                       `4. 🟣 **Fretamento Turismo SP ➔ Porto Seguro (BA):** 86.5% • 38 ônibus dedicados\n` +
+                       `5. 🟢 **Salvador (BA) ➔ Maceió (AL):** 86.4% • 64 passageiros/viagem diária\n\n` +
+                       `*A rentabilidade líquida dessas rotas opera acima de 26.5% com ticket médio de R$ 227,38.*`;
+            }
+
+            // Rotas Críticas / Alertas / Menos Ocupadas
+            if (q.includes('critica') || q.includes('menos ocupad') || q.includes('alerta') || q.includes('baixa ocupacao') || q.includes('prejuizo') || q.includes('ociosidade')) {
+                return `⚠️ **Rotas Críticas com Alerta Comercial (<70%):**\n\n` +
+                       `1. 🔴 **Vitória (ES) ➔ Brasília (DF):** 62.0% de ocupação • Meta: 75.0% (-13.0 p.p.) [Alerta Crítico]\n` +
+                       `2. 🔴 **Feira de Santana (BA) ➔ Vitória (ES):** 64.2% • Meta: 75.0% (-10.8 p.p.)\n` +
+                       `3. 🔴 **Vitória (ES) ➔ Salvador (BA):** 65.8% • Meta: 75.0% (-9.2 p.p.)\n` +
+                       `4. 🔴 **Brasília (DF) ➔ Maceió (AL):** 68.3% • Meta: 75.0% (-6.7 p.p.)\n\n` +
+                       `💡 **Recomendação da IA:** Aplicar tarifa dinâmica (Yield Management com desconto de 15% na compra antecipada D-7) ou reprogramar horários de baixa demanda às terças e quartas-feiras.`;
+            }
+
+            // Diesel / Combustível
+            if (q.includes('diesel') || q.includes('combustivel') || q.includes('abastec') || q.includes('posto') || q.includes('litro') || q.includes('consumo')) {
+                return `⛽ **Indicadores de Óleo Diesel S10 & Abastecimento:**\n\n` +
+                       `• **Preço Médio Praticado:** R$ 6,10 / Litro nos contratos de rede\n` +
+                       `• **Nível dos Tanques de Rede:** 98.2% de capacidade abastecida\n` +
+                       `• **Consumo Médio da Frota:** 2,42 km/L (Ônibus Double Decker Scania/Volvo 8x2)\n` +
+                       `• **Gasto Total Mensal com Diesel:** R$ 6,88 Milhões\n` +
+                       `• **Impacto Operacional:** O combustível representa 29.4% dos custos operacionais totais.\n` +
+                       `• **Economia por Telemetria:** A condução econômica monitorada via telemetria reduziu o gasto em 3.8% no último trimestre.`;
+            }
+
+            // Pontualidade / OTP
+            if (q.includes('otp') || q.includes('pontual') || q.includes('atraso') || q.includes('horario') || q.includes('antt')) {
+                return `🎯 **Pontualidade & SLA Operacional (OTP):**\n\n` +
+                       `• **OTP Atual:** 96.4% de partidas e chegadas no horário\n` +
+                       `• **Meta Regulatória ANTT:** Mínimo de 95.0% (Folga de +1.4 p.p.)\n` +
+                       `• **Índice de Atrasos (>15 min):** Apenas 3.6% das viagens\n` +
+                       `• **Principal Fator de Atraso:** Trechos em obras na BR-101 (Bahia/ES) e pedágios na Dutra.\n` +
+                       `• **Ações em Curso:** Rotas alternativas dinâmicas enviadas via GPS para o computador de bordo dos motoristas.`;
+            }
+
+            // Faturamento / Receita / Yield
+            if (q.includes('faturamento') || q.includes('receita') || q.includes('financeiro') || q.includes('dinheiro') || q.includes('lucro') || q.includes('yield')) {
+                return `💰 **Performance Financeira & Comercial (Viação S/A):**\n\n` +
+                       `• **Faturamento Bruto Mensal:** R$ 23.420.000\n` +
+                       `  - Linhas Regulares ANTT: R$ 14.500.000 (61.9%)\n` +
+                       `  - Fretamento Executivo & Turismo: R$ 8.920.000 (38.1%)\n` +
+                       `• **Passageiros Transportados:** ~430.000 passageiros/mês\n` +
+                       `• **Ticket Médio Consolidado:** R$ 227,38 por bilhete\n` +
+                       `• **Margem Operacional Líquida:** 23.9%\n` +
+                       `• **Simulador de Yield:** Cada 5% de aumento no Load Factor gera +R$ 1.18M de receita líquida direta.`;
+            }
+
+            // Fretamento & Turismo
+            if (q.includes('fretamento') || q.includes('turismo') || q.includes('evento')) {
+                return `🟣 **Divisão de Fretamento Contínuo & Turismo:**\n\n` +
+                       `• **Ônibus Dedicados:** 112 Double Decker alocados na divisão de fretamento\n` +
+                       `• **Receita Mensal:** R$ 8.920.000 (38.1% do faturamento da empresa)\n` +
+                       `• **Principais Destinos:** Porto Seguro (BA), Ilhéus (BA), Caldas Novas (GO) e Litoral Norte (SP)\n` +
+                       `• **Ocupação Média:** 86.5% de capacidade contratada garantida sem risco de ociosidade de bilheteria.`;
+            }
+
+            // Fallback
+            return `Entendi sua consulta sobre **"${promptText}"**.\n\n` +
+                   `Na telemetria da **Viação S/A**, você pode consultar em tempo real:\n` +
+                   `• **Status da Frota:** 480 ônibus Double Decker, 438 rodando, 318 viagens/dia\n` +
+                   `• **Manutenção:** 42 ônibus em box nas oficinas centrais de SP, BA, ES, DF e AL\n` +
+                   `• **Rotas:** Índices de ocupação de cada trecho (Tietê, Salvador, Brasília, Maceió, Porto Seguro)\n` +
+                   `• **Custos:** Gasto com diesel S10 (R$ 6,10/L) e pontualidade OTP (96.4%).\n\n` +
+                   `Clique em um dos botões rápidos acima ou digite uma pergunta específica!`;
+        }
+
+        // Atualizar saudação de acordo com o horário atual ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('viacaoGreetingMsg');
+            if (el) {
+                const hora = new Date().getHours();
+                let saud = 'Boa noite';
+                if (hora >= 5 && hora < 12) saud = 'Bom dia';
+                else if (hora >= 12 && hora < 18) saud = 'Boa tarde';
+                el.innerText = `${saud}, Antônio!`;
+            }
+        });
     </script>
+
+    <!-- ══════════════════════════════════════════════════════════════════════════
+         🤖 AGENTE DE IA FLUTUANTE — ASSISTENTE OPERACIONAL (VIAÇÃO S/A)
+         ══════════════════════════════════════════════════════════════════════════ -->
+    <div id="ai-chat-widget" class="ai-chat-collapsed" onclick="if(this.classList.contains('ai-chat-collapsed')) toggleChat(true)" title="Abrir Assistente de IA Operacional">
+        <div class="ai-chat-header" id="ai-chat-header">
+            <div class="ai-chat-title">
+                <span class="ai-icon">
+                    <img src="ai_avatar.png" alt="Assistente IA" class="ai-avatar-img" onerror="this.onerror=null; this.src='static/img/ai_avatar.png';">
+                </span>
+                <span>Assistente IA • Operações</span>
+            </div>
+            <div class="ai-chat-controls">
+                <button id="ai-chat-toggle" title="Minimizar" onclick="event.stopPropagation(); toggleChat(false);">_</button>
+            </div>
+        </div>
+        <div class="ai-chat-body" id="ai-chat-body">
+            <div class="ai-message ai">
+                <p style="margin: 0 0 8px 0; font-size: 13.5px; font-weight: 800; color: #fff;" id="viacaoGreetingMsg">Boa tarde, Antônio!</p>
+                <p style="margin: 0 0 8px 0; color: #cbd5e1;">Sou o <strong>Assistente de IA da Viação S/A</strong>.</p>
+                <p style="margin: 0 0 8px 0; color: #cbd5e1; line-height: 1.45;">Conectado em tempo real à telemetria dos <strong>480 ônibus Double Decker</strong>, oficinas mecânicas, rotas interestaduais e indicadores ANTT.</p>
+                <p style="margin: 0; color: #cbd5e1; line-height: 1.45;">Por qual indicador ou polo operacional começamos hoje?</p>
+            </div>
+
+            <div class="ai-chips-bar">
+                <button class="ai-chip" onclick="handleChipViacao('🚍 Status da Frota')">🚍 Status da Frota</button>
+                <button class="ai-chip" onclick="handleChipViacao('🔧 Ônibus em Box (Oficinas)')">🔧 Ônibus em Box (Oficinas)</button>
+                <button class="ai-chip" onclick="handleChipViacao('🛣️ Rotas Mais Ocupadas')">🛣️ Rotas Mais Ocupadas</button>
+                <button class="ai-chip" onclick="handleChipViacao('⚠️ Alertas & Rotas Críticas')">⚠️ Alertas & Rotas Críticas</button>
+                <button class="ai-chip" onclick="handleChipViacao('⛽ Diesel & Consumo')">⛽ Diesel & Consumo</button>
+                <button class="ai-chip" onclick="handleChipViacao('🎯 Pontualidade OTP')">🎯 Pontualidade OTP</button>
+            </div>
+        </div>
+        <div class="ai-chat-footer">
+            <input type="text" id="ai-chat-input" placeholder="Pergunte sobre frota, oficinas, diesel, rotas..." onkeypress="if(event.key==='Enter') sendViacaoIA()" />
+            <button id="ai-chat-send" onclick="sendViacaoIA()" title="Enviar">➤</button>
+        </div>
+    </div>
 </body>
 
 </html>
