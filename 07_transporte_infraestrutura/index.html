@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Via Metrópole | Gestão de Transporte, Frota & Infraestrutura (Power BI)</title>
 
     <!-- Tailwind CSS -->
@@ -152,14 +155,14 @@
            ══════════════════════════════════════════════════════════════════════════ */
         #ai-chat-button {
             position: fixed !important;
-            bottom: 24px !important;
-            right: 24px !important;
-            width: 64px !important;
-            height: 64px !important;
+            bottom: 110px !important;
+            right: 28px !important;
+            width: 66px !important;
+            height: 66px !important;
             border-radius: 50% !important;
             background: #091322 !important;
             border: 3px solid #00d2ff !important;
-            box-shadow: 0 0 22px rgba(0, 210, 255, 0.75), 0 8px 25px rgba(0, 0, 0, 0.85) !important;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.8), 0 8px 25px rgba(0, 0, 0, 0.85) !important;
             cursor: pointer !important;
             z-index: 9999999 !important;
             display: flex !important;
@@ -172,13 +175,13 @@
         }
 
         #ai-chat-button:hover {
-            transform: scale(1.08) !important;
-            box-shadow: 0 0 32px rgba(0, 210, 255, 0.95), 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+            transform: scale(1.1) !important;
+            box-shadow: 0 0 35px rgba(0, 210, 255, 1), 0 10px 30px rgba(0, 0, 0, 0.9) !important;
         }
 
         #ai-chat-button img {
-            width: 58px !important;
-            height: 58px !important;
+            width: 60px !important;
+            height: 60px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
             display: block !important;
@@ -187,10 +190,10 @@
 
         #ai-chat-button .ai-badge-online {
             position: absolute !important;
-            top: -1px !important;
-            right: -1px !important;
-            width: 16px !important;
-            height: 16px !important;
+            top: -2px !important;
+            right: -2px !important;
+            width: 18px !important;
+            height: 18px !important;
             background: #10b981 !important;
             border: 2px solid #091322 !important;
             border-radius: 50% !important;
@@ -1061,6 +1064,12 @@
 
             <!-- Quick Action Buttons & Fullscreen -->
             <div class="header-actions-mobile flex items-center space-x-3 w-full md:w-auto justify-end">
+                <button onclick="toggleChat(true)"
+                    class="px-3.5 py-2 rounded-lg bg-gradient-to-r from-sky-500 to-cyan-500 hover:from-sky-400 hover:to-cyan-400 text-slate-950 text-xs font-extrabold border border-cyan-300 flex items-center gap-2 shadow-lg shadow-cyan-500/30 transition transform hover:scale-105 cursor-pointer"
+                    title="Abrir Assistente de IA Operacional (Frota, Diesel & Facilities)">
+                    <img src="viacao_ai_avatar.png" class="w-5 h-5 rounded-full object-cover border border-slate-900" onerror="this.onerror=null; this.src='https://sracm.github.io/portfolio-antonio-mello-bi/viacao_ai_avatar.png';">
+                    <span>Assistente IA</span>
+                </button>
                 <a href="../index.html"
                     class="px-3.5 py-2 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold border border-amber-500/40 flex items-center gap-2 transition"
                     title="Voltar ao Portfólio Principal">

@@ -2593,14 +2593,14 @@
            ══════════════════════════════════════════════════════════════════════════ */
         #ai-chat-button {
             position: fixed !important;
-            bottom: 24px !important;
-            right: 24px !important;
-            width: 64px !important;
-            height: 64px !important;
+            bottom: 110px !important;
+            right: 28px !important;
+            width: 66px !important;
+            height: 66px !important;
             border-radius: 50% !important;
             background: #091322 !important;
             border: 3px solid #00d2ff !important;
-            box-shadow: 0 0 22px rgba(0, 210, 255, 0.75), 0 8px 25px rgba(0, 0, 0, 0.85) !important;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.8), 0 8px 25px rgba(0, 0, 0, 0.85) !important;
             cursor: pointer !important;
             z-index: 9999999 !important;
             display: flex !important;
@@ -2613,13 +2613,13 @@
         }
 
         #ai-chat-button:hover {
-            transform: scale(1.08) !important;
-            box-shadow: 0 0 32px rgba(0, 210, 255, 0.95), 0 10px 30px rgba(0, 0, 0, 0.9) !important;
+            transform: scale(1.1) !important;
+            box-shadow: 0 0 35px rgba(0, 210, 255, 1), 0 10px 30px rgba(0, 0, 0, 0.9) !important;
         }
 
         #ai-chat-button img {
-            width: 58px !important;
-            height: 58px !important;
+            width: 60px !important;
+            height: 60px !important;
             border-radius: 50% !important;
             object-fit: cover !important;
             display: block !important;
@@ -2628,10 +2628,10 @@
 
         #ai-chat-button .ai-badge-online {
             position: absolute !important;
-            top: -1px !important;
-            right: -1px !important;
-            width: 16px !important;
-            height: 16px !important;
+            top: -2px !important;
+            right: -2px !important;
+            width: 18px !important;
+            height: 18px !important;
             background: #10b981 !important;
             border: 2px solid #091322 !important;
             border-radius: 50% !important;
@@ -2875,6 +2875,10 @@
             </div>
 
             <div class="header-actions">
+                <button class="btn-action" onclick="toggleChat(true)" style="background: linear-gradient(135deg, #00d2ff, #0080ff) !important; color: #0b1528 !important; font-weight: 800 !important; border: 1px solid #00d2ff !important; box-shadow: 0 0 14px rgba(0, 210, 255, 0.6) !important; display: inline-flex !important; align-items: center !important; gap: 8px !important; cursor: pointer !important;" title="Abrir Assistente de IA Operacional">
+                    <img src="viacao_ai_avatar.png" style="width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: inline-block;" onerror="this.onerror=null; this.src='https://sracm.github.io/portfolio-antonio-mello-bi/viacao_ai_avatar.png';">
+                    <span>Assistente IA</span>
+                </button>
                 <button class="btn-action btn-fullscreen" id="btn-fullscreen" onclick="toggleFullScreen()" title="Alternar Modo Tela Cheia (F11 ou tecla F)">
                     <i class="fa-solid fa-expand"></i> Tela Cheia
                 </button>
