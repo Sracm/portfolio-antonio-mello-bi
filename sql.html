@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lembrete SQL • Teste Prático</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --yellow: #d29922;
+      --text: #c9d1d9;
+      --text-bright: #f0f6fc;
+      --code-bg: #0b0e14;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 16px 12px 60px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      padding: 18px 12px 22px;
+      background: linear-gradient(180deg, rgba(31, 111, 235, 0.15) 0%, rgba(22, 27, 34, 0.6) 100%);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(63, 185, 80, 0.18);
+      color: var(--green);
+      border: 1px solid rgba(63, 185, 80, 0.4);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .header h1 {
+      font-size: 1.45rem;
+      color: var(--text-bright);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      font-size: 0.88rem;
+      color: #8b949e;
+    }
+
+    /* CARD DE RECEITA DE BOLO */
+    .golden-order {
+      background: #1c2128;
+      border: 1px solid #444c56;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .golden-order h3 {
+      font-size: 0.92rem;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .order-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+    }
+
+    .order-tag {
+      background: #21262d;
+      border: 1px solid #30363d;
+      color: var(--text-bright);
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .order-tag span {
+      color: #79c0ff;
+      font-weight: 600;
+    }
+
+    /* CARDS DE EXERCÍCIO */
+    .exercise-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 10px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      flex-shrink: 0;
+    }
+
+    .tag-rule {
+      background: rgba(210, 153, 34, 0.18);
+      color: #f2cc60;
+      font-size: 0.72rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+    }
+
+    .task-desc {
+      font-size: 0.88rem;
+      color: #adbac7;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.02);
+      padding: 10px;
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .task-desc strong {
+      color: var(--text-bright);
+    }
+
+    /* CODE BOX */
+    .code-box {
+      background: var(--code-bg);
+      border: 1px solid #21262d;
+      border-radius: 10px;
+      padding: 14px 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #e6edf3;
+      overflow-x: auto;
+      white-space: pre;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .kwd { color: #ff7b72; font-weight: 600; } /* SELECT, FROM, WHERE */
+    .fnc { color: #d2a8ff; font-weight: 600; } /* ROUND, SUM, COUNT */
+    .str { color: #a5d6ff; } /* 'texto' */
+    .num { color: #79c0ff; } /* 10, 50 */
+    .cmt { color: #8b949e; font-style: italic; }
+
+    /* FOOTER TIPS */
+    .card-footer {
+      font-size: 0.8rem;
+      color: #8b949e;
+      border-top: 1px dashed #21262d;
+      padding-top: 8px;
+    }
+
+    .card-footer strong {
+      color: #adbac7;
+    }
+
+    /* REGRAS DE OURO */
+    .golden-rules-card {
+      background: linear-gradient(180deg, #1f1b13 0%, #161b22 100%);
+      border: 1px solid rgba(210, 153, 34, 0.4);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 24px;
+    }
+
+    .golden-rules-card h3 {
+      font-size: 1rem;
+      color: var(--yellow);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .rule-item {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.84rem;
+      align-items: flex-start;
+    }
+
+    .rule-icon {
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .rule-item strong {
+      color: var(--text-bright);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- CABEÇALHO -->
+    <header class="header">
+      <div class="badge">Pronto para o Celular</div>
+      <h1>Lembrete Prático SQL</h1>
+      <p>Grupo SCS Transportes • Consultas Essenciais</p>
+    </header>
+
+    <!-- ORDEM DE EXECUÇÃO -->
+    <section class="golden-order">
+      <h3>⚡ Ordem Obrigatória do SQL:</h3>
+      <div class="order-steps">
+        <div class="order-tag"><span>1.</span> SELECT</div>
+        <div class="order-tag"><span>2.</span> FROM</div>
+        <div class="order-tag"><span>3.</span> WHERE</div>
+        <div class="order-tag"><span>4.</span> GROUP BY</div>
+        <div class="order-tag"><span>5.</span> HAVING</div>
+        <div class="order-tag"><span>6.</span> ORDER BY</div>
+        <div class="order-tag"><span>7.</span> LIMIT</div>
+      </div>
+    </section>
+
+    <!-- EXERCÍCIO 1 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 1: Colunas e Limite</span>
+        <span class="tag-rule">LIMIT</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Traga a placa, o motorista, a origem e o destino das <strong>10 primeiras</strong> viagens.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    placa, 
+    motorista_nome, 
+    origem, 
+    destino
+<span class="kwd">FROM</span> transporte
+<span class="kwd">LIMIT</span> <span class="num">10</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> <code>LIMIT N</code> serve para restringir a quantidade de linhas que o banco devolve.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 2 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 2: Duas Condições com AND</span>
+        <span class="tag-rule">AND</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Viagens que saíram de <strong>'São Paulo'</strong> E foram para o <strong>'Rio de Janeiro'</strong>.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    placa, 
+    linha, 
+    data_viagem
+<span class="kwd">FROM</span> transporte
+<span class="kwd">WHERE</span> origem = <span class="str">'São Paulo'</span> 
+  <span class="kwd">AND</span> destino = <span class="str">'Rio de Janeiro'</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> Texto sempre entre aspas simples <code>'São Paulo'</code>. O <code>AND</code> exige as duas condições.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 3 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 3: Filtrar e Ordenar</span>
+        <span class="tag-rule">WHERE + ORDER BY</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Viagens com <strong>atraso maior que zero</strong>, da <strong>mais atrasada para a menos atrasada</strong>.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    placa, 
+    linha, 
+    atraso_minutos
+<span class="kwd">FROM</span> transporte
+<span class="kwd">WHERE</span> atraso_minutos > <span class="num">0</span>
+<span class="kwd">ORDER BY</span> atraso_minutos <span class="kwd">DESC</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> <code>DESC</code> = maior para o menor (decrescente). <code>ASC</code> = menor para o maior.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 4 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 4: Lista de Opções</span>
+        <span class="tag-rule">IN (...)</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Viagens cujo destino seja <strong>'Campinas'</strong>, <strong>'Santos'</strong> ou <strong>'Joinville'</strong>.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    placa, 
+    destino, 
+    distancia_km
+<span class="kwd">FROM</span> transporte
+<span class="kwd">WHERE</span> destino <span class="kwd">IN</span> (<span class="str">'Campinas'</span>, <span class="str">'Santos'</span>, <span class="str">'Joinville'</span>);</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> <code>IN (...)</code> substitui vários <code>OR</code> e deixa o código muito mais limpo.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 5 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 5: Cálculo de Consumo (KM/L)</span>
+        <span class="tag-rule">ROUND + DIVISÃO</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Calcule o consumo <code>distancia_km / litros_combustivel</code> com 2 casas decimais.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    placa,
+    distancia_km,
+    litros_combustivel,
+    <span class="fnc">ROUND</span>(distancia_km / litros_combustivel, <span class="num">2</span>) <span class="kwd">AS</span> km_litro
+<span class="kwd">FROM</span> transporte
+<span class="kwd">LIMIT</span> <span class="num">10</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> O <code>, 2)</code> é do <code>ROUND</code>. O apelido <code>AS km_litro</code> dá nome à coluna calculada.
+      </div>
+    </article>
+
+    <!-- TESTE BÔNUS: 5 PIORES VEÍCULOS -->
+    <article class="exercise-card" style="border-color: rgba(255, 123, 114, 0.4);">
+      <div class="card-title">
+        <span class="dot" style="background: #f85149; box-shadow: 0 0 8px #f85149;"></span>
+        <span>Teste Principal da SCS (Pior Consumo)</span>
+        <span class="tag-rule" style="color: #ff7b72; background: rgba(248, 81, 73, 0.15);">30 DIAS</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> 5 veículos com pior média de consumo nos últimos 30 dias (viagens &ge; 50 km).
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    veiculo_id,
+    placa,
+    modelo,
+    <span class="fnc">ROUND</span>(<span class="fnc">SUM</span>(distancia_km) / <span class="fnc">SUM</span>(litros_combustivel), <span class="num">2</span>) <span class="kwd">AS</span> km_por_litro
+<span class="kwd">FROM</span> transporte
+<span class="kwd">WHERE</span> data_viagem >= <span class="fnc">CURDATE</span>() - <span class="kwd">INTERVAL</span> <span class="num">30</span> <span class="kwd">DAY</span>
+  <span class="kwd">AND</span> distancia_km >= <span class="num">50</span>
+<span class="kwd">GROUP BY</span> veiculo_id, placa, modelo
+<span class="kwd">ORDER BY</span> km_por_litro <span class="kwd">ASC</span>
+<span class="kwd">LIMIT</span> <span class="num">5</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> Pior consumo = menor KM/L, por isso ordena com <code>ASC</code> (crescente).
+      </div>
+    </article>
+
+    <!-- REGRAS DE OURO PARA NÃO ERRAR -->
+    <section class="golden-rules-card">
+      <h3>⚠️ 4 Regras de Ouro para a Entrevista:</h3>
+      
+      <div class="rule-item">
+        <div class="rule-icon">🚫</div>
+        <div><strong>Nunca ponha vírgula antes do FROM:</strong> O último campo do <code>SELECT</code> não tem vírgula!</div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-icon">🔤</div>
+        <div><strong>Texto = Aspas Simples:</strong> Use <code>'São Paulo'</code>, nunca aspas duplas.</div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-icon">📊</div>
+        <div><strong>Regra do GROUP BY:</strong> Qualquer coluna no <code>SELECT</code> que não seja conta (soma/média) <strong>DEVE</strong> estar no <code>GROUP BY</code>.</div>
+      </div>
+
+      <div class="rule-item">
+        <div class="rule-icon">🎯</div>
+        <div><strong>WHERE vs HAVING:</strong> <code>WHERE</code> filtra linhas brutas (antes). <code>HAVING</code> filtra somas/médias (depois do agrupamento).</div>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>
