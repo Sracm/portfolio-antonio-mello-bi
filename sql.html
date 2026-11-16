@@ -416,7 +416,130 @@
       </div>
     </article>
 
-    <!-- REGRAS DE OURO PARA NÃO ERRAR -->
+    
+    <!-- ============================================== -->
+    <!-- BLOCO 2: MAIS 5 TESTES CLÁSSICOS DE TRANSPORTE -->
+    <!-- ============================================== -->
+    <div style="margin: 28px 0 16px; text-align: center;">
+      <span style="background: rgba(88, 166, 255, 0.15); color: #79c0ff; border: 1px solid rgba(88, 166, 255, 0.3); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 20px; text-transform: uppercase;">
+        Parte 2 • Gestão Operacional & Financeira
+      </span>
+    </div>
+
+    <!-- EXERCÍCIO 6 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 6: Rentabilidade por KM (RPK)</span>
+        <span class="tag-rule">RECEITA / KM</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Calcule a receita gerada por quilômetro rodado em cada linha, da maior para a menor.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    linha,
+    <span class="fnc">ROUND</span>(<span class="fnc">SUM</span>(receita_total) / <span class="fnc">SUM</span>(distancia_km), <span class="num">2</span>) <span class="kwd">AS</span> receita_por_km,
+    <span class="fnc">ROUND</span>(<span class="fnc">SUM</span>(receita_total), <span class="num">2</span>) <span class="kwd">AS</span> receita_total
+<span class="kwd">FROM</span> transporte
+<span class="kwd">GROUP BY</span> linha
+<span class="kwd">ORDER BY</span> receita_por_km <span class="kwd">DESC</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> Em transporte, receita dividida por km mede a rentabilidade real da rota.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 7 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 7: Filtro Composto com Parênteses</span>
+        <span class="tag-rule">AND + (OR)</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Na linha 'SP-RJ Expresso', filtre viagens com mais de 150 litros OU com consumo menor que 2.0 km/l.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT DISTINCT</span> 
+    placa, 
+    modelo, 
+    distancia_km, 
+    litros_combustivel,
+    <span class="fnc">ROUND</span>(distancia_km / litros_combustivel, <span class="num">2</span>) <span class="kwd">AS</span> km_l
+<span class="kwd">FROM</span> transporte
+<span class="kwd">WHERE</span> linha = <span class="str">'SP-RJ Expresso'</span>
+  <span class="kwd">AND</span> (litros_combustivel > <span class="num">150</span> <span class="kwd">OR</span> (distancia_km / litros_combustivel) < <span class="num">2.0</span>);</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> Use sempre parênteses <code>(condicao1 OR condicao2)</code> ao misturar com <code>AND</code>.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 8 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 8: Custo Total por Motorista</span>
+        <span class="tag-rule">MANUTENÇÃO + DIESEL</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Calcule o custo total gerado por motorista: manutenção + combustível (diesel R$ 5,80/L).
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    motorista_nome,
+    <span class="fnc">COUNT</span>(*) <span class="kwd">AS</span> total_viagens,
+    <span class="fnc">ROUND</span>(<span class="fnc">SUM</span>(custo_manutencao) + (<span class="fnc">SUM</span>(litros_combustivel) * <span class="num">5.80</span>), <span class="num">2</span>) <span class="kwd">AS</span> custo_total
+<span class="kwd">FROM</span> transporte
+<span class="kwd">GROUP BY</span> motorista_nome
+<span class="kwd">ORDER BY</span> custo_total <span class="kwd">DESC</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> Você pode fazer operações matemáticas livremente dentro e fora dos <code>SUM()</code>.
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 9 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 9: % de Pontualidade Perfeita</span>
+        <span class="tag-rule">CASE WHEN NO SUM</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Para cada linha, calcule quantas viagens tiveram 0 atraso e o percentual de pontualidade.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    linha,
+    <span class="fnc">COUNT</span>(*) <span class="kwd">AS</span> total_viagens,
+    <span class="fnc">SUM</span>(<span class="kwd">CASE WHEN</span> atraso_minutos = <span class="num">0</span> <span class="kwd">THEN</span> <span class="num">1</span> <span class="kwd">ELSE</span> <span class="num">0</span> <span class="kwd">END</span>) <span class="kwd">AS</span> viagens_pontuais,
+    <span class="fnc">ROUND</span>((<span class="fnc">SUM</span>(<span class="kwd">CASE WHEN</span> atraso_minutos = <span class="num">0</span> <span class="kwd">THEN</span> <span class="num">1</span> <span class="kwd">ELSE</span> <span class="num">0</span> <span class="kwd">END</span>) / <span class="fnc">COUNT</span>(*)) * <span class="num">100</span>, <span class="num">1</span>) <span class="kwd">AS</span> pontualidade_pct
+<span class="kwd">FROM</span> transporte
+<span class="kwd">GROUP BY</span> linha
+<span class="kwd">ORDER BY</span> pontualidade_pct <span class="kwd">DESC</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> <code>SUM(CASE WHEN condicao THEN 1 ELSE 0 END)</code> é o jeito de contar condicional em SQL!
+      </div>
+    </article>
+
+    <!-- EXERCÍCIO 10 -->
+    <article class="exercise-card">
+      <div class="card-title">
+        <span class="dot"></span>
+        <span>Exercício 10: Maior Viagem e Total por Modelo</span>
+        <span class="tag-rule">MAX + SUM</span>
+      </div>
+      <div class="task-desc">
+        <strong>O que pede:</strong> Para cada modelo, mostre a maior distância em uma única viagem e a soma total rodada.
+      </div>
+      <div class="code-box"><span class="kwd">SELECT</span> 
+    modelo,
+    <span class="fnc">COUNT</span>(*) <span class="kwd">AS</span> viagens,
+    <span class="fnc">MAX</span>(distancia_km) <span class="kwd">AS</span> maior_viagem_km,
+    <span class="fnc">ROUND</span>(<span class="fnc">SUM</span>(distancia_km), <span class="num">1</span>) <span class="kwd">AS</span> km_acumulado
+<span class="kwd">FROM</span> transporte
+<span class="kwd">GROUP BY</span> modelo
+<span class="kwd">ORDER BY</span> km_acumulado <span class="kwd">DESC</span>;</div>
+      <div class="card-footer">
+        💡 <strong>Dica:</strong> <code>MAX()</code> traz o maior valor individual de um grupo; <code>SUM()</code> traz o acumulado.
+      </div>
+    </article>
+<!-- REGRAS DE OURO PARA NÃO ERRAR -->
     <section class="golden-rules-card">
       <h3>⚠️ 4 Regras de Ouro para a Entrevista:</h3>
       
